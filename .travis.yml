@@ -1,0 +1,15 @@
+language: php
+php:
+- 5.3
+- 5.4
+- 5.5
+- hhvm
+env:
+  global:
+  - secure: cEH0KFv3uMKn2/sx3wEyBZQEy05UDn/PL4MwnCchIN8J0g2FmZKZ6zanW/4JlNUc7q4zN14RBdDIULuD6H5OENPrpycQFP2jMWKru7myYfReGJP8t4k1hTXHf+bcZy/Cbakec7BLQ/QrfG7so/ID4SWUa+8/WLK8rxlWG1y7CoM=
+  - secure: DZ+VxLW4j01zLZFRxMcVC51HX0B7pzQi4jI+aC9kUGm8A7DX3D62B79srcPjp4GlYlib04oyGsrnlw+K4DpAg/Yv5cN+afwHkRVBu/mn8sdH2Hs+Hj1e3CU58vOnySmzVKAZdo8LtF30T/JWA9L+AMf0mO+y8ZKn/eSoc4YxCqQ=
+  - secure: ap5nYwwcEkM9f1nKhBRZj0YPKJsG+TFAU14BIGxqGBu9pQ5k2+fw31aKhoLehFQ4T/jY6cml89fvKJBcRccub/Ftd8l+ss+kocWDNpPqkxJ/iVn/hV1EzXoyUju0i9OwGcN30P6s6ZmkbG/yerUf2cJ4tjXVbY3T0r99O8EoYIc=
+before_script:
+- composer install
+after_script:
+- php vendor/bin/coveralls
