@@ -10,33 +10,38 @@ class Client
 
     public function __construct()
     {
-        $this->soapClient = new \SoapClient(self::WSDL_URL_LOGIN, array('trace' => 1));
+        $this->client = new \SoapClient(self::WSDL_URL_LOGIN, array(
+            'classmap' => $this->getClassMap(),
+            'trace'    => 1,
+        ));
+    }
+
+    private function getClassMap()
+    {
+        return array(
+            'LogonResponse' => 'Pronamic\Twinfield\LogonResponse',
+        );
     }
 
     public function getSession(Credentials $credentials)
     {
         $session = null;
 
-        $response = $this->soapClient->Logon($credentials);
+        $response = $this->client->Logon($credentials);
 
         // Check response is successful
-        if (LogonResult::OK == $response->LogonResult) {
+        if (LogonResult::OK == $response->getResult()) {
             // Response from the logon request
-            $this->loginResponse = $this->soapClient->__getLastResponse();
+            $xml = $this->client->__getLastResponse();
 
-            // Make a new DOM and load the response XML
-            $envelope = new \DOMDocument();
-            $envelope->loadXML($this->loginResponse);
+            $soapEnvelope    = simplexml_load_string($xml, null, null, 'http://schemas.xmlsoap.org/soap/envelope/');
+            $soapHeader      = $soapEnvelope->Header;
+            $twinfieldHeader = $soapHeader->children('http://www.twinfield.com/')->Header;
 
-            // Gets SessionID
-            $sessionIdElement = $envelope->getElementsByTagName('SessionID');
-            $sessionId = $sessionIdElement->item(0)->textContent;
+            $sessionId = (string) $twinfieldHeader->SessionID;
 
-            // Gets Cluster URL
-            $clusterElement = $envelope->getElementsByTagName('cluster');
-            $cluster = $clusterElement->item(0)->textContent;
-
-            $session = new Session($sessionId, $cluster);
+            // Session
+            $session = new Session($sessionId, $response->getCluster());
         }
 
         return $session;

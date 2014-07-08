@@ -9,21 +9,19 @@
  * @version 1.0.0
  */
 class Pronamic_Twinfield_LogonTest extends PHPUnit_Framework_TestCase {
-	public function testLogon() {
-		global $credentials;
+    public function testLogon() {
+        global $credentials;
 
-		$client = new Pronamic\Twinfield\Client();
+        $client = new Pronamic\Twinfield\Client();
 
-		$session = $client->getSession( $credentials );
+        $session = $client->getSession($credentials);
 
-		$this->assertInstanceOf( 'Pronamic\Twinfield\Session', $session );
-		$this->assertInternalType( 'string', $session->getId() );
+        $this->assertInstanceOf('Pronamic\Twinfield\Session', $session);
+        $this->assertInternalType('string', $session->getId());
 
-		$response = $session->selectCompany('11024');
+        $response = $session->selectCompany('11024');
 
-		$this->assertInstanceOf( 'Pronamic\Twinfield\Session', $session );
-		$this->assertSame( Pronamic\Twinfield\SelectCompanyResult::OK, $response->getResult() );
-
-		echo $session->cluster;
-	}
+        $this->assertInstanceOf('Pronamic\Twinfield\Session', $session);
+        $this->assertSame(Pronamic\Twinfield\SelectCompanyResult::OK, $response->getResult());
+    }
 }
