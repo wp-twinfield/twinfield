@@ -3,7 +3,6 @@ php:
 - 5.3
 - 5.4
 - 5.5
-- hhvm
 env:
   global:
   - secure: wuWvnC0+12oqBxxVyEKoj5ptuOx0m26CvrfXdvQ9yUo/lrpN/Zjcl/r956RxvNryVFb4ig3tDNBRKDUqVD4UuHbB2EFKTUKHZsjSetcQBSO2eQuCcHnvS8zFNRULEFT9fFllUomCWltiOshs3FkTy5tsHnAAxFBy+1zk6GTDx1g=
