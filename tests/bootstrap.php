@@ -8,4 +8,4 @@ $organisation = getenv( 'TWINFIELD_ORGANISATION' );
 
 global $credentials;
 
-$credentials = new Pronamic\Twinfield\Credentials( $user, $password,$organisation );
+$credentials = new Pronamic\Twinfield\Credentials( $user, $password, $organisation );

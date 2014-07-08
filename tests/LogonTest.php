@@ -14,14 +14,19 @@ class Pronamic_Twinfield_LogonTest extends PHPUnit_Framework_TestCase {
 
         $client = new Pronamic\Twinfield\Client();
 
-        $session = $client->getSession($credentials);
+        $logonResponse = $client->logon($credentials);
+
+        $this->assertInstanceOf('Pronamic\Twinfield\LogonResponse', $logonResponse);
+        $this->assertInternalType('string', $logonResponse->getCluster());
+
+        $session = $client->getSession($logonResponse);
 
         $this->assertInstanceOf('Pronamic\Twinfield\Session', $session);
         $this->assertInternalType('string', $session->getId());
 
         $response = $session->selectCompany('11024');
 
-        $this->assertInstanceOf('Pronamic\Twinfield\Session', $session);
+        $this->assertInstanceOf('Pronamic\Twinfield\SelectCompanyResponse', $response);
         $this->assertSame(Pronamic\Twinfield\SelectCompanyResult::OK, $response->getResult());
     }
 }
