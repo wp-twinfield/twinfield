@@ -42,11 +42,13 @@ class Client
      * @return LogonResponse
      */
     public function logon(Credentials $credentials) {
-        $response = $this->client->Logon($credentials);
+        $logonResponse = $this->client->Logon($credentials);
 
-        $this->findSessionId();
+        if (LogonResult::OK == $logonResponse->getResult()) {
+            $this->findSessionId();
+        }
 
-        return $response;
+        return $logonResponse;
     }
 
     public function getSession(LogonResponse $logonResponse)

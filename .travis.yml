@@ -6,9 +6,9 @@ php:
 - hhvm
 env:
   global:
-  - secure: cEH0KFv3uMKn2/sx3wEyBZQEy05UDn/PL4MwnCchIN8J0g2FmZKZ6zanW/4JlNUc7q4zN14RBdDIULuD6H5OENPrpycQFP2jMWKru7myYfReGJP8t4k1hTXHf+bcZy/Cbakec7BLQ/QrfG7so/ID4SWUa+8/WLK8rxlWG1y7CoM=
-  - secure: DZ+VxLW4j01zLZFRxMcVC51HX0B7pzQi4jI+aC9kUGm8A7DX3D62B79srcPjp4GlYlib04oyGsrnlw+K4DpAg/Yv5cN+afwHkRVBu/mn8sdH2Hs+Hj1e3CU58vOnySmzVKAZdo8LtF30T/JWA9L+AMf0mO+y8ZKn/eSoc4YxCqQ=
-  - secure: ap5nYwwcEkM9f1nKhBRZj0YPKJsG+TFAU14BIGxqGBu9pQ5k2+fw31aKhoLehFQ4T/jY6cml89fvKJBcRccub/Ftd8l+ss+kocWDNpPqkxJ/iVn/hV1EzXoyUju0i9OwGcN30P6s6ZmkbG/yerUf2cJ4tjXVbY3T0r99O8EoYIc=
+  - secure: wuWvnC0+12oqBxxVyEKoj5ptuOx0m26CvrfXdvQ9yUo/lrpN/Zjcl/r956RxvNryVFb4ig3tDNBRKDUqVD4UuHbB2EFKTUKHZsjSetcQBSO2eQuCcHnvS8zFNRULEFT9fFllUomCWltiOshs3FkTy5tsHnAAxFBy+1zk6GTDx1g=
+  - secure: IamfQiU8jvBgkD/53eOK8R/cqqKFx4XAoqsw0n+XaigsZib0QKMWLBeBy0b3qAScgZZHKiG4lOJOUlB8sYbflKQba/1sS3ImIqvrQgN70RT8w+rZMGAQE+emOpvfv4IIxi6NtB9VzPk2eHKikAXLaQ3P9a1z8/YCVX0mREak/4o=
+  - secure: I33s7SHgpVEB5LxLch55N9aWExUIbTLoiMpAVMPU208ZwnLpCu9kEN0Azp/NB57b/tSP6YooqzIT5krIhJtegqcZQqV3ru5mTbjPdgMWjBsOfxLLSW5POyiw8mLwpuy1oe3UBHdK/p9tLTCytfPdo5D5h7rzmvQPslVy2FBe9qo=
 before_script:
 - composer install
 after_script:
