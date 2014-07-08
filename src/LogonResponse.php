@@ -10,6 +10,11 @@ class LogonResponse
 
     private $cluster;
 
+    public function getNextAction()
+    {
+        return $this->nextAction;
+    }
+
     public function getResult()
     {
         return $this->LogonResult;

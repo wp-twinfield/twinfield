@@ -23,7 +23,8 @@ class Client
         );
     }
 
-    private function findSessionId() {
+    private function findSessionId()
+    {
         // Parse last response
         $xml = $this->client->__getLastResponse();
 
@@ -41,7 +42,8 @@ class Client
      * @param Credentials $credentials
      * @return LogonResponse
      */
-    public function logon(Credentials $credentials) {
+    public function logon(Credentials $credentials)
+    {
         $logonResponse = $this->client->Logon($credentials);
 
         if (LogonResult::OK == $logonResponse->getResult()) {
