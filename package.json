@@ -16,11 +16,11 @@
   },
   "homepage": "https://github.com/php-twinfield/twinfield",
   "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-phpcs": "^0.2.2",
+    "grunt": "~0.4.5",
+    "grunt-phpcs": "^0.2.3",
     "grunt-phplint": "0.0.5",
-    "grunt-phpmd": "^0.1.0",
-    "grunt-phpunit": "~0.3.3",
-    "grunt-shell": "^0.6.4"
+    "grunt-phpmd": "^0.1.1",
+    "grunt-phpunit": "~0.3.6",
+    "grunt-shell": "^1.1.1"
   }
 }
