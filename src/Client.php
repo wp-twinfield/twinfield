@@ -8,6 +8,8 @@ class Client
 
     const WSDL_URL_SESSION = '%s/webservices/session.asmx?wsdl';
 
+    const WSDL_URL_FINDER = '%s/webservices/finder.asmx?wsdl';
+
     public function __construct()
     {
         $this->client = new \SoapClient(self::WSDL_URL_LOGIN, array(
@@ -64,5 +66,18 @@ class Client
         }
 
         return $session;
+    }
+
+    public function getFinder(LogonResponse $logonResponse)
+    {
+        $finder = null;
+
+        // Check response is successful
+        if (LogonResult::OK == $logonResponse->getResult()) {
+            // Session
+            $finder = new Finder($this->sessionId, $logonResponse->getCluster());
+        }
+
+        return $finder;
     }
 }
