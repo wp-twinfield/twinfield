@@ -14,7 +14,8 @@ class Search
 
     private $maxRows;
 
-    public function __construct( $type, $pattern, $field, $firstRow, $maxRows ) {
+    public function __construct($type, $pattern, $field, $firstRow, $maxRows)
+    {
         $this->type = $type;
         $this->pattern = $pattern;
         $this->field = $field;

@@ -24,8 +24,8 @@ class Pronamic_Twinfield_FinderTest extends PHPUnit_Framework_TestCase {
         $this->assertInstanceOf('Pronamic\Twinfield\Finder', $finder);
         $this->assertInternalType('string', $finder->getId());
 
-        $search = new Pronamic\Twinfield\Search( Pronamic\Twinfield\FinderTypes::ART, '*', Pronamic\Twinfield\SearchFields::CODE_AND_NAME, 1, 100 );
-        $response = $finder->search( $search );
+        $search = new Pronamic\Twinfield\Search(Pronamic\Twinfield\FinderTypes::ART, '*', Pronamic\Twinfield\SearchFields::CODE_AND_NAME, 1, 100);
+        $response = $finder->search($search);
 
         $this->assertInstanceOf('Pronamic\Twinfield\SearchResponse', $response);
 

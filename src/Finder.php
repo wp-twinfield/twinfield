@@ -45,7 +45,7 @@ class Finder
         return $this->cluster;
     }
 
-    public function search( Search $search )
+    public function search(Search $search)
     {
         $response = $this->client->Search($search);
 
