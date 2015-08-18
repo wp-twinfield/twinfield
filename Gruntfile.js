@@ -6,11 +6,14 @@ module.exports = function( grunt ) {
 		// PHP Code Sniffer
 		phpcs: {
 		    application: {
-		        dir: ['src/**/*.php']
+		        src: [
+		        	'src/**/*.php'
+		        ]
 		    },
 		    options: {
-		        bin: 'vendor/bin/phpcs',
-		        standard: 'psr2'
+		    	bin: 'vendor/bin/phpcs',
+		        standard: 'PSR2',
+		        showSniffCodes: true
 		    }
 		},
 
@@ -21,7 +24,9 @@ module.exports = function( grunt ) {
 					'-lf': null
 				}
 			},
-			all: [ 'src/**/*.php' ]
+			all: [
+				'src/**/*.php'
+			]
 		},
 		
 		// PHP Mess Detector
