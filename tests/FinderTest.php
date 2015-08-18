@@ -36,6 +36,12 @@ class Pronamic_Twinfield_FinderTest extends PHPUnit_Framework_TestCase {
         $columns = $data->getColumns();
         $items = $data->getItems();
 
-        var_dump( $items );
+        foreach ( $items as $key => $strings ) {
+            echo $key, PHP_EOL;
+
+            foreach ( $strings as $string ) {
+                echo '- ', $string, PHP_EOL;
+            }
+        }
     }
 }

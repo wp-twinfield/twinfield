@@ -32,6 +32,8 @@ class Finder
         return array(
             'SearchResponse' => 'Pronamic\Twinfield\SearchResponse',
             'FinderData' => 'Pronamic\Twinfield\FinderData',
+            'ArrayOfArrayOfString' => 'Pronamic\Twinfield\ArrayOfArrayOfString',
+            'ArrayOfString' => 'Pronamic\Twinfield\ArrayOfString'
         );
     }
 
