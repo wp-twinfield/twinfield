@@ -1,27 +1,69 @@
 <?php
+/**
+ * Logon response
+ *
+ * @since      1.0.0
+ *
+ * @package    Pronamic/WP/Twinfield
+ */
 
-namespace Pronamic\Twinfield;
+namespace Pronamic\WP\Twinfield;
 
-class LogonResponse
-{
+/**
+ * Logon response
+ *
+ * This class represents an Twinfield logon response.
+ *
+ * @since      1.0.0
+ * @package    Pronamic/WP/Twinfield
+ * @author     Remco Tolsma <info@remcotolsma.nl>
+ */
+class LogonResponse {
+	/**
+	 * Logon result
+	 *
+	 * @var string
+	 */
 	private $LogonResult;
 
+	/**
+	 * Next required log-on action.
+	 *
+	 * @var string
+	 */
 	private $nextAction;
 
+	/**
+	 * Cluser.
+	 *
+	 * @var string
+	 */
 	private $cluster;
 
-	public function getNextAction() {
-
+	/**
+	 * Get the next required log-on action.
+	 *
+	 * @return string
+	 */
+	public function get_next_action() {
 		return $this->nextAction;
 	}
 
-	public function getResult() {
-
+	/**
+	 * Get the logon result code.
+	 *
+	 * @return string
+	 */
+	public function get_result() {
 		return $this->LogonResult;
 	}
 
-	public function getCluster() {
-
+	/**
+	 * Get the cluster code.
+	 *
+	 * @return string
+	 */
+	public function get_cluster() {
 		return $this->cluster;
 	}
 }

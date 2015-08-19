@@ -1,83 +1,139 @@
 <?php
+/**
+ * Client
+ *
+ * @since      1.0.0
+ *
+ * @package    Pronamic/WP/Twinfield
+ */
 
-namespace Pronamic\Twinfield;
+namespace Pronamic\WP\Twinfield;
 
-class Client
-{
+/**
+ * Client
+ *
+ * This class connects to the Twinfield Webservices.
+ *
+ * @since      1.0.0
+ * @package    Pronamic/WP/Twinfield
+ * @author     Remco Tolsma <info@remcotolsma.nl>
+ */
+class Client {
+	/**
+	 * The Twinfield WSDL login URL.
+	 *
+	 * @var string
+	 */
 	const WSDL_URL_LOGIN = 'https://login.twinfield.com/webservices/session.asmx?wsdl';
 
-	const WSDL_URL_SESSION = '%s/webservices/session.asmx?wsdl';
-
-	const WSDL_URL_FINDER = '%s/webservices/finder.asmx?wsdl';
-
+	/**
+	 * Constructs and initializes an Twinfield client object.
+	 */
 	public function __construct() {
-
-		$this->client = new \SoapClient(self::WSDL_URL_LOGIN, array(
-			'classmap' => $this->getClassMap(),
+		$this->soap_client = new \SoapClient( self::WSDL_URL_LOGIN, array(
+			'classmap' => self::get_class_map(),
 			'trace'    => 1,
-		));
+		) );
 	}
 
-	private function getClassMap() {
-
+	/**
+	 * Get the class map to connect Twinfield classes to classes in this library.
+	 *
+	 * @return array
+	 */
+	public static function get_class_map() {
 		return array(
-			'LogonResponse' => 'Pronamic\Twinfield\LogonResponse',
+			'ArrayOfArrayOfString'     => __NAMESPACE__ . '\ArrayOfArrayOfString',
+			'ArrayOfString'            => __NAMESPACE__ . '\ArrayOfString',
+			'FinderData'               => __NAMESPACE__ . '\FinderData',
+			'LogonResponse'            => __NAMESPACE__ . '\LogonResponse',
+			'ProcessXmlStringResponse' => __NAMESPACE__ . '\ProcessXmlStringResponse',
+			'SearchResponse'           => __NAMESPACE__ . '\SearchResponse',
+			'SelectCompanyResponse'    => __NAMESPACE__ . '\SelectCompanyResponse',
 		);
 	}
 
-	private function findSessionId() {
+	/**
+	 * Find the session ID from the last Twinfield response message.
+	 */
+	private function get_session_id() {
+		// Parse last response.
+		$xml = $this->soap_client->__getLastResponse();
 
-		// Parse last response
-		$xml = $this->client->__getLastResponse();
+		$soap_envelope    = simplexml_load_string( $xml, null, null, 'http://schemas.xmlsoap.org/soap/envelope/' );
+		$soap_header      = $soap_envelope->Header;
+		$twinfield_header = $soap_header->children( 'http://www.twinfield.com/' )->Header;
 
-		$soapEnvelope    = simplexml_load_string( $xml, null, null, 'http://schemas.xmlsoap.org/soap/envelope/' );
-		$soapHeader      = $soapEnvelope->Header;
-		$twinfieldHeader = $soapHeader->children( 'http://www.twinfield.com/' )->Header;
+		// Session ID.
+		$session_id = (string) $twinfield_header->SessionID;
 
-		// Session ID
-		$this->sessionId = (string) $twinfieldHeader->SessionID;
+		return $session_id;
 	}
 
 	/**
 	 * Logon with the specified credentials
 	 *
-	 * @param Credentials $credentials
+	 * @param Credentials $credentials Logon with the specified credentials.
 	 * @return LogonResponse
 	 */
-	public function logon(Credentials $credentials) {
+	public function logon( Credentials $credentials ) {
+		$logon_response = $this->soap_client->Logon( $credentials );
 
-		$logonResponse = $this->client->Logon( $credentials );
+		/*
+		 * The session ID is officially not part of the logon response.
+		 * To make this library easier to use we store it temporary in
+		 * logon repsonse object.
+		 */
+		$logon_response->session_id = $this->get_session_id();
 
-		if ( LogonResult::OK == $logonResponse->getResult() ) {
-			$this->findSessionId();
-		}
-
-		return $logonResponse;
+		return $logon_response;
 	}
 
-	public function getSession(LogonResponse $logonResponse) {
-
+	/**
+	 * Create an new session object from an logon response object.
+	 *
+	 * @param LogonResponse $logon_response An logon response is required to create a new session object.
+	 * @return Session An Twinfield session object.
+	 */
+	public function get_session( LogonResponse $logon_response ) {
 		$session = null;
 
-		// Check response is successful
-		if ( LogonResult::OK == $logonResponse->getResult() ) {
-			// Session
-			$session = new Session( $this->sessionId, $logonResponse->getCluster() );
+		// Check if logon response result code is OK.
+		if ( LogonResult::OK === $logon_response->get_result() ) {
+			/*
+			 * The session ID is officially not part of the logon response.
+			 * To make this library easier to use we store it temporary in
+			 * logon repsonse object.
+			 */
+			$session_id = $logon_response->session_id;
+
+			$session = new Session( $session_id, $logon_response->get_cluster() );
 		}
 
 		return $session;
 	}
 
-	public function getFinder(LogonResponse $logonResponse) {
-
-		$finder = null;
-
-		// Check response is successful
-		if ( LogonResult::OK == $logonResponse->getResult() ) {
-			// Session
-			$finder = new Finder( $this->sessionId, $logonResponse->getCluster() );
-		}
+	/**
+	 * Create an new finder object.
+	 *
+	 * @param Session $session An Twinfield session object which contains the session ID.
+	 * @return Finder An Twinfield finder client object.
+	 */
+	public function get_finder( Session $session ) {
+		$finder = new Finder( $session );
 
 		return $finder;
+	}
+
+	/**
+	 * Create an new XML processor object.
+	 *
+	 * @param Session $session An Twinfield session object which contains the session ID.
+	 * @return Finder An Twinfield XML processor client object.
+	 */
+	public function get_xml_processor( Session $session ) {
+		$xml_processor = new XMLProcessor( $session );
+
+		return $xml_processor;
 	}
 }

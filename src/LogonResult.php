@@ -1,9 +1,24 @@
 <?php
+/**
+ * Logon result
+ *
+ * @since      1.0.0
+ *
+ * @package    Pronamic/WP/Twinfield
+ */
 
-namespace Pronamic\Twinfield;
+namespace Pronamic\WP\Twinfield;
 
-class LogonResult
-{
+/**
+ * Long result
+ *
+ * This class contains constants for different Twinfield logon result codes.
+ *
+ * @since      1.0.0
+ * @package    Pronamic/WP/Twinfield
+ * @author     Remco Tolsma <info@remcotolsma.nl>
+ */
+class LogonResult {
 	/**
 	 * Ok Log-on successful.
 	 *

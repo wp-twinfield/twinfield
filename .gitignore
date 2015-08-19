@@ -4,6 +4,9 @@
 # Composer
 /vendor/
 
+# Documentation
+/documentation/
+
 # Eclipse
 /.buildpath
 /.project

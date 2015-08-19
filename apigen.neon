@@ -1,0 +1,19 @@
+source: src/
+
+destination: documentation
+
+extensions: [php]
+
+title: WordPress Twinfield
+
+php: false
+
+sourceCode: true
+
+tree: true
+
+deprecated: true
+
+todo: true
+
+download: false

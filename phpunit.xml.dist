@@ -5,7 +5,7 @@
     colors="true"
 >
     <testsuites>
-        <testsuite name="PHP Twinfield Test Suite">
+        <testsuite name="Twinfield Test Suite">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>

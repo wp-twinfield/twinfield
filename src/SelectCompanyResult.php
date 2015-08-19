@@ -1,9 +1,24 @@
 <?php
+/**
+ * Select company result
+ *
+ * @since      1.0.0
+ *
+ * @package    Pronamic/WP/Twinfield
+ */
 
-namespace Pronamic\Twinfield;
+namespace Pronamic\WP\Twinfield;
 
-class SelectCompanyResult
-{
+/**
+ * Select company result
+ *
+ * This class contains constants for different Twinfield select company results.
+ *
+ * @since      1.0.0
+ * @package    Pronamic/WP/Twinfield
+ * @author     Remco Tolsma <info@remcotolsma.nl>
+ */
+class SelectCompanyResult {
 	/**
 	 * Ok Log-on successful.
 	 *

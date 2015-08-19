@@ -1,16 +1,36 @@
 <?php
+/**
+ * Array of array of string
+ *
+ * @since      1.0.0
+ *
+ * @package    Pronamic/WP/Twinfield
+ */
 
-namespace Pronamic\Twinfield;
+namespace Pronamic\WP\Twinfield;
 
-class ArrayOfArrayOfString implements \IteratorAggregate
-{
+/**
+ * Array of array of string
+ *
+ * This class represents the 'ArrayOfArrayOfString' Twinfield class.
+ *
+ * @since      1.0.0
+ * @package    Pronamic/WP/Twinfield
+ * @author     Remco Tolsma <info@remcotolsma.nl>
+ */
+class ArrayOfArrayOfString implements \IteratorAggregate {
 	/**
-	 * An array with array strings
+	 * An array with array strings.
 	 *
 	 * @var array
 	 */
 	private $ArrayOfString;
 
+	/**
+	 * Get iterator.
+	 *
+	 * @return \ArrayIterator
+	 */
 	public function getIterator() {
 		return new \ArrayIterator( $this->ArrayOfString );
 	}

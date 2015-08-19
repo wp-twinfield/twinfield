@@ -4,7 +4,7 @@
   "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/php-twinfield/twinfield"
+    "url": "https://github.com/wp-twinfield/twinfield"
   },
   "keywords": [
     "twinfield"
@@ -12,15 +12,16 @@
   "author": "Pronamic",
   "license": "GPLv3",
   "bugs": {
-    "url": "https://github.com/php-twinfield/twinfield/issues"
+    "url": "https://github.com/wp-twinfield/twinfield/issues"
   },
-  "homepage": "https://github.com/php-twinfield/twinfield",
+  "homepage": "https://github.com/wp-twinfield/twinfield",
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-phpcs": "^0.4.0",
     "grunt-phplint": "0.0.5",
     "grunt-phpmd": "^0.1.1",
     "grunt-phpunit": "~0.3.6",
-    "grunt-shell": "^1.1.1"
+    "grunt-shell": "^1.1.1",
+    "load-grunt-tasks": "^3.2.0"
   }
 }

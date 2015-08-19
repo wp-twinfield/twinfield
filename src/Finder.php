@@ -1,55 +1,48 @@
 <?php
+/**
+ * Finder
+ *
+ * @since      1.0.0
+ *
+ * @package    Pronamic/WP/Twinfield
+ */
 
-namespace Pronamic\Twinfield;
+namespace Pronamic\WP\Twinfield;
 
-class Finder
-{
-	public $sessionId;
+/**
+ * Finder
+ *
+ * This class connects to the Twinfield finder Webservices to search for Twinfield masters.
+ *
+ * @since      1.0.0
+ * @package    Pronamic/WP/Twinfield
+ * @author     Remco Tolsma <info@remcotolsma.nl>
+ */
+class Finder extends AbstractClient {
+	/**
+	 * The Twinfield finder WSDL URL.
+	 *
+	 * @var string
+	 */
+	const WSDL_FILE = '/webservices/finder.asmx?wsdl';
 
-	public function __construct($sessionId, $cluster) {
-
-		$this->sessionId = $sessionId;
-		$this->cluster = $cluster;
-
-		$this->client = new \SoapClient($this->getWsdlUrl(), array(
-			'classmap' => $this->getClassMap(),
-		));
-		$this->client->__setSoapHeaders( $this->getSoapHeader() );
+	/**
+	 * Constructs and initializes an finder object.
+	 *
+	 * @param Session $session The Twinfield session.
+	 */
+	public function __construct( Session $session ) {
+		parent::__construct( self::WSDL_FILE, $session );
 	}
 
-	private function getWsdlUrl() {
-
-		return sprintf( Client::WSDL_URL_FINDER, $this->cluster );
-	}
-
-	private function getSoapHeader() {
-
-		return new \SoapHeader( 'http://www.twinfield.com/', 'Header', array( 'SessionID' => $this->getId() ) );
-	}
-
-	private function getClassMap() {
-
-		return array(
-			'SearchResponse' => 'Pronamic\Twinfield\SearchResponse',
-			'FinderData' => 'Pronamic\Twinfield\FinderData',
-			'ArrayOfArrayOfString' => 'Pronamic\Twinfield\ArrayOfArrayOfString',
-			'ArrayOfString' => 'Pronamic\Twinfield\ArrayOfString',
-		);
-	}
-
-	public function getId() {
-
-		return $this->sessionId;
-	}
-
-	public function getCluster() {
-
-		return $this->cluster;
-	}
-
-	public function search(Search $search) {
-
-		$response = $this->client->Search( $search );
+	/**
+	 * Send the specified search request to Twinfield.
+	 *
+	 * @param Search $search An Twinfield search object.
+	 * @return SearchResponse
+	 */
+	public function search( Search $search ) {
+		$response = $this->soap_client->Search( $search );
 
 		return $response;
 	}

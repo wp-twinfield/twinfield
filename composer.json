@@ -1,5 +1,5 @@
 {
-    "name": "php-twinfield/twinfield",
+    "name": "wp-twinfield/twinfield",
     "description": "Twinfield",
     "license": "GPLv3",
     "authors": [
@@ -9,7 +9,7 @@
         }
     ],
   	"autoload": {
-		"psr-4": {"Pronamic\\Twinfield\\": "src/"}
+		"psr-4": {"Pronamic\\WP\\Twinfield\\": "src/"}
 	},
     "require": {
 

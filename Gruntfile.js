@@ -1,4 +1,6 @@
 module.exports = function( grunt ) {
+	require( 'load-grunt-tasks' )( grunt );
+
 	// Project configuration.
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( 'package.json' ),
@@ -7,7 +9,8 @@ module.exports = function( grunt ) {
 		phpcs: {
 		    application: {
 		        src: [
-		        	'src/**/*.php'
+		        	'src/**/*.php',
+		        	'tests/**/*.php',
 		        ]
 		    },
 		    options: {
@@ -50,21 +53,19 @@ module.exports = function( grunt ) {
 		
 		// Shell
 		shell: {
+			options: {
+				stdout: true,
+				stderr: true
+			},
 			securityChecker: {
-			    command: 'php vendor/bin/security-checker security:check',
-			    options: {
-			        stdout: true
-			    }
+			    command: 'php vendor/bin/security-checker security:check'
+			},
+			apigen: {
+				command: 'apigen generate'
 			}
 		}
 	} );
 
-	grunt.loadNpmTasks( 'grunt-phpcs' );
-	grunt.loadNpmTasks( 'grunt-phplint' );
-	grunt.loadNpmTasks( 'grunt-phpmd' );
-	grunt.loadNpmTasks( 'grunt-phpunit' );
-	grunt.loadNpmTasks( 'grunt-shell' );
-
 	// Default task(s).
-	grunt.registerTask( 'default', [ 'phplint', 'phpcs', 'phpmd', 'phpunit', 'shell' ] );
+	grunt.registerTask( 'default', [ 'phplint', 'phpcs', 'phpmd', 'phpunit', 'shell:securityChecker' ] );
 };

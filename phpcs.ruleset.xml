@@ -2,6 +2,6 @@
 
 <ruleset name="Twinfield">
 	<rule ref="WordPress">
-		
+		<exclude name="Generic.Files.LowercasedFilename.NotFound" />
 	</rule>
 </ruleset>

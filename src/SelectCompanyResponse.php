@@ -1,13 +1,37 @@
 <?php
+/**
+ * Select company response
+ *
+ * @since      1.0.0
+ *
+ * @package    Pronamic/WP/Twinfield
+ */
 
-namespace Pronamic\Twinfield;
+namespace Pronamic\WP\Twinfield;
 
-class SelectCompanyResponse
-{
+/**
+ * Select company response
+ *
+ * This class contains represents an Twinfield select company response.
+ *
+ * @since      1.0.0
+ * @package    Pronamic/WP/Twinfield
+ * @author     Remco Tolsma <info@remcotolsma.nl>
+ */
+class SelectCompanyResponse {
+	/**
+	 * Select company result code
+	 *
+	 * @var string
+	 */
 	private $SelectCompanyResult;
 
-	public function getResult() {
-
+	/**
+	 * Get the Twinfield result code for this response
+	 *
+	 * @return string
+	 */
+	public function get_result() {
 		return $this->SelectCompanyResult;
 	}
 }
