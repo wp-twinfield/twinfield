@@ -75,13 +75,4 @@ abstract class AbstractClient {
 	private function get_soap_header() {
 		return new \SoapHeader( 'http://www.twinfield.com/', 'Header', array( 'SessionID' => $this->session->get_id() ) );
 	}
-
-	/**
-	 * Get the class map to connect Twinfield classes to classes in this library.
-	 *
-	 * @return array
-	 */
-	private function get_class_map() {
-		return array();
-	}
 }
