@@ -4,10 +4,10 @@ namespace Pronamic\Twinfield;
 
 class SelectCompanyResponse
 {
-    private $SelectCompanyResult;
+	private $SelectCompanyResult;
 
-    public function getResult()
-    {
-        return $this->SelectCompanyResult;
-    }
+	public function getResult() {
+
+		return $this->SelectCompanyResult;
+	}
 }

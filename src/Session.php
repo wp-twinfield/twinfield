@@ -4,53 +4,53 @@ namespace Pronamic\Twinfield;
 
 class Session
 {
-    public $sessionId;
+	public $sessionId;
 
-    public function __construct($sessionId, $cluster)
-    {
-        $this->sessionId = $sessionId;
-        $this->cluster = $cluster;
+	public function __construct($sessionId, $cluster) {
 
-        $this->client = new \SoapClient($this->getWsdlUrl(), array(
-            'classmap' => $this->getClassMap(),
-        ));
-        $this->client->__setSoapHeaders($this->getSoapHeader());
-    }
+		$this->sessionId = $sessionId;
+		$this->cluster = $cluster;
 
-    private function getWsdlUrl()
-    {
-        return sprintf(Client::WSDL_URL_SESSION, $this->cluster);
-    }
+		$this->client = new \SoapClient($this->getWsdlUrl(), array(
+			'classmap' => $this->getClassMap(),
+		));
+		$this->client->__setSoapHeaders( $this->getSoapHeader() );
+	}
 
-    private function getSoapHeader()
-    {
-        return new \SoapHeader('http://www.twinfield.com/', 'Header', array('SessionID' => $this->getId()));
-    }
+	private function getWsdlUrl() {
 
-    private function getClassMap()
-    {
-        return array(
-            'SelectCompanyResponse' => 'Pronamic\Twinfield\SelectCompanyResponse',
-        );
-    }
+		return sprintf( Client::WSDL_URL_SESSION, $this->cluster );
+	}
 
-    public function getId()
-    {
-        return $this->sessionId;
-    }
+	private function getSoapHeader() {
 
-    public function getCluster()
-    {
-        return $this->cluster;
-    }
+		return new \SoapHeader( 'http://www.twinfield.com/', 'Header', array( 'SessionID' => $this->getId() ) );
+	}
 
-    public function selectCompany($companyCode)
-    {
-        $selectCompany = new \stdClass();
-        $selectCompany->company = $companyCode;
+	private function getClassMap() {
 
-        $response = $this->client->SelectCompany($selectCompany);
+		return array(
+			'SelectCompanyResponse' => 'Pronamic\Twinfield\SelectCompanyResponse',
+		);
+	}
 
-        return $response;
-    }
+	public function getId() {
+
+		return $this->sessionId;
+	}
+
+	public function getCluster() {
+
+		return $this->cluster;
+	}
+
+	public function selectCompany($companyCode) {
+
+		$selectCompany = new \stdClass();
+		$selectCompany->company = $companyCode;
+
+		$response = $this->client->SelectCompany( $selectCompany );
+
+		return $response;
+	}
 }

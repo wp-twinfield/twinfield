@@ -4,22 +4,22 @@ namespace Pronamic\Twinfield;
 
 class Search
 {
-    private $type;
+	private $type;
 
-    private $pattern;
+	private $pattern;
 
-    private $field;
+	private $field;
 
-    private $firstRow;
+	private $firstRow;
 
-    private $maxRows;
+	private $maxRows;
 
-    public function __construct($type, $pattern, $field, $firstRow, $maxRows)
-    {
-        $this->type = $type;
-        $this->pattern = $pattern;
-        $this->field = $field;
-        $this->firstRow = $firstRow;
-        $this->maxRows = $maxRows;
-    }
+	public function __construct($type, $pattern, $field, $firstRow, $maxRows) {
+
+		$this->type = $type;
+		$this->pattern = $pattern;
+		$this->field = $field;
+		$this->firstRow = $firstRow;
+		$this->maxRows = $maxRows;
+	}
 }

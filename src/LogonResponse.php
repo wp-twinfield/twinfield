@@ -4,24 +4,24 @@ namespace Pronamic\Twinfield;
 
 class LogonResponse
 {
-    private $LogonResult;
+	private $LogonResult;
 
-    private $nextAction;
+	private $nextAction;
 
-    private $cluster;
+	private $cluster;
 
-    public function getNextAction()
-    {
-        return $this->nextAction;
-    }
+	public function getNextAction() {
 
-    public function getResult()
-    {
-        return $this->LogonResult;
-    }
+		return $this->nextAction;
+	}
 
-    public function getCluster()
-    {
-        return $this->cluster;
-    }
+	public function getResult() {
+
+		return $this->LogonResult;
+	}
+
+	public function getCluster() {
+
+		return $this->cluster;
+	}
 }

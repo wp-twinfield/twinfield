@@ -11,8 +11,7 @@ module.exports = function( grunt ) {
 		        ]
 		    },
 		    options: {
-		    	bin: 'vendor/bin/phpcs',
-		        standard: 'PSR2',
+		    	standard: 'phpcs.ruleset.xml',
 		        showSniffCodes: true
 		    }
 		},

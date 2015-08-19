@@ -4,80 +4,80 @@ namespace Pronamic\Twinfield;
 
 class Client
 {
-    const WSDL_URL_LOGIN = 'https://login.twinfield.com/webservices/session.asmx?wsdl';
+	const WSDL_URL_LOGIN = 'https://login.twinfield.com/webservices/session.asmx?wsdl';
 
-    const WSDL_URL_SESSION = '%s/webservices/session.asmx?wsdl';
+	const WSDL_URL_SESSION = '%s/webservices/session.asmx?wsdl';
 
-    const WSDL_URL_FINDER = '%s/webservices/finder.asmx?wsdl';
+	const WSDL_URL_FINDER = '%s/webservices/finder.asmx?wsdl';
 
-    public function __construct()
-    {
-        $this->client = new \SoapClient(self::WSDL_URL_LOGIN, array(
-            'classmap' => $this->getClassMap(),
-            'trace'    => 1,
-        ));
-    }
+	public function __construct() {
 
-    private function getClassMap()
-    {
-        return array(
-            'LogonResponse' => 'Pronamic\Twinfield\LogonResponse',
-        );
-    }
+		$this->client = new \SoapClient(self::WSDL_URL_LOGIN, array(
+			'classmap' => $this->getClassMap(),
+			'trace'    => 1,
+		));
+	}
 
-    private function findSessionId()
-    {
-        // Parse last response
-        $xml = $this->client->__getLastResponse();
+	private function getClassMap() {
 
-        $soapEnvelope    = simplexml_load_string($xml, null, null, 'http://schemas.xmlsoap.org/soap/envelope/');
-        $soapHeader      = $soapEnvelope->Header;
-        $twinfieldHeader = $soapHeader->children('http://www.twinfield.com/')->Header;
+		return array(
+			'LogonResponse' => 'Pronamic\Twinfield\LogonResponse',
+		);
+	}
 
-        // Session ID
-        $this->sessionId = (string) $twinfieldHeader->SessionID;
-    }
+	private function findSessionId() {
 
-    /**
-     * Logon with the specified credentials
-     *
-     * @param Credentials $credentials
-     * @return LogonResponse
-     */
-    public function logon(Credentials $credentials)
-    {
-        $logonResponse = $this->client->Logon($credentials);
+		// Parse last response
+		$xml = $this->client->__getLastResponse();
 
-        if (LogonResult::OK == $logonResponse->getResult()) {
-            $this->findSessionId();
-        }
+		$soapEnvelope    = simplexml_load_string( $xml, null, null, 'http://schemas.xmlsoap.org/soap/envelope/' );
+		$soapHeader      = $soapEnvelope->Header;
+		$twinfieldHeader = $soapHeader->children( 'http://www.twinfield.com/' )->Header;
 
-        return $logonResponse;
-    }
+		// Session ID
+		$this->sessionId = (string) $twinfieldHeader->SessionID;
+	}
 
-    public function getSession(LogonResponse $logonResponse)
-    {
-        $session = null;
+	/**
+	 * Logon with the specified credentials
+	 *
+	 * @param Credentials $credentials
+	 * @return LogonResponse
+	 */
+	public function logon(Credentials $credentials) {
 
-        // Check response is successful
-        if (LogonResult::OK == $logonResponse->getResult()) {
-            // Session
-            $session = new Session($this->sessionId, $logonResponse->getCluster());
-        }
+		$logonResponse = $this->client->Logon( $credentials );
 
-        return $session;
-    }
+		if ( LogonResult::OK == $logonResponse->getResult() ) {
+			$this->findSessionId();
+		}
 
-    public function getFinder(LogonResponse $logonResponse)
-    {
-        $finder = null;
+		return $logonResponse;
+	}
 
-        // Check response is successful
-        if (LogonResult::OK == $logonResponse->getResult()) {
-            // Session
-            $finder = new Finder($this->sessionId, $logonResponse->getCluster());
-        }
+	public function getSession(LogonResponse $logonResponse) {
 
-        return $finder;
-    }
+		$session = null;
+
+		// Check response is successful
+		if ( LogonResult::OK == $logonResponse->getResult() ) {
+			// Session
+			$session = new Session( $this->sessionId, $logonResponse->getCluster() );
+		}
+
+		return $session;
+	}
+
+	public function getFinder(LogonResponse $logonResponse) {
+
+		$finder = null;
+
+		// Check response is successful
+		if ( LogonResult::OK == $logonResponse->getResult() ) {
+			// Session
+			$finder = new Finder( $this->sessionId, $logonResponse->getCluster() );
+		}
+
+		return $finder;
+	}
 }

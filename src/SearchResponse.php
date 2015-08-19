@@ -4,17 +4,17 @@ namespace Pronamic\Twinfield;
 
 class SearchResponse
 {
-    private $SearchResult;
+	private $SearchResult;
 
-    private $data;
+	private $data;
 
-    public function getSearchResult()
-    {
-        return $this->SearchResult;
-    }
+	public function getSearchResult() {
 
-    public function getData()
-    {
-        return $this->data;
-    }
+		return $this->SearchResult;
+	}
+
+	public function getData() {
+
+		return $this->data;
+	}
 }

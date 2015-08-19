@@ -4,9 +4,9 @@ namespace Pronamic\Twinfield;
 
 class FinderTypes
 {
-    const ART = 'ART';
+	const ART = 'ART';
 
-    const ASM = 'ASM';
+	const ASM = 'ASM';
 
-    const BDS = 'BDS';
+	const BDS = 'BDS';
 }

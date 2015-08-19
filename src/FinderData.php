@@ -4,24 +4,24 @@ namespace Pronamic\Twinfield;
 
 class FinderData
 {
-    private $TotalRows;
+	private $TotalRows;
 
-    private $Columns;
+	private $Columns;
 
-    private $Items;
+	private $Items;
 
-    public function getTotalRows()
-    {
-        return $this->TotalRows;
-    }
+	public function getTotalRows() {
 
-    public function getColumns()
-    {
-        return $this->Columns;
-    }
+		return $this->TotalRows;
+	}
 
-    public function getItems()
-    {
-        return $this->Items;
-    }
+	public function getColumns() {
+
+		return $this->Columns;
+	}
+
+	public function getItems() {
+
+		return $this->Items;
+	}
 }

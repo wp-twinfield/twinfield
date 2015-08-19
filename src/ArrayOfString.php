@@ -9,9 +9,9 @@ class ArrayOfString implements \IteratorAggregate
 	 *
 	 * @var array
 	 */
-    private $string;
+	private $string;
 
 	public function getIterator() {
 		return new \ArrayIterator( $this->string );
-    }
+	}
 }
