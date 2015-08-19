@@ -7,6 +7,8 @@
  * @package    Pronamic/WP/Twinfield
  */
 
+namespace Pronamic\WP\Twinfield;
+
 /**
  * Finder test
  *
@@ -16,38 +18,38 @@
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class Pronamic_Twinfield_FinderTest extends PHPUnit_Framework_TestCase {
+class FinderTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Test search
 	 */
 	public function test_search() {
 		global $credentials;
 
-		$client = new Pronamic\WP\Twinfield\Client();
+		$client = new Client();
 
 		$logon_response = $client->logon( $credentials );
 
-		$this->assertInstanceOf( 'Pronamic\WP\Twinfield\LogonResponse', $logon_response );
+		$this->assertInstanceOf( __NAMESPACE__ . '\LogonResponse', $logon_response );
 		$this->assertInternalType( 'string', $logon_response->get_cluster() );
 
 		$session = $client->get_session( $logon_response );
 
 		$finder = $client->get_finder( $session );
 
-		$this->assertInstanceOf( 'Pronamic\WP\Twinfield\Finder', $finder );
+		$this->assertInstanceOf( __NAMESPACE__ . '\Finder', $finder );
 
-		$search = new Pronamic\WP\Twinfield\Search( Pronamic\WP\Twinfield\FinderTypes::ART, '*', Pronamic\WP\Twinfield\SearchFields::CODE_AND_NAME, 1, 100 );
+		$search = new Search( FinderTypes::ART, '*', SearchFields::CODE_AND_NAME, 1, 100 );
 		$response = $finder->search( $search );
 
-		$this->assertInstanceOf( 'Pronamic\WP\Twinfield\SearchResponse', $response );
+		$this->assertInstanceOf( __NAMESPACE__ . '\SearchResponse', $response );
 
 		$data = $response->get_data();
 
-		$this->assertInstanceOf( 'Pronamic\WP\Twinfield\FinderData', $data );
+		$this->assertInstanceOf( __NAMESPACE__ . '\FinderData', $data );
 
 		$columns = $data->get_columns();
 
-		$this->assertInstanceOf( 'Pronamic\WP\Twinfield\ArrayOfString', $columns );
+		$this->assertInstanceOf( __NAMESPACE__ . '\ArrayOfString', $columns );
 
 		$items = $data->get_items();
 
