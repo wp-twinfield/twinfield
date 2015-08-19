@@ -39,7 +39,7 @@ class XMLProcessorTest extends \PHPUnit_Framework_TestCase {
 		// Test XML processor.
 		$xml_processor = new XMLProcessor( $session );
 
-		$response = $xml_processor->process_xml_string( '<read><type>article</type><office>001</office><code>EXAMPLE</code></read>' );
+		$response = $xml_processor->process_xml_string( new ProcessXmlString( '<read><type>article</type><office>' . getenv( 'TWINFIELD_OFFICE_CODE' ) . '</office><code>' . getenv( 'TWINFIELD_ARTICLE_CODE' ) . '</code></read>' ) );
 
 		$this->assertInstanceOf( __NAMESPACE__ . '\ProcessXmlStringResponse', $response );
 		$this->assertInternalType( 'string', $response->get_result() );

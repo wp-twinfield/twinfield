@@ -20,7 +20,7 @@ namespace Pronamic\WP\Twinfield;
  */
 class ProcessXmlStringResponse {
 	/**
-	 * Ok Log-on successful.
+	 * Process XML string result.
 	 *
 	 * @var string
 	 */

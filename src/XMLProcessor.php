@@ -41,10 +41,8 @@ class XMLProcessor extends AbstractClient {
 	 * @param string $xml The XML string to process by Twinfield.
 	 * @return string
 	 */
-	public function process_xml_string( $xml ) {
-		$response = $this->soap_client->ProcessXmlString(
-			array( 'xmlRequest' => $xml )
-		);
+	public function process_xml_string( ProcessXmlString $xml ) {
+		$response = $this->soap_client->ProcessXmlString( $xml );
 
 		return $response;
 	}
