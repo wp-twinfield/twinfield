@@ -1,7 +1,7 @@
 {
     "name": "wp-twinfield/twinfield",
-    "description": "Twinfield",
-    "license": "GPLv3",
+    "description": "Twinfield library for WordPress.",
+    "license": "GPL-3.0",
     "authors": [
         {
             "name": "Pronamic",
