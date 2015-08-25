@@ -18,7 +18,7 @@ namespace Pronamic\WP\Twinfield;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class ArrayOfMessageOfErrorCodes implements \IteratorAggregate {
+class ArrayOfMessageOfErrorCodes {
 	/**
 	 * An array with array strings.
 	 *
