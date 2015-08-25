@@ -31,12 +31,11 @@ class ArticleReadRequest extends ReadRequest {
 	/**
 	 * Constructs and initialize an Twinfield article read request.
 	 *
-	 * @param string $type    Specify what type of data to read.
 	 * @param string $office  Specify from wich office to read.
 	 * @param string $code    Specifcy which article code to read.
 	 */
-	public function __construct( $type, $office, $code ) {
-		parent::__construct( $type, $office );
+	public function __construct( $office, $code ) {
+		parent::__construct( 'article', $office );
 
 		$this->code = $code;
 	}
