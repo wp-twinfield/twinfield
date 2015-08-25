@@ -28,9 +28,13 @@ class LogonTest extends \PHPUnit_Framework_TestCase {
 		$client = new Client();
 
 		$logon_response = $client->logon( $credentials );
-
 		$this->assertInstanceOf( __NAMESPACE__ . '\LogonResponse', $logon_response );
-		$this->assertInternalType( 'string', $logon_response->get_cluster() );
+
+		$next_action = $logon_response->get_next_action();
+		$this->assertEquals( LogonAction::NONE, $next_action );
+
+		$cluster = $logon_response->get_cluster();
+		$this->assertInternalType( 'string', $cluster );
 
 		$session = $client->get_session( $logon_response );
 

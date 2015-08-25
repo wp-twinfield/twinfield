@@ -49,6 +49,9 @@ class FinderTest extends \PHPUnit_Framework_TestCase {
 		$data = $response->get_data();
 		$this->assertInstanceOf( __NAMESPACE__ . '\FinderData', $data );
 
+		$total_rows = $data->get_total_rows();
+		$this->assertInternalType( 'int', $total_rows );
+
 		$columns = $data->get_columns();
 		$this->assertInstanceOf( __NAMESPACE__ . '\ArrayOfString', $columns );
 
