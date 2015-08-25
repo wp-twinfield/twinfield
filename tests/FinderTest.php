@@ -39,20 +39,20 @@ class FinderTest extends \PHPUnit_Framework_TestCase {
 		$this->assertInstanceOf( __NAMESPACE__ . '\Finder', $finder );
 
 		$search = new Search( FinderTypes::ART, '*', SearchFields::CODE_AND_NAME, 1, 100 );
-		$response = $finder->search( $search );
 
+		$response = $finder->search( $search );
 		$this->assertInstanceOf( __NAMESPACE__ . '\SearchResponse', $response );
 
-		$data = $response->get_data();
+		$result = $response->get_search_result();
+		$this->assertInstanceOf( __NAMESPACE__ . '\ArrayOfMessageOfErrorCodes', $result );
 
+		$data = $response->get_data();
 		$this->assertInstanceOf( __NAMESPACE__ . '\FinderData', $data );
 
 		$columns = $data->get_columns();
-
 		$this->assertInstanceOf( __NAMESPACE__ . '\ArrayOfString', $columns );
 
 		$items = $data->get_items();
-
 		$this->assertInstanceOf( 'Pronamic\WP\Twinfield\ArrayOfArrayOfString', $items );
 	}
 }

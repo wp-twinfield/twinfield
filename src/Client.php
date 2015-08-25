@@ -43,13 +43,15 @@ class Client {
 	 */
 	public static function get_class_map() {
 		return array(
-			'ArrayOfArrayOfString'     => __NAMESPACE__ . '\ArrayOfArrayOfString',
-			'ArrayOfString'            => __NAMESPACE__ . '\ArrayOfString',
-			'FinderData'               => __NAMESPACE__ . '\FinderData',
-			'LogonResponse'            => __NAMESPACE__ . '\LogonResponse',
-			'ProcessXmlStringResponse' => __NAMESPACE__ . '\ProcessXmlStringResponse',
-			'SearchResponse'           => __NAMESPACE__ . '\SearchResponse',
-			'SelectCompanyResponse'    => __NAMESPACE__ . '\SelectCompanyResponse',
+			'ArrayOfArrayOfString'       => __NAMESPACE__ . '\ArrayOfArrayOfString',
+			'ArrayOfMessageOfErrorCodes' => __NAMESPACE__ . '\ArrayOfMessageOfErrorCodes',
+			'ArrayOfString'              => __NAMESPACE__ . '\ArrayOfString',
+			'FinderData'                 => __NAMESPACE__ . '\FinderData',
+			'LogonResponse'              => __NAMESPACE__ . '\LogonResponse',
+			'MessageOfErrorCodes'        => __NAMESPACE__ . '\MessageOfErrorCodes',
+			'ProcessXmlStringResponse'   => __NAMESPACE__ . '\ProcessXmlStringResponse',
+			'SearchResponse'             => __NAMESPACE__ . '\SearchResponse',
+			'SelectCompanyResponse'      => __NAMESPACE__ . '\SelectCompanyResponse',
 		);
 	}
 
