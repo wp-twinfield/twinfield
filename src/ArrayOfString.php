@@ -27,6 +27,24 @@ class ArrayOfString implements \IteratorAggregate {
 	private $string;
 
 	/**
+	 * Constructs and initializes an array of array of string object
+	 *
+	 * @param array $data An array of array of strings
+	 */
+	public function __construct() {
+		$this->string = array();
+	}
+
+	/**
+	 * Add the specified string to this array of string object.
+	 *
+	 * @param $string add the specified string.
+	 */
+	public function add( $string ) {
+		$this->string[] = $string;
+	}
+
+	/**
 	 * Get iterator.
 	 *
 	 * @return \ArrayIterator
