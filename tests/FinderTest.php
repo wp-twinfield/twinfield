@@ -34,7 +34,7 @@ class FinderTest extends \PHPUnit_Framework_TestCase {
 
 		$session = $client->get_session( $logon_response );
 
-		$finder = $client->get_finder( $session );
+		$finder = new Finder( $session );
 
 		$this->assertInstanceOf( __NAMESPACE__ . '\Finder', $finder );
 

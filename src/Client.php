@@ -114,28 +114,4 @@ class Client {
 
 		return $session;
 	}
-
-	/**
-	 * Create an new finder object.
-	 *
-	 * @param Session $session An Twinfield session object which contains the session ID.
-	 * @return Finder An Twinfield finder client object.
-	 */
-	public function get_finder( Session $session ) {
-		$finder = new Finder( $session );
-
-		return $finder;
-	}
-
-	/**
-	 * Create an new XML processor object.
-	 *
-	 * @param Session $session An Twinfield session object which contains the session ID.
-	 * @return Finder An Twinfield XML processor client object.
-	 */
-	public function get_xml_processor( Session $session ) {
-		$xml_processor = new XMLProcessor( $session );
-
-		return $xml_processor;
-	}
 }
