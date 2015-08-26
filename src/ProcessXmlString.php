@@ -32,7 +32,7 @@ class ProcessXmlString {
 	 * @param string $xml The XML string.
 	 */
 	public function __construct( $xml ) {
-		$this->xmlRequest = $xml;
+		$this->xmlRequest = (string) $xml;
 	}
 
 	/**
