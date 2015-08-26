@@ -9,6 +9,12 @@
 
 namespace Pronamic\WP\Twinfield;
 
+use Pronamic\WP\Twinfield\Articles\ArticleReadRequest;
+use Pronamic\WP\Twinfield\XML\Articles\ArticleReadRequestSerializer;
+
+use Pronamic\WP\Twinfield\Customers\CustomerReadRequest;
+use Pronamic\WP\Twinfield\XML\Customers\CustomerReadRequestSerializer;
+
 /**
  * XML processor test
  *
@@ -21,8 +27,10 @@ namespace Pronamic\WP\Twinfield;
 class XMLProcessorTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Test processor
+	 *
+	 * @dataProvider provider
 	 */
-	public function test_processor() {
+	public function test_processor( $xml ) {
 		global $credentials;
 
 		$client = new Client();
@@ -39,9 +47,20 @@ class XMLProcessorTest extends \PHPUnit_Framework_TestCase {
 		// Test XML processor.
 		$xml_processor = new XMLProcessor( $session );
 
-		$response = $xml_processor->process_xml_string( new ProcessXmlString( '<read><type>article</type><office>' . getenv( 'TWINFIELD_OFFICE_CODE' ) . '</office><code>' . getenv( 'TWINFIELD_ARTICLE_CODE' ) . '</code></read>' ) );
+		$response = $xml_processor->process_xml_string( new ProcessXmlString( $xml ) );
 
 		$this->assertInstanceOf( __NAMESPACE__ . '\ProcessXmlStringResponse', $response );
 		$this->assertInternalType( 'string', $response->get_result() );
+	}
+
+	public function provider() {
+		$office_code   = getenv( 'TWINFIELD_OFFICE_CODE' );
+		$article_code  = getenv( 'TWINFIELD_ARTICLE_CODE' );
+		$customer_code = getenv( 'TWINFIELD_CUSTOMER_CODE' );
+
+		return array(
+			array( new ArticleReadRequestSerializer( new ArticleReadRequest( $office_code, $article_code ) ) ),
+			array( new CustomerReadRequestSerializer( new CustomerReadRequest( $office_code, $customer_code ) ) ),
+		);
 	}
 }

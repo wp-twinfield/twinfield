@@ -1,26 +1,26 @@
 <?php
 /**
- * Article read request
+ * Customer read request
  *
  * @since      1.0.0
  *
  * @package    Pronamic/WP/Twinfield
  */
 
-namespace Pronamic\WP\Twinfield\Articles;
+namespace Pronamic\WP\Twinfield\Customers;
 
 use Pronamic\WP\Twinfield\ReadRequest;
 
 /**
- * Article read request
+ * Customer read request
  *
- * This class represents an Twinfield article read request.
+ * This class represents an Twinfield customer read request.
  *
  * @since      1.0.0
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class ArticleReadRequest extends ReadRequest {
+class CustomerReadRequest extends ReadRequest {
 	/**
 	 * Specifcy which article code to read.
 	 *
@@ -35,7 +35,7 @@ class ArticleReadRequest extends ReadRequest {
 	 * @param string $code    Specifcy which article code to read.
 	 */
 	public function __construct( $office, $code ) {
-		parent::__construct( 'article', $office );
+		parent::__construct( 'dimensions', $office );
 
 		$this->code = $code;
 	}

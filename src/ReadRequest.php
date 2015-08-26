@@ -43,4 +43,22 @@ abstract class ReadRequest {
 		$this->type   = $type;
 		$this->office = $office;
 	}
+
+	/**
+	 * Get the read request type.
+	 *
+	 * @return string
+	 */
+	public function get_type() {
+		return $this->type;
+	}
+
+	/**
+	 * Get the read request office.
+	 *
+	 * @return string
+	 */
+	public function get_office() {
+		return $this->office;
+	}
 }
