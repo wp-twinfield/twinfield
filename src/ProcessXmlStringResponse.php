@@ -34,4 +34,13 @@ class ProcessXmlStringResponse {
 	public function get_result() {
 		return $this->ProcessXmlStringResult;
 	}
+
+	/**
+	 * Create a string representation of this process XML string repsonse object.
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->get_result();
+	}
 }
