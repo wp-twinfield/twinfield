@@ -32,4 +32,8 @@ class ArticleLine {
 	public function __construct() {
 
 	}
+
+	public function set_name( $name ) {
+		$this->name = $name;
+	}
 }

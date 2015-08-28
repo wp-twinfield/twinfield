@@ -60,4 +60,20 @@ class ArticleHeader {
 	public function __construct() {
 
 	}
+
+	public function set_office( $office ) {
+		$this->office = $office;
+	}
+
+	public function set_code( $code ) {
+		$this->code = $code;
+	}
+
+	public function set_type( $type ) {
+		$this->type = $type;
+	}
+
+	public function set_name( $name ) {
+		$this->name = $name;
+	}
 }
