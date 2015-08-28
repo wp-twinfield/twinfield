@@ -11,6 +11,7 @@ namespace Pronamic\WP\Twinfield;
 
 use Pronamic\WP\Twinfield\Articles\ArticleReadRequest;
 use Pronamic\WP\Twinfield\XML\Articles\ArticleReadRequestSerializer;
+use Pronamic\WP\Twinfield\XML\Articles\ArticleUnserializer;
 
 use Pronamic\WP\Twinfield\Customers\CustomerReadRequest;
 use Pronamic\WP\Twinfield\XML\Customers\CustomerReadRequestSerializer;
@@ -48,6 +49,15 @@ class XMLProcessorTest extends \PHPUnit_Framework_TestCase {
 		$xml_processor = new XMLProcessor( $session );
 
 		$response = $xml_processor->process_xml_string( new ProcessXmlString( $xml ) );
+echo $response;
+echo "\r\n";
+echo "\r\n";
+echo "\r\n";
+echo "\r\n";
+		$xml = simplexml_load_string( $response );
+
+		$article_unserializer = new ArticleUnserializer();
+		$article = $article_unserializer->unserialize( $xml );
 
 		$this->assertInstanceOf( __NAMESPACE__ . '\ProcessXmlStringResponse', $response );
 		$this->assertInternalType( 'string', $response->get_result() );
