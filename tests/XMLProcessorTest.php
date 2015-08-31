@@ -49,11 +49,7 @@ class XMLProcessorTest extends \PHPUnit_Framework_TestCase {
 		$xml_processor = new XMLProcessor( $session );
 
 		$response = $xml_processor->process_xml_string( new ProcessXmlString( $xml ) );
-echo $response;
-echo "\r\n";
-echo "\r\n";
-echo "\r\n";
-echo "\r\n";
+
 		$xml = simplexml_load_string( $response );
 
 		$article_unserializer = new ArticleUnserializer();

@@ -27,7 +27,7 @@ class ArticleUnserializer extends Unserializer {
 	 * Unserialize the specified XML to an article.
 	 */
 	public function unserialize( \SimpleXMLElement $element ) {
-		if ( 'article' === $element->getName() ) {
+		if ( 'article' === $element->getName() && '0' !== (string) $element['result'] ) {
 			$header = new ArticleHeader();
 
 			$header->set_office( (string) $element->header->office );
