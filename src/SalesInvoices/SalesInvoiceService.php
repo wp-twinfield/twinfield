@@ -36,11 +36,9 @@ class SalesInvoiceService {
 		$response = $this->xml_processor->process_xml_string( new ProcessXmlString( $request ) );
 
 		$xml = simplexml_load_string( $response );
-echo $response;
+
 		$sales_invoice_unserializer = new SalesInvoiceUnserializer();
 		$sales_invoice = $sales_invoice_unserializer->unserialize( $xml );
-
-		var_dump( $sales_invoice );
 	}
 
 	public function insert_sales_invoice( SalesInvoice $sales_invoice ) {

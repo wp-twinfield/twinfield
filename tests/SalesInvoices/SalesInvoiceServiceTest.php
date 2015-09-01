@@ -37,7 +37,7 @@ class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
 		$service = new SalesInvoiceService( $xml_processor );
 
 		$office         = getenv( 'TWINFIELD_OFFICE_CODE' );
-		$type           = 'FACTUUR';
+		$type           = getenv( 'TWINFIELD_SALES_INVOICE_TYPE' );
 		$invoice_number = getenv( 'TWINFIELD_SALES_INVOICE_NUMBER' );
 
 		$sales_invoice = $service->get_sales_invoice( $office, $type, $invoice_number );

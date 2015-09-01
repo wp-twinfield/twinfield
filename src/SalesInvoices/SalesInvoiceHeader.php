@@ -132,4 +132,40 @@ class SalesInvoiceHeader {
 	public function set_date( \DateTime $date ) {
 		$this->date = $date;
 	}
+
+	/**
+	 * Get due date.
+	 *
+	 * @return \DateTime
+	 */
+	public function get_due_date() {
+		return $this->due_date;
+	}
+
+	/**
+	 * Set due date.
+	 *
+	 * @param \DateTime $date
+	 */
+	public function set_due_date( \DateTime $due_date ) {
+		$this->due_date = $due_date;
+	}
+
+	/**
+	 * Get bank.
+	 *
+	 * @return string
+	 */
+	public function get_bank() {
+		return $this->bank;
+	}
+
+	/**
+	 * Set bank.
+	 *
+	 * @param string $bank
+	 */
+	public function set_bank( $bank ) {
+		$this->bank = $bank;
+	}
 }

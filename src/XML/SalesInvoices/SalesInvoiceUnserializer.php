@@ -36,6 +36,8 @@ class SalesInvoiceUnserializer extends Unserializer {
 				$header->set_type( Security::filter( $element->header->invoicetype ) );
 				$header->set_number( Security::filter( $element->header->invoicenumber ) );
 				$header->set_date( new \DateTime( Security::filter( $element->header->invoicedate ) ) );
+				$header->set_due_date( new \DateTime( Security::filter( $element->header->invoicedate ) ) );
+				$header->set_bank( Security::filter( $element->header->bank ) );
 			}
 
 			$lines  = array();
@@ -44,7 +46,18 @@ class SalesInvoiceUnserializer extends Unserializer {
 				$line = new SalesInvoiceLine();
 
 				$line->set_id( Security::filter( $element_line['id'] ) );
+				$line->set_article( Security::filter( $element_line->article ) );
+				$line->set_subarticle( Security::filter( $element_line->subarticle ) );
+				$line->set_quantity( Security::filter( $element_line->quantity ) );
+				$line->set_units( Security::filter( $element_line->units ) );
+				$line->set_allow_discount_or_premium( Security::filter( $element_line->units, FILTER_VALIDATE_BOOLEAN ) );
 				$line->set_description( Security::filter( $element_line->description ) );
+				$line->set_value_excl( Security::filter( $element_line->valueexcl, FILTER_VALIDATE_FLOAT ) );
+				$line->set_vat_value( Security::filter( $element_line->vatvalue, FILTER_VALIDATE_FLOAT ) );
+				$line->set_value_inc( Security::filter( $element_line->valueinc, FILTER_VALIDATE_FLOAT ) );
+				$line->set_free_text_1( Security::filter( $element_line->freetext1 ) );
+				$line->set_free_text_2( Security::filter( $element_line->freetext2 ) );
+				$line->set_free_text_3( Security::filter( $element_line->freetext3 ) );
 
 				$lines[] = $line;
 			}
