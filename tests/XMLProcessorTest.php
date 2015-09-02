@@ -50,11 +50,6 @@ class XMLProcessorTest extends \PHPUnit_Framework_TestCase {
 
 		$response = $xml_processor->process_xml_string( new ProcessXmlString( $xml ) );
 
-		$xml = simplexml_load_string( $response );
-
-		$article_unserializer = new ArticleUnserializer();
-		$article = $article_unserializer->unserialize( $xml );
-
 		$this->assertInstanceOf( __NAMESPACE__ . '\ProcessXmlStringResponse', $response );
 		$this->assertInternalType( 'string', $response->get_result() );
 	}

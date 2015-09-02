@@ -114,7 +114,8 @@ class SalesInvoiceLine {
 	 * Constructs and initialize an Twinfield article line.
 	 */
 	public function __construct() {
-
+		$this->quantity = 1;
+		$this->units    = 1;
 	}
 
 	/**

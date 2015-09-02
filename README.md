@@ -29,3 +29,17 @@ travis encrypt TWINFIELD_CUSTOMER_CODE=$TWINFIELD_CUSTOMER_CODE --add env.global
 travis encrypt TWINFIELD_SALES_INVOICE_TYPE=$TWINFIELD_SALES_INVOICE_TYPE --add env.global
 travis encrypt TWINFIELD_SALES_INVOICE_NUMBER=$TWINFIELD_SALES_INVOICE_NUMBER --add env.global
 ```
+
+
+## Design Patterns
+
+*	https://en.wikipedia.org/wiki/Interpreter_pattern
+
+
+## Other
+
+*	http://www.accountingcoach.com/blog/accounts-payable-accounts-receivable
+*	http://blog.fedecarg.com/2009/03/12/domain-driven-design-and-data-access-strategies/
+*	http://stackoverflow.com/questions/3056447/design-pattern-for-loading-multiple-message-types
+*	http://www.servicedesignpatterns.com/requestandresponsemanagement/datatransferobject
+*	http://stackoverflow.com/questions/29592216/how-should-i-store-metadata-in-an-object

@@ -15,6 +15,7 @@ use Pronamic\WP\Twinfield\XML\Unserializer;
 use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoice;
 use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoiceHeader;
 use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoiceLine;
+use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoiceResponse;
 
 /**
  * Sales invoices unserializer
@@ -29,7 +30,9 @@ class SalesInvoiceUnserializer extends Unserializer {
 	 */
 	public function unserialize( \SimpleXMLElement $element ) {
 		if ( 'salesinvoice' === $element->getName() && '0' !== (string) $element['result'] ) {
-			$header = new SalesInvoiceHeader();
+			$sales_invoice = new SalesInvoice();
+
+			$header = $sales_invoice->get_header();
 
 			if ( $element->header ) {
 				$header->set_office( Security::filter( $element->header->office ) );
@@ -38,12 +41,11 @@ class SalesInvoiceUnserializer extends Unserializer {
 				$header->set_date( new \DateTime( Security::filter( $element->header->invoicedate ) ) );
 				$header->set_due_date( new \DateTime( Security::filter( $element->header->invoicedate ) ) );
 				$header->set_bank( Security::filter( $element->header->bank ) );
+				$header->set_customer( Security::filter( $element->header->customer ) );
 			}
 
-			$lines  = array();
-
 			foreach ( $element->lines->line as $element_line ) {
-				$line = new SalesInvoiceLine();
+				$line = $sales_invoice->new_line();
 
 				$line->set_id( Security::filter( $element_line['id'] ) );
 				$line->set_article( Security::filter( $element_line->article ) );
@@ -58,13 +60,9 @@ class SalesInvoiceUnserializer extends Unserializer {
 				$line->set_free_text_1( Security::filter( $element_line->freetext1 ) );
 				$line->set_free_text_2( Security::filter( $element_line->freetext2 ) );
 				$line->set_free_text_3( Security::filter( $element_line->freetext3 ) );
-
-				$lines[] = $line;
 			}
 
-			$sales_invoice = new SalesInvoice( $header, $lines );
-
-			var_dump( $sales_invoice );
+			return $sales_invoice;
 		}
 	}
 }

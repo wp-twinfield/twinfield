@@ -62,6 +62,13 @@ class SalesInvoiceHeader {
 	private $bank;
 
 	/**
+	 * Customer
+	 *
+	 * @var string
+	 */
+	private $customer;
+
+	/**
 	 * Get office.
 	 *
 	 * @return string
@@ -167,5 +174,23 @@ class SalesInvoiceHeader {
 	 */
 	public function set_bank( $bank ) {
 		$this->bank = $bank;
+	}
+
+	/**
+	 * Get customer.
+	 *
+	 * @return string
+	 */
+	public function get_customer() {
+		return $this->customer;
+	}
+
+	/**
+	 * Set customer.
+	 *
+	 * @param string $customer
+	 */
+	public function set_customer( $customer ) {
+		$this->customer = $customer;
 	}
 }

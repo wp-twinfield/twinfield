@@ -20,10 +20,14 @@ use Pronamic\WP\Twinfield\XMLProcessor;
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
 class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
+	private $service;
+
 	/**
-	 * Test
+	 * Setup the test.
 	 */
-	public function test() {
+	public function setUp() {
+		parent::setUp();
+
 		global $credentials;
 
 		$client = new Client();
@@ -34,14 +38,38 @@ class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
 
 		$xml_processor = new XMLProcessor( $session );
 
-		$service = new SalesInvoiceService( $xml_processor );
+		$this->service = new SalesInvoiceService( $xml_processor );
+	}
 
+	/**
+	 * Test get sales invoice.
+	 */
+	public function test_get_sales_invoice() {
 		$office         = getenv( 'TWINFIELD_OFFICE_CODE' );
 		$type           = getenv( 'TWINFIELD_SALES_INVOICE_TYPE' );
 		$invoice_number = getenv( 'TWINFIELD_SALES_INVOICE_NUMBER' );
 
-		$sales_invoice = $service->get_sales_invoice( $office, $type, $invoice_number );
+		$sales_invoice = $this->service->get_sales_invoice( $office, $type, $invoice_number );
 
+		$this->assertInstanceOf( __NAMESPACE__ . '\SalesInvoice', $sales_invoice );
+	}
 
+	/**
+	 * Test insert sales invoice.
+	 */
+	public function test_insert_sales_invoice() {
+		$sales_invoice = new SalesInvoice();
+
+		$header = $sales_invoice->get_header();
+		$header->set_type( getenv( 'TWINFIELD_SALES_INVOICE_TYPE' ) );
+		$header->set_customer( getenv( 'TWINFIELD_CUSTOMER_CODE' ) );
+
+		$line = $sales_invoice->new_line();
+		$line->set_article( getenv( 'TWINFIELD_ARTICLE_CODE' ) );
+
+		// $result = $this->service->insert_sales_invoice( $sales_invoice );
+		$result = false;
+
+		$this->assertInternalType( 'bool', $result );
 	}
 }
