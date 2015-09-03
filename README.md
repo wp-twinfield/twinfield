@@ -31,6 +31,17 @@ travis encrypt TWINFIELD_SALES_INVOICE_NUMBER=$TWINFIELD_SALES_INVOICE_NUMBER --
 ```
 
 
+## Inspiration
+
+*	https://github.com/KnpLabs/php-github-api
+*	https://github.com/J7mbo/twitter-api-php
+*	https://github.com/galen/PHP-Instagram-API
+*	https://github.com/drewm/mailchimp-api
+*	https://github.com/Happyr/LinkedIn-API-client
+*	https://github.com/okwinza/cloudflare-api
+*	https://github.com/jcroll/foursquare-api-client
+
+
 ## Design Patterns
 
 *	https://en.wikipedia.org/wiki/Interpreter_pattern

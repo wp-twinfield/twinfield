@@ -56,7 +56,7 @@ class CustomerService {
 		$unserializer = new CustomerUnserializer();
 
 		$object = $unserializer->unserialize( $xml );
-
+var_dump( $object );
 		return $object;
 	}
 

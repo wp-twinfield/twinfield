@@ -49,7 +49,6 @@ class Customer extends Contact {
 	 */
 	private $shortname;
 
-
 	/**
 	 * Get office.
 	 *

@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\Contacts;
 
+use Pronamic\WP\Twinfield\Address;
+
 /**
  * Contact
  *
@@ -57,5 +59,18 @@ class Contact {
 	 */
 	public function __construct() {
 		$this->addresses = array();
+	}
+
+	/**
+	 * Create and add a new address.
+	 *
+	 * @return Address
+	 */
+	public function new_address() {
+		$address = new Address();
+
+		$this->addresses[] = $address;
+
+		return $address;
 	}
 }
