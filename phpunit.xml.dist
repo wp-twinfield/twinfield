@@ -6,7 +6,7 @@
 >
     <testsuites>
         <testsuite name="Twinfield Test Suite">
-            <directory suffix=".php">./tests</directory>
+            <directory suffix=".php">./tests/tests</directory>
         </testsuite>
     </testsuites>
 
