@@ -7,7 +7,7 @@
  * @package    Pronamic/WP/Twinfield
  */
 
-namespace Pronamic\WP\Twinfield;
+namespace Pronamic\WP\Twinfield\SalesInvoices;
 
 /**
  * Sales invoice status
@@ -24,19 +24,19 @@ class SalesInvoiceStatus {
 	 *
 	 * @var string
 	 */
-	const DEFAULT = 'default';
+	const STATUS_DEFAULT = 'default';
 
 	/**
 	 * Concept.
 	 *
 	 * @var string
 	 */
-	const CONCEPT = 'concept';
+	const STATUS_CONCEPT = 'concept';
 
 	/**
 	 * Final.
 	 *
 	 * @var string
 	 */
-	const FINAL = 'final';
+	const STATUS_FINAL = 'final';
 }

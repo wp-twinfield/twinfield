@@ -79,7 +79,7 @@ class SalesInvoiceHeader {
 	 * Constructs and initializes an sales invoice header.
 	 */
 	public function __construct() {
-		$this->set_status( SalesInvoiceStatuses::CONCEPT );
+		$this->set_status( SalesInvoiceStatus::STATUS_CONCEPT );
 	}
 
 	/**
