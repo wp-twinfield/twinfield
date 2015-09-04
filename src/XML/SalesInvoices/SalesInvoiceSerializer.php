@@ -61,8 +61,9 @@ class SalesInvoiceSerializer extends Serializer {
 			$lines_element->appendChild( $line_element );
 
 			$elements = array(
-				'quantity' => $line->get_quantity(),
-				'article'  => $line->get_article(),
+				'quantity'    => $line->get_quantity(),
+				'article'     => $line->get_article(),
+				'description' => $line->get_description(),
 			);
 
 			foreach ( $elements as $name => $value ) {
