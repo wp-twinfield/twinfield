@@ -50,6 +50,20 @@ class Customer extends Contact {
 	private $shortname;
 
 	/**
+	 * Financials.
+	 *
+	 * @var CustomerFinancials
+	 */
+	private $financials;
+
+	/**
+	 * Constructs and initializes an customer/
+	 */
+	public function __construct() {
+		$this->financials = new CustomerFinancials();
+	}
+
+	/**
 	 * Get office.
 	 *
 	 * @return string
@@ -119,5 +133,14 @@ class Customer extends Contact {
 	 */
 	public function set_shortname( $shortname ) {
 		$this->shortname = $shortname;
+	}
+
+	/**
+	 * Get financials.
+	 *
+	 * @return CustomerFinancials
+	 */
+	public function get_financials() {
+		return $this->financials;
 	}
 }
