@@ -69,6 +69,24 @@ class SalesInvoice {
 	}
 
 	/**
+	 * Get type.
+	 *
+	 * @return string
+	 */
+	public function get_type() {
+		return $this->header->get_type();
+	}
+
+	/**
+	 * Set type.
+	 *
+	 * @param string $type
+	 */
+	public function set_type( $type ) {
+		$this->header->set_type( $type );
+	}
+
+	/**
 	 * Get customer.
 	 *
 	 * @return string
