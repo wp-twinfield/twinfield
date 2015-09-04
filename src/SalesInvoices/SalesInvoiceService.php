@@ -73,6 +73,7 @@ class SalesInvoiceService {
 
 		$response = $this->xml_processor->process_xml_string( new ProcessXmlString( $xml ) );
 
+var_dump( $response );
 echo $response;
 exit;
 	}
