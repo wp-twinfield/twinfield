@@ -57,10 +57,18 @@ class Customer extends Contact {
 	private $financials;
 
 	/**
+	 * Credit management.
+	 *
+	 * @var CustomerCreditManagement
+	 */
+	private $credit_management;
+
+	/**
 	 * Constructs and initializes an customer/
 	 */
 	public function __construct() {
-		$this->financials = new CustomerFinancials();
+		$this->financials        = new CustomerFinancials();
+		$this->credit_management = new CustomerCreditManagement();
 	}
 
 	/**
@@ -138,9 +146,18 @@ class Customer extends Contact {
 	/**
 	 * Get financials.
 	 *
-	 * @return CustomerFinancials
+	 * @return CustomerCreditManagement
 	 */
 	public function get_financials() {
 		return $this->financials;
+	}
+
+	/**
+	 * Get credit management.
+	 *
+	 * @return CustomerFinancials
+	 */
+	public function get_credit_management() {
+		return $this->credit_management;
 	}
 }

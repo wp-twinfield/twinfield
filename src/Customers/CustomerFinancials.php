@@ -10,9 +10,9 @@
 namespace Pronamic\WP\Twinfield\Customers;
 
 /**
- * Customer
+ * Customer financials
  *
- * This class represents an Twinfield customer
+ * This class represents Twinfield customer financials.
  *
  * @since      1.0.0
  * @package    Pronamic/WP/Twinfield

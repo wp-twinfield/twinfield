@@ -39,8 +39,10 @@ class SalesInvoiceSerializer extends Serializer {
 		$root->appendChild( $header_elemnt );
 
 		$elements = array(
-			'invoicetype' => $header->get_type(),
-			'customer'    => $header->get_customer(),
+			'invoicetype'   => $header->get_type(),
+			'customer'      => $header->get_customer(),
+			'status'        => $header->get_status(),
+			'paymentmethod' => $header->get_payment_method(),
 		);
 
 		foreach ( $elements as $name => $value ) {
@@ -65,6 +67,9 @@ class SalesInvoiceSerializer extends Serializer {
 				'article'     => $line->get_article(),
 				'description' => $line->get_description(),
 				'valueexcl'   => $line->get_value_excl(),
+				'freetext1'   => $line->get_free_text_1(),
+				'freetext2'   => $line->get_free_text_2(),
+				'freetext3'   => $line->get_free_text_3(),
 			);
 
 			foreach ( $elements as $name => $value ) {

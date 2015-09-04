@@ -69,6 +69,20 @@ class SalesInvoiceHeader {
 	private $customer;
 
 	/**
+	 * Payment method.
+	 *
+	 * @var string
+	 */
+	private $payment_method;
+
+	/**
+	 * Constructs and initializes an sales invoice header.
+	 */
+	public function __construct() {
+		$this->set_status( SalesInvoiceStatuses::CONCEPT );
+	}
+
+	/**
 	 * Get office.
 	 *
 	 * @return string
@@ -192,5 +206,41 @@ class SalesInvoiceHeader {
 	 */
 	public function set_customer( $customer ) {
 		$this->customer = $customer;
+	}
+
+	/**
+	 * Get status.
+	 *
+	 * @return string
+	 */
+	public function get_status() {
+		return $this->status;
+	}
+
+	/**
+	 * Set status.
+	 *
+	 * @param string $status
+	 */
+	public function set_status( $status ) {
+		$this->status = $status;
+	}
+
+	/**
+	 * Get payment method.
+	 *
+	 * @return string
+	 */
+	public function get_payment_method() {
+		return $this->payment_method;
+	}
+
+	/**
+	 * Set payment method.
+	 *
+	 * @param string $customer
+	 */
+	public function set_payment_method( $payment_method ) {
+		$this->payment_method = $payment_method;
 	}
 }

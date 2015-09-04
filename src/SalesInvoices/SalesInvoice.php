@@ -51,60 +51,6 @@ class SalesInvoice {
 	}
 
 	/**
-	 * Get office.
-	 *
-	 * @return string
-	 */
-	public function get_office() {
-		return $this->header->get_office();
-	}
-
-	/**
-	 * Set office
-	 *
-	 * @param string $office
-	 */
-	public function set_office( $office ) {
-		$this->header->set_office( $office );
-	}
-
-	/**
-	 * Get type.
-	 *
-	 * @return string
-	 */
-	public function get_type() {
-		return $this->header->get_type();
-	}
-
-	/**
-	 * Set type.
-	 *
-	 * @param string $type
-	 */
-	public function set_type( $type ) {
-		$this->header->set_type( $type );
-	}
-
-	/**
-	 * Get customer.
-	 *
-	 * @return string
-	 */
-	public function get_customer() {
-		return $this->header->get_customer();
-	}
-
-	/**
-	 * Set customer.
-	 *
-	 * @param string $customer
-	 */
-	public function set_customer( $customer ) {
-		$this->header->set_customer( $customer );
-	}
-
-	/**
 	 * Get the sales invoice lines.
 	 *
 	 * @return array
