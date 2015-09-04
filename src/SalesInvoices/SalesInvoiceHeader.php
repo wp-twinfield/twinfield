@@ -76,6 +76,20 @@ class SalesInvoiceHeader {
 	private $payment_method;
 
 	/**
+	 * Header text.
+	 *
+	 * @var string
+	 */
+	private $header_text;
+
+	/**
+	 * Footer text.
+	 *
+	 * @var string
+	 */
+	private $footer_text;
+
+	/**
 	 * Constructs and initializes an sales invoice header.
 	 */
 	public function __construct() {
@@ -242,5 +256,41 @@ class SalesInvoiceHeader {
 	 */
 	public function set_payment_method( $payment_method ) {
 		$this->payment_method = $payment_method;
+	}
+
+	/**
+	 * Get header text.
+	 *
+	 * @return string
+	 */
+	public function get_header_text() {
+		return $this->header_text;
+	}
+
+	/**
+	 * Set header text.
+	 *
+	 * @param string $text
+	 */
+	public function set_header_text( $text ) {
+		$this->header_text = $text;
+	}
+
+	/**
+	 * Get footer text.
+	 *
+	 * @return string
+	 */
+	public function get_footer_text() {
+		return $this->footer_text;
+	}
+
+	/**
+	 * Set footer text.
+	 *
+	 * @param string $text
+	 */
+	public function set_footer_text( $text ) {
+		$this->footer_text = $text;
 	}
 }

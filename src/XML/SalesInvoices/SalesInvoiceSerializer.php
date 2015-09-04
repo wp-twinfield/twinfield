@@ -43,6 +43,8 @@ class SalesInvoiceSerializer extends Serializer {
 			'customer'      => $header->get_customer(),
 			'status'        => $header->get_status(),
 			'paymentmethod' => $header->get_payment_method(),
+			'headertext'    => $header->get_header_text(),
+			'footertext'    => $header->get_footer_text(),
 		);
 
 		foreach ( $elements as $name => $value ) {
