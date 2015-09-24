@@ -215,7 +215,7 @@ class SalesInvoiceLine {
 	 * @return bool
 	 */
 	public function get_allow_discount_or_premium() {
-		return $this->description;
+		return $this->allow_discount_or_premium;
 	}
 
 	/**
