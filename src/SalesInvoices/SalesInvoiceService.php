@@ -50,16 +50,21 @@ class SalesInvoiceService {
 	 * @return SalesInvoiceResponse
 	 */
 	public function get_sales_invoice( $office, $code, $number ) {
+		$result = null;
+
 		$request = new SalesInvoiceReadRequestSerializer( new SalesInvoiceReadRequest( $office, $code, $number ) );
 
 		$response = $this->xml_processor->process_xml_string( new ProcessXmlString( $request ) );
 
 		$xml = simplexml_load_string( $response );
 
-		$sales_invoice_unserializer = new SalesInvoiceUnserializer();
-		$sales_invoice = $sales_invoice_unserializer->unserialize( $xml );
+		if ( false !== $xml ) {
+			$unserializer = new SalesInvoiceUnserializer();
 
-		return $sales_invoice;
+			$result = $unserializer->unserialize( $xml );
+		}
+
+		return $result;
 	}
 
 	/**

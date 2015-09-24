@@ -1,13 +1,13 @@
 <?php
 /**
- * Sales invoice response
+ * Customer response
  *
  * @since      1.0.0
  *
  * @package    Pronamic/WP/Twinfield
  */
 
-namespace Pronamic\WP\Twinfield\SalesInvoices;
+namespace Pronamic\WP\Twinfield\Customers;
 
 use Pronamic\WP\Twinfield\Response;
 
@@ -21,31 +21,31 @@ use Pronamic\WP\Twinfield\Response;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class SalesInvoiceResponse extends Response {
+class CustomerResponse extends Response {
 	/**
-	 * The sales invoice.
+	 * The customer.
 	 *
-	 * @var SalesInvoice
+	 * @var Customer
 	 */
-	private $sales_invoice;
+	private $customer;
 
 	/**
-	 * Constructs and initialize an Twinfield article read request.
+	 * Constructs and initialize an Twinfield customer response.
 	 *
 	 * @param int $result The number of results.
 	 */
-	public function __construct( SalesInvoice $sales_invoice, $result, \SimpleXMLElement $message ) {
+	public function __construct( Customer $customer, $result, \SimpleXMLElement $message ) {
 		parent::__construct( $result, $message );
 
-		$this->sales_invoice = $sales_invoice;
+		$this->customer = $customer;
 	}
 
 	/**
-	 * Get the sales invoice.
+	 * Get the customer.
 	 *
-	 * @return string
+	 * @return Customer
 	 */
-	public function get_sales_invoice() {
-		return $this->sales_invoice;
+	public function get_customer() {
+		return $this->customer;
 	}
 }

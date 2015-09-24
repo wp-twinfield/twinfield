@@ -1,0 +1,67 @@
+<salesinvoice result="1">
+	<header>
+		<office>11024</office>
+		<invoicetype>FACTUUR</invoicetype>
+		<invoicenumber>1</invoicenumber>
+		<invoicedate>20120705</invoicedate>
+		<duedate>20120804</duedate>
+		<bank>BNK</bank>
+		<invoiceaddressnumber>1</invoiceaddressnumber>
+		<deliveraddressnumber>2</deliveraddressnumber>
+		<customer>1002</customer>
+		<period>2012/4</period>
+		<currency>EUR</currency>
+		<status>concept</status>
+		<paymentmethod>cashondelivery</paymentmethod>
+		<headertext></headertext>
+		<footertext></footertext>
+	</header>
+	<lines>
+		<line id="1">
+			<article>23</article>
+			<subarticle>42</subarticle>
+			<quantity>5</quantity>
+			<units>1</units>
+			<allowdiscountorpremium>true</allowdiscountorpremium>
+			<description>BarcelonaBambooPlatformBed</description>
+			<valueexcl>11495.00</valueexcl>
+			<vatvalue>2184.05</vatvalue>
+			<valueinc>13679.05</valueinc>
+			<unitspriceexcl>2299.00</unitspriceexcl>
+			<freetext1></freetext1>
+			<freetext2></freetext2>
+			<freetext3></freetext3>
+			<dim1>8020</dim1>
+			<vatcode name="BTW HOOG" shortname="VH" type="sales">VH</vatcode>
+		</line>
+		<line id="2">
+			<article>17</article>
+			<subarticle>108</subarticle>
+			<quantity>5</quantity>
+			<units>1</units>
+			<allowdiscountorpremium>true</allowdiscountorpremium>
+			<description>NineWestWomensLuceroPump</description>
+			<valueexcl>449.95</valueexcl>
+			<vatvalue>85.49</vatvalue>
+			<valueinc>535.44</valueinc>
+			<unitspriceexcl>89.99</unitspriceexcl>
+			<freetext1></freetext1>
+			<freetext2></freetext2>
+			<freetext3></freetext3>
+			<dim1>8020</dim1>
+			<vatcode name="BTW HOOG" shortname="VH" type="sales">VH</vatcode>
+		</line>
+	</lines>
+	<vatlines>
+		<vatline>
+			<vatcode name="BTW 19%">VH</vatcode>
+			<vatvalue>2269.54</vatvalue>
+			<performancetype />
+			<performancedate />
+		</vatline>
+	</vatlines>
+	<totals>
+		<valueinc>14214.49</valueinc>
+		<valueexcl>11944.95</valueexcl>
+	</totals>
+</salesinvoice>

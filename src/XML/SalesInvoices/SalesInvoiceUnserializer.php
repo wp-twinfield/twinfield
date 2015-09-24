@@ -29,7 +29,7 @@ class SalesInvoiceUnserializer extends Unserializer {
 	 * Unserialize the specified XML to an article.
 	 */
 	public function unserialize( \SimpleXMLElement $element ) {
-		if ( 'salesinvoice' === $element->getName() && '0' !== (string) $element['result'] ) {
+		if ( 'salesinvoice' === $element->getName() ) {
 			$sales_invoice = new SalesInvoice();
 
 			$header = $sales_invoice->get_header();
@@ -44,25 +44,32 @@ class SalesInvoiceUnserializer extends Unserializer {
 				$header->set_customer( Security::filter( $element->header->customer ) );
 			}
 
-			foreach ( $element->lines->line as $element_line ) {
-				$line = $sales_invoice->new_line();
+			if ( $element->lines ) {
+				foreach ( $element->lines->line as $element_line ) {
+					$line = $sales_invoice->new_line();
 
-				$line->set_id( Security::filter( $element_line['id'] ) );
-				$line->set_article( Security::filter( $element_line->article ) );
-				$line->set_subarticle( Security::filter( $element_line->subarticle ) );
-				$line->set_quantity( Security::filter( $element_line->quantity ) );
-				$line->set_units( Security::filter( $element_line->units ) );
-				$line->set_allow_discount_or_premium( Security::filter( $element_line->units, FILTER_VALIDATE_BOOLEAN ) );
-				$line->set_description( Security::filter( $element_line->description ) );
-				$line->set_value_excl( Security::filter( $element_line->valueexcl, FILTER_VALIDATE_FLOAT ) );
-				$line->set_vat_value( Security::filter( $element_line->vatvalue, FILTER_VALIDATE_FLOAT ) );
-				$line->set_value_inc( Security::filter( $element_line->valueinc, FILTER_VALIDATE_FLOAT ) );
-				$line->set_free_text_1( Security::filter( $element_line->freetext1 ) );
-				$line->set_free_text_2( Security::filter( $element_line->freetext2 ) );
-				$line->set_free_text_3( Security::filter( $element_line->freetext3 ) );
+					$line->set_id( Security::filter( $element_line['id'] ) );
+					$line->set_article( Security::filter( $element_line->article ) );
+					$line->set_subarticle( Security::filter( $element_line->subarticle ) );
+					$line->set_quantity( Security::filter( $element_line->quantity ) );
+					$line->set_units( Security::filter( $element_line->units ) );
+					$line->set_allow_discount_or_premium( Security::filter( $element_line->units, FILTER_VALIDATE_BOOLEAN ) );
+					$line->set_description( Security::filter( $element_line->description ) );
+					$line->set_value_excl( Security::filter( $element_line->valueexcl, FILTER_VALIDATE_FLOAT ) );
+					$line->set_vat_value( Security::filter( $element_line->vatvalue, FILTER_VALIDATE_FLOAT ) );
+					$line->set_value_inc( Security::filter( $element_line->valueinc, FILTER_VALIDATE_FLOAT ) );
+					$line->set_free_text_1( Security::filter( $element_line->freetext1 ) );
+					$line->set_free_text_2( Security::filter( $element_line->freetext2 ) );
+					$line->set_free_text_3( Security::filter( $element_line->freetext3 ) );
+				}
 			}
 
-			return $sales_invoice;
+			// Response
+			$result = Security::filter( $element['result'] );
+
+			$response = new SalesInvoiceResponse( $sales_invoice, $result, $element );
+
+			return $response;
 		}
 	}
 }

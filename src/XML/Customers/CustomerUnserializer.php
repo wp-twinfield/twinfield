@@ -14,6 +14,7 @@ use Pronamic\WP\Twinfield\DimensionTypes;
 use Pronamic\WP\Twinfield\XML\Security;
 use Pronamic\WP\Twinfield\XML\Unserializer;
 use Pronamic\WP\Twinfield\Customers\Customer;
+use Pronamic\WP\Twinfield\Customers\CustomerResponse;
 
 /**
  * Sales invoices unserializer
@@ -54,7 +55,12 @@ class CustomerUnserializer extends Unserializer {
 				$address->set_field_6( Security::filter( $element_address->field6 ) );
 			}
 
-			return $customer;
+			// Response
+			$result = Security::filter( $element['result'] );
+
+			$response = new CustomerResponse( $customer, $result, $element );
+
+			return $response;
 		}
 	}
 }

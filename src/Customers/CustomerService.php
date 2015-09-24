@@ -47,17 +47,21 @@ class CustomerService {
 	 * @return Customer
 	 */
 	public function get_customer( $office, $code ) {
+		$result = null;
+
 		$request = new CustomerReadRequestSerializer( new CustomerReadRequest( $office, $code ) );
 
 		$response = $this->xml_processor->process_xml_string( new ProcessXmlString( $request ) );
 
 		$xml = simplexml_load_string( $response );
 
-		$unserializer = new CustomerUnserializer();
+		if ( false !== $xml ) {
+			$unserializer = new CustomerUnserializer();
 
-		$object = $unserializer->unserialize( $xml );
-var_dump( $object );
-		return $object;
+			$result = $unserializer->unserialize( $xml );
+		}
+
+		return $result;
 	}
 
 	/**

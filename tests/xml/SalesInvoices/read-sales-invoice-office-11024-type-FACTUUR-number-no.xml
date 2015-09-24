@@ -1,0 +1,6 @@
+<read msgtype="error" msg="invoicenumber moet een geheel getal zijn." result="0">
+	<type>salesinvoice</type>
+	<office>11024</office>
+	<code>FACTUUR</code>
+	<invoicenumber>no</invoicenumber>
+</read>
