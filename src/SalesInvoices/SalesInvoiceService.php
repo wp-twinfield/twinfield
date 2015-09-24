@@ -74,13 +74,21 @@ class SalesInvoiceService {
 	 * @return SalesInvoiceResponse
 	 */
 	public function insert_sales_invoice( SalesInvoice $sales_invoice ) {
+		$result = null;
+
 		$xml = new SalesInvoiceSerializer( $sales_invoice );
 
 		$response = $this->xml_processor->process_xml_string( new ProcessXmlString( $xml ) );
 
-var_dump( $response );
-echo $response;
-exit;
+		$xml = simplexml_load_string( $response );
+
+		if ( false !== $xml ) {
+			$unserializer = new SalesInvoiceUnserializer();
+
+			$result = $unserializer->unserialize( $xml );
+		}
+
+		return $result;
 	}
 
 	/**

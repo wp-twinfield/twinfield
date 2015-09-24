@@ -1,0 +1,21 @@
+<salesinvoice result="0">
+	<header result="0" msgtype="error" msg="Er zijn fouten opgetreden bij de koptekst: kan geen totalen berekenen.">
+		<invoicetype msgtype="error" msg="Waarde mag niet leeg zijn." result="0"></invoicetype>
+		<customer>1000</customer>
+		<status>concept</status>
+		<paymentmethod></paymentmethod>
+		<headertext></headertext>
+		<footertext></footertext>
+		<office>11024</office>
+	</header>
+	<lines>
+		<line>
+			<quantity>1</quantity>
+			<article>SUCURI</article>
+			<description></description>
+			<freetext1></freetext1>
+			<freetext2></freetext2>
+			<freetext3></freetext3>
+		</line>
+	</lines>
+</salesinvoice>

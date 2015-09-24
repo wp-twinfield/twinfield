@@ -1,0 +1,35 @@
+<salesinvoice result="0">
+	<header>
+		<invoicetype>FACTUUR</invoicetype>
+		<customer>1000</customer>
+		<status>concept</status>
+		<paymentmethod>cash</paymentmethod>
+		<headertext></headertext>
+		<footertext></footertext>
+		<office>11024</office>
+		<invoicedate>20150924</invoicedate>
+		<duedate>20151024</duedate>
+		<period>2015/9</period>
+		<currency>EUR</currency>
+		<bank>BNK</bank>
+		<invoiceaddressnumber>1</invoiceaddressnumber>
+		<deliveraddressnumber>1</deliveraddressnumber>
+	</header>
+	<lines result="0">
+		<line id="1" result="0">
+			<quantity>1</quantity>
+			<article>SUCURI</article>
+			<description></description>
+			<freetext1></freetext1>
+			<freetext2></freetext2>
+			<freetext3></freetext3>
+			<subarticle msgtype="error" msg="De subcode van het artikel mag niet leeg zijn." result="0"></subarticle>
+			<unitspriceexcl></unitspriceexcl>
+			<units>1</units>
+			<vatcode name="BTW 21%" shortname="V 21%">VH</vatcode>
+			<allowdiscountorpremium>true</allowdiscountorpremium>
+			<performancedate />
+			<performancetype />
+		</line>
+	</lines>
+</salesinvoice>

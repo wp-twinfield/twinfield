@@ -33,7 +33,7 @@ class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
 	public function setUp() {
 		parent::setUp();
 
-		$this->mock = false;
+		$this->mock = ! filter_var( getenv( 'TWINFIELD_TESTS_NO_MOCK' ), FILTER_VALIDATE_BOOLEAN );
 
 		if ( $this->mock ) {
 			$this->xml_processor = $this->getMockBuilder( 'Pronamic\WP\Twinfield\XMLProcessor' )
@@ -74,7 +74,7 @@ class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
 			}
 		}
 
-		// Service
+		// Test
 		$response = $this->service->get_sales_invoice( $office, $type, $invoice_number );
 
 		if ( false === $expected_return ) {
@@ -86,11 +86,32 @@ class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
 			$sales_invoice = $response->get_sales_invoice();
 
 			$this->assertInstanceOf( __NAMESPACE__ . '\SalesInvoice', $sales_invoice );
+
+			$header = $sales_invoice->get_header();
+
+			$this->assertInstanceOf( __NAMESPACE__ . '\SalesInvoiceHeader', $header );
+
+			if ( $response->is_successful() ) {
+				$this->assertEquals( $office, $header->get_office() );
+				$this->assertEquals( $type, $header->get_type() );
+				$this->assertEquals( $invoice_number, $header->get_number() );
+			}
 		}
 	}
 
 	public function get_sales_invoice_provider() {
-		if ( $this->mock ) {
+		$no_mock = filter_var( getenv( 'TWINFIELD_TESTS_NO_MOCK' ), FILTER_VALIDATE_BOOLEAN );
+
+		if ( $no_mock ) {
+			return array(
+				array(
+					'office'         => getenv( 'TWINFIELD_OFFICE_CODE' ),
+					'type'           => getenv( 'TWINFIELD_SALES_INVOICE_TYPE' ),
+					'invoice_number' => getenv( 'TWINFIELD_SALES_INVOICE_NUMBER' ),
+					'return'         => true,
+				),
+			);
+		} else {
 			return array(
 				// Valid data.
 				array(
@@ -133,15 +154,6 @@ class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
 					'result'         => Result::NOT_SUCCESSFUL,
 				),
 			);
-		} else {
-			return array(
-				array(
-					'office'         => getenv( 'TWINFIELD_OFFICE_CODE' ),
-					'type'           => getenv( 'TWINFIELD_SALES_INVOICE_TYPE' ),
-					'invoice_number' => getenv( 'TWINFIELD_SALES_INVOICE_NUMBER' ),
-					'return'         => true,
-				),
-			);
 		}
 	}
 
@@ -150,7 +162,17 @@ class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
 	 *
 	 * @dataProvider insert_sales_invoice_provider
 	 */
-	public function test_insert_sales_invoice( $type, $customer, $article ) {
+	public function test_insert_sales_invoice( $mock, $type, $customer, $office, $article, $subarticle, $expected_return, $expected_result ) {
+		// Mock
+		if ( $mock ) {
+			$file = __DIR__ . '/../../xml/SalesInvoices/' . $mock;
+
+			if ( is_readable( $file ) ) {
+				$this->xml_processor->method( 'process_xml_string' )->willReturn( file_get_contents( $file ) );
+			}
+		}
+
+		// Test
 		$sales_invoice = new SalesInvoice();
 
 		$header = $sales_invoice->get_header();
@@ -159,25 +181,84 @@ class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
 
 		$line = $sales_invoice->new_line();
 		$line->set_article( $article );
+		$line->set_subarticle( $subarticle );
 
-		$result = $this->service->insert_sales_invoice( $sales_invoice );
-		//$result = false;
+		$response = $this->service->insert_sales_invoice( $sales_invoice );
 
-		$this->assertInternalType( 'bool', $result );
+		if ( false === $expected_return ) {
+			$this->assertNull( $response );
+		} else {
+			$this->assertInstanceOf( __NAMESPACE__ . '\SalesInvoiceResponse', $response );
+			$this->assertEquals( $expected_result, $response->get_result() );
+
+			$sales_invoice = $response->get_sales_invoice();
+
+			$this->assertInstanceOf( __NAMESPACE__ . '\SalesInvoice', $sales_invoice );
+
+			$header = $sales_invoice->get_header();
+
+			$this->assertInstanceOf( __NAMESPACE__ . '\SalesInvoiceHeader', $header );
+
+			if ( $response->is_successful() ) {
+				$this->assertEquals( $office, $header->get_office() );
+				$this->assertEquals( $type, $header->get_type() );
+				$this->assertNotEmpty( $header->get_number() );
+			}
+		}
 	}
 
 	public function insert_sales_invoice_provider() {
-		return array(
-			array(
-				'type'     => getenv( 'TWINFIELD_SALES_INVOICE_TYPE' ),
-				'customer' => getenv( 'TWINFIELD_CUSTOMER_CODE' ),
-				'article'  => getenv( 'TWINFIELD_ARTICLE_CODE' ),
-			),
-			array(
-				'type'     => 'FACTUUR',
-				'customer' => '1000',
-				'article'  => '001',
-			),
-		);
+		$no_mock = filter_var( getenv( 'TWINFIELD_TESTS_NO_MOCK' ), FILTER_VALIDATE_BOOLEAN );
+
+		if ( $no_mock ) {
+			return array(
+				array(
+					'mock'       => false,
+					'type'       => getenv( 'TWINFIELD_SALES_INVOICE_TYPE' ),
+					'customer'   => getenv( 'TWINFIELD_CUSTOMER_CODE' ),
+					'office'     => getenv( 'TWINFIELD_OFFICE_CODE' ),
+					'article'    => getenv( 'TWINFIELD_ARTICLE_CODE' ),
+					'subarticle' => getenv( 'TWINFIELD_SUBARTICLE_CODE' ),
+					'return'     => true,
+					'result'     => Result::SUCCESSFUL,
+				),
+			);
+		} else {
+			return array(
+				// Valid item, subarticle can be empty for this article.
+				array(
+					'mock'       => 'insert-sales-invoice-result-1.xml',
+					'type'       => 'FACTUUR',
+					'customer'   => '1000',
+					'office'     => '11024',
+					'article'    => '001',
+					'subarticle' => '',
+					'return'     => true,
+					'result'     => Result::SUCCESSFUL,
+				),
+				// Sales invoice type is empty.
+				array(
+					'mock'       => 'insert-sales-invoice-type-empty.xml',
+					'type'       => '',
+					'customer'   => '1000',
+					'office'     => '11024',
+					'article'    => '001',
+					'subarticle' => '',
+					'return'     => true,
+					'result'     => Result::NOT_SUCCESSFUL,
+				),
+				// The subcode of the article can not be empty.
+				array(
+					'mock'       => 'insert-sales-invoice-subarticle-empty.xml',
+					'type'       => 'FACTUUR',
+					'customer'   => '1000',
+					'office'     => '11024',
+					'article'    => 'SUCURI',
+					'subarticle' => '',
+					'return'     => true,
+					'result'     => Result::NOT_SUCCESSFUL,
+				),
+			);
+		}
 	}
 }
