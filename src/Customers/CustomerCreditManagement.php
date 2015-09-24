@@ -39,7 +39,7 @@ class CustomerCreditManagement {
 	 * @return string
 	 */
 	public function get_send_reminder() {
-		return $this->office;
+		return $this->send_reminder;
 	}
 
 	/**
