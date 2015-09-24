@@ -24,7 +24,6 @@ class CustomerFinancialsTest extends \PHPUnit_Framework_TestCase {
 		$customer_financials = new CustomerFinancials();
 
 		$customer_financials->set_due_days( 14 );
-
 		$this->assertEquals( 14, $customer_financials->get_due_days() );
 	}
 }

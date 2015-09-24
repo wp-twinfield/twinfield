@@ -146,7 +146,7 @@ class Customer extends Contact {
 	/**
 	 * Get financials.
 	 *
-	 * @return CustomerCreditManagement
+	 * @return CustomerFinancials
 	 */
 	public function get_financials() {
 		return $this->financials;
@@ -155,7 +155,7 @@ class Customer extends Contact {
 	/**
 	 * Get credit management.
 	 *
-	 * @return CustomerFinancials
+	 * @return CustomerCreditManagement
 	 */
 	public function get_credit_management() {
 		return $this->credit_management;
