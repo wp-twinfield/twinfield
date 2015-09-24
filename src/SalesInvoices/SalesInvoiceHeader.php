@@ -156,7 +156,7 @@ class SalesInvoiceHeader {
 	 * @return \DateTime
 	 */
 	public function get_date() {
-		return $this->number;
+		return $this->date;
 	}
 
 	/**

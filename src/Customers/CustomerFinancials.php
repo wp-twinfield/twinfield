@@ -32,7 +32,7 @@ class CustomerFinancials {
 	 * @return int
 	 */
 	public function get_due_days() {
-		return $this->office;
+		return $this->due_days;
 	}
 
 	/**
@@ -40,7 +40,7 @@ class CustomerFinancials {
 	 *
 	 * @param int $due_days
 	 */
-	public function set_office( $due_days ) {
+	public function set_due_days( $due_days ) {
 		$this->due_days = $due_days;
 	}
 }

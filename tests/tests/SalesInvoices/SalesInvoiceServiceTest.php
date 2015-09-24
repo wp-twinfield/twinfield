@@ -4,7 +4,7 @@
  *
  * @since      1.0.0
  *
- * @package    Pronamic/WP/Twinfield/SalesInvoice
+ * @package    Pronamic/WP/Twinfield/SalesInvoices
  */
 
 namespace Pronamic\WP\Twinfield\SalesInvoices;
@@ -17,7 +17,7 @@ use Pronamic\WP\Twinfield\XMLProcessor;
  * Sales invoices service test
  *
  * @since      1.0.0
- * @package    Pronamic/WP/Twinfield/SalesInvoice
+ * @package    Pronamic/WP/Twinfield/SalesInvoices
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
 class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
