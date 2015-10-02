@@ -67,6 +67,7 @@ class SalesInvoiceSerializer extends Serializer {
 			$elements = array(
 				'quantity'    => $line->get_quantity(),
 				'article'     => $line->get_article(),
+				'subarticle'  => $line->get_subarticle(),
 				'description' => $line->get_description(),
 				'valueexcl'   => $line->get_value_excl(),
 				'freetext1'   => $line->get_free_text_1(),
