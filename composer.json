@@ -8,15 +8,15 @@
             "email": "info@pronamic.eu"
         }
     ],
-  	"autoload": {
-		"psr-4": {"Pronamic\\WP\\Twinfield\\": "src/"}
-	},
+    "autoload": {
+        "psr-4": {"Pronamic\\WP\\Twinfield\\": "src/"}
+    },
     "require": {
 
     },
-	"require-dev": {
-		"squizlabs/php_codesniffer": "*",
-		"sensiolabs/security-checker": "dev-master",
-		"satooshi/php-coveralls": "dev-master"
-	}
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*",
+        "sensiolabs/security-checker": "dev-master",
+        "satooshi/php-coveralls": "dev-master"
+    }
 }

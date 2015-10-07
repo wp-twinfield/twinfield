@@ -73,4 +73,13 @@ class Contact {
 
 		return $address;
 	}
+
+	/**
+	 * Get the addresses of this contact.
+	 *
+	 * @return array An array with addresses.
+	 */
+	public function get_addresses() {
+		return $this->addresses;
+	}
 }
