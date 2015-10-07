@@ -26,6 +26,8 @@ use Pronamic\WP\Twinfield\Customers\CustomerResponse;
 class CustomerUnserializer extends Unserializer {
 	/**
 	 * Unserialize the specified XML to an article.
+	 *
+	 * @param \SimpleXMLElement $element the element to unserialize.
 	 */
 	public function unserialize( \SimpleXMLElement $element ) {
 		if ( 'dimension' === $element->getName() && DimensionTypes::DEB === Security::filter( $element->type ) ) {
@@ -55,7 +57,7 @@ class CustomerUnserializer extends Unserializer {
 				$address->set_field_6( Security::filter( $element_address->field6 ) );
 			}
 
-			// Response
+			// Response.
 			$result = Security::filter( $element['result'] );
 
 			$response = new CustomerResponse( $customer, $result, $element );

@@ -34,6 +34,17 @@ class SearchResponse {
 	private $data;
 
 	/**
+	 * Helper function to check if this response is successful
+	 *
+	 * @return boolean
+	 */
+	public function is_successful() {
+		$array = $this->SearchResult->get_array();
+
+		return empty( $array );
+	}
+
+	/**
 	 * Get the search response result code.
 	 *
 	 * @return string

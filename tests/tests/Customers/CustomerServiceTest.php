@@ -21,8 +21,25 @@ use Pronamic\WP\Twinfield\XMLProcessor;
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
 class CustomerServiceTest extends \PHPUnit_Framework_TestCase {
+	/**
+	 * Flag for mock requests to Twinfield.
+	 *
+	 * @var boolean
+	 */
+	private $mock = true;
+
+	/**
+	 * The XML processor to use in this test.
+	 *
+	 * @var Pronamic\WP\Twinfield\XMLProcessor
+	 */
 	private $xml_processor;
 
+	/**
+	 * The service to use in this test.
+	 *
+	 * @var CustomerService
+	 */
 	private $service;
 
 	/**
@@ -31,21 +48,21 @@ class CustomerServiceTest extends \PHPUnit_Framework_TestCase {
 	public function setUp() {
 		parent::setUp();
 
-		/*
-		global $credentials;
+		if ( $this->mock ) {
+			$this->xml_processor = $this->getMockBuilder( 'Pronamic\WP\Twinfield\XMLProcessor' )
+				->disableOriginalConstructor()
+				->getMock();
+		} else {
+			global $credentials;
 
-		$client = new Client();
+			$client = new Client();
 
-		$logon_response = $client->logon( $credentials );
+			$logon_response = $client->logon( $credentials );
 
-		$session = $client->get_session( $logon_response );
+			$session = $client->get_session( $logon_response );
 
-		$xml_processor = new XMLProcessor( $session );
-		*/
-
-		$this->xml_processor = $this->getMockBuilder( 'Pronamic\WP\Twinfield\XMLProcessor' )
-			->disableOriginalConstructor()
-			->getMock();
+			$xml_processor = new XMLProcessor( $session );
+		}
 
 		$this->service = new CustomerService( $this->xml_processor );
 	}
@@ -53,15 +70,19 @@ class CustomerServiceTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Test get customer.
 	 *
+	 * @param string $office The office to retrive the customer from.
+	 * @param string $code   The code of the customer to retrieve.
+	 * @param string $file   The file with the Twinfield mock response.
+	 * @param mixed  $return The expected Twinfield return.
 	 * @dataProvider get_customer_provider
 	 */
 	public function test_get_customer( $office, $code, $file, $return ) {
-		// Mock
+		// Mock.
 		$response = file_get_contents( __DIR__ . '/../../xml/Customers/' . $file );
 
 		$this->xml_processor->method( 'process_xml_string' )->willReturn( $response );
 
-		// Service
+		// Service.
 		$response = $this->service->get_customer( $office, $code );
 
 		if ( false === $return ) {
@@ -78,6 +99,11 @@ class CustomerServiceTest extends \PHPUnit_Framework_TestCase {
 		}
 	}
 
+	/**
+	 * Data provider for the get customer test function.
+	 *
+	 * @return array
+	 */
 	public function get_customer_provider() {
 		return array(
 			array(
@@ -108,7 +134,6 @@ class CustomerServiceTest extends \PHPUnit_Framework_TestCase {
 		$customer = new Customer();
 
 		// $result = $this->service->insert_customer( $customer );
-
 		// $this->assertInternalType( 'bool', $result );
 	}
 }

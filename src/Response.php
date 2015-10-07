@@ -34,7 +34,8 @@ abstract class Response {
 	/**
 	 * Constructs and initialize an Twinfield article read request.
 	 *
-	 * @param int $result The number of results.
+	 * @param int               $result  The number of results.
+	 * @param \SimpleXMLElement $message The XML response message.
 	 */
 	public function __construct( $result, \SimpleXMLElement $message ) {
 		$this->result  = $result;

@@ -4,4 +4,8 @@
 	<rule ref="WordPress">
 		<exclude name="Generic.Files.LowercasedFilename.NotFound" />
 	</rule>
+
+	<rule ref="WordPress.VIP.RestrictedFunctions.file_get_contents">
+		<exclude-pattern>/tests/tests</exclude-pattern>
+	</rule>
 </ruleset>

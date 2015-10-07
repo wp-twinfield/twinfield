@@ -23,6 +23,8 @@ use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoiceReadRequest;
 class SalesInvoiceReadRequestSerializer extends ReadRequestSerializer {
 	/**
 	 * Constructs and initialize an article read request XML object
+	 *
+	 * @param SalesInvoiceReadRequest $request the sales invoice read request to serialize.
 	 */
 	public function __construct( SalesInvoiceReadRequest $request ) {
 		parent::__construct();

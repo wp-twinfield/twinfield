@@ -29,6 +29,7 @@ class XMLProcessorTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Test processor
 	 *
+	 * @param string $xml An XML message to process.
 	 * @dataProvider provider
 	 */
 	public function test_processor( $xml ) {
@@ -54,6 +55,11 @@ class XMLProcessorTest extends \PHPUnit_Framework_TestCase {
 		$this->assertInternalType( 'string', $response->get_result() );
 	}
 
+	/**
+	 * Provider function for the `test_processor` function.
+	 *
+	 * @return array an array with test data.
+	 */
 	public function provider() {
 		$office_code   = getenv( 'TWINFIELD_OFFICE_CODE' );
 		$article_code  = getenv( 'TWINFIELD_ARTICLE_CODE' );

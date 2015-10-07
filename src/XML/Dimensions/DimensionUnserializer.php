@@ -15,7 +15,6 @@ use Pronamic\WP\Twinfield\XML\Unserializer;
 use Pronamic\WP\Twinfield\XML\Security;
 use Pronamic\WP\Twinfield\XML\Customers\CustomerUnserializer;
 
-
 /**
  * Dimension unserializer
  *
@@ -36,6 +35,8 @@ class DimensionUnserializer extends Unserializer {
 
 	/**
 	 * Unserialize the specified XML to an article.
+	 *
+	 * @param \SimpleXMLElement $element the element to unserialize.
 	 */
 	public function unserialize( \SimpleXMLElement $element ) {
 		if ( 'dimension' === $element->getName() ) {

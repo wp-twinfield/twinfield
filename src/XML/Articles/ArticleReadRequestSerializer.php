@@ -22,7 +22,9 @@ use Pronamic\WP\Twinfield\Articles\ArticleReadRequest;
  */
 class ArticleReadRequestSerializer extends ReadRequestSerializer {
 	/**
-	 * Constructs and initialize an article read request XML object
+	 * Constructs and initialize an article read request XML object.
+	 *
+	 * @param ArticleReadRequest $request the article read request to serialize.
 	 */
 	public function __construct( ArticleReadRequest $request ) {
 		parent::__construct();

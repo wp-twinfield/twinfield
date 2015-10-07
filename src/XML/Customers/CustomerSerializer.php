@@ -23,7 +23,9 @@ use Pronamic\WP\Twinfield\Customers\Customer;
  */
 class CustomerSerializer extends Serializer {
 	/**
-	 * Constructs and initialize an article read request XML object
+	 * Constructs and initialize an article read request XML object.
+	 *
+	 * @param Customer $customer the customer to serialize.
 	 */
 	public function __construct( Customer $customer ) {
 		parent::__construct();

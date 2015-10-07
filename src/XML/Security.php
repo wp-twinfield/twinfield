@@ -20,8 +20,8 @@ class Security {
 	/**
 	 * Filter the specified XML variable.
 	 *
-	 * @var mixed $variable
-	 * @var int $filter One the PHP filter constants.
+	 * @param mixed $variable The variable to filter.
+	 * @param int   $filter One the PHP filter constants.
 	 */
 	public static function filter( $variable, $filter = FILTER_SANITIZE_STRING ) {
 		$result = null;

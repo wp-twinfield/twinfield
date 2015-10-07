@@ -28,14 +28,14 @@ class SalesInvoiceService {
 	/**
 	 * The XML processor wich is used to connect with Twinfield.
 	 *
-	 * @param XMLProcessor
+	 * @var XMLProcessor
 	 */
 	private $xml_processor;
 
 	/**
 	 * Constructs and initializes an sales invoice service.
 	 *
-	 * @param XMLProcessor $xml_processor
+	 * @param XMLProcessor $xml_processor The XML processor to use within this sales invoice service object.
 	 */
 	public function __construct( XMLProcessor $xml_processor ) {
 		$this->xml_processor = $xml_processor;
@@ -44,9 +44,9 @@ class SalesInvoiceService {
 	/**
 	 * Get the specified sales invoice.
 	 *
-	 * @param string $office
-	 * @param string $code
-	 * @param string $number
+	 * @param string $office The office to get the sales invoice from.
+	 * @param string $code   The code of the sales invoice to retrieve.
+	 * @param string $number The number of the salies invoice to retrieve.
 	 * @return SalesInvoiceResponse
 	 */
 	public function get_sales_invoice( $office, $code, $number ) {
@@ -70,7 +70,7 @@ class SalesInvoiceService {
 	/**
 	 * Insert the specifiekd sales invoice.
 	 *
-	 * @param SalesInvoice $sales_invoice
+	 * @param SalesInvoice $sales_invoice The sales invoice to insert.
 	 * @return SalesInvoiceResponse
 	 */
 	public function insert_sales_invoice( SalesInvoice $sales_invoice ) {

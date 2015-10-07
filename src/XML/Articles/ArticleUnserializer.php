@@ -25,6 +25,8 @@ use Pronamic\WP\Twinfield\Articles\ArticleLine;
 class ArticleUnserializer extends Unserializer {
 	/**
 	 * Unserialize the specified XML to an article.
+	 *
+	 * @param \SimpleXMLElement $element the XML element to unserialize.
 	 */
 	public function unserialize( \SimpleXMLElement $element ) {
 		if ( 'article' === $element->getName() && '0' !== (string) $element['result'] ) {
@@ -49,7 +51,7 @@ class ArticleUnserializer extends Unserializer {
 
 			$article = new Article( $header, $lines );
 
-			var_dump( $article );
+			return $article;
 		}
 	}
 }

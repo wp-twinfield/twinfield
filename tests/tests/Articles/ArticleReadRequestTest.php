@@ -25,7 +25,7 @@ class ArticleReadRequestTest extends \PHPUnit_Framework_TestCase {
 		$code   = getenv( 'TWINFIELD_ARTICLE_CODE' );
 
 		$read_request = new ArticleReadRequest( $office, $code );
-		
+
 		$this->assertInstanceOf( __NAMESPACE__ . '\ArticleReadRequest', $read_request );
 	}
 }

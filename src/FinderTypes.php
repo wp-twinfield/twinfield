@@ -42,4 +42,12 @@ class FinderTypes {
 	 * @var string
 	 */
 	const BDS = 'BDS';
+
+	/**
+	 * Twinfield finder type constat for "Dimensions".
+	 * Return fields: code, name, bank account number, address fields
+	 *
+	 * @var string
+	 */
+	const DIM = 'DIM';
 }

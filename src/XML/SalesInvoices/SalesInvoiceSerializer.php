@@ -22,7 +22,9 @@ use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoice;
  */
 class SalesInvoiceSerializer extends Serializer {
 	/**
-	 * Constructs and initialize an article read request XML object
+	 * Constructs and initialize an article read request XML object.
+	 *
+	 * @param SalesInvoice $sales_invoice the sales invoice to serialize.
 	 */
 	public function __construct( SalesInvoice $sales_invoice ) {
 		parent::__construct();
@@ -31,11 +33,11 @@ class SalesInvoiceSerializer extends Serializer {
 
 		$this->document->appendChild( $root );
 
-		// Header
+		// Header.
 		$header = $sales_invoice->get_header();
 
 		$header_elemnt = $this->document->createElement( 'header' );
-		
+
 		$root->appendChild( $header_elemnt );
 
 		$elements = array(
@@ -54,9 +56,9 @@ class SalesInvoiceSerializer extends Serializer {
 			$header_elemnt->appendChild( $element );
 		}
 
-		// Lines
+		// Lines.
 		$lines_element = $this->document->createElement( 'lines' );
-		
+
 		$root->appendChild( $lines_element );
 
 		foreach ( $sales_invoice->get_lines() as $line ) {

@@ -24,17 +24,19 @@ use Pronamic\WP\Twinfield\Suppliers\Supplier;
 class SupplierUnserializer extends Unserializer {
 	/**
 	 * Unserialize the specified XML to an article.
+	 *
+	 * @param \SimpleXMLElement $element The XML element to unserialize.
 	 */
 	public function unserialize( \SimpleXMLElement $element ) {
 		if ( 'dimension' === $element->getName() && DimensionTypes::CRD === Security::filter( $element->type ) ) {
 			$supplier = new Supplier();
 
-			$customer->set_office( Security::filter( $element->office ) );
-			$customer->set_code( Security::filter( $element->code ) );
-			$customer->set_name( Security::filter( $element->name ) );
-			$customer->set_shortname( Security::filter( $element->shortname ) );
+			$supplier->set_office( Security::filter( $element->office ) );
+			$supplier->set_code( Security::filter( $element->code ) );
+			$supplier->set_name( Security::filter( $element->name ) );
+			$supplier->set_shortname( Security::filter( $element->shortname ) );
 
-			return $customer;
+			return $supplier;
 		}
 	}
 }

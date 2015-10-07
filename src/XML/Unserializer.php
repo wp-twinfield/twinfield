@@ -22,6 +22,6 @@ abstract class Unserializer {
 	 * Constructs and initalizes an unserializer object
 	 */
 	public function __construct() {
-		
+
 	}
 }

@@ -62,7 +62,7 @@ class SalesInvoice {
 	/**
 	 * Add the specified line to this sales invoice.
 	 *
-	 * @param SalesInvoiceLine $line
+	 * @param SalesInvoiceLine $line The sales invoice line to add.
 	 */
 	public function add_line( SalesInvoiceLine $line ) {
 		$this->lines[] = $line;

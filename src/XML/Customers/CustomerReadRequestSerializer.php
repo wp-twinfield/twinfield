@@ -22,7 +22,9 @@ use Pronamic\WP\Twinfield\Customers\CustomerReadRequest;
  */
 class CustomerReadRequestSerializer extends ReadRequestSerializer {
 	/**
-	 * Constructs and initialize an article read request XML object
+	 * Constructs and initialize an article read request XML object.
+	 *
+	 * @param CustomerReadRequest $request the customer read request to serailze.
 	 */
 	public function __construct( CustomerReadRequest $request ) {
 		parent::__construct();

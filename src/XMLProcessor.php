@@ -38,7 +38,7 @@ class XMLProcessor extends AbstractClient {
 	/**
 	 * Send the specified XML string to Twinfield for processing.
 	 *
-	 * @param string $xml The XML string to process by Twinfield.
+	 * @param ProcessXmlString $xml The XML string to process by Twinfield.
 	 * @return string
 	 */
 	public function process_xml_string( ProcessXmlString $xml ) {

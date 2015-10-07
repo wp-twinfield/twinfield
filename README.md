@@ -3,6 +3,11 @@
 [![Build Status](https://travis-ci.org/wp-twinfield/twinfield.svg)](https://travis-ci.org/wp-twinfield/twinfield)
 [![Coverage Status](https://coveralls.io/repos/wp-twinfield/twinfield/badge.svg?branch=develop&service=github)](https://coveralls.io/github/wp-twinfield/twinfield?branch=develop)
 
+## Documentation
+
+*	[Twinfield API](https://www.twinfield.nl/api)
+
+
 ## Environment variables
 
 ```

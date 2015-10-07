@@ -57,7 +57,7 @@ class SalesInvoiceHeaderTest extends \PHPUnit_Framework_TestCase {
 		$header->set_header_text( 'Header' );
 		$this->assertEquals( 'Header', $header->get_header_text() );
 
-		$header->set_footer_text( 'Footer' );	
-		$this->assertEquals( 'Footer', $header->get_footer_text() );	
+		$header->set_footer_text( 'Footer' );
+		$this->assertEquals( 'Footer', $header->get_footer_text() );
 	}
 }

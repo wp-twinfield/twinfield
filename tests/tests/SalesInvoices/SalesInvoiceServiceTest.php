@@ -21,10 +21,25 @@ use Pronamic\WP\Twinfield\XMLProcessor;
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
 class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
+	/**
+	 * Flag for mock requests to Twinfield.
+	 *
+	 * @var boolean
+	 */
 	private $mock = true;
 
+	/**
+	 * The XML processor object.
+	 *
+	 * @var XMLProcessor
+	 */
 	private $xml_processor;
 
+	/**
+	 * The sales invoice service object.
+	 *
+	 * @var SalesInvoiceService
+	 */
 	private $service;
 
 	/**
@@ -57,10 +72,15 @@ class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Test get sales invoice.
 	 *
+	 * @param string $office The office code to get the sales invoice from.
+	 * @param string $type The type of invoice to get.
+	 * @param string $invoice_number The number of the invoice to get.
+	 * @param mixed  $expected_return An indicator of what the expected return value should be.
+	 * @param mixed  $expected_result An indicator of what the expected return result should be.
 	 * @dataProvider get_sales_invoice_provider
 	 */
 	public function test_get_sales_invoice( $office, $type, $invoice_number, $expected_return, $expected_result ) {
-		// Mock
+		// Mock.
 		if ( $this->mock ) {
 			$file = __DIR__ . '/../../xml/SalesInvoices/' . sprintf(
 				'read-sales-invoice-office-%s-type-%s-number-%s.xml',
@@ -74,7 +94,7 @@ class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
 			}
 		}
 
-		// Test
+		// Test.
 		$response = $this->service->get_sales_invoice( $office, $type, $invoice_number );
 
 		if ( false === $expected_return ) {
@@ -99,6 +119,11 @@ class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
 		}
 	}
 
+	/**
+	 * Test data provider for the get sales invoice test.
+	 *
+	 * @return array An array with test data.
+	 */
 	public function get_sales_invoice_provider() {
 		$no_mock = filter_var( getenv( 'TWINFIELD_TESTS_NO_MOCK' ), FILTER_VALIDATE_BOOLEAN );
 
@@ -160,10 +185,18 @@ class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Test insert sales invoice.
 	 *
+	 * @param boolean $mock An flag to indicate the Twinfield response should be mocked.
+	 * @param string  $type The type of invoice to insert.
+	 * @param string  $customer The customer of invoice to insert.
+	 * @param string  $office The office code of invoice to insert.
+	 * @param string  $article The article of invoice to inssert.
+	 * @param string  $subarticle The subarticle of invoice to inssert.
+	 * @param mixed   $expected_return An indicator of what the expected return value should be.
+	 * @param mixed   $expected_result An indicator of what the expected return result should be.
 	 * @dataProvider insert_sales_invoice_provider
 	 */
 	public function test_insert_sales_invoice( $mock, $type, $customer, $office, $article, $subarticle, $expected_return, $expected_result ) {
-		// Mock
+		// Mock.
 		if ( $mock ) {
 			$file = __DIR__ . '/../../xml/SalesInvoices/' . $mock;
 
@@ -172,7 +205,7 @@ class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
 			}
 		}
 
-		// Test
+		// Test.
 		$sales_invoice = new SalesInvoice();
 
 		$header = $sales_invoice->get_header();
@@ -207,6 +240,11 @@ class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
 		}
 	}
 
+	/**
+	 * Test data provider for the insert sales invoice test.
+	 *
+	 * @return array An array with test data.
+	 */
 	public function insert_sales_invoice_provider() {
 		$no_mock = filter_var( getenv( 'TWINFIELD_TESTS_NO_MOCK' ), FILTER_VALIDATE_BOOLEAN );
 

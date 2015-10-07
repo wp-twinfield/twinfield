@@ -32,7 +32,9 @@ class SalesInvoiceResponse extends Response {
 	/**
 	 * Constructs and initialize an Twinfield article read request.
 	 *
-	 * @param int $result The number of results.
+	 * @param SalesInvoice      $sales_invoice An sales invoice.
+	 * @param int               $result        The number of results.
+	 * @param \SimpleXMLElement $message       The XML message.
 	 */
 	public function __construct( SalesInvoice $sales_invoice, $result, \SimpleXMLElement $message ) {
 		parent::__construct( $result, $message );

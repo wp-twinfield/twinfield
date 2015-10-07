@@ -27,6 +27,8 @@ use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoiceResponse;
 class SalesInvoiceUnserializer extends Unserializer {
 	/**
 	 * Unserialize the specified XML to an article.
+	 *
+	 * @param \SimpleXMLElement $element The XML element to unserialize.
 	 */
 	public function unserialize( \SimpleXMLElement $element ) {
 		if ( 'salesinvoice' === $element->getName() ) {
@@ -64,7 +66,7 @@ class SalesInvoiceUnserializer extends Unserializer {
 				}
 			}
 
-			// Response
+			// Response.
 			$result = Security::filter( $element['result'] );
 
 			$response = new SalesInvoiceResponse( $sales_invoice, $result, $element );

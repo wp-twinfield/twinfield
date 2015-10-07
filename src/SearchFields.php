@@ -21,7 +21,7 @@ namespace Pronamic\WP\Twinfield;
 class SearchFields {
 	/**
 	 * Searches on the code or name field.
-	 * Type: all
+	 * Type: All
 	 *
 	 * @var int
 	 */
@@ -29,7 +29,7 @@ class SearchFields {
 
 	/**
 	 * Searches only on the code field
-	 * Type: all
+	 * Type: All
 	 *
 	 * @var int
 	 */
@@ -37,9 +37,25 @@ class SearchFields {
 
 	/**
 	 * Searches only on the name field
-	 * Type: all
+	 * Type: All
 	 *
 	 * @var int
 	 */
 	const NAME = 2;
+
+	/**
+	 * Bank account number
+	 * Type: Dimensions
+	 *
+	 * @var int
+	 */
+	const BANK_ACCOUNT_NUMBER = 3;
+
+	/**
+	 * Address fields
+	 * Type: Dimensions
+	 *
+	 * @var int
+	 */
+	const ADDRESS_FIELDS = 4;
 }
