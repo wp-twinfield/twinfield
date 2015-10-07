@@ -40,8 +40,8 @@ class SalesInvoiceUnserializer extends Unserializer {
 				$header->set_office( Security::filter( $element->header->office ) );
 				$header->set_type( Security::filter( $element->header->invoicetype ) );
 				$header->set_number( Security::filter( $element->header->invoicenumber ) );
-				$header->set_date( new \DateTime::createFromFormat( 'Ymd', Security::filter( $element->header->invoicedate ) ) );
-				$header->set_due_date( new \DateTime::createFromFormat( 'Ymd', Security::filter( $element->header->invoicedate ) ) );
+				$header->set_date( \DateTime::createFromFormat( 'Ymd', Security::filter( $element->header->invoicedate ) ) );
+				$header->set_due_date( \DateTime::createFromFormat( 'Ymd', Security::filter( $element->header->invoicedate ) ) );
 				$header->set_bank( Security::filter( $element->header->bank ) );
 				$header->set_customer( Security::filter( $element->header->customer ) );
 			}
