@@ -62,6 +62,42 @@ class Contact {
 	}
 
 	/**
+	 * Get office.
+	 *
+	 * @return string
+	 */
+	public function get_office() {
+		return $this->office;
+	}
+
+	/**
+	 * Set office
+	 *
+	 * @param string $office
+	 */
+	public function set_office( $office ) {
+		$this->office = $office;
+	}
+
+	/**
+	 * Get name.
+	 *
+	 * @return string
+	 */
+	public function get_name() {
+		return $this->name;
+	}
+
+	/**
+	 * Set name.
+	 *
+	 * @param string $name
+	 */
+	public function set_name( $name ) {
+		$this->name = $name;
+	}
+
+	/**
 	 * Create and add a new address.
 	 *
 	 * @return Address

@@ -22,25 +22,11 @@ use Pronamic\WP\Twinfield\Contacts\Contact;
  */
 class Customer extends Contact {
 	/**
-	 * Office.
-	 *
-	 * @var string
-	 */
-	private $office;
-
-	/**
 	 * Code.
 	 *
 	 * @var string
 	 */
 	private $code;
-
-	/**
-	 * Name.
-	 *
-	 * @var string
-	 */
-	private $name;
 
 	/**
 	 * Shortname.
@@ -69,24 +55,6 @@ class Customer extends Contact {
 	public function __construct() {
 		$this->financials        = new CustomerFinancials();
 		$this->credit_management = new CustomerCreditManagement();
-	}
-
-	/**
-	 * Get office.
-	 *
-	 * @return string
-	 */
-	public function get_office() {
-		return $this->office;
-	}
-
-	/**
-	 * Set office
-	 *
-	 * @param string $office
-	 */
-	public function set_office( $office ) {
-		$this->office = $office;
 	}
 
 	/**
