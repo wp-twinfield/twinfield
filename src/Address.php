@@ -53,6 +53,22 @@ class Address {
 
 	private $field_6;
 
+	public function get_type() {
+		return $this->type;
+	}
+
+	public function set_type( $type ) {
+		$this->type = $type;
+	}
+
+	public function is_default() {
+		return $this->default;
+	}
+
+	public function set_default( $default ) {
+		$this->default = $default;
+	}
+
 	public function get_name() {
 		return $this->name;
 	}
