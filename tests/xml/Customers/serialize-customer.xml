@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<dimension>
+	<office>1234</office>
+	<type>DEB</type>
+	<code>123456</code>
+	<name>Test</name>
+
+	<financials>
+		<duedays>14</duedays>
+	</financials>
+
+	<creditmanagement>
+		<sendreminder>email</sendreminder>
+		<reminderemail>info@pronamic.nl</reminderemail>
+	</creditmanagement>
+</dimension>

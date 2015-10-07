@@ -1,0 +1,92 @@
+<dimension status="active" result="1">
+	<office name="PRONAMIC" shortname="NL Sjabloon">11024</office>
+	<type name="Customers" shortname="Debiteuren">DEB</type>
+	<name>Test</name>
+	<shortname></shortname>
+	<code>10003</code>
+	<uid>925b8950-d62d-4bec-bc91-730f81d1e73e</uid>
+	<inuse>false</inuse>
+	<behaviour>normal</behaviour>
+	<touched>0</touched>
+	<beginperiod>0</beginperiod>
+	<beginyear>0</beginyear>
+	<endperiod>0</endperiod>
+	<endyear>0</endyear>
+	<website></website>
+	<vatnumber></vatnumber>
+	<cocnumber></cocnumber>
+	<editdimensionname>true</editdimensionname>
+
+	<financials>
+		<level>2</level>
+		<matchtype>customersupplier</matchtype>
+		<accounttype>inherit</accounttype>
+		<subanalyse>false</subanalyse>
+		<payavailable>false</payavailable>
+		<meansofpayment>none</meansofpayment>
+		<paycode></paycode>
+		<ebilling>false</ebilling>
+		<ebillmail></ebillmail>
+		<duedays>30</duedays>
+		<relationsreference></relationsreference>
+		<substitutionlevel>1</substitutionlevel>
+		<substitutewith>1300</substitutewith>
+		<vatobligatory>false</vatobligatory>
+		<performancetype />
+		<collectmandate>
+			<id>10003</id>
+			<signaturedate></signaturedate>
+			<firstrundate></firstrundate>
+		</collectmandate>
+		<vatcode name="" shortname="" type=""></vatcode>
+		<vattype name="" shortname=""></vattype>
+		<childvalidations>
+			<childvalidation type="code" level="1">1300</childvalidation>
+		</childvalidations>
+	</financials>
+
+	<creditmanagement>
+		<responsibleuser></responsibleuser>
+		<basecreditlimit>0.00</basecreditlimit>
+		<sendreminder>true</sendreminder>
+		<reminderemail></reminderemail>
+		<blocked locked="false" modified="">false</blocked>
+		<freetext1></freetext1>
+		<freetext2></freetext2>
+		<freetext3></freetext3>
+		<comment></comment>
+		<responsibleuser name="" shortname=""></responsibleuser>
+		<basecreditlimit>0.00</basecreditlimit>
+		<sendreminder>true</sendreminder>
+		<reminderemail></reminderemail>
+		<blocked locked="false" modified="">false</blocked>
+		<freetext1></freetext1>
+		<freetext2></freetext2>
+		<freetext3></freetext3>
+		<comment></comment>
+	</creditmanagement>
+
+	<addresses>
+		<address default="true" id="1" type="invoice">
+			<name>Test</name>
+			<country>NL</country>
+			<city /><postcode />
+			<telephone />
+			<telefax />
+			<email />
+			<contact />
+			<field1 />
+			<field2 />
+			<field3 />
+			<field4 />
+			<field5 />
+			<field6 />
+		</address>
+	</addresses>
+
+	<banks />
+
+	<groups>
+		<group shortname="Relaties" name="Relaties">2REL</group>
+	</groups>
+</dimension>

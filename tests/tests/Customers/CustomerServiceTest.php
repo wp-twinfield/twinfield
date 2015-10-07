@@ -48,6 +48,8 @@ class CustomerServiceTest extends \PHPUnit_Framework_TestCase {
 	public function setUp() {
 		parent::setUp();
 
+		$this->mock = ! filter_var( getenv( 'TWINFIELD_TESTS_NO_MOCK' ), FILTER_VALIDATE_BOOLEAN );
+
 		if ( $this->mock ) {
 			$this->xml_processor = $this->getMockBuilder( 'Pronamic\WP\Twinfield\XMLProcessor' )
 				->disableOriginalConstructor()
@@ -61,7 +63,7 @@ class CustomerServiceTest extends \PHPUnit_Framework_TestCase {
 
 			$session = $client->get_session( $logon_response );
 
-			$xml_processor = new XMLProcessor( $session );
+			$this->xml_processor = new XMLProcessor( $session );
 		}
 
 		$this->service = new CustomerService( $this->xml_processor );
@@ -70,17 +72,19 @@ class CustomerServiceTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Test get customer.
 	 *
+	 * @param boolean $mock  Flag to mock Twinfield response.
 	 * @param string $office The office to retrive the customer from.
 	 * @param string $code   The code of the customer to retrieve.
-	 * @param string $file   The file with the Twinfield mock response.
 	 * @param mixed  $return The expected Twinfield return.
 	 * @dataProvider get_customer_provider
 	 */
-	public function test_get_customer( $office, $code, $file, $return ) {
+	public function test_get_customer( $mock, $office, $code, $return ) {
 		// Mock.
-		$response = file_get_contents( __DIR__ . '/../../xml/Customers/' . $file );
+		if ( $mock ) {
+			$response = file_get_contents( __DIR__ . '/../../xml/Customers/' . $mock );
 
-		$this->xml_processor->method( 'process_xml_string' )->willReturn( $response );
+			$this->xml_processor->method( 'process_xml_string' )->willReturn( $response );
+		}
 
 		// Service.
 		$response = $this->service->get_customer( $office, $code );
@@ -105,35 +109,93 @@ class CustomerServiceTest extends \PHPUnit_Framework_TestCase {
 	 * @return array
 	 */
 	public function get_customer_provider() {
-		return array(
-			array(
-				'office' => getenv( 'TWINFIELD_OFFICE_CODE' ),
-				'code'   => getenv( 'TWINFIELD_CUSTOMER_CODE' ),
-				'file'   => 'read-dimensions-deb-response-1.xml',
-				'return' => true,
-			),
-			array(
-				'office' => getenv( 'TWINFIELD_OFFICE_CODE' ),
-				'code'   => getenv( 'TWINFIELD_CUSTOMER_CODE' ),
-				'file'   => 'read-dimensions-deb-response-2.xml',
-				'return' => true,
-			),
-			array(
-				'office' => getenv( 'TWINFIELD_OFFICE_CODE' ),
-				'code'   => getenv( 'TWINFIELD_CUSTOMER_CODE' ),
-				'file'   => 'read-dimensions-deb-response-empty.xml',
-				'return' => false,
-			),
-		);
+		$no_mock = filter_var( getenv( 'TWINFIELD_TESTS_NO_MOCK' ), FILTER_VALIDATE_BOOLEAN );
+
+		if ( $no_mock ) {
+			return array(
+				array(
+					'mock'   => false,
+					'office' => getenv( 'TWINFIELD_OFFICE_CODE' ),
+					'code'   => getenv( 'TWINFIELD_CUSTOMER_CODE' ),
+					'return' => true,
+				),
+			);
+		} else {
+			return array(
+				array( // Valid respone.
+					'mock'   => 'read-dimensions-deb-response-1.xml',
+					'office' => '123456',
+					'code'   => '1002',
+					'return' => true,
+				),
+				array( // Valid respone.
+					'mock'   => 'read-dimensions-deb-response-2.xml',
+					'office' => '12345',
+					'code'   => '12345',
+					'return' => true,
+				),
+				array( // Empty response.
+					'mock'   => 'read-dimensions-deb-response-empty.xml',
+					'office' => null,
+					'code'   => null,
+					'return' => false,
+				),
+			);
+		}
 	}
 
 	/**
 	 * Test insert customer.
+	 *
+	 * @dataProvider insert_customer_provider
 	 */
-	public function test_insert_customer() {
-		$customer = new Customer();
+	public function test_insert_customer( $mock, $office, $name ) {
+		if ( $mock ) {
+			$file = __DIR__ . '/../../xml/Customers/' . $mock;
 
-		// $result = $this->service->insert_customer( $customer );
-		// $this->assertInternalType( 'bool', $result );
+			if ( is_readable( $file ) ) {
+				$this->xml_processor->method( 'process_xml_string' )->willReturn( file_get_contents( $file ) );
+			}
+		}
+
+		$customer = new Customer();
+		$customer->set_office( $office );
+		$customer->set_name( $name );
+
+		$result = $this->service->insert_customer( $customer );
+
+		var_dump( $result );
+	}
+
+	/**
+	 * Test data provider for the insert customer test.
+	 *
+	 * @return array An array with test data.
+	 */
+	public function insert_customer_provider() {
+		$no_mock = filter_var( getenv( 'TWINFIELD_TESTS_NO_MOCK' ), FILTER_VALIDATE_BOOLEAN );
+
+		if ( $no_mock ) {
+			return array(
+				array(
+					'mock'       => false,
+					'office'     => getenv( 'TWINFIELD_OFFICE_CODE' ),
+					'name'       => 'Test',
+				),
+			);
+		} else {
+			return array(
+				array( // Result.
+					'mock'       => 'insert-dimension-result-1.xml',
+					'office'     => '11024',
+					'name'       => 'Test',
+				),
+				array( // No office.
+					'mock'       => 'insert-dimension-office-no.xml',
+					'office'     => null,
+					'name'       => 'Test',
+				),
+			);
+		}
 	}
 }

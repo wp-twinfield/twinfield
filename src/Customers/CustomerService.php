@@ -14,6 +14,7 @@ use Pronamic\WP\Twinfield\XMLProcessor;
 use Pronamic\WP\Twinfield\XML\Customers\CustomerReadRequestSerializer;
 use Pronamic\WP\Twinfield\XML\Customers\CustomerSerializer;
 use Pronamic\WP\Twinfield\XML\Customers\CustomerUnserializer;
+use Pronamic\WP\Twinfield\XML\Dimensions\DimensionUnserializer;
 
 /**
  * Customer Service
@@ -75,7 +76,15 @@ class CustomerService {
 
 		$response = $this->xml_processor->process_xml_string( new ProcessXmlString( $xml ) );
 
-		
+		$xml = simplexml_load_string( $response );
+
+		if ( false !== $xml ) {
+			$unserializer = new DimensionUnserializer();
+
+			$result = $unserializer->unserialize( $xml );
+		}
+
+		return $result;
 	}
 
 	/**

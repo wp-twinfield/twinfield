@@ -14,6 +14,7 @@ use Pronamic\WP\Twinfield\DimensionTypes;
 use Pronamic\WP\Twinfield\XML\Unserializer;
 use Pronamic\WP\Twinfield\XML\Security;
 use Pronamic\WP\Twinfield\XML\Customers\CustomerUnserializer;
+use Pronamic\WP\Twinfield\XML\Suppliers\SupplierUnserializer;
 
 /**
  * Dimension unserializer

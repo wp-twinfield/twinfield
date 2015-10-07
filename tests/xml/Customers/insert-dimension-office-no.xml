@@ -1,0 +1,6 @@
+<dimension msgtype="error" msg="De administratie bestaat niet." result="0">
+	<office></office>
+	<type>DEB</type>
+	<name>Test</name>
+	<shortname></shortname>
+</dimension>
