@@ -53,6 +53,8 @@ class Customer extends Contact {
 	 * Constructs and initializes an customer/
 	 */
 	public function __construct() {
+		parent::__construct();
+
 		$this->financials        = new CustomerFinancials();
 		$this->credit_management = new CustomerCreditManagement();
 	}
@@ -73,24 +75,6 @@ class Customer extends Contact {
 	 */
 	public function set_code( $code ) {
 		$this->code = $code;
-	}
-
-	/**
-	 * Get name.
-	 *
-	 * @return string
-	 */
-	public function get_name() {
-		return $this->name;
-	}
-
-	/**
-	 * Set name.
-	 *
-	 * @param string $name
-	 */
-	public function set_name( $name ) {
-		$this->name = $name;
 	}
 
 	/**
