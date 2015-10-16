@@ -164,7 +164,7 @@ class SalesInvoiceHeader {
 	 *
 	 * @param \DateTime $date
 	 */
-	public function set_date( \DateTime $date ) {
+	public function set_date( \DateTime $date = null ) {
 		$this->date = $date;
 	}
 
@@ -182,7 +182,7 @@ class SalesInvoiceHeader {
 	 *
 	 * @param \DateTime $date
 	 */
-	public function set_due_date( \DateTime $due_date ) {
+	public function set_due_date( \DateTime $due_date = null ) {
 		$this->due_date = $due_date;
 	}
 

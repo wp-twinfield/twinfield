@@ -296,6 +296,17 @@ class SalesInvoiceServiceTest extends \PHPUnit_Framework_TestCase {
 					'return'     => true,
 					'result'     => Result::NOT_SUCCESSFUL,
 				),
+				// Sales invoice customer error.
+				array(
+					'mock'       => 'insert-sales-invoice-customer-error.xml',
+					'type'       => 'FACTUUR',
+					'customer'   => '12015',
+					'office'     => '11024',
+					'article'    => '',
+					'subarticle' => '',
+					'return'     => true,
+					'result'     => Result::NOT_SUCCESSFUL,
+				),
 			);
 		}
 	}

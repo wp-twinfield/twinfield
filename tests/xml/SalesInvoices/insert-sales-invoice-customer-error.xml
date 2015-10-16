@@ -1,0 +1,84 @@
+<salesinvoice result="0">
+	<header result="0">
+		<invoicetype>FACTUUR</invoicetype>
+		<customer msgtype="error" msg="De klantdimensie bestaat niet." result="0">12015</customer>
+		<status>concept</status>
+		<paymentmethod>bank</paymentmethod>
+		<headertext></headertext>
+		<footertext>Factuur gemaakt door Orbis op vr 16 okt 2015 @ 10:32.</footertext>
+		<office>11024</office>
+		<invoicedate>20151016</invoicedate>
+		<duedate msgtype="error" msg="De vervaldatum is ongeldig." result="0"></duedate>
+		<period>2015/10</period>
+		<currency>EUR</currency>
+		<bank>BNK</bank>
+		<invoiceaddressnumber msgtype="error" msg="Het adres is ongeldig." result="0"></invoiceaddressnumber>
+		<deliveraddressnumber></deliveraddressnumber>
+	</header>
+
+	<lines result="0">
+		<line id="1" result="0">
+			<quantity>1</quantity>
+			<article msgtype="error" msg="Artikelcode mag niet leeg zijn.//De artikelcode is niet gevonden." result="0"></article>
+			<subarticle></subarticle>
+			<description></description>
+			<freetext1>dvdk.nl</freetext1>
+			<freetext2>wo 15 jul 2015 - vr 15 jul 2016</freetext2>
+			<freetext3>4272</freetext3>
+			<unitspriceexcl></unitspriceexcl>
+			<units>1</units>
+			<vatcode msgtype="error" msg="Ongeldige btw-code." result="0"></vatcode>
+			<allowdiscountorpremium>true</allowdiscountorpremium>
+			<performancedate />
+			<performancetype />
+		</line>
+		<line id="2" result="0">
+			<quantity>1</quantity>
+			<article msgtype="error" msg="Artikelcode mag niet leeg zijn.//De artikelcode is niet gevonden." result="0"></article>
+			<subarticle></subarticle>
+			<description></description>
+			<freetext1>en.dvdk.nl</freetext1>
+			<freetext2>wo 15 jul 2015 - vr 15 jul 2016</freetext2>
+			<freetext3>4273</freetext3>
+			<unitspriceexcl></unitspriceexcl>
+			<units>1</units>
+			<vatcode msgtype="error" msg="Ongeldige btw-code." result="0"></vatcode>
+			<allowdiscountorpremium>true</allowdiscountorpremium>
+			<performancedate /><performancetype />
+		</line>
+		<line id="3">
+			<quantity>1</quantity>
+			<article>WEBHOSTING</article>
+			<subarticle>DEFAULT</subarticle>
+			<description>Webhosting (standaard)</description>
+			<freetext1>dvdk.nl</freetext1>
+			<freetext2>wo 15 jul 2015 - vr 15 jul 2016</freetext2>
+			<freetext3>4271</freetext3>
+			<unitspriceexcl>90.40</unitspriceexcl>
+			<units>1</units>
+			<vatcode name="BTW 21%" shortname="V 21%">VH</vatcode>
+			<allowdiscountorpremium>true</allowdiscountorpremium>
+			<performancedate />
+			<performancetype />
+			<dim1 name="Overige" shortname="Overige">4009</dim1>
+			<valueexcl>90.40</valueexcl>
+			<vatvalue>18.98</vatvalue>
+			<valueinc>109.38</valueinc>
+		</line>
+		<line id="4" result="0">
+			<quantity>1</quantity>
+			<article msgtype="error" msg="Artikelcode mag niet leeg zijn.//De artikelcode is niet gevonden." result="0"></article>
+			<subarticle></subarticle>
+			<description></description>
+			<freetext1>dvdk.nl</freetext1>
+			<freetext2>wo 15 jul 2015 - vr 15 jul 2016</freetext2>
+			<freetext3>4274</freetext3>
+			<unitspriceexcl></unitspriceexcl>
+			<units>1</units>
+			<vatcode msgtype="error" msg="Ongeldige btw-code." result="0"></vatcode>
+			<allowdiscountorpremium>true</allowdiscountorpremium>
+			<performancedate />
+			<performancetype />
+		</line>
+	</lines>
+</salesinvoice>

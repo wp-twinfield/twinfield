@@ -12,6 +12,7 @@ namespace Pronamic\WP\Twinfield\XML\SalesInvoices;
 
 use Pronamic\WP\Twinfield\XML\Security;
 use Pronamic\WP\Twinfield\XML\Unserializer;
+use Pronamic\WP\Twinfield\XML\DateUnserializer;
 use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoice;
 use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoiceHeader;
 use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoiceLine;
@@ -25,6 +26,13 @@ use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoiceResponse;
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
 class SalesInvoiceUnserializer extends Unserializer {
+	/**
+	 * Constructs and initializes an sales invoice unserializer.
+	 */
+	public function __construct() {
+		$this->date_unserializer = new DateUnserializer();
+	}
+
 	/**
 	 * Unserialize the specified XML to an article.
 	 *
@@ -40,8 +48,8 @@ class SalesInvoiceUnserializer extends Unserializer {
 				$header->set_office( Security::filter( $element->header->office ) );
 				$header->set_type( Security::filter( $element->header->invoicetype ) );
 				$header->set_number( Security::filter( $element->header->invoicenumber ) );
-				$header->set_date( \DateTime::createFromFormat( 'Ymd', Security::filter( $element->header->invoicedate ) ) );
-				$header->set_due_date( \DateTime::createFromFormat( 'Ymd', Security::filter( $element->header->duedate ) ) );
+				$header->set_date( $this->date_unserializer->unserialize( $element->header->invoicedate ) );
+				$header->set_due_date( $this->date_unserializer->unserialize( $element->header->duedate ) );
 				$header->set_bank( Security::filter( $element->header->bank ) );
 				$header->set_customer( Security::filter( $element->header->customer ) );
 			}
