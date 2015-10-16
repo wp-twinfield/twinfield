@@ -52,6 +52,7 @@ class SalesInvoiceUnserializer extends Unserializer {
 				$header->set_due_date( $this->date_unserializer->unserialize( $element->header->duedate ) );
 				$header->set_bank( Security::filter( $element->header->bank ) );
 				$header->set_customer( Security::filter( $element->header->customer ) );
+				$header->set_status( Security::filter( $element->header->status ) );
 			}
 
 			if ( $element->lines ) {
