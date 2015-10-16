@@ -80,4 +80,37 @@ class SalesInvoice {
 
 		return $line;
 	}
+
+	/**
+	 * Get the value without VAT of this sales invoice.
+	 *
+	 * @return float
+	 */
+	public function get_value_excl() {
+		return array_sum( array_map( function( $line ) {
+			return $line->get_value_excl();
+		}, $this->get_lines() ) );
+	}
+
+	/**
+	 * Get the VAT value of this sales invoice.
+	 *
+	 * @return float
+	 */
+	public function get_vat_value() {
+		return array_sum( array_map( function( $line ) {
+			return $line->get_vat_value();
+		}, $this->get_lines() ) );
+	}
+
+	/**
+	 * Get the value with VAT of this sales invoice.
+	 *
+	 * @return float
+	 */
+	public function get_value_inc() {
+		return array_sum( array_map( function( $line ) {
+			return $line->get_value_inc();
+		}, $this->get_lines() ) );
+	}
 }
