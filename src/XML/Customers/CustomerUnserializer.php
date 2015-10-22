@@ -42,6 +42,10 @@ class CustomerUnserializer extends Unserializer {
 				foreach ( $element->addresses->address as $element_address ) {
 					$address = $customer->new_address();
 
+					$address->set_id( Security::filter( $element_address['id'] ) );
+					$address->set_type( Security::filter( $element_address['type'] ) );
+					$address->set_default( Security::filter( $element_address['default'], FILTER_VALIDATE_BOOLEAN ) );
+
 					$address->set_name( Security::filter( $element_address->name ) );
 					$address->set_country( Security::filter( $element_address->country ) );
 					$address->set_city( Security::filter( $element_address->city ) );
