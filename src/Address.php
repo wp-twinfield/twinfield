@@ -133,50 +133,150 @@ class Address {
 		$this->contact = $contact;
 	}
 
+	/**
+	 * Get field 1.
+	 *
+	 * User defined fields, the labels are configured in the Dimension type.
+	 *
+	 * @return string
+	 */
 	public function get_field_1() {
 		return $this->field_1;
 	}
 
+	/**
+	 * Set field 1.
+	 *
+	 * User defined fields, the labels are configured in the Dimension type.
+	 *
+	 * @param string $value
+	 */
 	public function set_field_1( $value ) {
 		$this->field_1 = $value;
 	}
 
+	/**
+	 * Get field 2.
+	 *
+	 * User defined fields, the labels are configured in the Dimension type.
+	 *
+	 * Default: Address.
+	 *
+	 * @return string
+	 */
 	public function get_field_2() {
 		return $this->field_2;
 	}
 
+	/**
+	 * Set field 2.
+	 *
+	 * User defined fields, the labels are configured in the Dimension type.
+	 *
+	 * Default: Address.
+	 *
+	 * @param string $value
+	 */
 	public function set_field_2( $value ) {
 		$this->field_2 = $value;
 	}
 
+	/**
+	 * Get field 3.
+	 *
+	 * User defined fields, the labels are configured in the Dimension type.
+	 *
+	 * Default: Postal address.
+	 *
+	 * @return string
+	 */
 	public function get_field_3() {
 		return $this->field_3;
 	}
 
+	/**
+	 * Set field 3.
+	 *
+	 * User defined fields, the labels are configured in the Dimension type.
+	 *
+	 * Default: Postal address.
+	 *
+	 * @param string $value
+	 */
 	public function set_field_3( $value ) {
 		$this->field_3 = $value;
 	}
 
+	/**
+	 * Get field 4.
+	 *
+	 * User defined fields, the labels are configured in the Dimension type.
+	 *
+	 * Default: VAT number.
+	 *
+	 * @return string
+	 */
 	public function get_field_4() {
 		return $this->field_4;
 	}
 
+	/**
+	 * Set field 4.
+	 *
+	 * User defined fields, the labels are configured in the Dimension type.
+	 *
+	 * Default: VAT number.
+	 *
+	 * @param string $value
+	 */
 	public function set_field_4( $value ) {
 		$this->field_4 = $value;
 	}
 
+	/**
+	 * Get field 5.
+	 *
+	 * User defined fields, the labels are configured in the Dimension type.
+	 *
+	 * Default: COC number.
+	 *
+	 * @return string
+	 */
 	public function get_field_5() {
 		return $this->field_5;
 	}
 
+	/**
+	 * Set field 5.
+	 *
+	 * User defined fields, the labels are configured in the Dimension type.
+	 *
+	 * Default: COC number.
+	 *
+	 * @param string $value
+	 */
 	public function set_field_5( $value ) {
 		$this->field_5 = $value;
 	}
 
+	/**
+	 * Get field 6.
+	 *
+	 * User defined fields, the labels are configured in the Dimension type.
+	 *
+	 * @return string
+	 */
 	public function get_field_6() {
 		return $this->field_6;
 	}
 
+	/**
+	 * Set field 6.
+	 *
+	 * User defined fields, the labels are configured in the Dimension type.
+	 *
+	 * @param string $value
+	 */
 	public function set_field_6( $value ) {
 		$this->field_6 = $value;
 	}
