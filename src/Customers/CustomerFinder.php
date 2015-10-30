@@ -62,7 +62,7 @@ class CustomerFinder {
 
 				$items = $data->get_items();
 
-				if ( $items instanceof Traversable ) {
+				if ( ! is_null( $items ) ) {
 					foreach ( $items as $item ) {
 						$customer = new CustomerFinderResult();
 						$customer->set_code( $item[0] );
