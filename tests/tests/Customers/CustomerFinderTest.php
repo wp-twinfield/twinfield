@@ -48,15 +48,36 @@ class CustomerFinderTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * Test get customers.
+	 *
+	 * @dataProvider test_provider
 	 */
-	public function test_get_customers() {
+	public function test_get_customers( $search ) {
 		$customers = $this->finder->get_customers(
-			'Pronamic',
+			$search,
 			SearchFields::CODE_AND_NAME,
 			1,
 			100
 		);
 
 		$this->assertInternalType( 'array', $customers );
+	}
+
+	/**
+	 * Data provider for the get customer test function.
+	 *
+	 * @return array
+	 */
+	public function test_provider() {
+		return array(
+			array(
+				'search' => 'Pronamic',
+			),
+			array(
+				'search' => 'Remco',
+			),
+			array(
+				'search' => 'Test',
+			),
+		);
 	}
 }

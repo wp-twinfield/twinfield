@@ -60,16 +60,20 @@ class CustomerFinder {
 			if ( $response->is_successful() ) {
 				$data = $response->get_data();
 
-				foreach ( $data->get_items() as $item ) {
-					$customer = new CustomerFinderResult();
-					$customer->set_code( $item[0] );
-					$customer->set_name( $item[1] );
+				$items = $data->get_items();
 
-					if ( SearchFields::BANK_ACCOUNT_NUMBER === $field ) {
-						$customer->set_bank_account_number( $item[2] );
+				if ( $items instanceof Traversable ) {
+					foreach ( $items as $item ) {
+						$customer = new CustomerFinderResult();
+						$customer->set_code( $item[0] );
+						$customer->set_name( $item[1] );
+
+						if ( SearchFields::BANK_ACCOUNT_NUMBER === $field ) {
+							$customer->set_bank_account_number( $item[2] );
+						}
+
+						$customers[] = $customer;
 					}
-
-					$customers[] = $customer;
 				}
 			}
 		}
