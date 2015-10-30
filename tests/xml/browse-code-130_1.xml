@@ -1,0 +1,339 @@
+<browse result="1">
+	<office name="PRONAMIC" shortname="NL Sjabloon">11024</office>
+	<code>130_1</code>
+	<name>Debiteuren</name>
+	<shortname>Debiteuren</shortname>
+	<visible>false</visible>
+	<columns code="130_1">
+		<column id="1">
+			<field>fin.trs.head.office</field>
+			<label>Administratie</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="2">
+			<field>fin.trs.head.officename</field>
+			<label>Adm.naam</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="3">
+			<field>fin.trs.head.year</field>
+			<label>Jaar</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="4">
+			<field>fin.trs.head.period</field>
+			<label>Periode</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="5">
+			<field>fin.trs.head.yearperiod</field>
+			<label>Jaar/periode (JJJJ/PP)</label>
+			<visible>false</visible>
+			<ask>true</ask>
+			<operator>between</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="6">
+			<field>fin.trs.head.code</field>
+			<label>Dagboek</label>
+			<visible>true</visible>
+			<ask>true</ask>
+			<operator>like</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="7">
+			<field>fin.trs.head.shortname</field>
+			<label>Dagboeknaam</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="8">
+			<field>fin.trs.head.number</field>
+			<label>Boekingsnummer</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="9">
+			<field>fin.trs.head.status</field>
+			<label>Status</label>
+			<visible>true</visible>
+			<ask>true</ask>
+			<operator>equal</operator>
+			<from>normal</from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="10">
+			<field>fin.trs.head.date</field>
+			<label>Boekdatum</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="11">
+			<field>fin.trs.line.datedue</field>
+			<label>Vervaldatum</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="12">
+			<field>fin.trs.line.invnumber</field>
+			<label>Factuurnummer</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="13">
+			<field>fin.trs.head.curcode</field>
+			<label>Valuta</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="14">
+			<field>fin.trs.head.customer.respuser</field>
+			<label>Kredietbeheerder</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="15">
+			<field>fin.trs.head.customer.respusername</field>
+			<label>Naam kredietbeheerder</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="16">
+			<field>fin.trs.head.customer.creditlimit</field>
+			<label>Kredietlimiet</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="17">
+			<field>fin.trs.head.modified</field>
+			<label>Wijzigingsdatum boeking</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="18">
+			<field>fin.trs.line.dim1</field>
+			<label>Grootboekrek.</label>
+			<visible>true</visible>
+			<ask>true</ask>
+			<operator>between</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="19">
+			<field>fin.trs.line.dim1name</field>
+			<label>Grootboekrek.naam</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="20">
+			<field>fin.trs.line.dim2</field>
+			<label>Kpl./rel.</label>
+			<visible>true</visible>
+			<ask>true</ask>
+			<operator>between</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="21">
+			<field>fin.trs.line.dim2name</field>
+			<label>Kpl.-/rel.naam</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="22">
+			<field>fin.trs.line.valuesigned</field>
+			<label>Bedrag</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="23">
+			<field>fin.trs.line.basevaluesigned</field>
+			<label>Basisbedrag</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="24">
+			<field>fin.trs.line.repvaluesigned</field>
+			<label>Rapportagebedrag</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="25">
+			<field>fin.trs.line.openbasevaluesigned</field>
+			<label>Openstaand bedrag</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="26">
+			<field>fin.trs.line.matchstatus</field>
+			<label>Betaalstatus</label>
+			<visible>true</visible>
+			<ask>true</ask>
+			<operator>equal</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="27">
+			<field>fin.trs.line.matchdate</field>
+			<label>Betaaldatum</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="28">
+			<field>fin.trs.line.matchnumber</field>
+			<label>Afletternummer</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="29">
+			<field>fin.trs.line.payrun</field>
+			<label>Incassonummer</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="30">
+			<field>fin.trs.line.modified</field>
+			<label>Wijzigingsdatum</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="31">
+			<field>fin.trs.line.freetext1</field>
+			<label>Vrij tekstveld 1</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="32">
+			<field>fin.trs.line.freetext2</field>
+			<label>Vrij tekstveld 2</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+		<column id="33">
+			<field>fin.trs.line.freetext3</field>
+			<label>Vrij tekstveld 3</label>
+			<visible>true</visible>
+			<ask>false</ask>
+			<operator>none</operator>
+			<from></from>
+			<to></to>
+			<finderparam></finderparam>
+		</column>
+	</columns>
+</browse>
