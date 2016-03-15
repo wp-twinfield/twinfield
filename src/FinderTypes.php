@@ -44,10 +44,18 @@ class FinderTypes {
 	const BDS = 'BDS';
 
 	/**
-	 * Twinfield finder type constat for "Dimensions".
+	 * Twinfield finder type constant for "Dimensions".
 	 * Return fields: code, name, bank account number, address fields
 	 *
 	 * @var string
 	 */
 	const DIM = 'DIM';
+
+	/**
+	 * Twinfield finder type constant for "Offices".
+	 * Return fields: code, name
+	 *
+	 * @var string
+	 */
+	const OFF = 'OFF';
 }
