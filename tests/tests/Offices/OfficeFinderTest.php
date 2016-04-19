@@ -50,6 +50,7 @@ class OfficeFinderTest extends \PHPUnit_Framework_TestCase {
 	 * Test get offices.
 	 *
 	 * @dataProvider test_provider
+	 * @param string $search
 	 */
 	public function test_get_offices( $search ) {
 		$offices = $this->finder->get_offices(

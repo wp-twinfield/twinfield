@@ -20,7 +20,7 @@ use Pronamic\WP\Twinfield\Customers\Customer;
  */
 class CustomerSerializerTest extends \PHPUnit_Framework_TestCase {
 	/**
-	 * Test
+	 * Test.
 	 */
 	public function test() {
 		$customer = new Customer();
@@ -29,11 +29,11 @@ class CustomerSerializerTest extends \PHPUnit_Framework_TestCase {
 		$customer->set_code( '123456' );
 		$customer->set_name( 'Test' );
 
-		// Finanicials
+		// Finanicials.
 		$financials = $customer->get_financials();
 		$financials->set_due_days( 14 );
 
-		// Credit Management
+		// Credit Management.
 		$credit_management = $customer->get_credit_management();
 		$credit_management->set_send_reminder( 'email' );
 		$credit_management->set_reminder_email( 'info@pronamic.nl' );
