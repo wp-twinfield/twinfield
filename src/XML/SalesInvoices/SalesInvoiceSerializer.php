@@ -67,15 +67,20 @@ class SalesInvoiceSerializer extends Serializer {
 			$lines_element->appendChild( $line_element );
 
 			$elements = array(
-				'quantity'    => $line->get_quantity(),
-				'article'     => $line->get_article(),
-				'subarticle'  => $line->get_subarticle(),
-				'description' => $line->get_description(),
-				'valueexcl'   => $line->get_value_excl(),
-				'freetext1'   => $line->get_free_text_1(),
-				'freetext2'   => $line->get_free_text_2(),
-				'freetext3'   => $line->get_free_text_3(),
+				'quantity'       => $line->get_quantity(),
+				'article'        => $line->get_article(),
+				'subarticle'     => $line->get_subarticle(),
+				'units'          => $line->get_units(),
+				'vatcode'        => $line->get_vat_code(),
+				'description'    => $line->get_description(),
+				'unitspriceexcl' => $line->get_units_price_excl(),
+				'valueexcl'      => $line->get_value_excl(),
+				'freetext1'      => $line->get_free_text_1(),
+				'freetext2'      => $line->get_free_text_2(),
+				'freetext3'      => $line->get_free_text_3(),
 			);
+
+			$elements = array_filter( $elements );
 
 			foreach ( $elements as $name => $value ) {
 				$element = $this->document->createElement( $name );

@@ -55,6 +55,13 @@ class SalesInvoiceLine {
 	private $units;
 
 	/**
+	 * The VAT code.
+	 *
+	 * @var string
+	 */
+	private $vat_code;
+
+	/**
 	 * Calculate discount on this line. Must be 'false' or 'true'.
 	 *
 	 * @var bool
@@ -67,6 +74,13 @@ class SalesInvoiceLine {
 	 * @var string
 	 */
 	private $description;
+
+	/**
+	 * The units price without VAT of this sales invoice line.
+	 *
+	 * @var float
+	 */
+	private $units_price_excl;
 
 	/**
 	 * The value without VAT of this sales invoice line.
@@ -208,6 +222,23 @@ class SalesInvoiceLine {
 		$this->units = $units;
 	}
 
+	/**
+	 * Get the VAT code of this sales invoice line.
+	 *
+	 * @return string
+	 */
+	public function get_vat_code() {
+		return $this->vat_code;
+	}
+
+	/**
+	 * Set the VAT code of this sales invoice line.
+	 *
+	 * @param string $vat_code
+	 */
+	public function set_vat_code( $vat_code ) {
+		$this->vat_code = $vat_code;
+	}
 
 	/**
 	 * Set calculate discount on this line. Must be 'false' or 'true'.
@@ -243,6 +274,24 @@ class SalesInvoiceLine {
 	 */
 	public function set_description( $description ) {
 		$this->description = $description;
+	}
+
+	/**
+	 * Get the units price without VAT of this sales invoice line.
+	 *
+	 * @return float
+	 */
+	public function get_units_price_excl() {
+		return $this->units_price_excl;
+	}
+
+	/**
+	 * Set the units price without VAT of this sales invoice line.
+	 *
+	 * @param float $units_price_excl
+	 */
+	public function set_units_price_excl( $units_price_excl ) {
+		$this->units_price_excl = $units_price_excl;
 	}
 
 	/**
