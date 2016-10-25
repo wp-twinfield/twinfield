@@ -25,5 +25,11 @@ class CustomerFinancialsTest extends \PHPUnit_Framework_TestCase {
 
 		$customer_financials->set_due_days( 14 );
 		$this->assertEquals( 14, $customer_financials->get_due_days() );
+
+		$customer_financials->set_ebilling( true );
+		$this->assertEquals( true, $customer_financials->get_ebilling() );
+
+		$customer_financials->set_ebillmail( 'info@pronamic.nl' );
+		$this->assertEquals( 'info@pronamic.nl', $customer_financials->get_ebillmail() );
 	}
 }
