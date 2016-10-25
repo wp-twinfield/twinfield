@@ -73,6 +73,13 @@ class OfficeServiceTest extends \PHPUnit_Framework_TestCase {
 	 * Test list offices
 	 */
 	public function test_get_offices() {
+		// Mock.
+		if ( $this->mock ) {
+			$response = file_get_contents( __DIR__ . '/../../xml/Offices/list-offices.xml' );
+
+			$this->xml_processor->method( 'process_xml_string' )->willReturn( $response );
+		}
+
 		// Service.
 		$offices = $this->service->get_offices();
 
