@@ -53,6 +53,8 @@ class SalesInvoiceUnserializer extends Unserializer {
 				$header->set_bank( Security::filter( $element->header->bank ) );
 				$header->set_customer( Security::filter( $element->header->customer ) );
 				$header->set_status( Security::filter( $element->header->status ) );
+				$header->set_header_text( Security::filter( $element->header->headertext ) );
+				$header->set_footer_text( Security::filter( $element->header->footertext ) );
 			}
 
 			if ( $element->lines ) {
