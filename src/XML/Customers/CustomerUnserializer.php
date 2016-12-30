@@ -38,6 +38,21 @@ class CustomerUnserializer extends Unserializer {
 			$customer->set_name( Security::filter( $element->name ) );
 			$customer->set_shortname( Security::filter( $element->shortname ) );
 
+			if ( $element->financials ) {
+				$financials = $customer->get_financials();
+
+				$financials->set_due_days( Security::filter( $element->financials->duedays, FILTER_SANITIZE_NUMBER_INT ) );
+				$financials->set_ebilling( Security::filter( $element->financials->ebilling, FILTER_VALIDATE_BOOLEAN ) );
+				$financials->set_ebillmail( Security::filter( $element->financials->ebillmail ) );
+			}
+
+			if ( $element->creditmanagement ) {
+				$credit_management = $customer->get_credit_management();
+
+				$credit_management->set_send_reminder( Security::filter( $element->creditmanagement->sendreminder ) );
+				$credit_management->set_reminder_email( Security::filter( $element->creditmanagement->reminderemail ) );
+			}
+
 			if ( $element->addresses ) {
 				foreach ( $element->addresses->address as $element_address ) {
 					$address = $customer->new_address();
