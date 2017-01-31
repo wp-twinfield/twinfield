@@ -35,6 +35,11 @@ class CustomerUnserializerTest extends \PHPUnit_Framework_TestCase {
 		$expected->set_name( 'Remco Tolsma' );
 		$expected->set_shortname( '' );
 
+		$financials = $expected->get_financials();
+		$financials->set_due_days( '30' );
+		$financials->set_ebilling( false );
+		$financials->set_ebillmail( '' );
+
 		$address = $expected->new_address();
 		$address->set_id( '1' );
 		$address->set_type( 'invoice' );

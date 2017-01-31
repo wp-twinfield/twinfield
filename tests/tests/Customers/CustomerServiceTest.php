@@ -163,8 +163,6 @@ class CustomerServiceTest extends \PHPUnit_Framework_TestCase {
 		$customer->set_name( $name );
 
 		$result = $this->service->insert_customer( $customer );
-
-		var_dump( $result );
 	}
 
 	/**

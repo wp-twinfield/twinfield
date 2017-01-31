@@ -7,7 +7,7 @@
  * @package    Pronamic/WP/Twinfield
  */
 
-namespace Pronamic\WP\Twinfield;
+namespace Pronamic\WP\Twinfield\Browse;
 
 /**
  * Browse codes
