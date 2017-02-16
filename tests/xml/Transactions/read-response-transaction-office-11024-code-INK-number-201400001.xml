@@ -1,0 +1,63 @@
+<transaction location="temporary" result="1">
+	<header>
+		<office name="PRONAMIC" shortname="NL Sjabloon">11024</office>
+		<code name="Inkoopfactuur" shortname="Inkoop">INK</code>
+		<number>201400001</number>
+		<period>2014/12</period>
+		<currency name="Euro" shortname="Euro">EUR</currency>
+		<regime>Generic</regime>
+		<date>20141231</date>
+		<origin>manual</origin>
+		<originreference></originreference>
+		<modificationdate>20170131085103</modificationdate>
+		<user name="Remco" shortname="Remco">PRONAMIC</user>
+		<inputdate>20170131085103</inputdate>
+		<duedate>20170302</duedate>
+		<invoicenumber>20170001</invoicenumber>
+	</header>
+
+	<lines>
+		<line type="total" id="1">
+			<dim1 name="Crediteuren" shortname="Crediteuren" dimensiontype="BAS">1600</dim1>
+			<dim2 name="Crediteur 1" shortname="" dimensiontype="CRD">2000</dim2>
+			<debitcredit>credit</debitcredit>
+			<basevalue>50.00</basevalue>
+			<rate>1</rate>
+			<value>50.00</value>
+			<description>Wat is dit?</description>
+			<vatbasetotal>0.00</vatbasetotal>
+			<vattotal>0.00</vattotal>
+			<matchstatus>available</matchstatus>
+			<matchlevel>2</matchlevel>
+			<relation>2</relation>
+			<basevalueopen>-50.00</basevalueopen>
+		</line>
+		<line type="detail" id="2">
+			<dim1 name="Nog te ontv bedragen" shortname="Nog te ontv bedragen" dimensiontype="BAS">1280</dim1>
+			<debitcredit>debit</debitcredit>
+			<basevalue>50.00</basevalue>
+			<rate>1</rate>
+			<value>50.00</value>
+			<description>Wat is dit?</description>
+			<vatcode name="BTW 0%" shortname="I 0%" type="purchase">IN</vatcode>
+			<vatbasevalue>0.00</vatbasevalue>
+			<vatvalue>0.00</vatvalue>
+			<matchstatus>notmatchable</matchstatus>
+		</line>
+		<line type="vat" id="3">
+			<dim1 name="Inkopen 0%" shortname="Inkopen 0%" dimensiontype="BAS">1515</dim1>
+			<debitcredit>debit</debitcredit>
+			<basevalue>0.00</basevalue>
+			<rate>1</rate>
+			<value>0.00</value>
+			<description></description>
+			<vatbaseturnover>50.00</vatbaseturnover>
+			<vatturnover>50.00</vatturnover>
+			<vatcode name="BTW 0%" shortname="I 0%" type="purchase">IN</vatcode>
+			<vatbasevalue>0.00</vatbasevalue>
+			<vatvalue>0.00</vatvalue>
+			<baseline>1</baseline>
+			<matchstatus>notmatchable</matchstatus>
+		</line>
+	</lines>
+</transaction>

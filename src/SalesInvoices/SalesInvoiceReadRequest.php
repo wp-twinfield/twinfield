@@ -40,7 +40,7 @@ class SalesInvoiceReadRequest extends ReadRequest {
 	 *
 	 * @param string $office         Specify from wich office to read.
 	 * @param string $code           Specifcy which sales invoice code to read.
-	 * @param string $invoice_number The invoice number number.
+	 * @param string $invoice_number The invoice number.
 	 */
 	public function __construct( $office, $code, $invoice_number ) {
 		parent::__construct( 'salesinvoice', $office );
