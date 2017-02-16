@@ -142,42 +142,10 @@ class TransactionsServiceTest extends \PHPUnit_Framework_TestCase {
 				// Valid data.
 				array(
 					'office' => '11024',
-					'code'   => 'FACTUUR',
-					'number' => '1',
+					'code'   => 'INK',
+					'number' => '201400001',
 					'return' => true,
 					'result' => Result::SUCCESSFUL,
-				),
-				// Not existing invoice number.
-				array(
-					'office' => '11024',
-					'code'   => 'FACTUUR',
-					'number' => '1234567890',
-					'return' => true,
-					'result' => Result::NOT_SUCCESSFUL,
-				),
-				// Invalid invoice number.
-				array(
-					'office' => '11024',
-					'code'   => 'FACTUUR',
-					'number' => 'no',
-					'return' => false,
-					'result' => Result::NOT_SUCCESSFUL,
-				),
-				// Not existing type.
-				array(
-					'office' => '11024',
-					'code'   => 'no',
-					'number' => '1',
-					'return' => true,
-					'result' => Result::NOT_SUCCESSFUL,
-				),
-				// Not existing office.
-				array(
-					'office' => 'no',
-					'code'   => 'FACTUUR',
-					'number' => '1',
-					'return' => true,
-					'result' => Result::NOT_SUCCESSFUL,
 				),
 			);
 		}
