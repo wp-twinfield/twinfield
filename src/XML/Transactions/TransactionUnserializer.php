@@ -48,6 +48,9 @@ class TransactionUnserializer extends Unserializer {
 				$header->set_office( Security::filter( $element->header->office ) );
 				$header->set_code( Security::filter( $element->header->code ) );
 				$header->set_number( Security::filter( $element->header->number ) );
+				$header->set_period( $element->header->period );
+				$header->set_currency( $element->header->currency );
+				$header->set_date( $this->date_unserializer->unserialize( $element->header->date ) );
 			}
 
 			if ( $element->lines ) {
@@ -55,6 +58,7 @@ class TransactionUnserializer extends Unserializer {
 					$line = $transaction->new_line();
 
 					$line->set_id( Security::filter( $element_line['id'] ) );
+					$line->set_value( Security::filter( $element_line->value, FILTER_VALIDATE_FLOAT ) );
 				}
 			}
 

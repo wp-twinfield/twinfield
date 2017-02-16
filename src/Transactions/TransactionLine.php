@@ -50,4 +50,40 @@ class TransactionLine {
 	public function set_id( $id ) {
 		$this->id = $id;
 	}
+
+	/**
+	 * Get the type of this transaction line.
+	 *
+	 * @return string
+	 */
+	public function get_type() {
+		return $this->type;
+	}
+
+	/**
+	 * Set the type of this transaction line.
+	 *
+	 * @param string $type
+	 */
+	public function set_type( $type ) {
+		$this->type = $type;
+	}
+
+	/**
+	 * Get the value of this transaction line.
+	 *
+	 * @return string
+	 */
+	public function get_value() {
+		return $this->value;
+	}
+
+	/**
+	 * Set the value of this transaction line.
+	 *
+	 * @param string $value
+	 */
+	public function set_value( $value ) {
+		$this->value = $value;
+	}
 }

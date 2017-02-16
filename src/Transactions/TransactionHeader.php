@@ -93,4 +93,58 @@ class TransactionHeader {
 	public function set_number( $number ) {
 		$this->number = $number;
 	}
+
+	/**
+	 * Get period.
+	 *
+	 * @return string
+	 */
+	public function get_period() {
+		return $this->period;
+	}
+
+	/**
+	 * Set period.
+	 *
+	 * @param string $period
+	 */
+	public function set_period( $period ) {
+		$this->period = $period;
+	}
+
+	/**
+	 * Get currency.
+	 *
+	 * @return string
+	 */
+	public function get_currency() {
+		return $this->currency;
+	}
+
+	/**
+	 * Set currency.
+	 *
+	 * @param string $currency
+	 */
+	public function set_currency( $currency ) {
+		$this->currency = $currency;
+	}
+
+	/**
+	 * Get date.
+	 *
+	 * @return \DateTime
+	 */
+	public function get_date() {
+		return $this->date;
+	}
+
+	/**
+	 * Set date.
+	 *
+	 * @param \DateTime $date
+	 */
+	public function set_date( \DateTime $date = null ) {
+		$this->date = $date;
+	}
 }
