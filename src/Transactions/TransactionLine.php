@@ -86,4 +86,22 @@ class TransactionLine {
 	public function set_value( $value ) {
 		$this->value = $value;
 	}
+
+	/**
+	 * Get the description of this transaction line.
+	 *
+	 * @return string
+	 */
+	public function get_description() {
+		return $this->description;
+	}
+
+	/**
+	 * Set the description of this transaction line.
+	 *
+	 * @param string $description
+	 */
+	public function set_description( $description ) {
+		$this->description = $description;
+	}
 }
