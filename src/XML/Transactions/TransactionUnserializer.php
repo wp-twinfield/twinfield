@@ -58,6 +58,7 @@ class TransactionUnserializer extends Unserializer {
 					$line = $transaction->new_line();
 
 					$line->set_id( Security::filter( $element_line['id'] ) );
+					$line->set_type( Security::filter( $element_line['type'] ) );
 					$line->set_value( Security::filter( $element_line->value, FILTER_VALIDATE_FLOAT ) );
 					$line->set_description( Security::filter( $element_line->description ) );
 				}
