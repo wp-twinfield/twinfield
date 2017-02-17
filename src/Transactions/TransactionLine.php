@@ -70,6 +70,42 @@ class TransactionLine {
 	}
 
 	/**
+	 * Get dimension 1 of this transaction line.
+	 *
+	 * @return string
+	 */
+	public function get_dimension_1() {
+		return $this->dimension_1;
+	}
+
+	/**
+	 * Set dimension 1 of this transaction line.
+	 *
+	 * @param string $value
+	 */
+	public function set_dimension_1( $dimension ) {
+		$this->dimension_1 = $dimension;
+	}
+
+	/**
+	 * Get dimension 2 of this transaction line.
+	 *
+	 * @return string
+	 */
+	public function get_dimension_2() {
+		return $this->dimension_2;
+	}
+
+	/**
+	 * Set dimension 2 of this transaction line.
+	 *
+	 * @param string $value
+	 */
+	public function set_dimension_2( $dimension ) {
+		$this->dimension_2 = $dimension;
+	}
+
+	/**
 	 * Get the value of this transaction line.
 	 *
 	 * @return string
