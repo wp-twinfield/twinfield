@@ -11,9 +11,15 @@ namespace Pronamic\WP\Twinfield\Customers;
 
 use Pronamic\WP\Twinfield\ProcessXmlString;
 use Pronamic\WP\Twinfield\XMLProcessor;
+
+use Pronamic\WP\Twinfield\Browse\Browser;
+use Pronamic\WP\Twinfield\Browse\BrowseCodes;
+use Pronamic\WP\Twinfield\Browse\BrowseReadRequest;
+
 use Pronamic\WP\Twinfield\XML\Customers\CustomerReadRequestSerializer;
 use Pronamic\WP\Twinfield\XML\Customers\CustomerSerializer;
 use Pronamic\WP\Twinfield\XML\Customers\CustomerUnserializer;
+
 use Pronamic\WP\Twinfield\XML\Dimensions\DimensionUnserializer;
 
 /**
@@ -38,6 +44,7 @@ class CustomerService {
 	 */
 	public function __construct( XMLProcessor $xml_processor ) {
 		$this->xml_processor = $xml_processor;
+		$this->browser       = new Browser( $xml_processor );
 	}
 
 	/**

@@ -1,32 +1,33 @@
 <?php
 /**
- * Office finder test
+ * General Ledger finder test
  *
  * @since      1.0.0
  *
- * @package    Pronamic/WP/Twinfield/Customers
+ * @package    Pronamic/WP/Twinfield/GeneralLedger
  */
 
-namespace Pronamic\WP\Twinfield\Offices;
+namespace Pronamic\WP\Twinfield\GeneralLedger;
 
 use PHPUnit\Framework\TestCase;
+
 use Pronamic\WP\Twinfield\Client;
 use Pronamic\WP\Twinfield\Result;
 use Pronamic\WP\Twinfield\Finder;
 use Pronamic\WP\Twinfield\SearchFields;
 
 /**
- * Office finder test
+ * General Ledger finder test
  *
  * @since      1.0.0
- * @package    Pronamic/WP/Twinfield/Customers
+ * @package    Pronamic/WP/Twinfield/GeneralLedger
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class OfficeFinderTest extends TestCase {
+class GeneralLedgerFinderTest extends TestCase {
 	/**
-	 * The office finder.
+	 * The customer finder.
 	 *
-	 * @var OfficeFinder
+	 * @var CustomerFinder
 	 */
 	private $finder;
 
@@ -44,24 +45,24 @@ class OfficeFinderTest extends TestCase {
 
 		$session = $client->get_session( $logon_response );
 
-		$this->finder = new OfficeFinder( new Finder( $session ) );
+		$this->finder = new GeneralLedgerFinder( new Finder( $session ) );
 	}
 
 	/**
-	 * Test get offices.
+	 * Test get general ledger.
 	 *
 	 * @dataProvider test_provider
-	 * @param string $search
 	 */
-	public function test_get_offices( $search ) {
-		$offices = $this->finder->get_offices(
+	public function test_get_general_ledger( $search ) {
+		$general_ledger = $this->finder->get_transactions(
 			$search,
 			SearchFields::CODE_AND_NAME,
-			0,
+			1,
 			100
 		);
-
-		$this->assertInternalType( 'array', $offices );
+var_dump( $general_ledger );
+exit;
+		$this->assertInternalType( 'array', $general_ledger );
 	}
 
 	/**

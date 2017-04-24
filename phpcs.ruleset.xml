@@ -3,6 +3,9 @@
 <ruleset name="Twinfield">
 	<rule ref="WordPress">
 		<exclude name="Generic.Files.LowercasedFilename.NotFound" />
+
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
 	</rule>
 
 	<rule ref="WordPress.VIP.RestrictedFunctions.file_get_contents">

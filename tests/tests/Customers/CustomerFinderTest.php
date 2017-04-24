@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\Customers;
 
+use PHPUnit\Framework\TestCase;
+
 use Pronamic\WP\Twinfield\Client;
 use Pronamic\WP\Twinfield\Result;
 use Pronamic\WP\Twinfield\Finder;
@@ -21,7 +23,7 @@ use Pronamic\WP\Twinfield\SearchFields;
  * @package    Pronamic/WP/Twinfield/Customers
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class CustomerFinderTest extends \PHPUnit_Framework_TestCase {
+class CustomerFinderTest extends TestCase {
 	/**
 	 * The customer finder.
 	 *

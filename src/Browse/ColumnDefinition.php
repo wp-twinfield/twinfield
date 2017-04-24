@@ -82,4 +82,13 @@ class ColumnDefinition {
 
 		return $this->set_from( $value );
 	}
+
+	/**
+	 * Create a string representatino of this object.
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->xml_definition->asXML();
+	}
 }

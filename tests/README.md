@@ -14,5 +14,8 @@ TWINFIELD_TESTS_NO_MOCK=true phpunit tests/tests/Transactions/TransactionsServic
 
 ```
 phpunit tests/tests/Customers/CustomerServiceTest.php
+phpunit tests/tests/Documents/DocumentServiceTest.php
+phpunit tests/tests/GeneralLedger/GeneralLedgerServiceTest.php
+phpunit tests/tests/Transactions/TransactionFinderTest.php
 phpunit tests/tests/XML/Customers/CustomerSerializerTest.php
 ```

@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield;
 
+use PHPUnit\Framework\TestCase;
+
 use Pronamic\WP\Twinfield\Articles\ArticleReadRequest;
 use Pronamic\WP\Twinfield\XML\Articles\ArticleReadRequestSerializer;
 use Pronamic\WP\Twinfield\XML\Articles\ArticleUnserializer;
@@ -25,7 +27,7 @@ use Pronamic\WP\Twinfield\XML\Customers\CustomerReadRequestSerializer;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class XMLProcessorTest extends \PHPUnit_Framework_TestCase {
+class XMLProcessorTest extends TestCase {
 	/**
 	 * Test processor
 	 *

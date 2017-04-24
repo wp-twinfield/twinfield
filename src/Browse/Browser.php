@@ -66,6 +66,8 @@ class Browser {
 
 		$xml = simplexml_load_string( $response );
 
-		return $xml;
+		$data = new BrowseData( $xml );
+
+		return $data;
 	}
 }

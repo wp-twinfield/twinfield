@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\Browse;
 
+use PHPUnit\Framework\TestCase;
+
 use Pronamic\WP\Twinfield\Credentials;
 use Pronamic\WP\Twinfield\Client;
 use Pronamic\WP\Twinfield\XMLProcessor;
@@ -23,7 +25,7 @@ use Pronamic\WP\Twinfield\ProcessXmlString;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class BrowserTest extends \PHPUnit_Framework_TestCase {
+class BrowserTest extends TestCase {
 	/**
 	 * Test browser.
 	 */

@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\XML\SalesInvoices;
 
+use PHPUnit\Framework\TestCase;
+
 use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoice;
 use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoiceHeader;
 
@@ -19,7 +21,7 @@ use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoiceHeader;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class SalesInvoiceSerializerTest extends \PHPUnit_Framework_TestCase {
+class SalesInvoiceSerializerTest extends TestCase {
 	/**
 	 * Test
 	 */

@@ -1,6 +1,6 @@
 <?php
 /**
- * Browse definition
+ * Row
  *
  * @since      1.0.0
  *
@@ -10,15 +10,15 @@
 namespace Pronamic\WP\Twinfield\Browse;
 
 /**
- * Browse definition
+ * Row
  *
- * This class represents a Twinfield browse definition.
+ * This class represents a Twinfield browse data row.
  *
  * @since      1.0.0
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class BrowseDefinition {
+class Row {
 	/**
 	 * XML definition.
 	 *
@@ -27,49 +27,65 @@ class BrowseDefinition {
 	private $xml_definition;
 
 	/**
-	 * Columns.
+	 * Data.
 	 *
 	 * @var array
 	 */
-	private $columns;
+	private $data;
 
 	/**
-	 * Constructs and initialize a Twinfield browse definition.
+	 * Constructs and initialize a Twinfield browse data object.
 	 *
 	 * @param \SimpleXMLElement $xml_definiation XML definition.
 	 */
 	public function __construct( \SimpleXMLElement $xml_definition ) {
 		$this->xml_definition = $xml_definition;
-		$this->columns        = array();
+		$this->data           = array();
 
-		foreach ( $this->get_xml_columns()->column as $column ) {
-			$field = (string) $column->field;
+		$this->parse_data();
+	}
 
-			$this->columns[ $field ] = new ColumnDefinition( $column );
+	/**
+	 * Parse rows.
+	 */
+	private function parse_data() {
+		$this->data = array();
+
+		foreach ( $this->xml_definition->td as $td ) {
+			$field = (string) $td['field'];
+
+			$this->data[ $field ] = (string) $td;
 		}
 	}
 
 	/**
-	 * Get XML columns.
+	 * Get XML key.
 	 *
 	 * @return \SimpleXMLElement
 	 */
-	public function get_xml_columns() {
-		return $this->xml_definition->columns;
+	public function get_xml_key() {
+		return $this->xml_definition->key;
 	}
 
 	/**
-	 * Get column by the specified field.
+	 * Get rows.
+	 *
+	 * @return array
+	 */
+	public function get_data() {
+		return $this->data;
+	}
+
+	/**
+	 * Get field.
 	 *
 	 * @param string $field
-	 * @return ColumnDefinition
+	 * @return string
 	 */
-	public function get_column( $field ) {
-		if ( isset( $this->columns[ $field ] ) ) {
-			return $this->columns[ $field ];
+	public function get_field( $field ) {
+		if ( isset( $this->data[ $field ] ) ) {
+			return $this->data[ $field ];
 		}
-
-		return new ColumnDefinition( new \SimpleXMLElement( '<column />' ) );
 	}
 
 	/**

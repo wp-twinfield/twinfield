@@ -61,6 +61,7 @@ class TransactionUnserializer extends Unserializer {
 					$line->set_type( Security::filter( $element_line['type'] ) );
 					$line->set_dimension_1( Security::filter( $element_line->dim1 ) );
 					$line->set_dimension_2( Security::filter( $element_line->dim2 ) );
+					$line->set_debit_credit( Security::filter( $element_line->debitcredit ) );
 					$line->set_value( Security::filter( $element_line->value, FILTER_VALIDATE_FLOAT ) );
 					$line->set_description( Security::filter( $element_line->description ) );
 				}

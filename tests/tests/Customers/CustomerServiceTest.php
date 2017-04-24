@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\Customers;
 
+use PHPUnit\Framework\TestCase;
+
 use Pronamic\WP\Twinfield\Client;
 use Pronamic\WP\Twinfield\Result;
 use Pronamic\WP\Twinfield\XMLProcessor;
@@ -20,7 +22,7 @@ use Pronamic\WP\Twinfield\XMLProcessor;
  * @package    Pronamic/WP/Twinfield/SalesInvoice
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class CustomerServiceTest extends \PHPUnit_Framework_TestCase {
+class CustomerServiceTest extends TestCase {
 	/**
 	 * Flag for mock requests to Twinfield.
 	 *

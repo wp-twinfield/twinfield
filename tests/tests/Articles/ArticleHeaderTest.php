@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\Articles;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Article read request test
  *
@@ -16,7 +18,7 @@ namespace Pronamic\WP\Twinfield\Articles;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class ArticleHeaderTest extends \PHPUnit_Framework_TestCase {
+class ArticleHeaderTest extends TestCase {
 	/**
 	 * Test
 	 */

@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\Contacts;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Contact test
  *
@@ -16,7 +18,7 @@ namespace Pronamic\WP\Twinfield\Contacts;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class ContactTest extends \PHPUnit_Framework_TestCase {
+class ContactTest extends TestCase {
 	/**
 	 * Test
 	 */

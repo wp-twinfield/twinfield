@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Array of array of string test
  *
@@ -16,7 +18,7 @@ namespace Pronamic\WP\Twinfield;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class ArrayOfStringTest extends \PHPUnit_Framework_TestCase {
+class ArrayOfStringTest extends TestCase {
 	/**
 	 * Test
 	 */

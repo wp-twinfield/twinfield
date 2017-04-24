@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Session client test
  *
@@ -18,7 +20,7 @@ namespace Pronamic\WP\Twinfield;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class SessionClientTest extends \PHPUnit_Framework_TestCase {
+class SessionClientTest extends TestCase {
 	/**
 	 * Test logon
 	 */

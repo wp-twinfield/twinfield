@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\Transactions;
 
+use PHPUnit\Framework\TestCase;
+
 use Pronamic\WP\Twinfield\PaymentMethods;
 
 /**
@@ -18,7 +20,7 @@ use Pronamic\WP\Twinfield\PaymentMethods;
  * @package    Pronamic/WP/Twinfield.SalesInvoices
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class TransactionHeaderTest extends \PHPUnit_Framework_TestCase {
+class TransactionHeaderTest extends TestCase {
 	/**
 	 * Test
 	 */

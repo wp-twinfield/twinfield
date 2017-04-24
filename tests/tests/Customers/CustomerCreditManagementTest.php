@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\Customers;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Customer credit management test
  *
@@ -16,7 +18,7 @@ namespace Pronamic\WP\Twinfield\Customers;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class CustomerCreditManagementTest extends \PHPUnit_Framework_TestCase {
+class CustomerCreditManagementTest extends TestCase {
 	/**
 	 * Test
 	 */

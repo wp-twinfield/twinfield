@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\XML\Customers;
 
+use PHPUnit\Framework\TestCase;
+
 use Pronamic\WP\Twinfield\Customers\Customer;
 
 /**
@@ -18,7 +20,7 @@ use Pronamic\WP\Twinfield\Customers\Customer;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class CustomerSerializerTest extends \PHPUnit_Framework_TestCase {
+class CustomerSerializerTest extends TestCase {
 	/**
 	 * Test.
 	 */

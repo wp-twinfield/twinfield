@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield;
 
+use PHPUnit\Framework\TestCase;
+
 use Pronamic\WP\Twinfield;
 
 /**
@@ -18,7 +20,7 @@ use Pronamic\WP\Twinfield;
  * @package    Pronamic/WP/Twinfield.SalesInvoices
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class AddressTest extends \PHPUnit_Framework_TestCase {
+class AddressTest extends TestCase {
 	/**
 	 * Test
 	 */

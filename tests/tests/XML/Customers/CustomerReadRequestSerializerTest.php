@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\Customer;
 
+use PHPUnit\Framework\TestCase;
+
 use Pronamic\WP\Twinfield\Customers\CustomerReadRequest;
 use Pronamic\WP\Twinfield\XML\Customers\CustomerReadRequestSerializer;
 
@@ -19,7 +21,7 @@ use Pronamic\WP\Twinfield\XML\Customers\CustomerReadRequestSerializer;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class CustomerReadRequestSerializerTest extends \PHPUnit_Framework_TestCase {
+class CustomerReadRequestSerializerTest extends TestCase {
 	/**
 	 * Test
 	 */

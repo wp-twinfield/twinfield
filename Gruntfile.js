@@ -10,10 +10,11 @@ module.exports = function( grunt ) {
 		    application: {
 		        src: [
 		        	'src/**/*.php',
-		        	'tests/**/*.php',
+		        	'tests/**/*.php'
 		        ]
 		    },
 		    options: {
+		    	bin: 'vendor/bin/phpcs',
 		    	standard: 'phpcs.ruleset.xml',
 		        showSniffCodes: true
 		    }
@@ -21,11 +22,6 @@ module.exports = function( grunt ) {
 
 		// PHPLint
 		phplint: {
-			options: {
-				phpArgs: {
-					'-lf': null
-				}
-			},
 			all: [
 				'src/**/*.php'
 			]
@@ -37,6 +33,7 @@ module.exports = function( grunt ) {
 				dir: '.'
 			},
 			options: {
+				bin: 'vendor/bin/phpmd',
 				exclude: 'node_modules,vendor',
 				reportFormat: 'xml',
 				rulesets: 'phpmd.ruleset.xml'
@@ -47,7 +44,7 @@ module.exports = function( grunt ) {
 		phpunit: {
 			classes: {},
 			options: {
-
+				bin: 'vendor/bin/phpunit'
 			}
 		},
 		

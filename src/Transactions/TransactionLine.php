@@ -20,11 +20,18 @@ namespace Pronamic\WP\Twinfield\Transactions;
  */
 class TransactionLine {
 	/**
-	 * The unique ID of this transaction line.
+	 * The unique key of this transaction line.
+	 *
+	 * @var TransactionLineKey
+	 */
+	private $key;
+
+	/**
+	 * The debit/credit indicator of this transaction line.
 	 *
 	 * @var string
 	 */
-	private $id;
+	private $debit_credit;
 
 	/**
 	 * Constructs and initialize a Twinfield transaction line.
@@ -49,6 +56,24 @@ class TransactionLine {
 	 */
 	public function set_id( $id ) {
 		$this->id = $id;
+	}
+
+	/**
+	 * Get the unique key of this transaction line.
+	 *
+	 * @return string
+	 */
+	public function get_key() {
+		return $this->key;
+	}
+
+	/**
+	 * Set the unique key of this transaction line.
+	 *
+	 * @param string $id
+	 */
+	public function set_key( $key ) {
+		$this->key = $key;
 	}
 
 	/**
@@ -139,5 +164,50 @@ class TransactionLine {
 	 */
 	public function set_description( $description ) {
 		$this->description = $description;
+	}
+
+	/**
+	 * Get the invoice number of this transaction line.
+	 *
+	 * @return string
+	 */
+	public function get_invoice_number() {
+		return $this->invoice_number;
+	}
+
+	/**
+	 * Set the invoice number of this transaction line.
+	 *
+	 * @param string $invoice_number
+	 */
+	public function set_invoice_number( $invoice_number ) {
+		$this->invoice_number = $invoice_number;
+	}
+
+	/**
+	 * Set debit credit.
+	 *
+	 * @param string $debit_credit
+	 */
+	public function set_debit_credit( $debit_credit ) {
+		$this->debit_credit = $debit_credit;
+	}
+
+	/**
+	 * Is debit.
+	 *
+	 * @return boolean true if is debit, false otherwise.
+	 */
+	public function is_debit() {
+		return 'debit' === $this->debit_credit;
+	}
+
+	/**
+	 * Is credit.
+	 *
+	 * @return boolean true if is credit, false otherwise.
+	 */
+	public function is_credit() {
+		return 'credit' === $this->debit_credit;
 	}
 }

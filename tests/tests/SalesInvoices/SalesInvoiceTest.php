@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\SalesInvoices;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Sales invoice test
  *
@@ -16,7 +18,7 @@ namespace Pronamic\WP\Twinfield\SalesInvoices;
  * @package    Pronamic/WP/Twinfield.SalesInvoices
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class SalesInvoiceTest extends \PHPUnit_Framework_TestCase {
+class SalesInvoiceTest extends TestCase {
 	/**
 	 * Test
 	 */
