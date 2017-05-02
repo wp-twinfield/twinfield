@@ -72,6 +72,9 @@ class GeneralLedgerService {
 				(string) $xml_key->line
 			);
 
+			$line->set_date( \DateTime::createFromFormat( 'Ymd', $row->get_field( 'fin.trs.head.date' ) ) );
+			$line->set_input_date( \DateTime::createFromFormat( 'YmdHis', $row->get_field( 'fin.trs.head.inpdate' ) ) );
+
 			$line->set_key( $key );
 			$line->set_id( $key->get_line() );
 			$line->set_dimension_1( $row->get_field( 'fin.trs.line.dim1' ) );

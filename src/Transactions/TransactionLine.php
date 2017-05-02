@@ -210,4 +210,40 @@ class TransactionLine {
 	public function is_credit() {
 		return 'credit' === $this->debit_credit;
 	}
+
+	/**
+	 * Get the date of this transaction line.
+	 *
+	 * @return \DateTime
+	 */
+	public function get_date() {
+		return $this->date;
+	}
+
+	/**
+	 * Set the date of this transaction line.
+	 *
+	 * @param \DateTime $date
+	 */
+	public function set_date( \DateTime $date ) {
+		$this->date = $date;
+	}
+
+	/**
+	 * Get the input date of this transaction line.
+	 *
+	 * @return \DateTime
+	 */
+	public function get_input_date() {
+		return $this->input_date;
+	}
+
+	/**
+	 * Set the input date of this transaction line.
+	 *
+	 * @param \DateTime $date
+	 */
+	public function set_input_date( \DateTime $date ) {
+		$this->input_date = $date;
+	}
 }
