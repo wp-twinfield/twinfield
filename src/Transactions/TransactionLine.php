@@ -20,6 +20,16 @@ namespace Pronamic\WP\Twinfield\Transactions;
  */
 class TransactionLine {
 	/**
+	 * Debit.
+	 */
+	const DEBIT = 'debit';
+
+	/**
+	 * Credit.
+	 */
+	const CREDIT = 'credit';
+
+	/**
 	 * The unique key of this transaction line.
 	 *
 	 * @var TransactionLineKey
@@ -185,6 +195,15 @@ class TransactionLine {
 	}
 
 	/**
+	 * Get debit credit.
+	 *
+	 * @return string
+	 */
+	public function get_debit_credit() {
+		return $this->debit_credit;
+	}
+
+	/**
 	 * Set debit credit.
 	 *
 	 * @param string $debit_credit
@@ -199,7 +218,7 @@ class TransactionLine {
 	 * @return boolean true if is debit, false otherwise.
 	 */
 	public function is_debit() {
-		return 'debit' === $this->debit_credit;
+		return self::DEBIT === $this->get_debit_credit();
 	}
 
 	/**
@@ -208,7 +227,7 @@ class TransactionLine {
 	 * @return boolean true if is credit, false otherwise.
 	 */
 	public function is_credit() {
-		return 'credit' === $this->debit_credit;
+		return self::CREDIT === $this->get_debit_credit();
 	}
 
 	/**
