@@ -116,9 +116,9 @@ class TransactionLine {
 	/**
 	 * Set dimension 1 of this transaction line.
 	 *
-	 * @param string $value
+	 * @param TransactionLineDimension $dimension
 	 */
-	public function set_dimension_1( $dimension ) {
+	public function set_dimension_1( TransactionLineDimension $dimension ) {
 		$this->dimension_1 = $dimension;
 	}
 
@@ -134,9 +134,9 @@ class TransactionLine {
 	/**
 	 * Set dimension 2 of this transaction line.
 	 *
-	 * @param string $value
+	 * @param TransactionLineDimension $dimension
 	 */
-	public function set_dimension_2( $dimension ) {
+	public function set_dimension_2( TransactionLineDimension $dimension ) {
 		$this->dimension_2 = $dimension;
 	}
 

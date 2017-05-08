@@ -12,6 +12,7 @@ namespace Pronamic\WP\Twinfield\Transactions;
 use Pronamic\WP\Twinfield\ProcessXmlString;
 use Pronamic\WP\Twinfield\XMLProcessor;
 use \Pronamic\WP\Twinfield\Browse\Browser;
+use \Pronamic\WP\Twinfield\Browse\BrowseReadRequest;
 use Pronamic\WP\Twinfield\XML\Transactions\TransactionReadRequestSerializer;
 use Pronamic\WP\Twinfield\XML\Transactions\TransactionUnserializer;
 
@@ -78,12 +79,17 @@ class TransactionService {
 			);
 
 			$line->set_date( \DateTime::createFromFormat( 'Ymd', $row->get_field( 'fin.trs.head.date' ) ) );
-			$line->set_input_date( \DateTime::createFromFormat( 'YmdHis', $row->get_field( 'fin.trs.head.inpdate' ) ) );
+
+			$input_date = \DateTime::createFromFormat( 'YmdHis', $row->get_field( 'fin.trs.head.inpdate' ) );
+
+			if ( false !== $input_date ) {
+				$line->set_input_date( $input_date );
+			}
 
 			$line->set_key( $key );
 			$line->set_id( $key->get_line() );
-			$line->set_dimension_1( $row->get_field( 'fin.trs.line.dim1' ) );
-			$line->set_dimension_2( $row->get_field( 'fin.trs.line.dim2' ) );
+			$line->set_dimension_1( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim1' ), $row->get_field( 'fin.trs.line.dim1name' ), $row->get_field( 'fin.trs.line.dim1type' ) ) );
+			$line->set_dimension_2( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim2' ), $row->get_field( 'fin.trs.line.dim2name' ), $row->get_field( 'fin.trs.line.dim2type' ) ) );
 			$line->set_value( $row->get_field( 'fin.trs.line.valuesigned' ) );
 			$line->set_debit_credit( $row->get_field( 'fin.trs.line.debitcredit' ) );
 			$line->set_description( $row->get_field( 'fin.trs.line.description' ) );
