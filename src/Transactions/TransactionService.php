@@ -1,0 +1,123 @@
+<?php
+/**
+ * Transaction Service
+ *
+ * @since      1.0.0
+ *
+ * @package    Pronamic/WP/Twinfield/Transactions
+ */
+
+namespace Pronamic\WP\Twinfield\Transactions;
+
+use Pronamic\WP\Twinfield\ProcessXmlString;
+use Pronamic\WP\Twinfield\XMLProcessor;
+use \Pronamic\WP\Twinfield\Browse\Browser;
+use Pronamic\WP\Twinfield\XML\Transactions\TransactionReadRequestSerializer;
+use Pronamic\WP\Twinfield\XML\Transactions\TransactionUnserializer;
+
+/**
+ * Transaction Service
+ *
+ * This class represents an Twinfield transactions service.
+ *
+ * @since      1.0.0
+ * @package    Pronamic/WP/Twinfield
+ * @author     Remco Tolsma <info@remcotolsma.nl>
+ */
+class TransactionService {
+	/**
+	 * The XML processor wich is used to connect with Twinfield.
+	 *
+	 * @var XMLProcessor
+	 */
+	private $xml_processor;
+
+	/**
+	 * Constructs and initializes an sales invoice service.
+	 *
+	 * @param XMLProcessor $xml_processor The XML processor to use within this sales invoice service object.
+	 */
+	public function __construct( XMLProcessor $xml_processor ) {
+		$this->xml_processor = $xml_processor;
+		$this->browser       = new Browser( $xml_processor );
+	}
+
+	/**
+	 * Get lines.
+	 *
+	 * @return array
+	 */
+	public function get_transaction_lines( $office_code, $browse_code, $dimension_1, $year ) {
+		$lines = array();
+
+		$browse_read_request = new BrowseReadRequest( $office_code, $browse_code );
+
+		$browse_definition = $this->browser->get_browse_definition( $browse_read_request );
+		$browse_definition->get_column( 'fin.trs.head.yearperiod' )->between( $year . '/01', $year . '/12' );
+
+		if ( ! empty( $dimension_1 ) ) {
+			$browse_definition->get_column( 'fin.trs.line.dim1' )->between( $dimension_1 );
+		}
+
+		$browse_definition->get_column( 'fin.trs.line.matchstatus' )->equal( 'available' );
+
+		$data = $this->browser->get_data( $browse_definition );
+
+		$rows = $data->get_rows();
+
+		foreach ( $rows as $row ) {
+			$line = new TransactionLine();
+
+			$xml_key = $row->get_xml_key();
+
+			$key = new TransactionLineKey(
+				(string) $xml_key->office,
+				(string) $xml_key->code,
+				(string) $xml_key->number,
+				(string) $xml_key->line
+			);
+
+			$line->set_date( \DateTime::createFromFormat( 'Ymd', $row->get_field( 'fin.trs.head.date' ) ) );
+			$line->set_input_date( \DateTime::createFromFormat( 'YmdHis', $row->get_field( 'fin.trs.head.inpdate' ) ) );
+
+			$line->set_key( $key );
+			$line->set_id( $key->get_line() );
+			$line->set_dimension_1( $row->get_field( 'fin.trs.line.dim1' ) );
+			$line->set_dimension_2( $row->get_field( 'fin.trs.line.dim2' ) );
+			$line->set_value( $row->get_field( 'fin.trs.line.valuesigned' ) );
+			$line->set_debit_credit( $row->get_field( 'fin.trs.line.debitcredit' ) );
+			$line->set_description( $row->get_field( 'fin.trs.line.description' ) );
+			$line->set_invoice_number( $row->get_field( 'fin.trs.line.invnumber' ) );
+
+			$lines[] = $line;
+		}
+
+		return $lines;
+	}
+
+	/**
+	 * Get the specified transaction.
+	 *
+	 * @param string $office The office to get the transaction from.
+	 * @param string $code   The code of the transaction to retrieve.
+	 * @param string $number The number of the transaction to retrieve.
+	 * @return Transaction
+	 */
+	public function get_transaction( $office, $code, $number ) {
+		$result = null;
+
+		$request = new TransactionReadRequestSerializer( new TransactionReadRequest( $office, $code, $number ) );
+
+		$response = $this->xml_processor->process_xml_string( new ProcessXmlString( $request ) );
+
+		$xml = simplexml_load_string( $response );
+
+		if ( false !== $xml ) {
+			$unserializer = new TransactionUnserializer();
+
+			$result = $unserializer->unserialize( $xml );
+		}
+
+		return $result;
+	}
+}

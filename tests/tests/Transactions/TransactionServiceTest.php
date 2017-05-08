@@ -22,7 +22,7 @@ use Pronamic\WP\Twinfield\XMLProcessor;
  * @package    Pronamic/WP/Twinfield/SalesInvoices
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class TransactionsServiceTest extends TestCase {
+class TransactionServiceTest extends TestCase {
 	/**
 	 * Flag for mock requests to Twinfield.
 	 *
@@ -68,7 +68,7 @@ class TransactionsServiceTest extends TestCase {
 			$this->xml_processor = new XMLProcessor( $session );
 		}
 
-		$this->service = new TransactionsService( $this->xml_processor );
+		$this->service = new TransactionService( $this->xml_processor );
 	}
 
 	/**
