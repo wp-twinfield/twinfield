@@ -159,6 +159,42 @@ class TransactionLine {
 	}
 
 	/**
+	 * Get the base value of this transaction line.
+	 *
+	 * @return string
+	 */
+	public function get_base_value() {
+		return $this->base_value;
+	}
+
+	/**
+	 * Set the base value of this transaction line.
+	 *
+	 * @param string $value
+	 */
+	public function set_base_value( $value ) {
+		$this->base_value = $value;
+	}
+
+	/**
+	 * Get the open base value of this transaction line.
+	 *
+	 * @return string
+	 */
+	public function get_open_base_value() {
+		return $this->open_base_value;
+	}
+
+	/**
+	 * Set the open base value of this transaction line.
+	 *
+	 * @param string $value
+	 */
+	public function set_open_base_value( $value ) {
+		$this->open_base_value = $value;
+	}
+
+	/**
 	 * Get the description of this transaction line.
 	 *
 	 * @return string

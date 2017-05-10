@@ -90,7 +90,9 @@ class TransactionService {
 			$line->set_id( $key->get_line() );
 			$line->set_dimension_1( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim1' ), $row->get_field( 'fin.trs.line.dim1name' ), $row->get_field( 'fin.trs.line.dim1type' ) ) );
 			$line->set_dimension_2( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim2' ), $row->get_field( 'fin.trs.line.dim2name' ), $row->get_field( 'fin.trs.line.dim2type' ) ) );
-			$line->set_value( $row->get_field( 'fin.trs.line.valuesigned' ) );
+			$line->set_value( filter_var( $row->get_field( 'fin.trs.line.valuesigned' ), FILTER_VALIDATE_FLOAT ) );
+			$line->set_base_value( filter_var( $row->get_field( 'fin.trs.line.basevaluesigned' ), FILTER_VALIDATE_FLOAT ) );
+			$line->set_open_base_value( filter_var( $row->get_field( 'fin.trs.line.openbasevaluesigned' ), FILTER_VALIDATE_FLOAT ) );
 			$line->set_debit_credit( $row->get_field( 'fin.trs.line.debitcredit' ) );
 			$line->set_description( $row->get_field( 'fin.trs.line.description' ) );
 			$line->set_invoice_number( $row->get_field( 'fin.trs.line.invnumber' ) );
