@@ -87,6 +87,24 @@ class TransactionLine {
 	}
 
 	/**
+	 * Get the status of this transaction line.
+	 *
+	 * @return string
+	 */
+	public function get_status() {
+		return $this->status;
+	}
+
+	/**
+	 * Set the status of this transaction line.
+	 *
+	 * @param string $status
+	 */
+	public function set_status( $status ) {
+		$this->status = $status;
+	}
+
+	/**
 	 * Get the type of this transaction line.
 	 *
 	 * @return string

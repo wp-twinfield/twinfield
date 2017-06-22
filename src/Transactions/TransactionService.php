@@ -88,6 +88,7 @@ class TransactionService {
 
 			$line->set_key( $key );
 			$line->set_id( $key->get_line() );
+			$line->set_status( $row->get_field( 'fin.trs.head.status' ) );
 			$line->set_dimension_1( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim1' ), $row->get_field( 'fin.trs.line.dim1name' ), $row->get_field( 'fin.trs.line.dim1type' ) ) );
 			$line->set_dimension_2( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim2' ), $row->get_field( 'fin.trs.line.dim2name' ), $row->get_field( 'fin.trs.line.dim2type' ) ) );
 			$line->set_value( filter_var( $row->get_field( 'fin.trs.line.valuesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
