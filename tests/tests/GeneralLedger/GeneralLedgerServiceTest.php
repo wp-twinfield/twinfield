@@ -43,9 +43,14 @@ class GeneralLedgerServiceTest extends TestCase {
 
 		$office_code    = getenv( 'TWINFIELD_OFFICE_CODE' );
 		$general_ledger = '2999';
-		$year           = '2017';
+		$year           = date( 'Y' );
 
-		$transaction_lines = $service->get_transaction_lines( $office_code, $general_ledger, $year );
+		$browse_defination = $service->get_browse_definition( $office_code, '000' );
+		$browse_definition->get_column( 'fin.trs.head.yearperiod' )->between( ( $year - 10 ) . '/01', $year . '/12' );
+		$browse_definition->get_column( 'fin.trs.line.dim1' )->between( $general_ledger );
+		$browse_definition->get_column( 'fin.trs.line.matchstatus' )->equal( 'available' );
+
+		$transaction_lines = $service->get_transaction_lines( $browse_definition );
 
 		var_dump( $transaction_lines );
 	}

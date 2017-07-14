@@ -44,23 +44,27 @@ class TransactionService {
 	}
 
 	/**
+	 * Get browse definiation.
+	 *
+	 * @param string $office_code
+	 * @param string $browse_code
+	 * @return BrowseDefinition
+	 */
+	public function get_browse_definition( $office_code, $browse_code ) {
+		$browse_read_request = new BrowseReadRequest( $office_code, $browse_code );
+
+		$browse_definition = $this->browser->get_browse_definition( $browse_read_request );
+
+		return $browse_definition;
+	}
+
+	/**
 	 * Get lines.
 	 *
 	 * @return array
 	 */
-	public function get_transaction_lines( $office_code, $browse_code, $dimension_1, $year ) {
+	public function get_transaction_lines( $browse_definition ) {
 		$lines = array();
-
-		$browse_read_request = new BrowseReadRequest( $office_code, $browse_code );
-
-		$browse_definition = $this->browser->get_browse_definition( $browse_read_request );
-		$browse_definition->get_column( 'fin.trs.head.yearperiod' )->between( $year . '/01', $year . '/12' );
-
-		if ( ! empty( $dimension_1 ) ) {
-			$browse_definition->get_column( 'fin.trs.line.dim1' )->between( $dimension_1 );
-		}
-
-		$browse_definition->get_column( 'fin.trs.line.matchstatus' )->equal( 'available' );
 
 		$data = $this->browser->get_data( $browse_definition );
 
