@@ -77,6 +77,16 @@ class Row {
 	}
 
 	/**
+	 * Check if this row has the specified field.
+	 *
+	 * @param string $field
+	 * @return boolean true if field exists, false otherwise.
+	 */
+	public function has_field( $field ) {
+		return isset( $this->data[ $field ] );
+	}
+
+	/**
 	 * Get field.
 	 *
 	 * @param string $field

@@ -44,6 +44,21 @@ class TransactionLine {
 	private $debit_credit;
 
 	/**
+	 * Input date.
+	 */
+	private $input_date;
+
+	/**
+	 * Year.
+	 */
+	private $year;
+
+	/**
+	 * Period.
+	 */
+	private $period;
+
+	/**
 	 * Constructs and initialize a Twinfield transaction line.
 	 */
 	public function __construct() {
@@ -318,5 +333,41 @@ class TransactionLine {
 	 */
 	public function set_input_date( \DateTime $date ) {
 		$this->input_date = $date;
+	}
+
+	/**
+	 * Get year.
+	 *
+	 * @return int
+	 */
+	public function get_year() {
+		return $this->year;
+	}
+
+	/**
+	 * Set year.
+	 *
+	 * @param int $year
+	 */
+	public function set_year( $year ) {
+		$this->year = $year;
+	}
+
+	/**
+	 * Get period.
+	 *
+	 * @return int
+	 */
+	public function get_period() {
+		return $this->period;
+	}
+
+	/**
+	 * Set period.
+	 *
+	 * @param int $period
+	 */
+	public function set_period( $period ) {
+		$this->period = $period;
 	}
 }

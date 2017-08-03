@@ -93,6 +93,33 @@ class TransactionService {
 			$line->set_key( $key );
 			$line->set_id( $key->get_line() );
 			$line->set_status( $row->get_field( 'fin.trs.head.status' ) );
+
+			// Year/period
+			$year   = null;
+			$period = null;
+
+			if ( $row->has_field( 'fin.trs.head.yearperiod' ) ) {
+				$year_period = $row->get_field( 'fin.trs.head.yearperiod' );
+
+				$seperator_position = strpos( $year_period, '/' );
+
+				if ( false !== $seperator_position ) {
+					$year   = substr( $year_period, 0, $seperator_position );
+					$period = substr( $year_period, $seperator_position + 1 );
+				}
+			}
+
+			if ( $row->has_field( 'fin.trs.head.year' ) ) {
+				$year = $row->get_field( 'fin.trs.head.year' );
+			}
+
+			if ( $row->has_field( 'fin.trs.head.period' ) ) {
+				$period = $row->get_field( 'fin.trs.head.period' );
+			}
+
+			$line->set_year( $year );
+			$line->set_period( $period );
+
 			$line->set_dimension_1( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim1' ), $row->get_field( 'fin.trs.line.dim1name' ), $row->get_field( 'fin.trs.line.dim1type' ) ) );
 			$line->set_dimension_2( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim2' ), $row->get_field( 'fin.trs.line.dim2name' ), $row->get_field( 'fin.trs.line.dim2type' ) ) );
 			$line->set_value( filter_var( $row->get_field( 'fin.trs.line.valuesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
