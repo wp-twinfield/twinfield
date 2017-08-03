@@ -55,7 +55,7 @@ class TransactionLineDimension {
 	 * @return string
 	 */
 	public function get_code() {
-		return $this->id;
+		return $this->code;
 	}
 
 	/**
