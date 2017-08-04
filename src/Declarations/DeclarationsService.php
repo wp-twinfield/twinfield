@@ -39,14 +39,14 @@ class DeclarationsService extends AbstractClient {
 	}
 
 	public function get_all_summaries( $office_code ) {
-		$parameters = new stdClass();
+		$parameters = new \stdClass();
 		$parameters->companyCode = $office_code;
 
 		return $this->soap_client->GetAllSummaries( $parameters );
 	}
 
 	public function get_payment_reference( $document_id ) {
-		$parameters = new stdClass();
+		$parameters = new \stdClass();
 		$parameters->documentId = $document_id;
 
 		$response = $this->soap_client->GetVatReturnPaymentReference( $parameters );
@@ -55,7 +55,7 @@ class DeclarationsService extends AbstractClient {
 	}
 
 	public function get_vat_return_as_xbrl( $document_id ) {
-		$parameters = new stdClass();
+		$parameters = new \stdClass();
 		$parameters->documentId = $document_id;
 		$parameters->isMessageIdRequired = true;
 
