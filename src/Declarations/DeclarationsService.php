@@ -51,7 +51,9 @@ class DeclarationsService extends AbstractClient {
 
 		$response = $this->soap_client->GetVatReturnPaymentReference( $parameters );
 
-		return $response->paymentReference;
+		if ( isset( $response->paymentReference ) ) {
+			return $response->paymentReference;
+		}
 	}
 
 	public function get_vat_return_as_xbrl( $document_id ) {
