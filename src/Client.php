@@ -62,11 +62,20 @@ class Client {
 		// Parse last response.
 		$xml = $this->soap_client->__getLastResponse();
 
-		$soap_envelope    = simplexml_load_string( $xml, null, null, 'http://schemas.xmlsoap.org/soap/envelope/' );
-		$soap_header      = $soap_envelope->Header;
+		$soap_envelope = simplexml_load_string( $xml, null, null, 'http://schemas.xmlsoap.org/soap/envelope/' );
+
+		if ( false === $soap_envelope ) {
+			return false;
+		}
+
+		if ( ! isset( $soap_envelope->Header ) ) {
+			return false;
+		}
+
+		$soap_header = $soap_envelope->Header;
+
 		$twinfield_header = $soap_header->children( 'http://www.twinfield.com/' )->Header;
 
-		// Session ID.
 		$session_id = (string) $twinfield_header->SessionID;
 
 		return $session_id;
