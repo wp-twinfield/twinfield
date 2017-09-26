@@ -41,6 +41,17 @@ class LogonResponse {
 	private $cluster;
 
 	/**
+	 * Session ID.
+	 *
+	 * The session ID is officially not part of the logon response.
+	 * To make this library easier to use we store it temporary in
+	 * logon repsonse object.
+	 *
+	 * @var string
+	 */
+	public $session_id;
+
+	/**
 	 * Get the next required log-on action.
 	 *
 	 * @return string

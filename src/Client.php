@@ -107,19 +107,22 @@ class Client {
 	 * @return Session An Twinfield session object.
 	 */
 	public function get_session( LogonResponse $logon_response ) {
-		$session = null;
-
 		// Check if logon response result code is OK.
-		if ( LogonResult::OK === $logon_response->get_result() ) {
-			/*
-			 * The session ID is officially not part of the logon response.
-			 * To make this library easier to use we store it temporary in
-			 * logon repsonse object.
-			 */
-			$session_id = $logon_response->session_id;
-
-			$session = new Session( $session_id, $logon_response->get_cluster() );
+		if ( LogonResult::OK !== $logon_response->get_result() ) {
+			return false;
 		}
+
+		/*
+		 * The session ID is officially not part of the logon response.
+		 * To make this library easier to use we store it temporary in
+		 * logon repsonse object.
+		 */
+		if ( empty( $logon_response->session_id ) ) {
+			return false;
+		}
+
+		// OK
+		$session = new Session( $logon_response->session_id, $logon_response->get_cluster() );
 
 		return $session;
 	}
