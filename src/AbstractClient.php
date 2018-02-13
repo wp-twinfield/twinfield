@@ -50,10 +50,7 @@ abstract class AbstractClient {
 		$this->wsdl_file = $wsdl_file;
 		$this->session   = $session;
 
-		$this->soap_client = new \SoapClient( $this->get_wsdl_url(), array(
-			'classmap' => Client::get_class_map(),
-			'trace'    => 1,
-		) );
+		$this->soap_client = new \SoapClient( $this->get_wsdl_url(), Client::get_soap_client_options() );
 
 		$this->soap_client->__setSoapHeaders( $this->get_soap_header() );
 	}

@@ -32,14 +32,24 @@ class Client {
 	public function __construct() {
 		// @see https://github.com/php-twinfield/twinfield/issues/50
 		// @see https://github.com/php-twinfield/twinfield/pull/70/files
-		$this->soap_client = new \SoapClient( self::WSDL_URL_LOGIN, array(
+		$this->soap_client = new \SoapClient( self::WSDL_URL_LOGIN, Client::get_soap_client_options() );
+	}
+
+	/**
+	 * Get SOAP Client options.
+	 *
+	 * @param array $options
+	 * @return array
+	 */
+	public static function get_soap_client_options() {
+		return array(
 			'classmap'           => self::get_class_map(),
 			'connection_timeout' => 30,
 			'trace'              => true,
 			'compression'        => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP,
 			'cache_wsdl'         => WSDL_CACHE_MEMORY,
 			'keep_alive'         => true,
-		) );
+		);
 	}
 
 	/**
