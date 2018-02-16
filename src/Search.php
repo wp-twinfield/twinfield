@@ -55,19 +55,27 @@ class Search {
 	private $maxRows; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
+	 * Options.
+	 *
+	 * @var ArrayOfArrayOfString
+	 */
+
+	/**
 	 * Constructs and initializes an Twinfield search object.
 	 *
-	 * @param string $type             Finder type, see Finder type.
-	 * @param string $pattern          The search pattern. May contain wildcards * and ?.
-	 * @param int    $field            Fields to search through, see Search fields.
-	 * @param int    $first_row        First row to return, usefull for paging.
-	 * @param int    $max_rows         Maximum number of rows to return, usefull for paging.
+	 * @param string $type      Finder type, see Finder type.
+	 * @param string $pattern   The search pattern. May contain wildcards * and ?.
+	 * @param int    $field     Fields to search through, see Search fields.
+	 * @param int    $first_row First row to return, usefull for paging.
+	 * @param int    $max_rows  Maximum number of rows to return, usefull for paging.
+	 * @param array  $options   The options.
 	 */
-	public function __construct( $type, $pattern, $field, $first_row, $max_rows ) {
+	public function __construct( $type, $pattern, $field, $first_row, $max_rows, $options = array() ) {
 		$this->type     = $type;
 		$this->pattern  = $pattern;
 		$this->field    = $field;
 		$this->firstRow = $first_row; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 		$this->maxRows  = $max_rows; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
+		$this->options  = ArrayOfArrayOfString::parse_array( $options );
 	}
 }

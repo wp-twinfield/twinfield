@@ -53,4 +53,25 @@ class ArrayOfArrayOfString implements \IteratorAggregate {
 		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 		return new \ArrayIterator( $this->ArrayOfString );
 	}
+
+	/**
+	 * Parse array into array of array of string.
+	 *
+	 * @param array $array The array to convert to an array of array string object.
+	 * @return \ArrayOfArrayOfString
+	 */
+	public static function parse_array( $array ) {
+		$aa = new ArrayOfArrayOfString();
+
+		foreach ( $array as $key => $value ) {
+			$a = new ArrayOfString();
+
+			$a->add( $key );
+			$a->add( $value );
+
+			$aa->add( $a );
+		}
+
+		return $aa;
+	}
 }

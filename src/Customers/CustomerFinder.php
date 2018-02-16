@@ -47,8 +47,11 @@ class CustomerFinder {
 	 * @param int    $max_rows  The max rows.
 	 * @return array
 	 */
-	public function get_customers( $pattern, $field, $first_row, $max_rows ) {
+	public function get_customers( $pattern, $field, $first_row, $max_rows, $options = array() ) {
 		$customers = array();
+
+		// Options.
+		$options['dimtype'] = 'DEB';
 
 		// Request.
 		$search = new Search(
@@ -56,7 +59,8 @@ class CustomerFinder {
 			$pattern,
 			$field,
 			$first_row,
-			$max_rows
+			$max_rows,
+			$options
 		);
 
 		$response = $this->finder->search( $search );
