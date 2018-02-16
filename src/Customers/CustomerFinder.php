@@ -45,6 +45,7 @@ class CustomerFinder {
 	 * @param string $field     The field.
 	 * @param int    $first_row The first row.
 	 * @param int    $max_rows  The max rows.
+	 * @param array  $options   The options.
 	 * @return array
 	 */
 	public function get_customers( $pattern, $field, $first_row, $max_rows, $options = array() ) {

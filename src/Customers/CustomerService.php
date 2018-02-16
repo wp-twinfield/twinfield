@@ -50,6 +50,7 @@ class CustomerService {
 	/**
 	 * Get all customers.
 	 *
+	 * @param string $office The office.
 	 * @return array
 	 */
 	public function get_customers( $office ) {
