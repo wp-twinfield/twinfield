@@ -1,6 +1,9 @@
 # Build
 /build/
 
+# Debug
+/debug/
+
 # Composer
 /vendor/
 
