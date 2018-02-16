@@ -48,6 +48,41 @@ class CustomerService {
 	}
 
 	/**
+	 * Get all customers.
+	 *
+	 * @return array
+	 */
+	public function get_customers( $office ) {
+		$customers = array();
+
+		$xml = '<?xml version="1.0"?>
+		<list>
+			<office>' . $office . '</office>
+			<type>dimensions</type>
+			<dimtype>DEB</dimtype>
+		</list>
+		';
+
+		$response = $this->xml_processor->process_xml_string( new ProcessXmlString( $xml ) );
+
+		$xml = simplexml_load_string( $response );
+
+		if ( false !== $xml ) {
+			foreach ( $xml->dimension as $dimension ) {
+				$customer = new \stdClass();
+
+				$customer->code      = (string) $dimension;
+				$customer->name      = (string) $dimension['name'];
+				$customer->shortname = (string) $dimension['shortname'];
+
+				$customers[] = $customer;
+			}
+		}
+
+		return $customers;
+	}
+
+	/**
 	 * Get the specified customer.
 	 *
 	 * @param string $office The office.
