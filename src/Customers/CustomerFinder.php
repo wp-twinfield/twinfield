@@ -25,14 +25,14 @@ class CustomerFinder {
 	/**
 	 * The finder wich is used to connect with Twinfield.
 	 *
-	 * @param Finder
+	 * @var Finder
 	 */
 	private $finder;
 
 	/**
 	 * Constructs and initializes an custom finder object.
 	 *
-	 * @param Finder $finder
+	 * @param Finder $finder The finder.
 	 */
 	public function __construct( Finder $finder ) {
 		$this->finder = $finder;
@@ -40,11 +40,17 @@ class CustomerFinder {
 
 	/**
 	 * Find customers.
+	 *
+	 * @param string $pattern   The pattern.
+	 * @param string $field     The field.
+	 * @param int    $first_row The first row.
+	 * @param int    $max_rows  The max rows.
+	 * @return array
 	 */
 	public function get_customers( $pattern, $field, $first_row, $max_rows ) {
 		$customers = array();
 
-		// Request
+		// Request.
 		$search = new Search(
 			FinderTypes::DIM,
 			$pattern,
@@ -55,7 +61,7 @@ class CustomerFinder {
 
 		$response = $this->finder->search( $search );
 
-		// Parse
+		// Parse.
 		if ( $response ) {
 			if ( $response->is_successful() ) {
 				$data = $response->get_data();

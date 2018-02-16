@@ -29,7 +29,7 @@ class ColumnDefinition {
 	/**
 	 * Constructs and initialize a Twinfield browse definition.
 	 *
-	 * @param \SimpleXMLElement $xml_definiation XML definition.
+	 * @param \SimpleXMLElement $xml_definition XML definition.
 	 */
 	public function __construct( \SimpleXMLElement $xml_definition ) {
 		$this->xml_definition = $xml_definition;
@@ -38,7 +38,7 @@ class ColumnDefinition {
 	/**
 	 * Set from.
 	 *
-	 * @param string $from
+	 * @param string $from The from value.
 	 */
 	public function set_from( $from ) {
 		if ( null !== $from ) {
@@ -51,7 +51,7 @@ class ColumnDefinition {
 	/**
 	 * Set to.
 	 *
-	 * @param string $to
+	 * @param string $to The to value.
 	 */
 	public function set_to( $to ) {
 		if ( null !== $to ) {
@@ -64,7 +64,8 @@ class ColumnDefinition {
 	/**
 	 * Between.
 	 *
-	 * @param string $to
+	 * @param string $from The from value.
+	 * @param string $to   The to value.
 	 */
 	public function between( $from, $to = null ) {
 		$this->xml_definition->operator = 'between';
@@ -75,7 +76,7 @@ class ColumnDefinition {
 	/**
 	 * Equal.
 	 *
-	 * @param string $value
+	 * @param string $value Set equal to value.
 	 */
 	public function equal( $value ) {
 		$this->xml_definition->operator = 'equal';

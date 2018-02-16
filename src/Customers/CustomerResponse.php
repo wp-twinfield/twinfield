@@ -32,7 +32,9 @@ class CustomerResponse extends Response {
 	/**
 	 * Constructs and initialize an Twinfield customer response.
 	 *
-	 * @param int $result The number of results.
+	 * @param Customer          $customer The customer.
+	 * @param mixed             $result   The result.
+	 * @param \SimpleXMLElement $message  The XML message.
 	 */
 	public function __construct( Customer $customer, $result, \SimpleXMLElement $message ) {
 		parent::__construct( $result, $message );

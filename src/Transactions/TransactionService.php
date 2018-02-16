@@ -46,8 +46,8 @@ class TransactionService {
 	/**
 	 * Get browse definiation.
 	 *
-	 * @param string $office_code
-	 * @param string $browse_code
+	 * @param string $office_code The office code.
+	 * @param string $browse_code The browse code.
 	 * @return BrowseDefinition
 	 */
 	public function get_browse_definition( $office_code, $browse_code ) {
@@ -61,6 +61,7 @@ class TransactionService {
 	/**
 	 * Get lines.
 	 *
+	 * @param BrowseDefinition $browse_definition The browse definition.
 	 * @return array
 	 */
 	public function get_transaction_lines( $browse_definition ) {
@@ -94,7 +95,7 @@ class TransactionService {
 			$line->set_id( $key->get_line() );
 			$line->set_status( $row->get_field( 'fin.trs.head.status' ) );
 
-			// Year/period
+			// Year/period.
 			$year   = null;
 			$period = null;
 

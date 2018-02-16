@@ -60,3 +60,4 @@ travis encrypt TWINFIELD_SALES_INVOICE_NUMBER=$TWINFIELD_SALES_INVOICE_NUMBER --
 *	http://stackoverflow.com/questions/3056447/design-pattern-for-loading-multiple-message-types
 *	http://www.servicedesignpatterns.com/requestandresponsemanagement/datatransferobject
 *	http://stackoverflow.com/questions/29592216/how-should-i-store-metadata-in-an-object
+*	https://secure.php.net/soundex

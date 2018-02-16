@@ -36,7 +36,7 @@ class BrowseDefinition {
 	/**
 	 * Constructs and initialize a Twinfield browse definition.
 	 *
-	 * @param \SimpleXMLElement $xml_definiation XML definition.
+	 * @param \SimpleXMLElement $xml_definition XML definition.
 	 */
 	public function __construct( \SimpleXMLElement $xml_definition ) {
 		$this->xml_definition = $xml_definition;
@@ -61,7 +61,7 @@ class BrowseDefinition {
 	/**
 	 * Get column by the specified field.
 	 *
-	 * @param string $field
+	 * @param string $field The field.
 	 * @return ColumnDefinition
 	 */
 	public function get_column( $field ) {

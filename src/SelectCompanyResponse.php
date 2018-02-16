@@ -24,7 +24,7 @@ class SelectCompanyResponse {
 	 *
 	 * @var string
 	 */
-	private $SelectCompanyResult;
+	private $SelectCompanyResult; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
 	 * Get the Twinfield result code for this response
@@ -32,6 +32,7 @@ class SelectCompanyResponse {
 	 * @return string
 	 */
 	public function get_result() {
+		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 		return $this->SelectCompanyResult;
 	}
 }

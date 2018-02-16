@@ -26,7 +26,7 @@ class Browser {
 	/**
 	 * Constructs and initializes a browser object.
 	 *
-	 * @param XMLProcessor $processor Twinfield XML processor object.
+	 * @param XMLProcessor $xml_processor Twinfield XML processor object.
 	 */
 	public function __construct( XMLProcessor $xml_processor ) {
 		$this->xml_processor = $xml_processor;
@@ -35,8 +35,8 @@ class Browser {
 	/**
 	 * Get browse read request by the specified request.
 	 *
-	 * @param BrowseReadRequest $request
-	 * @return
+	 * @param BrowseReadRequest $request The browse read request.
+	 * @return BrowseDefinition
 	 */
 	public function get_browse_definition( BrowseReadRequest $request ) {
 		$serializer = new BrowseReadRequestSerializer( $request );
@@ -55,6 +55,7 @@ class Browser {
 	/**
 	 * Get columns by the specified columns.
 	 *
+	 * @param BrowseDefinition $browse_definition The browse definition.
 	 * @return \SimpleXMLElement
 	 */
 	public function get_data( BrowseDefinition $browse_definition ) {

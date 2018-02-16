@@ -37,7 +37,7 @@ class TransactionHeader {
 	 * Constructs and initializes a transaction header.
 	 */
 	public function __construct() {
-		
+
 	}
 
 	/**
@@ -52,7 +52,7 @@ class TransactionHeader {
 	/**
 	 * Set office.
 	 *
-	 * @param string $office
+	 * @param string $office The office.
 	 */
 	public function set_office( $office ) {
 		$this->office = $office;
@@ -70,7 +70,7 @@ class TransactionHeader {
 	/**
 	 * Set code.
 	 *
-	 * @param string $office
+	 * @param string $code The code.
 	 */
 	public function set_code( $code ) {
 		$this->code = $code;
@@ -88,7 +88,7 @@ class TransactionHeader {
 	/**
 	 * Set number.
 	 *
-	 * @param string $office
+	 * @param string $number The number.
 	 */
 	public function set_number( $number ) {
 		$this->number = $number;
@@ -106,7 +106,7 @@ class TransactionHeader {
 	/**
 	 * Set period.
 	 *
-	 * @param string $period
+	 * @param string $period The period.
 	 */
 	public function set_period( $period ) {
 		$this->period = $period;
@@ -124,7 +124,7 @@ class TransactionHeader {
 	/**
 	 * Set currency.
 	 *
-	 * @param string $currency
+	 * @param string $currency The currency.
 	 */
 	public function set_currency( $currency ) {
 		$this->currency = $currency;
@@ -142,7 +142,7 @@ class TransactionHeader {
 	/**
 	 * Set date.
 	 *
-	 * @param \DateTime $date
+	 * @param \DateTime $date The date.
 	 */
 	public function set_date( \DateTime $date = null ) {
 		$this->date = $date;

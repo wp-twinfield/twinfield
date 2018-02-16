@@ -52,7 +52,7 @@ class OfficeFinderResult {
 	/**
 	 * Set code.
 	 *
-	 * @param string $code
+	 * @param string $code The code.
 	 */
 	public function set_code( $code ) {
 		$this->code = $code;
@@ -70,7 +70,7 @@ class OfficeFinderResult {
 	/**
 	 * Set name.
 	 *
-	 * @param string $name
+	 * @param string $name The name.
 	 */
 	public function set_name( $name ) {
 		$this->name = $name;

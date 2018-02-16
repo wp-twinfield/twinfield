@@ -36,7 +36,7 @@ class BrowseData {
 	/**
 	 * Constructs and initialize a Twinfield browse data object.
 	 *
-	 * @param \SimpleXMLElement $xml_definiation XML definition.
+	 * @param \SimpleXMLElement $xml_definition XML definition.
 	 */
 	public function __construct( \SimpleXMLElement $xml_definition ) {
 		$this->xml_definition = $xml_definition;

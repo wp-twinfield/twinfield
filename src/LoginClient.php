@@ -30,10 +30,7 @@ class LoginClient {
 	 * Constructs and initializes an Twinfield client object.
 	 */
 	public function __construct() {
-		$this->soap_client = new \SoapClient( self::WSDL_URL_LOGIN, array(
-			'classmap' => Client::get_class_map(),
-			'trace'    => 1,
-		) );
+		$this->soap_client = new \SoapClient( self::WSDL_URL_LOGIN, Client::get_soap_client_options() );
 	}
 
 	/**
@@ -43,11 +40,15 @@ class LoginClient {
 		// Parse last response.
 		$xml = $this->soap_client->__getLastResponse();
 
-		$soap_envelope    = simplexml_load_string( $xml, null, null, 'http://schemas.xmlsoap.org/soap/envelope/' );
-		$soap_header      = $soap_envelope->Header;
+		$soap_envelope = simplexml_load_string( $xml, null, null, 'http://schemas.xmlsoap.org/soap/envelope/' );
+
+		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- XML tag.
+		$soap_header = $soap_envelope->Header;
+
 		$twinfield_header = $soap_header->children( 'http://www.twinfield.com/' )->Header;
 
 		// Session ID.
+		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- XML tag.
 		$session_id = (string) $twinfield_header->SessionID;
 
 		return $session_id;

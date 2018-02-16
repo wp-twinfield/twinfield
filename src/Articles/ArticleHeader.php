@@ -61,18 +61,38 @@ class ArticleHeader {
 
 	}
 
+	/**
+	 * Set office.
+	 *
+	 * @param string $office The office.
+	 */
 	public function set_office( $office ) {
 		$this->office = $office;
 	}
 
+	/**
+	 * Set code.
+	 *
+	 * @param string $code The code.
+	 */
 	public function set_code( $code ) {
 		$this->code = $code;
 	}
 
+	/**
+	 * Set type.
+	 *
+	 * @param string $type The type.
+	 */
 	public function set_type( $type ) {
 		$this->type = $type;
 	}
 
+	/**
+	 * Set name.
+	 *
+	 * @param string $name The name.
+	 */
 	public function set_name( $name ) {
 		$this->name = $name;
 	}

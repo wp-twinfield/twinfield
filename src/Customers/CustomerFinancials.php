@@ -52,7 +52,7 @@ class CustomerFinancials {
 	/**
 	 * Set the number of due days.
 	 *
-	 * @param int $due_days
+	 * @param int $due_days The due days.
 	 */
 	public function set_due_days( $due_days ) {
 		$this->due_days = $due_days;
@@ -70,7 +70,7 @@ class CustomerFinancials {
 	/**
 	 * Set ebilling flag.
 	 *
-	 * @param boolean $ebilling
+	 * @param boolean $ebilling The ebilling flag.
 	 */
 	public function set_ebilling( $ebilling ) {
 		$this->ebilling = $ebilling;
@@ -88,7 +88,7 @@ class CustomerFinancials {
 	/**
 	 * Set ebillmail.
 	 *
-	 * @param string $ebillmail
+	 * @param string $ebillmail The ebill mail.
 	 */
 	public function set_ebillmail( $ebillmail ) {
 		$this->ebillmail = $ebillmail;

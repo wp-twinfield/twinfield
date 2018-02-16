@@ -144,7 +144,7 @@ class SalesInvoiceLine {
 	/**
 	 * Set the unique ID of this sales invoice line.
 	 *
-	 * @param string $id
+	 * @param string $id The ID.
 	 */
 	public function set_id( $id ) {
 		$this->id = $id;
@@ -162,7 +162,7 @@ class SalesInvoiceLine {
 	/**
 	 * Set the article of this sales invoice line.
 	 *
-	 * @param string $article
+	 * @param string $article The article.
 	 */
 	public function set_article( $article ) {
 		$this->article = $article;
@@ -180,7 +180,7 @@ class SalesInvoiceLine {
 	/**
 	 * Set the article of this sales invoice line.
 	 *
-	 * @param string $subarticle
+	 * @param string $subarticle The subarticle.
 	 */
 	public function set_subarticle( $subarticle ) {
 		$this->subarticle = $subarticle;
@@ -198,7 +198,7 @@ class SalesInvoiceLine {
 	/**
 	 * Set the quantity of this sales invoice line.
 	 *
-	 * @param int $quantity
+	 * @param int $quantity The quantity.
 	 */
 	public function set_quantity( $quantity ) {
 		$this->quantity = $quantity;
@@ -216,7 +216,7 @@ class SalesInvoiceLine {
 	/**
 	 * Set the units of this sales invoice line.
 	 *
-	 * @param int $units
+	 * @param int $units The units.
 	 */
 	public function set_units( $units ) {
 		$this->units = $units;
@@ -234,7 +234,7 @@ class SalesInvoiceLine {
 	/**
 	 * Set the VAT code of this sales invoice line.
 	 *
-	 * @param string $vat_code
+	 * @param string $vat_code The VAT code.
 	 */
 	public function set_vat_code( $vat_code ) {
 		$this->vat_code = $vat_code;
@@ -252,7 +252,7 @@ class SalesInvoiceLine {
 	/**
 	 * Get calculate discount on this line.
 	 *
-	 * @param bool $allow
+	 * @param bool $allow Allow discount or premium.
 	 */
 	public function set_allow_discount_or_premium( $allow ) {
 		$this->allow_discount_or_premium = $allow;
@@ -270,7 +270,7 @@ class SalesInvoiceLine {
 	/**
 	 * Set the description of this sales invoice line.
 	 *
-	 * @param string $description
+	 * @param string $description The description.
 	 */
 	public function set_description( $description ) {
 		$this->description = $description;
@@ -288,7 +288,7 @@ class SalesInvoiceLine {
 	/**
 	 * Set the units price without VAT of this sales invoice line.
 	 *
-	 * @param float $units_price_excl
+	 * @param float $units_price_excl The units price without VAT.
 	 */
 	public function set_units_price_excl( $units_price_excl ) {
 		$this->units_price_excl = $units_price_excl;
@@ -306,7 +306,7 @@ class SalesInvoiceLine {
 	/**
 	 * Set the value without VAT of this sales invoice line.
 	 *
-	 * @param float $value_excl
+	 * @param float $value_excl the value without VAT.
 	 */
 	public function set_value_excl( $value_excl ) {
 		$this->value_excl = $value_excl;
@@ -324,7 +324,7 @@ class SalesInvoiceLine {
 	/**
 	 * Set the VAT value of this sales invoice line.
 	 *
-	 * @param float $vat_value
+	 * @param float $vat_value The VAT value.
 	 */
 	public function set_vat_value( $vat_value ) {
 		$this->vat_value = $vat_value;
@@ -342,7 +342,7 @@ class SalesInvoiceLine {
 	/**
 	 * Set the value with VAT of this sales invoice line.
 	 *
-	 * @param float $value_inc
+	 * @param float $value_inc The value with VAT.
 	 */
 	public function set_value_inc( $value_inc ) {
 		$this->value_inc = $value_inc;
@@ -360,7 +360,7 @@ class SalesInvoiceLine {
 	/**
 	 * Set the free text 1 value of this sales invoice line.
 	 *
-	 * @param string $text
+	 * @param string $text Free text 1.
 	 */
 	public function set_free_text_1( $text ) {
 		$this->free_text_1 = $text;
@@ -378,7 +378,7 @@ class SalesInvoiceLine {
 	/**
 	 * Set the free text 2 value of this sales invoice line.
 	 *
-	 * @param string $text
+	 * @param string $text Free text 2.
 	 */
 	public function set_free_text_2( $text ) {
 		$this->free_text_2 = $text;
@@ -396,7 +396,7 @@ class SalesInvoiceLine {
 	/**
 	 * Set the free text 3 value of this sales invoice line.
 	 *
-	 * @param string $text
+	 * @param string $text Free text 3.
 	 */
 	public function set_free_text_3( $text ) {
 		$this->free_text_3 = $text;

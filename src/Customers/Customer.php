@@ -71,7 +71,7 @@ class Customer extends Contact {
 	/**
 	 * Set code.
 	 *
-	 * @param string $code
+	 * @param string $code The code.
 	 */
 	public function set_code( $code ) {
 		$this->code = $code;
@@ -89,7 +89,7 @@ class Customer extends Contact {
 	/**
 	 * Set shortname.
 	 *
-	 * @param string $shortname
+	 * @param string $shortname The shortname.
 	 */
 	public function set_shortname( $shortname ) {
 		$this->shortname = $shortname;

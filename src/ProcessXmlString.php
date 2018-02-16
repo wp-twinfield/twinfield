@@ -24,7 +24,7 @@ class ProcessXmlString {
 	 *
 	 * @var string
 	 */
-	private $xmlRequest;
+	private $xmlRequest; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
 	 * Constructs and initiailzes an process XML string object.
@@ -32,7 +32,7 @@ class ProcessXmlString {
 	 * @param string $xml The XML string.
 	 */
 	public function __construct( $xml ) {
-		$this->xmlRequest = (string) $xml;
+		$this->xmlRequest = (string) $xml; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 	}
 
 	/**
@@ -41,6 +41,6 @@ class ProcessXmlString {
 	 * @return string
 	 */
 	public function __toString() {
-		return $this->xmlRequest;
+		return $this->xmlRequest; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 	}
 }

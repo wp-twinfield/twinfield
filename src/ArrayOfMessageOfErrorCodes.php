@@ -24,14 +24,13 @@ class ArrayOfMessageOfErrorCodes implements \IteratorAggregate {
 	 *
 	 * @var mixed
 	 */
-	private $MessageOfErrorCodes;
+	private $MessageOfErrorCodes; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
-	 * Constructs and initializes an array of array of string object
-	 *
-	 * @param array $data An array of array of strings
+	 * Constructs and initializes an array of array of string object.
 	 */
 	public function __construct() {
+		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 		$this->MessageOfErrorCodes = array();
 	}
 
@@ -40,6 +39,8 @@ class ArrayOfMessageOfErrorCodes implements \IteratorAggregate {
 	 * This function will correct this when needed.
 	 */
 	public function get_array() {
+		// phpcs:disable WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
+
 		if ( is_array( $this->MessageOfErrorCodes ) ) {
 			return $this->MessageOfErrorCodes;
 		} else {
@@ -49,17 +50,23 @@ class ArrayOfMessageOfErrorCodes implements \IteratorAggregate {
 				return array();
 			}
 		}
+
+		// phpcs:enable
 	}
 
 	/**
 	 * Add the specified array of string to this object.
 	 *
-	 * @param ArrayOfString $array add the specified array.
+	 * @param MessageOfErrorCodes $error Add the specified array.
 	 */
 	public function add( MessageOfErrorCodes $error ) {
+		// phpcs:disable WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
+
 		$this->MessageOfErrorCodes = $this->get_array();
 
 		$this->MessageOfErrorCodes[] = $error;
+
+		// phpcs:enable
 	}
 
 	/**

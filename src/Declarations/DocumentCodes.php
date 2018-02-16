@@ -2,9 +2,9 @@
 /**
  * Document codes
  *
- * @since      1.0.0
+ * @since   1.0.0
  *
- * @package    Pronamic/WP/Twinfield
+ * @package Pronamic/WP/Twinfield
  */
 
 namespace Pronamic\WP\Twinfield\Declarations;
@@ -14,29 +14,29 @@ namespace Pronamic\WP\Twinfield\Declarations;
  *
  * This class contains constants for different Twinfield declaration document codes.
  *
- * @since      1.0.0
- * @package    Pronamic/WP/Twinfield
- * @author     Remco Tolsma <info@remcotolsma.nl>
+ * @since   1.0.0
+ * @package Pronamic/WP/Twinfield
+ * @author  Remco Tolsma <info@remcotolsma.nl>
  */
 class DocumentCodes {
-    /**
-     * VAT Turnover.
-     *
-     * @var string
-     */
-    const VATTURNOVER = 'VATTURNOVER';
+	/**
+	 * VAT Turnover.
+	 *
+	 * @var string
+	 */
+	const VATTURNOVER = 'VATTURNOVER';
 
-    /**
-     * VAT ICT
-     *
-     * @var string
-     */
-    const VATICT = 'VATICT';
+	/**
+	 * VAT ICT
+	 *
+	 * @var string
+	 */
+	const VATICT = 'VATICT';
 
-    /**
-     * Tax group.
-     *
-     * @var string
-     */
-    const TAXGROUP = 'TAXGROUP';
+	/**
+	 * Tax group.
+	 *
+	 * @var string
+	 */
+	const TAXGROUP = 'TAXGROUP';
 }

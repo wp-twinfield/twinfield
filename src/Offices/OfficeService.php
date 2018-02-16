@@ -24,14 +24,14 @@ class OfficeService {
 	/**
 	 * The XML processor wich is used to connect with Twinfield.
 	 *
-	 * @param XMLProcessor
+	 * @var XMLProcessor
 	 */
 	private $xml_processor;
 
 	/**
 	 * Constructs and initializes an sales invoice service.
 	 *
-	 * @param XMLProcessor $xml_processor
+	 * @param XMLProcessor $xml_processor The XML processor.
 	 */
 	public function __construct( XMLProcessor $xml_processor ) {
 		$this->xml_processor = $xml_processor;

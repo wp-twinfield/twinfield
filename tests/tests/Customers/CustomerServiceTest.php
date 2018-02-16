@@ -74,10 +74,10 @@ class CustomerServiceTest extends TestCase {
 	/**
 	 * Test get customer.
 	 *
-	 * @param boolean $mock  Flag to mock Twinfield response.
-	 * @param string $office The office to retrive the customer from.
-	 * @param string $code   The code of the customer to retrieve.
-	 * @param mixed  $return The expected Twinfield return.
+	 * @param boolean $mock   Flag to mock Twinfield response.
+	 * @param string  $office The office to retrive the customer from.
+	 * @param string  $code   The code of the customer to retrieve.
+	 * @param mixed   $return The expected Twinfield return.
 	 * @dataProvider get_customer_provider
 	 */
 	public function test_get_customer( $mock, $office, $code, $return ) {
@@ -149,6 +149,9 @@ class CustomerServiceTest extends TestCase {
 	/**
 	 * Test insert customer.
 	 *
+	 * @param boolean $mock   Flag to mock or not.
+	 * @param string  $office Office code.
+	 * @param string  $name   Office name.
 	 * @dataProvider insert_customer_provider
 	 */
 	public function test_insert_customer( $mock, $office, $name ) {
@@ -178,22 +181,22 @@ class CustomerServiceTest extends TestCase {
 		if ( $no_mock ) {
 			return array(
 				array(
-					'mock'       => false,
-					'office'     => getenv( 'TWINFIELD_OFFICE_CODE' ),
-					'name'       => 'Test',
+					'mock'   => false,
+					'office' => getenv( 'TWINFIELD_OFFICE_CODE' ),
+					'name'   => 'Test',
 				),
 			);
 		} else {
 			return array(
 				array( // Result.
-					'mock'       => 'insert-dimension-result-1.xml',
-					'office'     => '11024',
-					'name'       => 'Test',
+					'mock'   => 'insert-dimension-result-1.xml',
+					'office' => '11024',
+					'name'   => 'Test',
 				),
 				array( // No office.
-					'mock'       => 'insert-dimension-office-no.xml',
-					'office'     => null,
-					'name'       => 'Test',
+					'mock'   => 'insert-dimension-office-no.xml',
+					'office' => null,
+					'name'   => 'Test',
 				),
 			);
 		}

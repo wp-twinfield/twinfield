@@ -24,26 +24,26 @@ class MessageOfErrorCodes {
 	 *
 	 * @var string
 	 */
-	private $Type;
+	private $Type; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
 	 * Text of error
 	 *
 	 * @var string
 	 */
-	private $Text;
+	private $Text; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
 	 * Code of error
 	 *
 	 * @var string
 	 */
-	private $Code;
+	private $Code; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
 	 * Parameters of error
 	 *
 	 * @var ArrayOfString
 	 */
-	private $Parameters;
+	private $Parameters; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 }

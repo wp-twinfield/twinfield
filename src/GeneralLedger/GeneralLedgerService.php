@@ -27,14 +27,14 @@ class GeneralLedgerService {
 	/**
 	 * The browser wich is used to connect with Twinfield.
 	 *
-	 * @param Browser
+	 * @var Browser
 	 */
 	private $browser;
 
 	/**
 	 * Constructs and initializes an sales invoice service.
 	 *
-	 * @param Browser $browser
+	 * @param Browser $browser The browser.
 	 */
 	public function __construct( Browser $browser ) {
 		$this->browser = $browser;
@@ -43,6 +43,9 @@ class GeneralLedgerService {
 	/**
 	 * Get lines.
 	 *
+	 * @param string $office_code    The office code.
+	 * @param string $general_ledger The general ledger.
+	 * @param int    $year           The year.
 	 * @return array
 	 */
 	public function get_transaction_lines( $office_code, $general_ledger, $year ) {

@@ -73,7 +73,7 @@ class Contact {
 	/**
 	 * Set office
 	 *
-	 * @param string $office
+	 * @param string $office The office.
 	 */
 	public function set_office( $office ) {
 		$this->office = $office;
@@ -91,7 +91,7 @@ class Contact {
 	/**
 	 * Set name.
 	 *
-	 * @param string $name
+	 * @param string $name The name.
 	 */
 	public function set_name( $name ) {
 		$this->name = $name;

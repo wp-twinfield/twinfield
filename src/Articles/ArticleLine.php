@@ -33,6 +33,11 @@ class ArticleLine {
 
 	}
 
+	/**
+	 * Set name.
+	 *
+	 * @param string $name The name.
+	 */
 	public function set_name( $name ) {
 		$this->name = $name;
 	}

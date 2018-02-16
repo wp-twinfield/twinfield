@@ -38,7 +38,6 @@ class Client {
 	/**
 	 * Get SOAP Client options.
 	 *
-	 * @param array $options
 	 * @return array
 	 */
 	public static function get_soap_client_options() {
@@ -84,6 +83,8 @@ class Client {
 			return false;
 		}
 
+		// phpcs:disable WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- XML tag.
+
 		if ( ! isset( $soap_envelope->Header ) ) {
 			return false;
 		}
@@ -93,6 +94,8 @@ class Client {
 		$twinfield_header = $soap_header->children( 'http://www.twinfield.com/' )->Header;
 
 		$session_id = (string) $twinfield_header->SessionID;
+
+		// phpcs:enable
 
 		return $session_id;
 	}
@@ -137,7 +140,7 @@ class Client {
 			return false;
 		}
 
-		// OK
+		// OK.
 		$session = new Session( $logon_response->session_id, $logon_response->get_cluster() );
 
 		return $session;

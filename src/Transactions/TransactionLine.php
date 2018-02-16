@@ -45,16 +45,22 @@ class TransactionLine {
 
 	/**
 	 * Input date.
+	 *
+	 * @var DateTime
 	 */
 	private $input_date;
 
 	/**
 	 * Year.
+	 *
+	 * @var string
 	 */
 	private $year;
 
 	/**
 	 * Period.
+	 *
+	 * @var string
 	 */
 	private $period;
 
@@ -77,7 +83,7 @@ class TransactionLine {
 	/**
 	 * Set the unique ID of this transaction line.
 	 *
-	 * @param string $id
+	 * @param string $id The ID.
 	 */
 	public function set_id( $id ) {
 		$this->id = $id;
@@ -86,7 +92,7 @@ class TransactionLine {
 	/**
 	 * Get the unique key of this transaction line.
 	 *
-	 * @return string
+	 * @return string The key.
 	 */
 	public function get_key() {
 		return $this->key;
@@ -95,7 +101,7 @@ class TransactionLine {
 	/**
 	 * Set the unique key of this transaction line.
 	 *
-	 * @param string $id
+	 * @param string $key The key.
 	 */
 	public function set_key( $key ) {
 		$this->key = $key;
@@ -113,7 +119,7 @@ class TransactionLine {
 	/**
 	 * Set the status of this transaction line.
 	 *
-	 * @param string $status
+	 * @param string $status The status.
 	 */
 	public function set_status( $status ) {
 		$this->status = $status;
@@ -131,7 +137,7 @@ class TransactionLine {
 	/**
 	 * Set the type of this transaction line.
 	 *
-	 * @param string $type
+	 * @param string $type The type.
 	 */
 	public function set_type( $type ) {
 		$this->type = $type;
@@ -149,7 +155,7 @@ class TransactionLine {
 	/**
 	 * Set dimension 1 of this transaction line.
 	 *
-	 * @param TransactionLineDimension $dimension
+	 * @param TransactionLineDimension $dimension The dimension.
 	 */
 	public function set_dimension_1( TransactionLineDimension $dimension ) {
 		$this->dimension_1 = $dimension;
@@ -167,7 +173,7 @@ class TransactionLine {
 	/**
 	 * Set dimension 2 of this transaction line.
 	 *
-	 * @param TransactionLineDimension $dimension
+	 * @param TransactionLineDimension $dimension The dimension.
 	 */
 	public function set_dimension_2( TransactionLineDimension $dimension ) {
 		$this->dimension_2 = $dimension;
@@ -185,7 +191,7 @@ class TransactionLine {
 	/**
 	 * Set the value of this transaction line.
 	 *
-	 * @param string $value
+	 * @param string $value The value.
 	 */
 	public function set_value( $value ) {
 		$this->value = $value;
@@ -203,7 +209,7 @@ class TransactionLine {
 	/**
 	 * Set the base value of this transaction line.
 	 *
-	 * @param string $value
+	 * @param string $value The base value.
 	 */
 	public function set_base_value( $value ) {
 		$this->base_value = $value;
@@ -221,7 +227,7 @@ class TransactionLine {
 	/**
 	 * Set the open base value of this transaction line.
 	 *
-	 * @param string $value
+	 * @param string $value The value.
 	 */
 	public function set_open_base_value( $value ) {
 		$this->open_base_value = $value;
@@ -239,7 +245,7 @@ class TransactionLine {
 	/**
 	 * Set the description of this transaction line.
 	 *
-	 * @param string $description
+	 * @param string $description The description.
 	 */
 	public function set_description( $description ) {
 		$this->description = $description;
@@ -257,7 +263,7 @@ class TransactionLine {
 	/**
 	 * Set the invoice number of this transaction line.
 	 *
-	 * @param string $invoice_number
+	 * @param string $invoice_number The invoice number.
 	 */
 	public function set_invoice_number( $invoice_number ) {
 		$this->invoice_number = $invoice_number;
@@ -275,7 +281,7 @@ class TransactionLine {
 	/**
 	 * Set debit credit.
 	 *
-	 * @param string $debit_credit
+	 * @param string $debit_credit The debit/credit value.
 	 */
 	public function set_debit_credit( $debit_credit ) {
 		$this->debit_credit = $debit_credit;
@@ -311,7 +317,7 @@ class TransactionLine {
 	/**
 	 * Set the date of this transaction line.
 	 *
-	 * @param \DateTime $date
+	 * @param \DateTime $date The date.
 	 */
 	public function set_date( \DateTime $date ) {
 		$this->date = $date;
@@ -329,7 +335,7 @@ class TransactionLine {
 	/**
 	 * Set the input date of this transaction line.
 	 *
-	 * @param \DateTime $date
+	 * @param \DateTime $date The input date.
 	 */
 	public function set_input_date( \DateTime $date ) {
 		$this->input_date = $date;
@@ -347,7 +353,7 @@ class TransactionLine {
 	/**
 	 * Set year.
 	 *
-	 * @param int $year
+	 * @param int $year The year.
 	 */
 	public function set_year( $year ) {
 		$this->year = $year;
@@ -365,7 +371,7 @@ class TransactionLine {
 	/**
 	 * Set period.
 	 *
-	 * @param int $period
+	 * @param int $period The period.
 	 */
 	public function set_period( $period ) {
 		$this->period = $period;

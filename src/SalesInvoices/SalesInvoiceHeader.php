@@ -108,7 +108,7 @@ class SalesInvoiceHeader {
 	/**
 	 * Set office
 	 *
-	 * @param string $office
+	 * @param string $office The office.
 	 */
 	public function set_office( $office ) {
 		$this->office = $office;
@@ -126,7 +126,7 @@ class SalesInvoiceHeader {
 	/**
 	 * Set type
 	 *
-	 * @param string $office
+	 * @param string $type The type.
 	 */
 	public function set_type( $type ) {
 		$this->type = $type;
@@ -144,7 +144,7 @@ class SalesInvoiceHeader {
 	/**
 	 * Set number
 	 *
-	 * @param string $number
+	 * @param string $number The number.
 	 */
 	public function set_number( $number ) {
 		$this->number = $number;
@@ -162,7 +162,7 @@ class SalesInvoiceHeader {
 	/**
 	 * Set date.
 	 *
-	 * @param \DateTime $date
+	 * @param \DateTime $date The date.
 	 */
 	public function set_date( \DateTime $date = null ) {
 		$this->date = $date;
@@ -180,7 +180,7 @@ class SalesInvoiceHeader {
 	/**
 	 * Set due date.
 	 *
-	 * @param \DateTime $date
+	 * @param \DateTime $due_date The due date.
 	 */
 	public function set_due_date( \DateTime $due_date = null ) {
 		$this->due_date = $due_date;
@@ -198,7 +198,7 @@ class SalesInvoiceHeader {
 	/**
 	 * Set bank.
 	 *
-	 * @param string $bank
+	 * @param string $bank The bank.
 	 */
 	public function set_bank( $bank ) {
 		$this->bank = $bank;
@@ -216,7 +216,7 @@ class SalesInvoiceHeader {
 	/**
 	 * Set customer.
 	 *
-	 * @param string $customer
+	 * @param string $customer The customer.
 	 */
 	public function set_customer( $customer ) {
 		$this->customer = $customer;
@@ -234,7 +234,7 @@ class SalesInvoiceHeader {
 	/**
 	 * Set status.
 	 *
-	 * @param string $status
+	 * @param string $status The status.
 	 */
 	public function set_status( $status ) {
 		$this->status = $status;
@@ -252,7 +252,7 @@ class SalesInvoiceHeader {
 	/**
 	 * Set payment method.
 	 *
-	 * @param string $customer
+	 * @param string $payment_method The payment method.
 	 */
 	public function set_payment_method( $payment_method ) {
 		$this->payment_method = $payment_method;
@@ -270,7 +270,7 @@ class SalesInvoiceHeader {
 	/**
 	 * Set header text.
 	 *
-	 * @param string $text
+	 * @param string $text The header text.
 	 */
 	public function set_header_text( $text ) {
 		$this->header_text = $text;
@@ -288,7 +288,7 @@ class SalesInvoiceHeader {
 	/**
 	 * Set footer text.
 	 *
-	 * @param string $text
+	 * @param string $text The footer text.
 	 */
 	public function set_footer_text( $text ) {
 		$this->footer_text = $text;

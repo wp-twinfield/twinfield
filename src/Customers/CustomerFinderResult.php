@@ -61,7 +61,7 @@ class CustomerFinderResult {
 	/**
 	 * Set code.
 	 *
-	 * @param string $code
+	 * @param string $code The code.
 	 */
 	public function set_code( $code ) {
 		$this->code = $code;
@@ -79,7 +79,7 @@ class CustomerFinderResult {
 	/**
 	 * Set name.
 	 *
-	 * @param string $name
+	 * @param string $name The name.
 	 */
 	public function set_name( $name ) {
 		$this->name = $name;
@@ -97,7 +97,7 @@ class CustomerFinderResult {
 	/**
 	 * Set bank account number.
 	 *
-	 * @param string $number
+	 * @param string $number The bank account number.
 	 */
 	public function set_bank_account_number( $number ) {
 		$this->bank_account_number = $number;

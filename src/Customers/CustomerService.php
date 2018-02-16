@@ -33,14 +33,14 @@ class CustomerService {
 	/**
 	 * The XML processor wich is used to connect with Twinfield.
 	 *
-	 * @param XMLProcessor
+	 * @var XMLProcessor
 	 */
 	private $xml_processor;
 
 	/**
 	 * Constructs and initializes an sales invoice service.
 	 *
-	 * @param XMLProcessor $xml_processor
+	 * @param XMLProcessor $xml_processor The XML processor.
 	 */
 	public function __construct( XMLProcessor $xml_processor ) {
 		$this->xml_processor = $xml_processor;
@@ -50,8 +50,8 @@ class CustomerService {
 	/**
 	 * Get the specified customer.
 	 *
-	 * @param string $office
-	 * @param string $code
+	 * @param string $office The office.
+	 * @param string $code   The code.
 	 * @return Customer
 	 */
 	public function get_customer( $office, $code ) {
@@ -75,7 +75,7 @@ class CustomerService {
 	/**
 	 * Insert the specified customer.
 	 *
-	 * @param Customer $customer
+	 * @param Customer $customer The customer.
 	 * @return Customer
 	 */
 	public function insert_customer( Customer $customer ) {
@@ -101,7 +101,7 @@ class CustomerService {
 	 * https://github.com/WordPress/WordPress/blob/4.3/wp-includes/post.php#L3607-L3665
 	 *
 	 * @param Customer $customer The customer to update.
-	 * @return 
+	 * @return boolean
 	 */
 	public function update_customer( Customer $customer ) {
 		// @see https://github.com/WordPress/WordPress/blob/4.3/wp-includes/post.php#L3627-L3628

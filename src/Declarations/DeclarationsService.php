@@ -47,6 +47,8 @@ class DeclarationsService extends AbstractClient {
 	 */
 	public function get_all_summaries( $office_code ) {
 		$parameters = new \stdClass();
+
+		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 		$parameters->companyCode = $office_code;
 
 		return $this->soap_client->GetAllSummaries( $parameters );
@@ -56,8 +58,8 @@ class DeclarationsService extends AbstractClient {
 	 * Get payment reference for the specified document code and ID.
 	 *
 	 * @see https://c5.twinfield.de/webservices/documentation/#/ApiReference/Miscellaneous/Declaration
-	 * @param string $document_id
-	 * @param string $document_code
+	 * @param string $document_id   The document ID.
+	 * @param string $document_code The document code.
 	 * @return string
 	 */
 	public function get_payment_reference( $document_id, $document_code = null ) {
@@ -74,7 +76,10 @@ class DeclarationsService extends AbstractClient {
 				break;
 		}
 
+		// phpcs:disable WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
+
 		$parameters = new \stdClass();
+
 		$parameters->documentId = $document_id;
 
 		$response = $this->soap_client->__soapCall( $function, array( $parameters ) );
@@ -82,13 +87,15 @@ class DeclarationsService extends AbstractClient {
 		if ( isset( $response->paymentReference ) ) {
 			return $response->paymentReference;
 		}
+
+		// phpcs:enable
 	}
 
 	/**
 	 * Get VAT return payment reference for the specified document ID.
 	 *
 	 * @see https://c5.twinfield.de/webservices/documentation/#/ApiReference/Miscellaneous/Declaration
-	 * @param string $document_id
+	 * @param string $document_id The document ID.
 	 * @return string
 	 */
 	public function get_vat_return_payment_reference( $document_id ) {
@@ -100,7 +107,7 @@ class DeclarationsService extends AbstractClient {
 	 * Get TAX group payment reference for the specified document ID.
 	 *
 	 * @see https://c5.twinfield.de/webservices/documentation/#/ApiReference/Miscellaneous/Declaration
-	 * @param string $document_id
+	 * @param string $document_id The document ID.
 	 * @return string
 	 */
 	public function get_tax_group_vat_return_payment_reference( $document_id ) {
@@ -112,8 +119,8 @@ class DeclarationsService extends AbstractClient {
 	 * Get XBRL for the specified document code and ID.
 	 *
 	 * @see https://c5.twinfield.de/webservices/documentation/#/ApiReference/Miscellaneous/Declaration
-	 * @param string $document_id
-	 * @param string $document_code
+	 * @param string $document_id   The document ID.
+	 * @param string $document_code The document code.
 	 * @return string
 	 */
 	public function get_xbrl( $document_id, $document_code = null ) {
@@ -134,8 +141,11 @@ class DeclarationsService extends AbstractClient {
 				break;
 		}
 
+		// phpcs:disable WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
+
 		$parameters = new \stdClass();
-		$parameters->documentId = $document_id;
+
+		$parameters->documentId          = $document_id;
 		$parameters->isMessageIdRequired = true;
 
 		$response = $this->soap_client->__soapCall( $function, array( $parameters ) );
@@ -143,13 +153,15 @@ class DeclarationsService extends AbstractClient {
 		if ( isset( $response->vatReturn, $response->vatReturn->any ) ) {
 			return $response->vatReturn->any;
 		}
+
+		// phpcs:enable
 	}
 
 	/**
 	 * Get VAT return XBRL for the specified document ID.
 	 *
 	 * @see https://c5.twinfield.de/webservices/documentation/#/ApiReference/Miscellaneous/Declaration
-	 * @param string $document_id
+	 * @param string $document_id The document ID.
 	 * @return string
 	 */
 	public function get_vat_return_as_xbrl( $document_id ) {
@@ -160,7 +172,7 @@ class DeclarationsService extends AbstractClient {
 	 * Get ICT VAT return XBRL for the specified document ID.
 	 *
 	 * @see https://c5.twinfield.de/webservices/documentation/#/ApiReference/Miscellaneous/Declaration
-	 * @param string $document_id
+	 * @param string $document_id The document ID.
 	 * @return string
 	 */
 	public function get_ict_return_as_xbrl( $document_id ) {
@@ -171,20 +183,10 @@ class DeclarationsService extends AbstractClient {
 	 * Get TAX group VAT return XBRL for the specified document ID.
 	 *
 	 * @see https://c5.twinfield.de/webservices/documentation/#/ApiReference/Miscellaneous/Declaration
-	 * @param string $document_id
+	 * @param string $document_id The document ID.
 	 * @return string
 	 */
 	public function get_tax_group_vat_return_as_xbrl( $document_id ) {
 		return $this->get_xbrl( $document_id, DocumentCodes::TAXGROUP );
-	}
-
-	/**
-	 * Test.
-	 */
-	public function test() {
-		var_dump( $test->vatReturn );
-
-		var_dump( $this->soap_client->__getFunctions() );
-		var_dump( $this->soap_client->__getTypes() );
 	}
 }

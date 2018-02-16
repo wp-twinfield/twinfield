@@ -51,6 +51,7 @@ class GeneralLedgerFinderTest extends TestCase {
 	/**
 	 * Test get general ledger.
 	 *
+	 * @param string $search The search pattern. May contain wildcards * and ?.
 	 * @dataProvider test_provider
 	 */
 	public function test_get_general_ledger( $search ) {
@@ -60,8 +61,7 @@ class GeneralLedgerFinderTest extends TestCase {
 			1,
 			100
 		);
-var_dump( $general_ledger );
-exit;
+
 		$this->assertInternalType( 'array', $general_ledger );
 	}
 

@@ -24,7 +24,7 @@ class ProcessXmlStringResponse {
 	 *
 	 * @var string
 	 */
-	private $ProcessXmlStringResult;
+	private $ProcessXmlStringResult; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
 	 * Get the result from thhis process XML string response object
@@ -32,7 +32,7 @@ class ProcessXmlStringResponse {
 	 * @return string An XML string.
 	 */
 	public function get_result() {
-		return $this->ProcessXmlStringResult;
+		return $this->ProcessXmlStringResult; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 	}
 
 	/**

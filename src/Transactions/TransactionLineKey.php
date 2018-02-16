@@ -49,6 +49,11 @@ class TransactionLineKey {
 
 	/**
 	 * Constructs and initialize a Twinfield transaction line.
+	 *
+	 * @param string $office The office code.
+	 * @param string $code   The code.
+	 * @param string $number The number.
+	 * @param string $line   The line number.
 	 */
 	public function __construct( $office, $code, $number, $line ) {
 		$this->office = $office;

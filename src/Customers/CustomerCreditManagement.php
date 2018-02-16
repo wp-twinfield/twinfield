@@ -45,7 +45,7 @@ class CustomerCreditManagement {
 	/**
 	 * Set if or how to send reminder.
 	 *
-	 * @param string $send_reminder Set how This can ben true, email, false
+	 * @param string $send_reminder Set how This can ben true, email, false.
 	 */
 	public function set_send_reminder( $send_reminder ) {
 		$this->send_reminder = $send_reminder;
@@ -63,7 +63,7 @@ class CustomerCreditManagement {
 	/**
 	 * Set the reminder email.
 	 *
-	 * @param string $send_reminder
+	 * @param string $reminder_email The reminder email.
 	 */
 	public function set_reminder_email( $reminder_email ) {
 		$this->reminder_email = $reminder_email;

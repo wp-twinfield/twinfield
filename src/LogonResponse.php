@@ -24,14 +24,14 @@ class LogonResponse {
 	 *
 	 * @var string
 	 */
-	private $LogonResult;
+	private $LogonResult; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
 	 * Next required log-on action.
 	 *
 	 * @var string
 	 */
-	private $nextAction;
+	private $nextAction; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
 	 * Cluser.
@@ -57,7 +57,7 @@ class LogonResponse {
 	 * @return string
 	 */
 	public function get_next_action() {
-		return $this->nextAction;
+		return $this->nextAction; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 	}
 
 	/**
@@ -66,7 +66,7 @@ class LogonResponse {
 	 * @return string
 	 */
 	public function get_result() {
-		return $this->LogonResult;
+		return $this->LogonResult; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 	}
 
 	/**

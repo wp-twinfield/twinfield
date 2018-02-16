@@ -38,7 +38,7 @@ class ArticleUnserializer extends Unserializer {
 			$header->set_name( (string) $element->header->name );
 			$header->shortname = (string) $element->header->shortname;
 
-			$lines  = array();
+			$lines = array();
 
 			foreach ( $element->lines->line as $element_line ) {
 				$line = new ArticleLine();

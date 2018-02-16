@@ -24,21 +24,21 @@ class FinderData {
 	 *
 	 * @var int
 	 */
-	private $TotalRows;
+	private $TotalRows; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
 	 * The column names.
 	 *
 	 * @var ArrayOfString
 	 */
-	private $Columns;
+	private $Columns; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
 	 * The requested data items.
 	 *
 	 * @var ArrayOfArrayOfString
 	 */
-	private $Items;
+	private $Items; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
 	 * Get the total number of search results.
@@ -46,7 +46,7 @@ class FinderData {
 	 * @return int
 	 */
 	public function get_total_rows() {
-		return $this->TotalRows;
+		return $this->TotalRows; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 	}
 
 	/**
@@ -55,7 +55,7 @@ class FinderData {
 	 * @return ArrayOfString
 	 */
 	public function get_columns() {
-		return $this->Columns;
+		return $this->Columns; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 	}
 
 	/**
@@ -64,6 +64,6 @@ class FinderData {
 	 * @return ArrayOfArrayOfString
 	 */
 	public function get_items() {
-		return $this->Items;
+		return $this->Items; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 	}
 }

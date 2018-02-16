@@ -27,9 +27,7 @@ class ArrayOfString implements \ArrayAccess, \IteratorAggregate {
 	private $string;
 
 	/**
-	 * Constructs and initializes an array of array of string object
-	 *
-	 * @param array $data An array of array of strings
+	 * Constructs and initializes an array of array of string object.
 	 */
 	public function __construct() {
 		$this->string = array();
@@ -38,7 +36,7 @@ class ArrayOfString implements \ArrayAccess, \IteratorAggregate {
 	/**
 	 * Add the specified string to this array of string object.
 	 *
-	 * @param $string add the specified string.
+	 * @param string $string Add the specified string.
 	 */
 	public function add( $string ) {
 		$this->string[] = $string;
@@ -47,7 +45,7 @@ class ArrayOfString implements \ArrayAccess, \IteratorAggregate {
 	/**
 	 * Check if the specified offset exists.
 	 *
-	 * @param mixed $offset
+	 * @param mixed $offset The offset.
 	 * @return boolean
 	 */
 	public function offsetExists( $offset ) {
@@ -57,7 +55,7 @@ class ArrayOfString implements \ArrayAccess, \IteratorAggregate {
 	/**
 	 * Get the string value at the specified offset.
 	 *
-	 * @param mixed $offset
+	 * @param mixed $offset The offset.
 	 * @return mixed
 	 */
 	public function offsetGet( $offset ) {
@@ -71,8 +69,8 @@ class ArrayOfString implements \ArrayAccess, \IteratorAggregate {
 	/**
 	 * Set the value at the specified offset.
 	 *
-	 * @param mixed $offset
-	 * @param mixed $value
+	 * @param mixed $offset The offset.
+	 * @param mixed $value  The value.
 	 */
 	public function offsetSet( $offset, $value ) {
 		if ( is_null( $offset ) ) {
@@ -85,7 +83,7 @@ class ArrayOfString implements \ArrayAccess, \IteratorAggregate {
 	/**
 	 * Unset the value at the specified offset.
 	 *
-	 * @param mixed $offset
+	 * @param mixed $offset The offset.
 	 */
 	public function offsetUnset( $offset ) {
 		unset( $this->string[ $offset ] );

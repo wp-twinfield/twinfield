@@ -25,14 +25,14 @@ class OfficeFinder {
 	/**
 	 * The finder wich is used to connect with Twinfield.
 	 *
-	 * @param Finder
+	 * @var Finder
 	 */
 	private $finder;
 
 	/**
 	 * Constructs and initializes an custom finder object.
 	 *
-	 * @param Finder $finder
+	 * @param Finder $finder The finder.
 	 */
 	public function __construct( Finder $finder ) {
 		$this->finder = $finder;
@@ -40,11 +40,16 @@ class OfficeFinder {
 
 	/**
 	 * Find customers.
+	 *
+	 * @param string $pattern   The pattern.
+	 * @param string $field     The field.
+	 * @param int    $first_row The first row.
+	 * @param int    $max_rows  The max rows.
 	 */
 	public function get_offices( $pattern, $field, $first_row, $max_rows ) {
 		$offices = array();
 
-		// Request
+		// Request.
 		$search = new Search(
 			FinderTypes::OFF,
 			$pattern,
@@ -55,7 +60,7 @@ class OfficeFinder {
 
 		$response = $this->finder->search( $search );
 
-		// Parse
+		// Parse.
 		if ( $response ) {
 			if ( $response->is_successful() ) {
 				$data = $response->get_data();
@@ -65,9 +70,9 @@ class OfficeFinder {
 				if ( ! is_null( $items ) ) {
 					foreach ( $items as $item ) {
 						$office = new OfficeFinderResult();
+
 						$office->set_code( $item[0] );
 						$office->set_name( $item[1] );
-
 
 						$offices[] = $office;
 					}

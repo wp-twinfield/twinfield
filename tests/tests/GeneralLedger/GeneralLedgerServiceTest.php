@@ -51,7 +51,5 @@ class GeneralLedgerServiceTest extends TestCase {
 		$browse_definition->get_column( 'fin.trs.line.matchstatus' )->equal( 'available' );
 
 		$transaction_lines = $service->get_transaction_lines( $browse_definition );
-
-		var_dump( $transaction_lines );
 	}
 }

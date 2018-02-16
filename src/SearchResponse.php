@@ -24,7 +24,7 @@ class SearchResponse {
 	 *
 	 * @var string
 	 */
-	private $SearchResult;
+	private $SearchResult; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
 	 * The Twinfield search data.
@@ -34,11 +34,12 @@ class SearchResponse {
 	private $data;
 
 	/**
-	 * Helper function to check if this response is successful
+	 * Helper function to check if this response is successful.
 	 *
 	 * @return boolean
 	 */
 	public function is_successful() {
+		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 		$array = $this->SearchResult->get_array();
 
 		return empty( $array );
@@ -50,6 +51,7 @@ class SearchResponse {
 	 * @return string
 	 */
 	public function get_search_result() {
+		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 		return $this->SearchResult;
 	}
 

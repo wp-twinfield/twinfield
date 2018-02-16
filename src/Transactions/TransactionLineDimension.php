@@ -42,6 +42,10 @@ class TransactionLineDimension {
 
 	/**
 	 * Constructs and initialize a Twinfield transaction line.
+	 *
+	 * @param string $code The code.
+	 * @param string $name The name.
+	 * @param string $type The type.
 	 */
 	public function __construct( $code, $name = null, $type = null ) {
 		$this->code = $code;

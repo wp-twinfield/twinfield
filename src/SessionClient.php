@@ -43,6 +43,7 @@ class SessionClient extends AbstractClient {
 	 */
 	public function select_company( $company_code ) {
 		$select_company = new \stdClass();
+
 		$select_company->company = $company_code;
 
 		$response = $this->soap_client->SelectCompany( $select_company );

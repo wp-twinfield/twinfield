@@ -45,14 +45,14 @@ class Search {
 	 *
 	 * @var int
 	 */
-	private $firstRow;
+	private $firstRow; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
 	 * Maximum number of rows to return, usefull for paging.
 	 *
 	 * @var int
 	 */
-	private $maxRows;
+	private $maxRows; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
 	 * Constructs and initializes an Twinfield search object.
@@ -67,7 +67,7 @@ class Search {
 		$this->type     = $type;
 		$this->pattern  = $pattern;
 		$this->field    = $field;
-		$this->firstRow = $first_row;
-		$this->maxRows  = $max_rows;
+		$this->firstRow = $first_row; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
+		$this->maxRows  = $max_rows; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 	}
 }

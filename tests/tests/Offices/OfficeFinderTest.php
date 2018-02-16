@@ -51,7 +51,7 @@ class OfficeFinderTest extends TestCase {
 	 * Test get offices.
 	 *
 	 * @dataProvider test_provider
-	 * @param string $search
+	 * @param string $search The search pattern. May contain wildcards * and ?.
 	 */
 	public function test_get_offices( $search ) {
 		$offices = $this->finder->get_offices(

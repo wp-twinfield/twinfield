@@ -51,6 +51,7 @@ class CustomerFinderTest extends TestCase {
 	/**
 	 * Test get customers.
 	 *
+	 * @param string $search The search pattern. May contain wildcards * and ?.
 	 * @dataProvider test_provider
 	 */
 	public function test_get_customers( $search ) {

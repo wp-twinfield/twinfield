@@ -36,7 +36,7 @@ class Row {
 	/**
 	 * Constructs and initialize a Twinfield browse data object.
 	 *
-	 * @param \SimpleXMLElement $xml_definiation XML definition.
+	 * @param \SimpleXMLElement $xml_definition XML definition.
 	 */
 	public function __construct( \SimpleXMLElement $xml_definition ) {
 		$this->xml_definition = $xml_definition;
@@ -79,7 +79,7 @@ class Row {
 	/**
 	 * Check if this row has the specified field.
 	 *
-	 * @param string $field
+	 * @param string $field The field.
 	 * @return boolean true if field exists, false otherwise.
 	 */
 	public function has_field( $field ) {
@@ -89,7 +89,7 @@ class Row {
 	/**
 	 * Get field.
 	 *
-	 * @param string $field
+	 * @param string $field The field.
 	 * @return string
 	 */
 	public function get_field( $field ) {
