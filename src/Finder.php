@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield;
 
+use Pronamic\WP\Twinfield\Authentication\AuthenticationStrategy;
+
 /**
  * Finder
  *
@@ -29,10 +31,10 @@ class Finder extends AbstractClient {
 	/**
 	 * Constructs and initializes an finder object.
 	 *
-	 * @param Session $session The Twinfield session.
+	 * @param AuthenticationInfo $authentication_info A Twinfield authentication info object.
 	 */
-	public function __construct( Session $session ) {
-		parent::__construct( self::WSDL_FILE, $session );
+	public function __construct( AuthenticationInfo $authentication_info ) {
+		parent::__construct( self::WSDL_FILE, $authentication_info );
 	}
 
 	/**

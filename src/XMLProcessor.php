@@ -29,10 +29,10 @@ class XMLProcessor extends AbstractClient {
 	/**
 	 * Constructs and initializes an XML processor object.
 	 *
-	 * @param Session $session The Twinfield session.
+	 * @param AuthenticationInfo $authentication_info A Twinfield authentication info object.
 	 */
-	public function __construct( Session $session ) {
-		parent::__construct( self::WSDL_FILE, $session );
+	public function __construct( AuthenticationInfo $authentication_info ) {
+		parent::__construct( self::WSDL_FILE, $authentication_info );
 	}
 
 	/**
