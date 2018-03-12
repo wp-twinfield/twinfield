@@ -90,8 +90,11 @@ class Client {
 			'connection_timeout' => 30,
 			'trace'              => true,
 			'compression'        => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP,
+			// https://github.com/php-twinfield/twinfield/issues/50
 			'cache_wsdl'         => WSDL_CACHE_MEMORY,
-			'keep_alive'         => true,
+			// Disable HTTP Keep Alive to prevent 'error fetching HTTP headers'.
+			// https://github.com/php-twinfield/twinfield/blob/45eb14972daaf60280c428885dce6f1ab190212a/src/Services/BaseService.php
+			'keep_alive'         => false,
 		);
 	}
 
