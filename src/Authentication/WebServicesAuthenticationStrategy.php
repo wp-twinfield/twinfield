@@ -11,6 +11,7 @@ namespace Pronamic\WP\Twinfield\Authentication;
 
 use Pronamic\WP\Twinfield\Credentials;
 use Pronamic\WP\Twinfield\LoginClient;
+use Pronamic\WP\Twinfield\LogonResult;
 
 /**
  * Authentication strategy.
@@ -66,16 +67,14 @@ class WebServicesAuthenticationStrategy extends AuthenticationStrategy {
 		}
 
 		if ( LogonResult::OK === $this->logon_response->get_result() ) {
-			$this->login_client->keep_alive();
-
 			$cluster    = $this->logon_response->get_cluster();
 			$session_id = $this->login_client->get_session_id();
 
-			$soap_header = \SoapHeader( 'http://www.twinfield.com/', 'Header', array(
+			$soap_header = new \SoapHeader( 'http://www.twinfield.com/', 'Header', array(
 				'SessionID' => $session_id,
 			) );
 
-			return AuthenticationInfo( $cluster, $soap_header );
+			return new AuthenticationInfo( $cluster, $soap_header );
 		}
 
 		return false;

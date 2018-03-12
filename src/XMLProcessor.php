@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield;
 
+use Pronamic\WP\Twinfield\Authentication\AuthenticationInfo;
+
 /**
  * XML Processor
  *

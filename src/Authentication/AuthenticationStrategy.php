@@ -23,18 +23,4 @@ abstract class AuthenticationStrategy {
 	 * Login.
 	 */
 	abstract public function login();
-
-	/**
-	 * Get the SOAP Header for authentication.
-	 *
-	 * @return \SoapHeader
-	 */
-	abstract public function get_soap_header();
-
-	/**
-	 * Get the cluster.
-	 *
-	 * @return string
-	 */
-	abstract public function get_cluster();
 }

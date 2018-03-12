@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield;
 
+use Pronamic\WP\Twinfield\Authentication\AuthenticationStrategy;
+
 /**
  * Client
  *
@@ -93,7 +95,6 @@ class Client {
 			// https://github.com/php-twinfield/twinfield/issues/50
 			'cache_wsdl'         => WSDL_CACHE_MEMORY,
 			// Disable HTTP Keep Alive to prevent 'error fetching HTTP headers'.
-			// https://github.com/php-twinfield/twinfield/blob/45eb14972daaf60280c428885dce6f1ab190212a/src/Services/BaseService.php
 			'keep_alive'         => false,
 		);
 	}
