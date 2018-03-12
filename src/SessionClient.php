@@ -9,6 +9,9 @@
 
 namespace Pronamic\WP\Twinfield;
 
+use Pronamic\WP\Twinfield\AbstractService;
+use Pronamic\WP\Twinfield\Client;
+
 /**
  * Session client
  *
@@ -18,7 +21,7 @@ namespace Pronamic\WP\Twinfield;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class SessionClient extends AbstractClient {
+class SessionClient extends AbstractService {
 	/**
 	 * The Twinfield process XML WSDL file.
 	 *
@@ -29,10 +32,10 @@ class SessionClient extends AbstractClient {
 	/**
 	 * Constructs and initializes an session object.
 	 *
-	 * @param AuthenticationInfo $authentication_info A Twinfield authentication info object.
+	 * @param Client $client Twinfield client object.
 	 */
-	public function __construct( AuthenticationInfo $authentication_info ) {
-		parent::__construct( self::WSDL_FILE, $authentication_info );
+	public function __construct( Client $client ) {
+		parent::__construct( self::WSDL_FILE, $client );
 	}
 
 	/**

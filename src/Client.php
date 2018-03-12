@@ -35,14 +35,14 @@ class Client {
 	}
 
 	public function login() {
-		$this->authentication_strategy->login();
+		$this->authentication_info = $this->authentication_strategy->login();
 
 		$this->authenticate_services();
 	}
 
 	private function authenticate_services() {
 		foreach ( $this->services as $service ) {
-			$service->authenticate();
+			$service->authenticate( $this->authentication_info );
 		}
 	}
 
@@ -68,6 +68,8 @@ class Client {
 		switch ( $name ) {
 			case 'finder':
 				return new Finder( $this );
+			case 'processxml':
+				return new XMLProcessor( $this );
 			default:
 				return false;
 		}
@@ -79,6 +81,10 @@ class Client {
 
 	public function get_finder() {
 		return $this->get_service( 'finder' );
+	}
+
+	public function get_xml_processor() {
+		return $this->get_service( 'processxml' );
 	}
 
 	/**

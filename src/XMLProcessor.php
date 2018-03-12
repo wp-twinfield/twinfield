@@ -9,7 +9,8 @@
 
 namespace Pronamic\WP\Twinfield;
 
-use Pronamic\WP\Twinfield\Authentication\AuthenticationInfo;
+use Pronamic\WP\Twinfield\AbstractService;
+use Pronamic\WP\Twinfield\Client;
 
 /**
  * XML Processor
@@ -20,7 +21,7 @@ use Pronamic\WP\Twinfield\Authentication\AuthenticationInfo;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class XMLProcessor extends AbstractClient {
+class XMLProcessor extends AbstractService {
 	/**
 	 * The Twinfield process XML WSDL URL.
 	 *
@@ -31,10 +32,10 @@ class XMLProcessor extends AbstractClient {
 	/**
 	 * Constructs and initializes an XML processor object.
 	 *
-	 * @param AuthenticationInfo $authentication_info A Twinfield authentication info object.
+	 * @param Client $client Twinfield client object.
 	 */
-	public function __construct( AuthenticationInfo $authentication_info ) {
-		parent::__construct( self::WSDL_FILE, $authentication_info );
+	public function __construct( Client $client ) {
+		parent::__construct( self::WSDL_FILE, $client );
 	}
 
 	/**

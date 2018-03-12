@@ -10,7 +10,8 @@
 namespace Pronamic\WP\Twinfield\Declarations;
 
 use Pronamic\WP\Twinfield\Authentication\AuthenticationInfo;
-use Pronamic\WP\Twinfield\AbstractClient;
+use Pronamic\WP\Twinfield\AbstractService;
+use Pronamic\WP\Twinfield\Client;
 use Pronamic\WP\Twinfield\Session;
 
 /**
@@ -22,7 +23,7 @@ use Pronamic\WP\Twinfield\Session;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class DeclarationsService extends AbstractClient {
+class DeclarationsService extends AbstractService {
 	/**
 	 * The Twinfield declarations WSDL URL.
 	 *
@@ -33,10 +34,10 @@ class DeclarationsService extends AbstractClient {
 	/**
 	 * Constructs and initializes a declarations service object.
 	 *
-	 * @param AuthenticationInfo $authentication_info A Twinfield authentication info object.
+	 * @param Client $client Twinfield client object.
 	 */
-	public function __construct( AuthenticationInfo $authentication_info ) {
-		parent::__construct( self::WSDL_FILE, $authentication_info );
+	public function __construct( Client $client ) {
+		parent::__construct( self::WSDL_FILE, $client );
 	}
 
 	/**
