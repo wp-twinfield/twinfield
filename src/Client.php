@@ -76,6 +76,10 @@ class Client {
 	}
 
 	private function set_service( $name, $service ) {
+		if ( $this->authentication_info ) {
+			$service->authenticate( $this->authentication_info );
+		}
+
 		$this->services[ $name ] = $service;
 	}
 
