@@ -34,8 +34,14 @@ class Client {
 		$this->services = array();
 	}
 
+	public function get_cluster() {
+		return $this->cluster;
+	}
+
 	public function login() {
 		$this->authentication_info = $this->authentication_strategy->login();
+
+		$this->cluster = $this->authentication_info->get_cluster();
 
 		$this->authenticate_services();
 	}
