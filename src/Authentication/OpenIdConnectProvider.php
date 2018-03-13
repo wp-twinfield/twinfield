@@ -46,7 +46,7 @@ class OpenIdConnectProvider {
 	private function get_headers() {
 		return array(
 			'Authorization' => $this->get_authorization_header(),
-		),	
+		);
 	}
 
 	public function get_authorize_url( $state ) {
@@ -67,6 +67,8 @@ class OpenIdConnectProvider {
 			'state'         => base64_encode( wp_json_encode( $state ) ),
 			'nonce'         => wp_create_nonce( 'twinfield-auth' ),
 		), $url );
+
+		return $url;
 	}
 
 	public function get_access_token( $code ) {
@@ -92,7 +94,7 @@ class OpenIdConnectProvider {
 		return $data;
 	}
 
-	public function get_token_info( $access_token ) {
+	public function get_access_token_validation( $access_token ) {
 		if ( empty( $access_token ) ) {
 			return false;
 		}
