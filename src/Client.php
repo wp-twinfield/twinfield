@@ -73,9 +73,11 @@ class Client {
 	private function new_service( $name ) {
 		switch ( $name ) {
 			case 'declarations':
-				return new DeclarationsService( $this );
+				return new Declarations\DeclarationsService( $this );
 			case 'finder':
 				return new Finder( $this );
+			case 'session':
+				return new SessionClient( $this );
 			case 'processxml':
 				return new XMLProcessor( $this );
 			default:
