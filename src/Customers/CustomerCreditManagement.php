@@ -65,9 +65,18 @@ class CustomerCreditManagement {
 	/**
 	 * Set the reminder email.
 	 *
-	 * @param EmailList $reminder_email The reminder email.
+	 * @throws InvalidArgumentException If the provided argument is invalid.
+	 * @param EmailList|string $reminder_email The reminder email.
 	 */
-	public function set_reminder_email( EmailList $reminder_email ) {
-		$this->reminder_email = $reminder_email;
+	public function set_reminder_email( $value ) {
+		if ( is_string( $value ) ) {
+			$value = new EmailList( $value );
+		}
+
+		if ( ! $value instanceof EmailList ) {
+			throw new \InvalidArgumentException();
+		}
+
+		$this->reminder_email = $value;
 	}
 }

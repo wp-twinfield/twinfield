@@ -90,9 +90,18 @@ class CustomerFinancials {
 	/**
 	 * Set ebillmail.
 	 *
-	 * @param EmailList $ebillmail The ebill mail.
+	 * @throws InvalidArgumentException If the provided argument is invalid.
+	 * @param EmailList|string $ebillmail The ebill mail.
 	 */
-	public function set_ebillmail( EmailList $ebillmail ) {
-		$this->ebillmail = $ebillmail;
+	public function set_ebillmail( $value ) {
+		if ( is_string( $value ) ) {
+			$value = new EmailList( $value );
+		}
+
+		if ( ! $value instanceof EmailList ) {
+			throw new \InvalidArgumentException();
+		}
+
+		$this->ebillmail = $value;
 	}
 }
