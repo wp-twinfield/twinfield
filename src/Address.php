@@ -19,124 +19,46 @@ namespace Pronamic\WP\Twinfield;
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
 class Address {
-	/**
-	 * ID.
-	 *
-	 * @var string
-	 */
-	private $id;
+	private $data = array(
+		'id'        => null,
+		'type'      => null,
+		'default'   => null,
+		'name'      => null,
+		'country'   => null,
+		'city'      => null,
+		'postcode'  => null,
+		'telephone' => null,
+		'telefax'   => null,
+		'email'     => null,
+		'field_1'   => null,
+		'field_2'   => null,
+		'field_3'   => null,
+		'field_4'   => null,
+		'field_5'   => null,
+		'field_6'   => null,
+	);
 
 	/**
-	 * Type.
+	 * Get property.
 	 *
-	 * @var string
+	 * @see https://github.com/woocommerce/woocommerce/blob/3.3.4/includes/abstracts/abstract-wc-data.php#L624-L644
 	 */
-	private $type;
+	private function get_property( $property ) {
+		if ( array_key_exists( $property, $this->data ) ) {
+			return $this->data[ $property ];
+		}		
+	}
 
 	/**
-	 * Default.
+	 * Set property.
 	 *
-	 * @var string
+	 * @see https://github.com/woocommerce/woocommerce/blob/3.3.4/includes/abstracts/abstract-wc-data.php#L624-L644
 	 */
-	private $default;
-
-	/**
-	 * Name.
-	 *
-	 * @var string
-	 */
-	private $name;
-
-	/**
-	 * Country.
-	 *
-	 * @var string
-	 */
-	private $country;
-
-	/**
-	 * City.
-	 *
-	 * @var string
-	 */
-	private $city;
-
-	/**
-	 * Postcode.
-	 *
-	 * @var string
-	 */
-	private $postcode;
-
-	/**
-	 * Telephone.
-	 *
-	 * @var string
-	 */
-	private $telephone;
-
-	/**
-	 * Telefax.
-	 *
-	 * @var string
-	 */
-	private $telefax;
-
-	/**
-	 * Email.
-	 *
-	 * @var string
-	 */
-	private $email;
-
-	/**
-	 * Contact.
-	 *
-	 * @var string
-	 */
-	private $contact;
-
-	/**
-	 * Field 1.
-	 *
-	 * @var string
-	 */
-	private $field_1;
-
-	/**
-	 * Field 2.
-	 *
-	 * @var string
-	 */
-	private $field_2;
-
-	/**
-	 * Field 3.
-	 *
-	 * @var string
-	 */
-	private $field_3;
-
-	/**
-	 * Field 4.
-	 *
-	 * @var string
-	 */
-	private $field_4;
-
-	/**
-	 * Field 5.
-	 *
-	 * @var string
-	 */
-	private $field_5;
-
-	/**
-	 * Field 6.
-	 *
-	 * @var string
-	 */
-	private $field_6;
+	private function set_property( $property, $value ) {
+		if ( array_key_exists( $property, $this->data ) ) {
+			$this->data[ $property ] = $value;
+		}		
+	}
 
 	/**
 	 * Get ID.
@@ -144,7 +66,7 @@ class Address {
 	 * @return string
 	 */
 	public function get_id() {
-		return $this->id;
+		return $this->get_property( 'id' );
 	}
 
 	/**
@@ -153,7 +75,7 @@ class Address {
 	 * @param string $id ID.
 	 */
 	public function set_id( $id ) {
-		$this->id = $id;
+		$this->set_property( 'id', $id );
 	}
 
 	/**
@@ -162,7 +84,7 @@ class Address {
 	 * @return string
 	 */
 	public function get_type() {
-		return $this->type;
+		return $this->get_property( 'type' );
 	}
 
 	/**
@@ -171,7 +93,7 @@ class Address {
 	 * @param string $type Type.
 	 */
 	public function set_type( $type ) {
-		$this->type = $type;
+		$this->set_property( 'type', $type );
 	}
 
 	/**
@@ -180,7 +102,7 @@ class Address {
 	 * @return boolean
 	 */
 	public function is_default() {
-		return $this->default;
+		return $this->get_property( 'default' );
 	}
 
 	/**
@@ -189,7 +111,7 @@ class Address {
 	 * @param boolean $default Default falg.
 	 */
 	public function set_default( $default ) {
-		$this->default = $default;
+		$this->set_property( 'default', $default );
 	}
 
 	/**
@@ -198,7 +120,7 @@ class Address {
 	 * @return string
 	 */
 	public function get_name() {
-		return $this->name;
+		return $this->get_property( 'name' );
 	}
 
 	/**
@@ -207,7 +129,7 @@ class Address {
 	 * @param string $name Name.
 	 */
 	public function set_name( $name ) {
-		$this->name = $name;
+		$this->set_property( 'name', $name );
 	}
 
 	/**
@@ -216,7 +138,7 @@ class Address {
 	 * @return string
 	 */
 	public function get_country() {
-		return $this->country;
+		return $this->get_property( 'country' );
 	}
 
 	/**
@@ -225,7 +147,7 @@ class Address {
 	 * @param string $country Country.
 	 */
 	public function set_country( $country ) {
-		$this->country = $country;
+		$this->set_property( 'country', $country );
 	}
 
 	/**
@@ -234,7 +156,7 @@ class Address {
 	 * @return string
 	 */
 	public function get_city() {
-		return $this->city;
+		return $this->get_property( 'city' );
 	}
 
 	/**
@@ -243,7 +165,7 @@ class Address {
 	 * @param string $city City.
 	 */
 	public function set_city( $city ) {
-		$this->city = $city;
+		$this->set_property( 'city', $city );
 	}
 
 	/**
@@ -252,7 +174,7 @@ class Address {
 	 * @return string
 	 */
 	public function get_postcode() {
-		return $this->postcode;
+		return $this->get_property( 'postcode' );
 	}
 
 	/**
@@ -261,7 +183,7 @@ class Address {
 	 * @param string $postcode Postcode.
 	 */
 	public function set_postcode( $postcode ) {
-		$this->postcode = $postcode;
+		$this->set_property( 'postcode', $postcode );
 	}
 
 	/**
@@ -270,7 +192,7 @@ class Address {
 	 * @return string
 	 */
 	public function get_telephone() {
-		return $this->telephone;
+		return $this->get_property( 'telephone' );
 	}
 
 	/**
@@ -279,7 +201,7 @@ class Address {
 	 * @param string $telephone Telephone.
 	 */
 	public function set_telephone( $telephone ) {
-		$this->telephone = $telephone;
+		$this->set_property( 'telephone', $telephone );
 	}
 
 	/**
@@ -288,7 +210,7 @@ class Address {
 	 * @return string
 	 */
 	public function get_telefax() {
-		return $this->telefax;
+		return $this->get_property( 'telefax' );
 	}
 
 	/**
@@ -297,7 +219,7 @@ class Address {
 	 * @param string $telefax Telefax.
 	 */
 	public function set_telefax( $telefax ) {
-		$this->telefax = $telefax;
+		$this->set_property( 'telefax', $telefax );
 	}
 
 	/**
@@ -306,7 +228,7 @@ class Address {
 	 * @return string
 	 */
 	public function get_email() {
-		return $this->email;
+		return $this->get_property( 'email' );
 	}
 
 	/**
@@ -315,25 +237,29 @@ class Address {
 	 * @param string $email Email.
 	 */
 	public function set_email( $email ) {
-		$this->email = $email;
+		$this->set_property( 'email', $email );
 	}
 
 	/**
 	 * Get contact.
 	 *
+	 * @deprecated Obsolete.
+	 * @see https://accounting.twinfield.com/webservices/documentation/#/ApiReference/Masters/Customers#Read
 	 * @return string
 	 */
 	public function get_contact() {
-		return $this->contact;
+		return $this->get_property( 'contact' );
 	}
 
 	/**
 	 * Set contact.
 	 *
+	 * @deprecated Obsolete.
+	 * @see https://accounting.twinfield.com/webservices/documentation/#/ApiReference/Masters/Customers#Read
 	 * @param string $contact Contact.
 	 */
 	public function set_contact( $contact ) {
-		$this->contact = $contact;
+		$this->set_property( 'contact', $contact );
 	}
 
 	/**
@@ -341,10 +267,12 @@ class Address {
 	 *
 	 * User defined fields, the labels are configured in the Dimension type.
 	 *
+	 * Default: To the attention of. Dutch: "Ter attentie van".
+	 *
 	 * @return string
 	 */
 	public function get_field_1() {
-		return $this->field_1;
+		return $this->get_property( 'field_1' );
 	}
 
 	/**
@@ -352,10 +280,12 @@ class Address {
 	 *
 	 * User defined fields, the labels are configured in the Dimension type.
 	 *
+	 * Default: To the attention of. Dutch: "Ter attentie van".
+	 *
 	 * @param string $value Value.
 	 */
 	public function set_field_1( $value ) {
-		$this->field_1 = $value;
+		$this->set_property( 'field_1', $value );
 	}
 
 	/**
@@ -363,12 +293,12 @@ class Address {
 	 *
 	 * User defined fields, the labels are configured in the Dimension type.
 	 *
-	 * Default: Address.
+	 * Default: Address 1.
 	 *
 	 * @return string
 	 */
 	public function get_field_2() {
-		return $this->field_2;
+		return $this->get_property( 'field_2' );
 	}
 
 	/**
@@ -376,12 +306,12 @@ class Address {
 	 *
 	 * User defined fields, the labels are configured in the Dimension type.
 	 *
-	 * Default: Address.
+	 * Default: Address 1.
 	 *
 	 * @param string $value Value.
 	 */
 	public function set_field_2( $value ) {
-		$this->field_2 = $value;
+		$this->set_property( 'field_2', $value );
 	}
 
 	/**
@@ -389,12 +319,12 @@ class Address {
 	 *
 	 * User defined fields, the labels are configured in the Dimension type.
 	 *
-	 * Default: Postal address.
+	 * Default: Address 2.
 	 *
 	 * @return string
 	 */
 	public function get_field_3() {
-		return $this->field_3;
+		return $this->get_property( 'field_3' );
 	}
 
 	/**
@@ -402,12 +332,12 @@ class Address {
 	 *
 	 * User defined fields, the labels are configured in the Dimension type.
 	 *
-	 * Default: Postal address.
+	 * Default: Addres 3.
 	 *
 	 * @param string $value Value.
 	 */
 	public function set_field_3( $value ) {
-		$this->field_3 = $value;
+		$this->set_property( 'field_3', $value );
 	}
 
 	/**
@@ -420,7 +350,7 @@ class Address {
 	 * @return string
 	 */
 	public function get_field_4() {
-		return $this->field_4;
+		return $this->get_property( 'field_4' );
 	}
 
 	/**
@@ -433,7 +363,7 @@ class Address {
 	 * @param string $value Value.
 	 */
 	public function set_field_4( $value ) {
-		$this->field_4 = $value;
+		$this->set_property( 'field_4', $value );
 	}
 
 	/**
@@ -446,7 +376,7 @@ class Address {
 	 * @return string
 	 */
 	public function get_field_5() {
-		return $this->field_5;
+		return $this->get_property( 'field_5' );
 	}
 
 	/**
@@ -459,7 +389,7 @@ class Address {
 	 * @param string $value Value.
 	 */
 	public function set_field_5( $value ) {
-		$this->field_5 = $value;
+		$this->set_property( 'field_5', $value );
 	}
 
 	/**
@@ -470,7 +400,7 @@ class Address {
 	 * @return string
 	 */
 	public function get_field_6() {
-		return $this->field_6;
+		return $this->get_property( 'field_6' );
 	}
 
 	/**
@@ -481,6 +411,32 @@ class Address {
 	 * @param string $value Value.
 	 */
 	public function set_field_6( $value ) {
-		$this->field_6 = $value;
+		$this->set_property( 'field_6', $value );
+	}
+
+	public function get_array() {
+		return $this->data;
+	}
+
+	public function similar( $address, $properties = null ) {
+		$address1 = $this;
+		$address2 = $address;
+
+		if ( empty( $properties ) ) {
+			$properties = array_keys( $this->data );
+		}
+
+		$matching_chars    = array();
+		$matching_percents = array();
+
+		foreach ( $properties as $property ) {
+			$value1 = $address1->get_property( $property );
+			$value2 = $address2->get_property( $property );
+
+			$matching_chars[ $property ]    = similar_text( $value1, $value2, $percent );
+			$matching_percents[ $property ] = $percent;
+		}
+
+		return array_sum( $matching_percents ) / count( $matching_percents );
 	}
 }
