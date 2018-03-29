@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\Customers;
 
+use Pronamic\WP\Twinfield\EmailList;
+
 /**
  * Customer
  *
@@ -29,7 +31,7 @@ class CustomerCreditManagement {
 	/**
 	 * Mandatory if `sendreminder` is email.
 	 *
-	 * @var string
+	 * @var EmailList
 	 */
 	private $reminder_email;
 
@@ -54,7 +56,7 @@ class CustomerCreditManagement {
 	/**
 	 * Get the reminder email.
 	 *
-	 * @return string
+	 * @return EmailList
 	 */
 	public function get_reminder_email() {
 		return $this->reminder_email;
@@ -63,9 +65,9 @@ class CustomerCreditManagement {
 	/**
 	 * Set the reminder email.
 	 *
-	 * @param string $reminder_email The reminder email.
+	 * @param EmailList $reminder_email The reminder email.
 	 */
-	public function set_reminder_email( $reminder_email ) {
+	public function set_reminder_email( EmailList $reminder_email ) {
 		$this->reminder_email = $reminder_email;
 	}
 }

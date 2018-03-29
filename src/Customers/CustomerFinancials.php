@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\Customers;
 
+use Pronamic\WP\Twinfield\EmailList;
+
 /**
  * Customer financials
  *
@@ -36,7 +38,7 @@ class CustomerFinancials {
 	/**
 	 * The mail address the electronic sales invoice is sent to.
 	 *
-	 * @var string
+	 * @var EmailList
 	 */
 	private $ebillmail;
 
@@ -79,7 +81,7 @@ class CustomerFinancials {
 	/**
 	 * Get ebillmail.
 	 *
-	 * @return string
+	 * @return EmailList
 	 */
 	public function get_ebillmail() {
 		return $this->ebillmail;
@@ -88,9 +90,9 @@ class CustomerFinancials {
 	/**
 	 * Set ebillmail.
 	 *
-	 * @param string $ebillmail The ebill mail.
+	 * @param EmailList $ebillmail The ebill mail.
 	 */
-	public function set_ebillmail( $ebillmail ) {
+	public function set_ebillmail( EmailList $ebillmail ) {
 		$this->ebillmail = $ebillmail;
 	}
 }
