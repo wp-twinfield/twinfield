@@ -9,6 +9,9 @@
 
 namespace Pronamic\WP\Twinfield;
 
+use Pronamic\WP\Twinfield\AbstractService;
+use Pronamic\WP\Twinfield\Client;
+
 /**
  * Session client
  *
@@ -18,7 +21,7 @@ namespace Pronamic\WP\Twinfield;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class SessionClient extends AbstractClient {
+class SessionClient extends AbstractService {
 	/**
 	 * The Twinfield process XML WSDL file.
 	 *
@@ -29,10 +32,21 @@ class SessionClient extends AbstractClient {
 	/**
 	 * Constructs and initializes an session object.
 	 *
-	 * @param Session $session The Twinfield session.
+	 * @param Client $client Twinfield client object.
 	 */
-	public function __construct( Session $session ) {
-		parent::__construct( self::WSDL_FILE, $session );
+	public function __construct( Client $client ) {
+		parent::__construct( self::WSDL_FILE, $client );
+	}
+
+	/**
+	 * Keep the session alive, to prevent session time out. A session time out will occur 2 hours after the last web service call for the session.
+	 *
+	 * @see https://c3.twinfield.com/webservices/documentation/#/ApiReference/Authentication/WebServices#Complete-session
+	 */
+	public function keep_alive() {
+		$response = $this->soap_client->KeepAlive();
+
+		return $response;
 	}
 
 	/**

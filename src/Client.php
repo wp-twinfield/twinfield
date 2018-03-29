@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield;
 
+use Pronamic\WP\Twinfield\Authentication\AuthenticationStrategy;
+
 /**
  * Client
  *
@@ -19,20 +21,84 @@ namespace Pronamic\WP\Twinfield;
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
 class Client {
-	/**
-	 * The Twinfield WSDL login URL.
-	 *
-	 * @var string
-	 */
-	const WSDL_URL_LOGIN = 'https://login.twinfield.com/webservices/session.asmx?wsdl';
+	private $services;
+
+	private $number_retires = 0;
 
 	/**
 	 * Constructs and initializes an Twinfield client object.
 	 */
-	public function __construct() {
-		// @see https://github.com/php-twinfield/twinfield/issues/50
-		// @see https://github.com/php-twinfield/twinfield/pull/70/files
-		$this->soap_client = new \SoapClient( self::WSDL_URL_LOGIN, Client::get_soap_client_options() );
+	public function __construct( AuthenticationStrategy $authentication_strategy ) {
+		$this->authentication_strategy = $authentication_strategy;
+
+		$this->services = array();
+	}
+
+	public function get_cluster() {
+		return $this->cluster;
+	}
+
+	public function login() {
+		$this->authentication_info = $this->authentication_strategy->login();
+
+		$this->cluster = $this->authentication_info->get_cluster();
+
+		$this->authenticate_services();
+	}
+
+	private function authenticate_services() {
+		foreach ( $this->services as $service ) {
+			$service->authenticate( $this->authentication_info );
+		}
+	}
+
+	public function handle_exception() {
+
+	}
+
+	public function get_service( $name ) {
+		if ( isset( $this->services[ $name ] ) ) {
+			return $this->services[ $name ];
+		}
+
+		$service = $this->new_service( $name );
+
+		if ( $service ) {
+			$this->set_service( $name, $service );
+		}
+
+		return $service;
+	}
+
+	private function new_service( $name ) {
+		switch ( $name ) {
+			case 'declarations':
+				return new Declarations\DeclarationsService( $this );
+			case 'finder':
+				return new Finder( $this );
+			case 'session':
+				return new SessionClient( $this );
+			case 'processxml':
+				return new XMLProcessor( $this );
+			default:
+				return false;
+		}
+	}
+
+	private function set_service( $name, $service ) {
+		if ( $this->authentication_info ) {
+			$service->authenticate( $this->authentication_info );
+		}
+
+		$this->services[ $name ] = $service;
+	}
+
+	public function get_finder() {
+		return $this->get_service( 'finder' );
+	}
+
+	public function get_xml_processor() {
+		return $this->get_service( 'processxml' );
 	}
 
 	/**
@@ -46,8 +112,10 @@ class Client {
 			'connection_timeout' => 30,
 			'trace'              => true,
 			'compression'        => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP,
+			// https://github.com/php-twinfield/twinfield/issues/50
 			'cache_wsdl'         => WSDL_CACHE_MEMORY,
-			'keep_alive'         => true,
+			// Disable HTTP Keep Alive to prevent 'error fetching HTTP headers'.
+			'keep_alive'         => false,
 		);
 	}
 
@@ -68,81 +136,5 @@ class Client {
 			'SearchResponse'             => __NAMESPACE__ . '\SearchResponse',
 			'SelectCompanyResponse'      => __NAMESPACE__ . '\SelectCompanyResponse',
 		);
-	}
-
-	/**
-	 * Find the session ID from the last Twinfield response message.
-	 */
-	private function get_session_id() {
-		// Parse last response.
-		$xml = $this->soap_client->__getLastResponse();
-
-		$soap_envelope = simplexml_load_string( $xml, null, null, 'http://schemas.xmlsoap.org/soap/envelope/' );
-
-		if ( false === $soap_envelope ) {
-			return false;
-		}
-
-		// phpcs:disable WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- XML tag.
-
-		if ( ! isset( $soap_envelope->Header ) ) {
-			return false;
-		}
-
-		$soap_header = $soap_envelope->Header;
-
-		$twinfield_header = $soap_header->children( 'http://www.twinfield.com/' )->Header;
-
-		$session_id = (string) $twinfield_header->SessionID;
-
-		// phpcs:enable
-
-		return $session_id;
-	}
-
-	/**
-	 * Logon with the specified credentials
-	 *
-	 * @param Credentials $credentials Logon with the specified credentials.
-	 * @return LogonResponse
-	 */
-	public function logon( Credentials $credentials ) {
-		$logon_response = $this->soap_client->Logon( $credentials );
-
-		/*
-		 * The session ID is officially not part of the logon response.
-		 * To make this library easier to use we store it temporary in
-		 * logon repsonse object.
-		 */
-		$logon_response->session_id = $this->get_session_id();
-
-		return $logon_response;
-	}
-
-	/**
-	 * Create an new session object from an logon response object.
-	 *
-	 * @param LogonResponse $logon_response An logon response is required to create a new session object.
-	 * @return Session An Twinfield session object.
-	 */
-	public function get_session( LogonResponse $logon_response ) {
-		// Check if logon response result code is OK.
-		if ( LogonResult::OK !== $logon_response->get_result() ) {
-			return false;
-		}
-
-		/*
-		 * The session ID is officially not part of the logon response.
-		 * To make this library easier to use we store it temporary in
-		 * logon repsonse object.
-		 */
-		if ( empty( $logon_response->session_id ) ) {
-			return false;
-		}
-
-		// OK.
-		$session = new Session( $logon_response->session_id, $logon_response->get_cluster() );
-
-		return $session;
 	}
 }

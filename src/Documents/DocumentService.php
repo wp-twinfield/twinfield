@@ -9,8 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\Documents;
 
-use Pronamic\WP\Twinfield\AbstractClient;
-use Pronamic\WP\Twinfield\Session;
+use Pronamic\WP\Twinfield\AbstractService;
+use Pronamic\WP\Twinfield\Client;
 
 /**
  * Finder
@@ -21,7 +21,7 @@ use Pronamic\WP\Twinfield\Session;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class DocumentService extends AbstractClient {
+class DocumentService extends AbstractService {
 	/**
 	 * The Twinfield finder WSDL URL.
 	 *
@@ -32,10 +32,10 @@ class DocumentService extends AbstractClient {
 	/**
 	 * Constructs and initializes an finder object.
 	 *
-	 * @param Session $session The Twinfield session.
+	 * @param Client $client Twinfield client object.
 	 */
-	public function __construct( Session $session ) {
-		parent::__construct( self::WSDL_FILE, $session );
+	public function __construct( Client $client ) {
+		parent::__construct( self::WSDL_FILE, $client );
 	}
 
 	/**

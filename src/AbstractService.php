@@ -1,6 +1,6 @@
 <?php
 /**
- * Client
+ * Abstract service
  *
  * @since      1.0.0
  *
@@ -9,8 +9,10 @@
 
 namespace Pronamic\WP\Twinfield;
 
+use Pronamic\WP\Twinfield\Authentication\AuthenticationInfo;
+
 /**
- * Abstract client
+ * Abstract service
  *
  * This class connects to the Twinfield Webservices.
  *
@@ -18,7 +20,7 @@ namespace Pronamic\WP\Twinfield;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-abstract class AbstractClient {
+abstract class AbstractService {
 	/**
 	 * The WSDL file path.
 	 *
@@ -44,15 +46,18 @@ abstract class AbstractClient {
 	 * Constructs and initializes an Twinfield client object.
 	 *
 	 * @param string  $wsdl_file       The WSDL file path.
-	 * @param Session $session         The Twinfield session.
+	 * @param AuthenticationInfo $authentication_info A Twinfield authentication info object.
 	 */
-	public function __construct( $wsdl_file, Session $session ) {
+	public function __construct( $wsdl_file, Client $client ) {
 		$this->wsdl_file = $wsdl_file;
-		$this->session   = $session;
+
+		$this->client = $client;
 
 		$this->soap_client = new \SoapClient( $this->get_wsdl_url(), Client::get_soap_client_options() );
+	}
 
-		$this->soap_client->__setSoapHeaders( $this->get_soap_header() );
+	public function authenticate( AuthenticationInfo $authentication_info ) {
+		$this->soap_client->__setSoapHeaders( $authentication_info->get_soap_header() );
 	}
 
 	/**
@@ -61,15 +66,6 @@ abstract class AbstractClient {
 	 * @return string
 	 */
 	private function get_wsdl_url() {
-		return $this->session->get_cluster() . $this->wsdl_file;
-	}
-
-	/**
-	 * Get SOAP header with the session ID.
-	 *
-	 * @return \SoapHeader
-	 */
-	private function get_soap_header() {
-		return new \SoapHeader( 'http://www.twinfield.com/', 'Header', array( 'SessionID' => $this->session->get_id() ) );
+		return $this->client->get_cluster() . $this->wsdl_file;
 	}
 }

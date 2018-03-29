@@ -36,11 +36,17 @@ class LoginClient {
 	/**
 	 * Find the session ID from the last Twinfield response message.
 	 */
-	private function get_session_id() {
-		// Parse last response.
-		$xml = $this->soap_client->__getLastResponse();
+	public function get_session_id() {
+		if ( empty( $this->xml_logon_response ) ) {
+			return false;
+		}
 
-		$soap_envelope = simplexml_load_string( $xml, null, null, 'http://schemas.xmlsoap.org/soap/envelope/' );
+		// Parse last response.
+		$soap_envelope = simplexml_load_string( $this->xml_logon_response, null, null, 'http://schemas.xmlsoap.org/soap/envelope/' );
+
+		if ( false === $soap_envelope ) {
+			return false;
+		}
 
 		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- XML tag.
 		$soap_header = $soap_envelope->Header;
@@ -63,37 +69,15 @@ class LoginClient {
 	public function logon( Credentials $credentials ) {
 		$logon_response = $this->soap_client->Logon( $credentials );
 
-		/*
-		 * The session ID is officially not part of the logon response.
-		 * To make this library easier to use we store it temporary in
-		 * logon repsonse object.
-		 */
-		$logon_response->session_id = $this->get_session_id();
+		$this->xml_logon_response = $this->soap_client->__getLastResponse();
 
 		return $logon_response;
 	}
 
 	/**
-	 * Create an new session object from an logon response object.
-	 *
-	 * @param LogonResponse $logon_response An logon response is required to create a new session object.
-	 * @return Session An Twinfield session object.
+	 * Keep the session alive, to prevent session time out. A session time out will occur 2 hours after the last web service call for the session.
 	 */
-	public function get_session( LogonResponse $logon_response ) {
-		$session = null;
-
-		// Check if logon response result code is OK.
-		if ( LogonResult::OK === $logon_response->get_result() ) {
-			/*
-			 * The session ID is officially not part of the logon response.
-			 * To make this library easier to use we store it temporary in
-			 * logon repsonse object.
-			 */
-			$session_id = $logon_response->session_id;
-
-			$session = new Session( $session_id, $logon_response->get_cluster() );
-		}
-
-		return $session;
+	public function keep_alive() {
+		$this->soap_client->KeepAlive();
 	}
 }
