@@ -35,11 +35,34 @@ class ArrayOfArrayOfString implements \IteratorAggregate {
 	}
 
 	/**
+	 * Ensure array.
+	 */
+	private function ensure_array() {
+		if ( is_object( $this->ArrayOfString ) ) {
+			$this->ArrayOfString = array( $this->ArrayOfString );
+		}
+	}
+
+	/**
+	 * Get array.
+	 *
+	 * @return array
+	 */
+	public function get_array() {
+		$this->ensure_array();
+
+		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
+		return $this->ArrayOfString;
+	}
+
+	/**
 	 * Add the specified array of string to this object.
 	 *
 	 * @param ArrayOfString $array Add the specified array.
 	 */
 	public function add( ArrayOfString $array ) {
+		$this->ensure_array();
+
 		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
 		$this->ArrayOfString[] = $array;
 	}
@@ -50,8 +73,7 @@ class ArrayOfArrayOfString implements \IteratorAggregate {
 	 * @return \ArrayIterator
 	 */
 	public function getIterator() {
-		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
-		return new \ArrayIterator( $this->ArrayOfString );
+		return new \ArrayIterator( $this->get_array() );
 	}
 
 	/**
