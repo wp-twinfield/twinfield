@@ -432,24 +432,6 @@ class SalesInvoiceLine {
 	 *
 	 * @param string $performance_type Performance type.
 	 */
-	public function set_free_text_3( $performance_type ) {
-		$this->performance_type = $performance_type;
-	}
-
-	/**
-	 * Get the performance type value of this sales invoice line.
-	 *
-	 * @return string
-	 */
-	public function get_performance_type() {
-		return $this->performance_type;
-	}
-
-	/**
-	 * Set the performance type value of this sales invoice line.
-	 *
-	 * @param string $performance_type Performance type.
-	 */
 	public function set_performance_type( $performance_type ) {
 		$this->performance_type = $performance_type;
 	}

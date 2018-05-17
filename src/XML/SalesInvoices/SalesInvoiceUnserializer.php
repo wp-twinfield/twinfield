@@ -75,7 +75,7 @@ class SalesInvoiceUnserializer extends Unserializer {
 					$line->set_free_text_2( Security::filter( $element_line->freetext2 ) );
 					$line->set_free_text_3( Security::filter( $element_line->freetext3 ) );
 					$line->set_performance_type( Security::filter( $element_line->performancetype ) );
-					$line->set_performance_date( Security::filter($this->date_unserializer->unserialize( $element_line->performancedate ) ) );
+					$line->set_performance_date( Security::filter( $this->date_unserializer->unserialize( $element_line->performancedate ) ) );
 				}
 			}
 
