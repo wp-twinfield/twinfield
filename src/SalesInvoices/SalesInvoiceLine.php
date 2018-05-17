@@ -439,7 +439,7 @@ class SalesInvoiceLine {
 	/**
 	 * Get the performance date of this sales invoice line.
 	 *
-	 * @return string
+	 * @return DateTime|null
 	 */
 	public function get_performance_date() {
 		return $this->performance_date;
@@ -448,9 +448,9 @@ class SalesInvoiceLine {
 	/**
 	 * Set the performance date value of this sales invoice line.
 	 *
-	 * @param DateTime $performance_date Performance date.
+	 * @param DateTime|null $performance_date Performance date.
 	 */
-	public function set_performance_date( DateTime $performance_date ) {
+	public function set_performance_date( DateTime $performance_date = null ) {
 		$this->performance_date = $performance_date;
 	}
 }
