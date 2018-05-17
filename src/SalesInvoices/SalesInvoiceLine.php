@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\SalesInvoices;
 
+use DateTime;
+
 /**
  * Sales Invoice Line
  *
@@ -123,6 +125,20 @@ class SalesInvoiceLine {
 	 * @var string
 	 */
 	private $free_text_3;
+
+	/**
+	 * The performance type in case of an ICT sales invoice.
+	 *
+	 * @var string
+	 */
+	private $performance_type;
+
+	/**
+	 * Performance date, when set-up on invoice lines.
+	 *
+	 * @var DateTime
+	 */
+	private $performance_date;
 
 	/**
 	 * Constructs and initialize an Twinfield article line.
@@ -400,5 +416,59 @@ class SalesInvoiceLine {
 	 */
 	public function set_free_text_3( $text ) {
 		$this->free_text_3 = $text;
+	}
+
+	/**
+	 * Get the performance type value of this sales invoice line.
+	 *
+	 * @return string
+	 */
+	public function get_performance_type() {
+		return $this->performance_type;
+	}
+
+	/**
+	 * Set the performance type value of this sales invoice line.
+	 *
+	 * @param string $performance_type Performance type.
+	 */
+	public function set_free_text_3( $performance_type ) {
+		$this->performance_type = $performance_type;
+	}
+
+	/**
+	 * Get the performance type value of this sales invoice line.
+	 *
+	 * @return string
+	 */
+	public function get_performance_type() {
+		return $this->performance_type;
+	}
+
+	/**
+	 * Set the performance type value of this sales invoice line.
+	 *
+	 * @param string $performance_type Performance type.
+	 */
+	public function set_performance_type( $performance_type ) {
+		$this->performance_type = $performance_type;
+	}
+
+	/**
+	 * Get the performance date of this sales invoice line.
+	 *
+	 * @return string
+	 */
+	public function get_performance_date() {
+		return $this->performance_date;
+	}
+
+	/**
+	 * Set the performance date value of this sales invoice line.
+	 *
+	 * @param DateTime $performance_date Performance date.
+	 */
+	public function set_performance_date( DateTime $performance_date ) {
+		$this->performance_date = $performance_date;
 	}
 }
