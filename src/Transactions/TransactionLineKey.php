@@ -97,4 +97,20 @@ class TransactionLineKey {
 	public function get_line() {
 		return $this->line;
 	}
+
+	/**
+	 * Create a string representation of this transaction line key.
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return implode(
+			'-', array(
+				$this->get_office(),
+				$this->get_code(),
+				$this->get_number(),
+				$this->get_line(),
+			)
+		);
+	}
 }
