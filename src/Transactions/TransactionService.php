@@ -83,7 +83,15 @@ class TransactionService {
 				(string) $xml_key->line
 			);
 
+			$line->set_office_code( $row->get_field( 'fin.trs.head.office' ) );
+			$line->set_office_name( $row->get_field( 'fin.trs.head.officename' ) );
+			$line->set_code( $row->get_field( 'fin.trs.head.code' ) );
+			$line->set_number( $row->get_field( 'fin.trs.head.number' ) );
+			$line->set_status( $row->get_field( 'fin.trs.head.status' ) );
 			$line->set_date( \DateTime::createFromFormat( 'Ymd', $row->get_field( 'fin.trs.head.date' ) ) );
+			$line->set_currency_code( $row->get_field( 'fin.trs.head.curcode' ) );
+			$line->set_relation_code( $row->get_field( 'fin.trs.head.relation' ) );
+			$line->set_relation_name( $row->get_field( 'fin.trs.head.relationname' ) );
 
 			$input_date = \DateTime::createFromFormat( 'YmdHis', $row->get_field( 'fin.trs.head.inpdate' ) );
 
@@ -91,9 +99,10 @@ class TransactionService {
 				$line->set_input_date( $input_date );
 			}
 
+			$line->set_username( $row->get_field( 'fin.trs.head.username' ) );
+
 			$line->set_key( $key );
 			$line->set_id( $key->get_line() );
-			$line->set_status( $row->get_field( 'fin.trs.head.status' ) );
 
 			// Year/period.
 			$year   = null;
@@ -123,12 +132,22 @@ class TransactionService {
 
 			$line->set_dimension_1( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim1' ), $row->get_field( 'fin.trs.line.dim1name' ), $row->get_field( 'fin.trs.line.dim1type' ) ) );
 			$line->set_dimension_2( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim2' ), $row->get_field( 'fin.trs.line.dim2name' ), $row->get_field( 'fin.trs.line.dim2type' ) ) );
+			$line->set_dimension_2( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim3' ), $row->get_field( 'fin.trs.line.dim3name' ), $row->get_field( 'fin.trs.line.dim3type' ) ) );
 			$line->set_value( filter_var( $row->get_field( 'fin.trs.line.valuesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
 			$line->set_base_value( filter_var( $row->get_field( 'fin.trs.line.basevaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
 			$line->set_open_base_value( filter_var( $row->get_field( 'fin.trs.line.openbasevaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
+			$line->set_report_value( filter_var( $row->get_field( 'fin.trs.line.repvaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
 			$line->set_debit_credit( $row->get_field( 'fin.trs.line.debitcredit' ) );
+			$line->set_vat_code( $row->get_field( 'fin.trs.line.vatcode' ) );
+			$line->set_vat_base_value( $row->get_field( 'fin.trs.line.vatbasevaluesigned' ) );
+			$line->set_quantity( $row->get_field( 'fin.trs.line.quantity' ) );
+			$line->set_cheque_number( $row->get_field( 'fin.trs.line.chequenumber' ) );
 			$line->set_description( $row->get_field( 'fin.trs.line.description' ) );
 			$line->set_invoice_number( $row->get_field( 'fin.trs.line.invnumber' ) );
+			$line->set_free_text_1( $row->get_field( 'fin.trs.line.freetext1' ) );
+			$line->set_free_text_2( $row->get_field( 'fin.trs.line.freetext2' ) );
+			$line->set_free_text_3( $row->get_field( 'fin.trs.line.freetext3' ) );
+			$line->set_origin( $row->get_field( 'fin.trs.head.origin' ) );
 
 			$lines[] = $line;
 		}
