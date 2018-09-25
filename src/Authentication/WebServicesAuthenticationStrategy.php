@@ -70,9 +70,13 @@ class WebServicesAuthenticationStrategy extends AuthenticationStrategy {
 			$cluster    = $this->logon_response->get_cluster();
 			$session_id = $this->login_client->get_session_id();
 
-			$soap_header = new \SoapHeader( 'http://www.twinfield.com/', 'Header', array(
-				'SessionID' => $session_id,
-			) );
+			$soap_header = new \SoapHeader(
+				'http://www.twinfield.com/',
+				'Header',
+				array(
+					'SessionID' => $session_id,
+				)
+			);
 
 			return new AuthenticationInfo( $cluster, $soap_header );
 		}

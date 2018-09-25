@@ -19,6 +19,11 @@ namespace Pronamic\WP\Twinfield;
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
 class Address {
+	/**
+	 * Data.
+	 *
+	 * @var array
+	 */
 	private $data = array(
 		'id'        => null,
 		'type'      => null,
@@ -43,22 +48,25 @@ class Address {
 	 * Get property.
 	 *
 	 * @see https://github.com/woocommerce/woocommerce/blob/3.3.4/includes/abstracts/abstract-wc-data.php#L624-L644
+	 * @param string $property Property.
 	 */
 	private function get_property( $property ) {
 		if ( array_key_exists( $property, $this->data ) ) {
 			return $this->data[ $property ];
-		}		
+		}
 	}
 
 	/**
 	 * Set property.
 	 *
 	 * @see https://github.com/woocommerce/woocommerce/blob/3.3.4/includes/abstracts/abstract-wc-data.php#L624-L644
+	 * @param string $property Property.
+	 * @param string $value    Value.
 	 */
 	private function set_property( $property, $value ) {
 		if ( array_key_exists( $property, $this->data ) ) {
 			$this->data[ $property ] = $value;
-		}		
+		}
 	}
 
 	/**
@@ -415,10 +423,22 @@ class Address {
 		$this->set_property( 'field_6', $value );
 	}
 
+	/**
+	 * Get array.
+	 *
+	 * @return array
+	 */
 	public function get_array() {
 		return $this->data;
 	}
 
+	/**
+	 * Calculate similarity.
+	 *
+	 * @param Address $address    Address to compare.
+	 * @param array   $properties Properties to compare.
+	 * @return int
+	 */
 	public function similar( $address, $properties = null ) {
 		$address1 = $this;
 		$address2 = $address;

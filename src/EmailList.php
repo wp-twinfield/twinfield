@@ -36,7 +36,7 @@ class EmailList implements \IteratorAggregate {
 	/**
 	 * Constructs and initializes an email list object.
 	 *
-	 * @param string|array $data
+	 * @param string|array $data Data.
 	 */
 	public function __construct( $data ) {
 		if ( is_string( $data ) ) {

@@ -43,10 +43,10 @@ abstract class AbstractService {
 	protected $soap_client;
 
 	/**
-	 * Constructs and initializes an Twinfield client object.
+	 * Constructs and initializes a Twinfield client object.
 	 *
-	 * @param string  $wsdl_file       The WSDL file path.
-	 * @param AuthenticationInfo $authentication_info A Twinfield authentication info object.
+	 * @param string $wsdl_file WSDL file path.
+	 * @param Client $client    Client.
 	 */
 	public function __construct( $wsdl_file, Client $client ) {
 		$this->wsdl_file = $wsdl_file;
@@ -56,6 +56,11 @@ abstract class AbstractService {
 		$this->soap_client = new \SoapClient( $this->get_wsdl_url(), Client::get_soap_client_options() );
 	}
 
+	/**
+	 * Authenticate.
+	 *
+	 * @param AuthenticationInfo $authentication_info Authentication info.
+	 */
 	public function authenticate( AuthenticationInfo $authentication_info ) {
 		$this->soap_client->__setSoapHeaders( $authentication_info->get_soap_header() );
 	}

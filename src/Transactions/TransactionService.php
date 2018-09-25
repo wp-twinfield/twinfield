@@ -96,11 +96,7 @@ class TransactionService {
 		$response = $this->xml_processor->process_xml_string( new ProcessXmlString( $request ) );
 
 		$xml = simplexml_load_string( $response );
-if ( filter_input( INPUT_GET, 'debug', FILTER_VALIDATE_BOOLEAN ) ) {
-	echo '<pre>';
-	echo esc_html( $response );
-	echo '</pre>';
-}
+
 		if ( false !== $xml ) {
 			$unserializer = new TransactionUnserializer();
 

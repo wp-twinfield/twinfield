@@ -9,6 +9,7 @@
 
 namespace Pronamic\WP\Twinfield\Customers;
 
+use InvalidArgumentException;
 use Pronamic\WP\Twinfield\EmailList;
 
 /**
@@ -65,8 +66,8 @@ class CustomerCreditManagement {
 	/**
 	 * Set the reminder email.
 	 *
+	 * @param EmailList|string $value The reminder email.
 	 * @throws InvalidArgumentException If the provided argument is invalid.
-	 * @param EmailList|string $reminder_email The reminder email.
 	 */
 	public function set_reminder_email( $value ) {
 		if ( is_string( $value ) ) {
@@ -74,7 +75,7 @@ class CustomerCreditManagement {
 		}
 
 		if ( ! $value instanceof EmailList ) {
-			throw new \InvalidArgumentException();
+			throw new InvalidArgumentException();
 		}
 
 		$this->reminder_email = $value;

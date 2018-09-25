@@ -9,6 +9,7 @@
 
 namespace Pronamic\WP\Twinfield\Customers;
 
+use InvalidArgumentException;
 use Pronamic\WP\Twinfield\EmailList;
 
 /**
@@ -90,8 +91,8 @@ class CustomerFinancials {
 	/**
 	 * Set ebillmail.
 	 *
+	 * @param EmailList|string $value The ebill mail.
 	 * @throws InvalidArgumentException If the provided argument is invalid.
-	 * @param EmailList|string $ebillmail The ebill mail.
 	 */
 	public function set_ebillmail( $value ) {
 		if ( is_string( $value ) ) {
@@ -99,7 +100,7 @@ class CustomerFinancials {
 		}
 
 		if ( ! $value instanceof EmailList ) {
-			throw new \InvalidArgumentException();
+			throw new InvalidArgumentException();
 		}
 
 		$this->ebillmail = $value;

@@ -21,12 +21,24 @@ use Pronamic\WP\Twinfield\Authentication\AuthenticationStrategy;
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
 class Client {
+	/**
+	 * Services.
+	 *
+	 * @var array
+	 */
 	private $services;
 
+	/**
+	 * Number retires.
+	 *
+	 * @var int
+	 */
 	private $number_retires = 0;
 
 	/**
-	 * Constructs and initializes an Twinfield client object.
+	 * Constructs and initializes a Twinfield client object.
+	 *
+	 * @param AuthenticationStrategy $authentication_strategy Authentication strategy.
 	 */
 	public function __construct( AuthenticationStrategy $authentication_strategy ) {
 		$this->authentication_strategy = $authentication_strategy;
@@ -34,10 +46,18 @@ class Client {
 		$this->services = array();
 	}
 
+	/**
+	 * Get cluster.
+	 *
+	 * @return mixed
+	 */
 	public function get_cluster() {
 		return $this->cluster;
 	}
 
+	/**
+	 * Login.
+	 */
 	public function login() {
 		$this->authentication_info = $this->authentication_strategy->login();
 
@@ -46,16 +66,28 @@ class Client {
 		$this->authenticate_services();
 	}
 
+	/**
+	 * Authenticate services.
+	 */
 	private function authenticate_services() {
 		foreach ( $this->services as $service ) {
 			$service->authenticate( $this->authentication_info );
 		}
 	}
 
+	/**
+	 * Handle exception.
+	 */
 	public function handle_exception() {
 
 	}
 
+	/**
+	 * Get service by name.
+	 *
+	 * @param string $name Name.
+	 * @return mixed
+	 */
 	public function get_service( $name ) {
 		if ( isset( $this->services[ $name ] ) ) {
 			return $this->services[ $name ];
@@ -70,6 +102,12 @@ class Client {
 		return $service;
 	}
 
+	/**
+	 * Generate new service by name.
+	 *
+	 * @param string $name Name.
+	 * @return mixed
+	 */
 	private function new_service( $name ) {
 		switch ( $name ) {
 			case 'declarations':
@@ -87,6 +125,12 @@ class Client {
 		}
 	}
 
+	/**
+	 * Set service.
+	 *
+	 * @param string $name    Name.
+	 * @param mixed  $service Service.
+	 */
 	private function set_service( $name, $service ) {
 		if ( $this->authentication_info ) {
 			$service->authenticate( $this->authentication_info );
@@ -95,10 +139,20 @@ class Client {
 		$this->services[ $name ] = $service;
 	}
 
+	/**
+	 * Get finder.
+	 *
+	 * @return Finder
+	 */
 	public function get_finder() {
 		return $this->get_service( 'finder' );
 	}
 
+	/**
+	 * Get XML processor.
+	 *
+	 * @return XMLProcessor
+	 */
 	public function get_xml_processor() {
 		return $this->get_service( 'processxml' );
 	}
@@ -114,7 +168,7 @@ class Client {
 			'connection_timeout' => 30,
 			'trace'              => true,
 			'compression'        => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP,
-			// https://github.com/php-twinfield/twinfield/issues/50
+			// https://github.com/php-twinfield/twinfield/issues/50.
 			'cache_wsdl'         => WSDL_CACHE_MEMORY,
 			// Disable HTTP Keep Alive to prevent 'error fetching HTTP headers'.
 			'keep_alive'         => false,

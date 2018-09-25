@@ -105,7 +105,8 @@ class TransactionLineKey {
 	 */
 	public function __toString() {
 		return implode(
-			'-', array(
+			'-',
+			array(
 				$this->get_office(),
 				$this->get_code(),
 				$this->get_number(),

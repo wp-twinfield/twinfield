@@ -59,11 +59,14 @@ class BrowseTransactionsUnserializer extends Unserializer {
 
 				$xml_key = $row->get_xml_key();
 
-				$transaction_key = implode( '-', array(
-					(string) $xml_key->office,
-					(string) $xml_key->code,
-					(string) $xml_key->number,
-				) );
+				$transaction_key = implode(
+					'-',
+					array(
+						(string) $xml_key->office,
+						(string) $xml_key->code,
+						(string) $xml_key->number,
+					)
+				);
 
 				if ( ! isset( $transactions[ $transaction_key ] ) ) {
 					// Transaction.
@@ -138,7 +141,9 @@ class BrowseTransactionsUnserializer extends Unserializer {
 
 				$transaction = $transactions[ $transaction_key ];
 
-				$lines[] = $line = $transaction->new_line();
+				$line = $transaction->new_line();
+
+				$lines[] = $line;
 
 				$key = new TransactionLineKey(
 					(string) $xml_key->office,

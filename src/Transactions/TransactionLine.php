@@ -426,7 +426,7 @@ class TransactionLine {
 	}
 
 	/**
-	 * Get vat base value..
+	 * Get vat base value.
 	 *
 	 * @return string
 	 */
@@ -437,7 +437,7 @@ class TransactionLine {
 	/**
 	 * Set quantity.
 	 *
-	 * @param int $quantity Quantity,
+	 * @param int $quantity Quantity.
 	 */
 	public function set_quantity( $quantity ) {
 		$this->quantity = $quantity;
@@ -455,7 +455,7 @@ class TransactionLine {
 	/**
 	 * Set cheque number.
 	 *
-	 * @param string $cheque_number Cheque number,
+	 * @param string $cheque_number Cheque number.
 	 */
 	public function set_cheque_number( $cheque_number ) {
 		$this->cheque_number = $cheque_number;
