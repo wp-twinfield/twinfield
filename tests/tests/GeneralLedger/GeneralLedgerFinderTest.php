@@ -56,7 +56,7 @@ class GeneralLedgerFinderTest extends TestCase {
 	 * @dataProvider provider
 	 */
 	public function test_get_general_ledger( $search ) {
-		$general_ledger = $this->finder->get_transactions(
+		$general_ledger = $this->finder->get_general_ledger(
 			$search,
 			SearchFields::CODE_AND_NAME,
 			1,

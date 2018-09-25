@@ -10,6 +10,7 @@
 namespace Pronamic\WP\Twinfield;
 
 use PHPUnit\Framework\TestCase;
+use Pronamic\WP\Twinfield\Authentication\WebServicesAuthenticationStrategy;
 
 /**
  * Session client test
@@ -33,20 +34,8 @@ class SessionClientTest extends TestCase {
 
 		$client->login();
 
-		// Test logon.
-		$logon_response = $client->logon( $credentials );
-
-		$this->assertInstanceOf( __NAMESPACE__ . '\LogonResponse', $logon_response );
-		$this->assertInternalType( 'string', $logon_response->get_cluster() );
-
-		// Test session.
-		$session = $client->get_session( $logon_response );
-
-		$this->assertInstanceOf( __NAMESPACE__ . '\Session', $session );
-		$this->assertInternalType( 'string', $session->get_id() );
-
 		// Test session client.
-		$session_client = new SessionClient( $session );
+		$session_client = $client->get_service( 'session' );
 
 		// Test select company.
 		$response = $session_client->select_company( '11024' );
