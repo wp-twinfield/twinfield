@@ -10,7 +10,7 @@
 namespace Pronamic\WP\Twinfield\Transactions;
 
 use PHPUnit\Framework\TestCase;
-
+use Pronamic\WP\Twinfield\Currency;
 use Pronamic\WP\Twinfield\PaymentMethods;
 
 /**
@@ -39,8 +39,11 @@ class TransactionHeaderTest extends TestCase {
 		$header->set_period( '2014/12' );
 		$this->assertEquals( '2014/12', $header->get_period() );
 
-		$header->set_currency( 'EUR' );
-		$this->assertEquals( 'EUR', $header->get_currency() );
+		$currency = new Currency();
+		$currency->set_code( 'EUR' );
+
+		$header->set_currency( $currency );
+		$this->assertEquals( 'EUR', $header->get_currency()->get_code() );
 
 		$date = new \DateTime();
 		$header->set_date( $date );

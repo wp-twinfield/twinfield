@@ -24,5 +24,7 @@ class ArticleTest extends TestCase {
 	 */
 	public function test() {
 		$article = new Article( new ArticleHeader() );
+
+		$this->assertInstanceOf( __NAMESPACE__ . '\Article', $article );
 	}
 }

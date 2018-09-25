@@ -26,5 +26,7 @@ class ArticleLineTest extends TestCase {
 		$article_line = new ArticleLine();
 
 		$article_line->set_name( 'Article' );
+
+		$this->assertInstanceOf( __NAMESPACE__ . '\ArticleLine', $article_line );
 	}
 }

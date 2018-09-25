@@ -24,5 +24,7 @@ class ContactTest extends TestCase {
 	 */
 	public function test() {
 		$contact = new Contact();
+
+		$this->assertInstanceOf( __NAMESPACE__ . '\Contact', $contact );
 	}
 }

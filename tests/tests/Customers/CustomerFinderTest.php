@@ -15,6 +15,7 @@ use Pronamic\WP\Twinfield\Client;
 use Pronamic\WP\Twinfield\Result;
 use Pronamic\WP\Twinfield\Finder;
 use Pronamic\WP\Twinfield\SearchFields;
+use Pronamic\WP\Twinfield\Authentication\WebServicesAuthenticationStrategy;
 
 /**
  * Customer finder test
@@ -39,20 +40,20 @@ class CustomerFinderTest extends TestCase {
 
 		global $credentials;
 
-		$client = new Client();
+		$authentication_strategy = new WebServicesAuthenticationStrategy( $credentials );
 
-		$logon_response = $client->logon( $credentials );
+		$client = new Client( $authentication_strategy );
 
-		$session = $client->get_session( $logon_response );
+		$client->login();
 
-		$this->finder = new CustomerFinder( new Finder( $session ) );
+		$this->finder = new CustomerFinder( $client->get_finder() );
 	}
 
 	/**
 	 * Test get customers.
 	 *
 	 * @param string $search The search pattern. May contain wildcards * and ?.
-	 * @dataProvider test_provider
+	 * @dataProvider provider
 	 */
 	public function test_get_customers( $search ) {
 		$customers = $this->finder->get_customers(
@@ -70,7 +71,7 @@ class CustomerFinderTest extends TestCase {
 	 *
 	 * @return array
 	 */
-	public function test_provider() {
+	public function provider() {
 		return array(
 			array(
 				'search' => 'Pronamic',

@@ -10,14 +10,16 @@
 
 namespace Pronamic\WP\Twinfield\XML\Transactions;
 
-use Pronamic\WP\Twinfield\XML\Security;
-use Pronamic\WP\Twinfield\XML\Unserializer;
-use Pronamic\WP\Twinfield\XML\DateUnserializer;
+use Pronamic\WP\Twinfield\Currency;
+use Pronamic\WP\Twinfield\Offices\Office;
 use Pronamic\WP\Twinfield\Transactions\Transaction;
 use Pronamic\WP\Twinfield\Transactions\TransactionHeader;
 use Pronamic\WP\Twinfield\Transactions\TransactionLine;
 use Pronamic\WP\Twinfield\Transactions\TransactionLineDimension;
 use Pronamic\WP\Twinfield\Transactions\TransactionResponse;
+use Pronamic\WP\Twinfield\XML\Security;
+use Pronamic\WP\Twinfield\XML\Unserializer;
+use Pronamic\WP\Twinfield\XML\DateUnserializer;
 
 /**
  * Transaction unserializer
@@ -46,11 +48,22 @@ class TransactionUnserializer extends Unserializer {
 			$header = $transaction->get_header();
 
 			if ( $element->header ) {
-				$header->set_office( Security::filter( $element->header->office ) );
+				// Office.
+				$office = new Office();
+				$office->set_code( Security::filter( $element->header->office ) );
+
+				$header->set_office( $office );
+
+				// Currency.
+				$currency = new Currency();
+				$currency->set_code( $element->header->currency );
+
+				$header->set_currency( $currency );
+
+				// Other.
 				$header->set_code( Security::filter( $element->header->code ) );
 				$header->set_number( Security::filter( $element->header->number ) );
 				$header->set_period( $element->header->period );
-				$header->set_currency( $element->header->currency );
 				$header->set_date( $this->date_unserializer->unserialize( $element->header->date ) );
 			}
 

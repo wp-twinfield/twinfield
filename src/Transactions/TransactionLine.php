@@ -9,6 +9,9 @@
 
 namespace Pronamic\WP\Twinfield\Transactions;
 
+use Pronamic\WP\Twinfield\Offices\Office;
+use Pronamic\WP\Twinfield\Relations\Relation;
+
 /**
  * Transaction Line
  *
@@ -28,6 +31,13 @@ class TransactionLine {
 	 * Credit.
 	 */
 	const CREDIT = 'credit';
+
+	/**
+	 * The transaction this line is part of.
+	 *
+	 * @var Transaction
+	 */
+	private $transaction;
 
 	/**
 	 * The unique key of this transaction line.
@@ -66,9 +76,11 @@ class TransactionLine {
 
 	/**
 	 * Constructs and initialize a Twinfield transaction line.
+	 *
+	 * @param Transaction $transaction Transaction.
 	 */
-	public function __construct() {
-
+	public function __construct( Transaction $transaction ) {
+		$this->transaction = $transaction;
 	}
 
 	/**
@@ -108,21 +120,39 @@ class TransactionLine {
 	}
 
 	/**
-	 * Get the status of this transaction line.
+	 * Get code.
 	 *
 	 * @return string
 	 */
-	public function get_status() {
-		return $this->status;
+	public function get_code() {
+		return $this->code;
 	}
 
 	/**
-	 * Set the status of this transaction line.
+	 * Set code.
 	 *
-	 * @param string $status The status.
+	 * @param string $code Code.
 	 */
-	public function set_status( $status ) {
-		$this->status = $status;
+	public function set_code( $code ) {
+		$this->code = $code;
+	}
+
+	/**
+	 * Get number.
+	 *
+	 * @return string
+	 */
+	public function get_number() {
+		return $this->number;
+	}
+
+	/**
+	 * Set number.
+	 *
+	 * @param string $number Number.
+	 */
+	public function set_number( $number ) {
+		$this->number = $number;
 	}
 
 	/**
@@ -180,6 +210,24 @@ class TransactionLine {
 	}
 
 	/**
+	 * Get dimension 3 of this transaction line.
+	 *
+	 * @return string
+	 */
+	public function get_dimension_3() {
+		return $this->dimension_3;
+	}
+
+	/**
+	 * Set dimension 3 of this transaction line.
+	 *
+	 * @param TransactionLineDimension $dimension The dimension.
+	 */
+	public function set_dimension_3( TransactionLineDimension $dimension ) {
+		$this->dimension_3 = $dimension;
+	}
+
+	/**
 	 * Get the value of this transaction line.
 	 *
 	 * @return string
@@ -234,6 +282,24 @@ class TransactionLine {
 	}
 
 	/**
+	 * Get report value.
+	 *
+	 * @return string
+	 */
+	public function get_report_value() {
+		return $this->report_value;
+	}
+
+	/**
+	 * Set report value.
+	 *
+	 * @param string $value The value.
+	 */
+	public function set_report_value( $value ) {
+		$this->report_value = $value;
+	}
+
+	/**
 	 * Get the description of this transaction line.
 	 *
 	 * @return string
@@ -270,12 +336,138 @@ class TransactionLine {
 	}
 
 	/**
+	 * Get free text 1.
+	 *
+	 * @return string
+	 */
+	public function get_free_text_1() {
+		return $this->free_text_1;
+	}
+
+	/**
+	 * Set free text 1.
+	 *
+	 * @param string $text Text.
+	 */
+	public function set_free_text_1( $text ) {
+		$this->free_text_1 = $text;
+	}
+
+	/**
+	 * Get free text 2.
+	 *
+	 * @return string
+	 */
+	public function get_free_text_2() {
+		return $this->free_text_2;
+	}
+
+	/**
+	 * Set free text 2.
+	 *
+	 * @param string $text Text.
+	 */
+	public function set_free_text_2( $text ) {
+		$this->free_text_2 = $text;
+	}
+
+	/**
+	 * Get free text 3.
+	 *
+	 * @return string
+	 */
+	public function get_free_text_3() {
+		return $this->free_text_3;
+	}
+
+	/**
+	 * Set free text 2.
+	 *
+	 * @param string $text Text.
+	 */
+	public function set_free_text_3( $text ) {
+		$this->free_text_3 = $text;
+	}
+
+	/**
 	 * Get debit credit.
 	 *
 	 * @return string
 	 */
 	public function get_debit_credit() {
 		return $this->debit_credit;
+	}
+
+	/**
+	 * Set vat code.
+	 *
+	 * @param string $vat_code Vat code.
+	 */
+	public function set_vat_code( $vat_code ) {
+		$this->vat_code = $vat_code;
+	}
+
+	/**
+	 * Get vat code.
+	 *
+	 * @return string
+	 */
+	public function get_vat_code() {
+		return $this->vat_code;
+	}
+
+	/**
+	 * Set vat base value.
+	 *
+	 * @param string $value Vat base value.
+	 */
+	public function set_vat_base_value( $value ) {
+		$this->vat_base_value = $value;
+	}
+
+	/**
+	 * Get vat base value..
+	 *
+	 * @return string
+	 */
+	public function get_vat_base_value() {
+		return $this->vat_base_value;
+	}
+
+	/**
+	 * Set quantity.
+	 *
+	 * @param int $quantity Quantity,
+	 */
+	public function set_quantity( $quantity ) {
+		$this->quantity = $quantity;
+	}
+
+	/**
+	 * Get quantity.
+	 *
+	 * @return int
+	 */
+	public function get_quantity() {
+		return $this->quantity;
+	}
+
+	/**
+	 * Set cheque number.
+	 *
+	 * @param string $cheque_number Cheque number,
+	 */
+	public function set_cheque_number( $cheque_number ) {
+		$this->cheque_number = $cheque_number;
+	}
+
+	/**
+	 * Get cheque number.
+	 *
+	 * @return string
+	 */
+	public function get_cheque_number() {
+		return $this->cheque_number;
 	}
 
 	/**
@@ -303,77 +495,5 @@ class TransactionLine {
 	 */
 	public function is_credit() {
 		return self::CREDIT === $this->get_debit_credit();
-	}
-
-	/**
-	 * Get the date of this transaction line.
-	 *
-	 * @return \DateTime
-	 */
-	public function get_date() {
-		return $this->date;
-	}
-
-	/**
-	 * Set the date of this transaction line.
-	 *
-	 * @param \DateTime $date The date.
-	 */
-	public function set_date( \DateTime $date ) {
-		$this->date = $date;
-	}
-
-	/**
-	 * Get the input date of this transaction line.
-	 *
-	 * @return \DateTime
-	 */
-	public function get_input_date() {
-		return $this->input_date;
-	}
-
-	/**
-	 * Set the input date of this transaction line.
-	 *
-	 * @param \DateTime $date The input date.
-	 */
-	public function set_input_date( \DateTime $date ) {
-		$this->input_date = $date;
-	}
-
-	/**
-	 * Get year.
-	 *
-	 * @return int
-	 */
-	public function get_year() {
-		return $this->year;
-	}
-
-	/**
-	 * Set year.
-	 *
-	 * @param int $year The year.
-	 */
-	public function set_year( $year ) {
-		$this->year = $year;
-	}
-
-	/**
-	 * Get period.
-	 *
-	 * @return int
-	 */
-	public function get_period() {
-		return $this->period;
-	}
-
-	/**
-	 * Set period.
-	 *
-	 * @param int $period The period.
-	 */
-	public function set_period( $period ) {
-		$this->period = $period;
 	}
 }

@@ -74,7 +74,7 @@ class Transaction {
 	 * @return TransactionLine
 	 */
 	public function new_line() {
-		$line = new TransactionLine();
+		$line = new TransactionLine( $this );
 
 		$this->add_line( $line );
 

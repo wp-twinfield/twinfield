@@ -74,6 +74,8 @@ class Client {
 		switch ( $name ) {
 			case 'declarations':
 				return new Declarations\DeclarationsService( $this );
+			case 'document':
+				return new Documents\DocumentService( $this );
 			case 'finder':
 				return new Finder( $this );
 			case 'session':

@@ -13,6 +13,7 @@ use PHPUnit\Framework\TestCase;
 use Pronamic\WP\Twinfield\Client;
 use Pronamic\WP\Twinfield\Result;
 use Pronamic\WP\Twinfield\XMLProcessor;
+use Pronamic\WP\Twinfield\Authentication\WebServicesAuthenticationStrategy;
 
 /**
  * Sales invoices service test
@@ -28,13 +29,15 @@ class DocumentServiceTest extends TestCase {
 	public function test_document_service() {
 		global $credentials;
 
-		$client = new Client();
+		$authentication_strategy = new WebServicesAuthenticationStrategy( $credentials );
 
-		$logon_response = $client->logon( $credentials );
+		$client = new Client( $authentication_strategy );
 
-		$session = $client->get_session( $logon_response );
+		$client->login();
 
-		$service = new DocumentService( $session );
+		$service = $client->get_service( 'document' );
 		$service->query();
+
+		$this->assertInstanceOf( __NAMESPACE__ . '\DocumentService', $service );
 	}
 }

@@ -168,6 +168,8 @@ class CustomerServiceTest extends TestCase {
 		$customer->set_name( $name );
 
 		$result = $this->service->insert_customer( $customer );
+
+		$this->assertInstanceOf( __NAMESPACE__ . '\Customer', $customer );
 	}
 
 	/**

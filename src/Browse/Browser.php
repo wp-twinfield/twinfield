@@ -53,19 +53,31 @@ class Browser {
 	}
 
 	/**
-	 * Get columns by the specified columns.
+	 * Get XML by the specified browse definition.
 	 *
 	 * @param BrowseDefinition $browse_definition The browse definition.
-	 * @return \SimpleXMLElement
+	 * @return string
 	 */
-	public function get_data( BrowseDefinition $browse_definition ) {
+	public function get_xml_string( BrowseDefinition $browse_definition ) {
 		$string = $browse_definition->get_xml_columns()->asXML();
 
 		$process_xml_string = new ProcessXmlString( $string );
 
 		$response = $this->xml_processor->process_xml_string( $process_xml_string );
 
-		$xml = simplexml_load_string( $response );
+		return $response;
+	}
+
+	/**
+	 * Get columns by the specified columns.
+	 *
+	 * @param BrowseDefinition $browse_definition The browse definition.
+	 * @return \SimpleXMLElement
+	 */
+	public function get_data( BrowseDefinition $browse_definition ) {
+		$string = $this->get_xml_string( $browse_definition );
+
+		$xml = simplexml_load_string( $string );
 
 		$data = new BrowseData( $xml );
 

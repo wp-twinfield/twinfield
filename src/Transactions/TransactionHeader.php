@@ -9,6 +9,10 @@
 
 namespace Pronamic\WP\Twinfield\Transactions;
 
+use Pronamic\WP\Twinfield\Currency;
+use Pronamic\WP\Twinfield\Offices\Office;
+use Pronamic\WP\Twinfield\Relations\Relation;
+
 /**
  * Transaction Header
  *
@@ -95,27 +99,9 @@ class TransactionHeader {
 	}
 
 	/**
-	 * Get period.
-	 *
-	 * @return string
-	 */
-	public function get_period() {
-		return $this->period;
-	}
-
-	/**
-	 * Set period.
-	 *
-	 * @param string $period The period.
-	 */
-	public function set_period( $period ) {
-		$this->period = $period;
-	}
-
-	/**
 	 * Get currency.
 	 *
-	 * @return string
+	 * @return Currency
 	 */
 	public function get_currency() {
 		return $this->currency;
@@ -124,9 +110,9 @@ class TransactionHeader {
 	/**
 	 * Set currency.
 	 *
-	 * @param string $currency The currency.
+	 * @param Currency $currency The currency.
 	 */
-	public function set_currency( $currency ) {
+	public function set_currency( Currency $currency = null ) {
 		$this->currency = $currency;
 	}
 
@@ -146,5 +132,131 @@ class TransactionHeader {
 	 */
 	public function set_date( \DateTime $date = null ) {
 		$this->date = $date;
+	}
+
+	/**
+	 * Get the input date of this transaction line.
+	 *
+	 * @return \DateTime
+	 */
+	public function get_input_date() {
+		return $this->input_date;
+	}
+
+	/**
+	 * Set the input date of this transaction line.
+	 *
+	 * @param \DateTime $date The input date.
+	 */
+	public function set_input_date( \DateTime $date ) {
+		$this->input_date = $date;
+	}
+
+	/**
+	 * Get relation.
+	 *
+	 * @return Relation
+	 */
+	public function get_relation() {
+		return $this->relation;
+	}
+
+	/**
+	 * Set relation.
+	 *
+	 * @param Relation $relation Relation.
+	 */
+	public function set_relation( Relation $relation = null ) {
+		$this->relation = $relation;
+	}
+
+	/**
+	 * Get the status of this transaction line.
+	 *
+	 * @return string
+	 */
+	public function get_status() {
+		return $this->status;
+	}
+
+	/**
+	 * Set the status of this transaction line.
+	 *
+	 * @param string $status The status.
+	 */
+	public function set_status( $status ) {
+		$this->status = $status;
+	}
+
+	/**
+	 * Get username.
+	 *
+	 * @return string
+	 */
+	public function get_username() {
+		return $this->username;
+	}
+
+	/**
+	 * Set year.
+	 *
+	 * @param string $username Username.
+	 */
+	public function set_username( $username ) {
+		$this->username = $username;
+	}
+
+	/**
+	 * Get year.
+	 *
+	 * @return int
+	 */
+	public function get_year() {
+		return $this->year;
+	}
+
+	/**
+	 * Set year.
+	 *
+	 * @param int $year The year.
+	 */
+	public function set_year( $year ) {
+		$this->year = $year;
+	}
+
+	/**
+	 * Get period.
+	 *
+	 * @return int
+	 */
+	public function get_period() {
+		return $this->period;
+	}
+
+	/**
+	 * Set period.
+	 *
+	 * @param int $period The period.
+	 */
+	public function set_period( $period ) {
+		$this->period = $period;
+	}
+
+	/**
+	 * Get origin.
+	 *
+	 * @return string
+	 */
+	public function get_origin() {
+		return $this->origin;
+	}
+
+	/**
+	 * Set origin.
+	 *
+	 * @param string $origin Origin.
+	 */
+	public function set_origin( $origin ) {
+		$this->origin = $origin;
 	}
 }

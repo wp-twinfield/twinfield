@@ -30,6 +30,7 @@ class Address {
 		'telephone' => null,
 		'telefax'   => null,
 		'email'     => null,
+		'contact'   => null,
 		'field_1'   => null,
 		'field_2'   => null,
 		'field_3'   => null,

@@ -11,11 +11,13 @@ namespace Pronamic\WP\Twinfield\Transactions;
 
 use Pronamic\WP\Twinfield\ProcessXmlString;
 use Pronamic\WP\Twinfield\XMLProcessor;
-use \Pronamic\WP\Twinfield\Browse\Browser;
-use \Pronamic\WP\Twinfield\Browse\BrowseReadRequest;
+use Pronamic\WP\Twinfield\Browse\Browser;
+use Pronamic\WP\Twinfield\Browse\BrowseReadRequest;
+use Pronamic\WP\Twinfield\Offices\Office;
+use Pronamic\WP\Twinfield\Relations\Relation;
 use Pronamic\WP\Twinfield\XML\Transactions\TransactionReadRequestSerializer;
 use Pronamic\WP\Twinfield\XML\Transactions\TransactionUnserializer;
-
+use Pronamic\WP\Twinfield\XML\Transactions\BrowseTransactionsUnserializer;
 /**
  * Transaction Service
  *
@@ -67,90 +69,13 @@ class TransactionService {
 	public function get_transaction_lines( $browse_definition ) {
 		$lines = array();
 
-		$data = $this->browser->get_data( $browse_definition );
+		$string = $this->browser->get_xml_string( $browse_definition );
 
-		$rows = $data->get_rows();
+		$xml = simplexml_load_string( $string );
 
-		foreach ( $rows as $row ) {
-			$line = new TransactionLine();
+		$unserializer = new BrowseTransactionsUnserializer();
 
-			$xml_key = $row->get_xml_key();
-
-			$key = new TransactionLineKey(
-				(string) $xml_key->office,
-				(string) $xml_key->code,
-				(string) $xml_key->number,
-				(string) $xml_key->line
-			);
-
-			$line->set_office_code( $row->get_field( 'fin.trs.head.office' ) );
-			$line->set_office_name( $row->get_field( 'fin.trs.head.officename' ) );
-			$line->set_code( $row->get_field( 'fin.trs.head.code' ) );
-			$line->set_number( $row->get_field( 'fin.trs.head.number' ) );
-			$line->set_status( $row->get_field( 'fin.trs.head.status' ) );
-			$line->set_date( \DateTime::createFromFormat( 'Ymd', $row->get_field( 'fin.trs.head.date' ) ) );
-			$line->set_currency_code( $row->get_field( 'fin.trs.head.curcode' ) );
-			$line->set_relation_code( $row->get_field( 'fin.trs.head.relation' ) );
-			$line->set_relation_name( $row->get_field( 'fin.trs.head.relationname' ) );
-
-			$input_date = \DateTime::createFromFormat( 'YmdHis', $row->get_field( 'fin.trs.head.inpdate' ) );
-
-			if ( false !== $input_date ) {
-				$line->set_input_date( $input_date );
-			}
-
-			$line->set_username( $row->get_field( 'fin.trs.head.username' ) );
-
-			$line->set_key( $key );
-			$line->set_id( $key->get_line() );
-
-			// Year/period.
-			$year   = null;
-			$period = null;
-
-			if ( $row->has_field( 'fin.trs.head.yearperiod' ) ) {
-				$year_period = $row->get_field( 'fin.trs.head.yearperiod' );
-
-				$seperator_position = strpos( $year_period, '/' );
-
-				if ( false !== $seperator_position ) {
-					$year   = substr( $year_period, 0, $seperator_position );
-					$period = substr( $year_period, $seperator_position + 1 );
-				}
-			}
-
-			if ( $row->has_field( 'fin.trs.head.year' ) ) {
-				$year = $row->get_field( 'fin.trs.head.year' );
-			}
-
-			if ( $row->has_field( 'fin.trs.head.period' ) ) {
-				$period = $row->get_field( 'fin.trs.head.period' );
-			}
-
-			$line->set_year( $year );
-			$line->set_period( $period );
-
-			$line->set_dimension_1( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim1' ), $row->get_field( 'fin.trs.line.dim1name' ), $row->get_field( 'fin.trs.line.dim1type' ) ) );
-			$line->set_dimension_2( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim2' ), $row->get_field( 'fin.trs.line.dim2name' ), $row->get_field( 'fin.trs.line.dim2type' ) ) );
-			$line->set_dimension_2( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim3' ), $row->get_field( 'fin.trs.line.dim3name' ), $row->get_field( 'fin.trs.line.dim3type' ) ) );
-			$line->set_value( filter_var( $row->get_field( 'fin.trs.line.valuesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
-			$line->set_base_value( filter_var( $row->get_field( 'fin.trs.line.basevaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
-			$line->set_open_base_value( filter_var( $row->get_field( 'fin.trs.line.openbasevaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
-			$line->set_report_value( filter_var( $row->get_field( 'fin.trs.line.repvaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
-			$line->set_debit_credit( $row->get_field( 'fin.trs.line.debitcredit' ) );
-			$line->set_vat_code( $row->get_field( 'fin.trs.line.vatcode' ) );
-			$line->set_vat_base_value( $row->get_field( 'fin.trs.line.vatbasevaluesigned' ) );
-			$line->set_quantity( $row->get_field( 'fin.trs.line.quantity' ) );
-			$line->set_cheque_number( $row->get_field( 'fin.trs.line.chequenumber' ) );
-			$line->set_description( $row->get_field( 'fin.trs.line.description' ) );
-			$line->set_invoice_number( $row->get_field( 'fin.trs.line.invnumber' ) );
-			$line->set_free_text_1( $row->get_field( 'fin.trs.line.freetext1' ) );
-			$line->set_free_text_2( $row->get_field( 'fin.trs.line.freetext2' ) );
-			$line->set_free_text_3( $row->get_field( 'fin.trs.line.freetext3' ) );
-			$line->set_origin( $row->get_field( 'fin.trs.head.origin' ) );
-
-			$lines[] = $line;
-		}
+		$lines = $unserializer->unserialize( $xml );
 
 		return $lines;
 	}
@@ -171,7 +96,11 @@ class TransactionService {
 		$response = $this->xml_processor->process_xml_string( new ProcessXmlString( $request ) );
 
 		$xml = simplexml_load_string( $response );
-
+if ( filter_input( INPUT_GET, 'debug', FILTER_VALIDATE_BOOLEAN ) ) {
+	echo '<pre>';
+	echo esc_html( $response );
+	echo '</pre>';
+}
 		if ( false !== $xml ) {
 			$unserializer = new TransactionUnserializer();
 

@@ -1,0 +1,62 @@
+<transaction location="final" result="1">
+	<header>
+		<office name="d'Oliveira" shortname="d'Oliveira">5035</office>
+		<code name="Inkoopfactuur" shortname="Inkoop">INK</code>
+		<number>201800093</number>
+		<period>2018/09</period>
+		<currency name="Euro" shortname="Euro">EUR</currency>
+		<regime>Generic</regime>
+		<date>20180906</date>
+		<origin>import</origin>
+		<originreference></originreference>
+		<modificationdate>20180924070744</modificationdate>
+		<user name="Basecone" shortname="Basecone">BASECONE</user>
+		<inputdate>20180924070744</inputdate>
+		<duedate>20180906</duedate>
+		<invoicenumber>20180906</invoicenumber>
+		<freetext3>AAWEcg==8B5B30B94A2740D3AB05D67C56AE0142</freetext3>
+	</header>
+	<lines>
+		<line type="total" id="1">
+			<dim1 name="Handelscrediteuren" shortname="" dimensiontype="BAS">16000</dim1>
+			<dim2 name="Bruna" shortname="" dimensiontype="CRD">2002</dim2>
+			<debitcredit>credit</debitcredit>
+			<basevalue>5.98</basevalue>
+			<rate>1</rate>
+			<value>5.98</value>
+			<reprate>1</reprate>
+			<repvalue>5.98</repvalue>
+			<description>Factuur 20180906</description>
+			<matchstatus>matched</matchstatus>
+			<matchlevel>2</matchlevel>
+			<relation>2</relation>
+			<matchdate>20180906</matchdate>
+			<matches>
+				<set status="final">
+					<matchdate>20180906</matchdate>
+					<lines>
+						<line>
+							<code>KNAB1</code>
+							<number>201800097</number>
+							<line>3</line>
+							<method>payment</method>
+							<matchvalue>5.98</matchvalue>
+						</line>
+					</lines>
+					<matchvalue>-5.98</matchvalue>
+				</set>
+			</matches>
+		</line>
+		<line type="detail" id="2">
+			<dim1 name="Overige kantoorkosten" shortname="" dimensiontype="PNL">45070</dim1>
+			<debitcredit>debit</debitcredit>
+			<basevalue>5.98</basevalue>
+			<rate>1</rate>
+			<value>5.98</value>
+			<reprate>1</reprate>
+			<repvalue>5.98</repvalue>
+			<description>Factuur 20180906</description>
+			<matchstatus>notmatchable</matchstatus>
+		</line>
+	</lines>
+</transaction>

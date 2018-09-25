@@ -29,5 +29,7 @@ class ArticleHeaderTest extends TestCase {
 		$article_header->set_code( 'CODE' );
 		$article_header->set_type( 'TYPE' );
 		$article_header->set_name( 'Article' );
+
+		$this->assertInstanceOf( __NAMESPACE__ . '\ArticleHeader', $article_header );
 	}
 }

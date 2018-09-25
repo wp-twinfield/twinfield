@@ -14,6 +14,7 @@ use Pronamic\WP\Twinfield\Browse\Browser;
 use Pronamic\WP\Twinfield\Client;
 use Pronamic\WP\Twinfield\Result;
 use Pronamic\WP\Twinfield\XMLProcessor;
+use Pronamic\WP\Twinfield\Authentication\WebServicesAuthenticationStrategy;
 
 /**
  * Sales invoices service test
@@ -29,15 +30,13 @@ class GeneralLedgerServiceTest extends TestCase {
 	public function test_service() {
 		global $credentials;
 
-		$client = new Client();
+		$authentication_strategy = new WebServicesAuthenticationStrategy( $credentials );
 
-		$logon_response = $client->logon( $credentials );
+		$client = new Client( $authentication_strategy );
 
-		$session = $client->get_session( $logon_response );
+		$client->login();
 
-		$xml_processor = new XMLProcessor( $session );
-
-		$browser = new Browser( $xml_processor );
+		$browser = new Browser( $client->get_xml_processor() );
 
 		$service = new GeneralLedgerService( $browser );
 

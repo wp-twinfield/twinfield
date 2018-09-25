@@ -10,11 +10,10 @@
 namespace Pronamic\WP\Twinfield;
 
 use PHPUnit\Framework\TestCase;
-
+use Pronamic\WP\Twinfield\Authentication\WebServicesAuthenticationStrategy;
 use Pronamic\WP\Twinfield\Articles\ArticleReadRequest;
 use Pronamic\WP\Twinfield\XML\Articles\ArticleReadRequestSerializer;
 use Pronamic\WP\Twinfield\XML\Articles\ArticleUnserializer;
-
 use Pronamic\WP\Twinfield\Customers\CustomerReadRequest;
 use Pronamic\WP\Twinfield\XML\Customers\CustomerReadRequestSerializer;
 
@@ -37,19 +36,14 @@ class XMLProcessorTest extends TestCase {
 	public function test_processor( $xml ) {
 		global $credentials;
 
-		$client = new Client();
+		$authentication_strategy = new WebServicesAuthenticationStrategy( $credentials );
 
-		// Test logon.
-		$logon_response = $client->logon( $credentials );
+		$client = new Client( $authentication_strategy );
 
-		$this->assertInstanceOf( __NAMESPACE__ . '\LogonResponse', $logon_response );
-		$this->assertInternalType( 'string', $logon_response->get_cluster() );
-
-		// Test session.
-		$session = $client->get_session( $logon_response );
+		$client->login();
 
 		// Test XML processor.
-		$xml_processor = new XMLProcessor( $session );
+		$xml_processor = $client->get_xml_processor();
 
 		$response = $xml_processor->process_xml_string( new ProcessXmlString( $xml ) );
 

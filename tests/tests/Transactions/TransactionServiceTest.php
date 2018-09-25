@@ -114,7 +114,7 @@ class TransactionServiceTest extends TestCase {
 			$this->assertInstanceOf( __NAMESPACE__ . '\TransactionHeader', $header );
 
 			if ( $response->is_successful() ) {
-				$this->assertEquals( $office, $header->get_office() );
+				$this->assertEquals( $office, $header->get_office()->get_code() );
 				$this->assertEquals( $code, $header->get_code() );
 				$this->assertEquals( $number, $header->get_number() );
 			}

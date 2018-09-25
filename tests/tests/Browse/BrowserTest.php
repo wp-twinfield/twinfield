@@ -15,6 +15,7 @@ use Pronamic\WP\Twinfield\Credentials;
 use Pronamic\WP\Twinfield\Client;
 use Pronamic\WP\Twinfield\XMLProcessor;
 use Pronamic\WP\Twinfield\ProcessXmlString;
+use Pronamic\WP\Twinfield\Authentication\WebServicesAuthenticationStrategy;
 
 /**
  * Browser test
@@ -32,13 +33,13 @@ class BrowserTest extends TestCase {
 	public function test_browser() {
 		global $credentials;
 
-		$client = new Client();
+		$authentication_strategy = new WebServicesAuthenticationStrategy( $credentials );
 
-		$logon_response = $client->logon( $credentials );
+		$client = new Client( $authentication_strategy );
 
-		$session = $client->get_session( $logon_response );
+		$client->login();
 
-		$xml_processor = new XMLProcessor( $session );
+		$xml_processor = $client->get_xml_processor();
 
 		$browser = new Browser( $xml_processor );
 
@@ -50,6 +51,6 @@ class BrowserTest extends TestCase {
 
 		$data = $browser->get_data( $browse_definition );
 
-		$this->assertInstanceOf( '\SimpleXMLElement', $data );
+		$this->assertInstanceOf( __NAMESPACE__ . '\BrowseData', $data );
 	}
 }

@@ -10,6 +10,7 @@
 namespace Pronamic\WP\Twinfield;
 
 use PHPUnit\Framework\TestCase;
+use Pronamic\WP\Twinfield\Authentication\WebServicesAuthenticationStrategy;
 
 /**
  * Finder test
@@ -27,16 +28,13 @@ class FinderTest extends TestCase {
 	public function test_search() {
 		global $credentials;
 
-		$client = new Client();
+		$authentication_strategy = new WebServicesAuthenticationStrategy( $credentials );
 
-		$logon_response = $client->logon( $credentials );
+		$client = new Client( $authentication_strategy );
 
-		$this->assertInstanceOf( __NAMESPACE__ . '\LogonResponse', $logon_response );
-		$this->assertInternalType( 'string', $logon_response->get_cluster() );
+		$client->login();
 
-		$session = $client->get_session( $logon_response );
-
-		$finder = new Finder( $session );
+		$finder = $client->get_finder();
 
 		$this->assertInstanceOf( __NAMESPACE__ . '\Finder', $finder );
 

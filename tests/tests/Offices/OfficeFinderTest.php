@@ -14,6 +14,7 @@ use Pronamic\WP\Twinfield\Client;
 use Pronamic\WP\Twinfield\Result;
 use Pronamic\WP\Twinfield\Finder;
 use Pronamic\WP\Twinfield\SearchFields;
+use Pronamic\WP\Twinfield\Authentication\WebServicesAuthenticationStrategy;
 
 /**
  * Office finder test
@@ -38,19 +39,19 @@ class OfficeFinderTest extends TestCase {
 
 		global $credentials;
 
-		$client = new Client();
+		$authentication_strategy = new WebServicesAuthenticationStrategy( $credentials );
 
-		$logon_response = $client->logon( $credentials );
+		$client = new Client( $authentication_strategy );
 
-		$session = $client->get_session( $logon_response );
+		$client->login();
 
-		$this->finder = new OfficeFinder( new Finder( $session ) );
+		$this->finder = new OfficeFinder( $client->get_finder() );
 	}
 
 	/**
 	 * Test get offices.
 	 *
-	 * @dataProvider test_provider
+	 * @dataProvider provider
 	 * @param string $search The search pattern. May contain wildcards * and ?.
 	 */
 	public function test_get_offices( $search ) {
@@ -69,7 +70,7 @@ class OfficeFinderTest extends TestCase {
 	 *
 	 * @return array
 	 */
-	public function test_provider() {
+	public function provider() {
 		return array(
 			array(
 				'search' => '*',

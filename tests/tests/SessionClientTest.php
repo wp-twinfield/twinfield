@@ -27,7 +27,11 @@ class SessionClientTest extends TestCase {
 	public function test_logon() {
 		global $credentials;
 
-		$client = new Client();
+		$authentication_strategy = new WebServicesAuthenticationStrategy( $credentials );
+
+		$client = new Client( $authentication_strategy );
+
+		$client->login();
 
 		// Test logon.
 		$logon_response = $client->logon( $credentials );
