@@ -75,6 +75,27 @@ class TransactionLine {
 	private $period;
 
 	/**
+	 * Match status.
+	 *
+	 * @var string
+	 */
+	private $match_status;
+
+	/**
+	 * Match number.
+	 *
+	 * @var string
+	 */
+	private $match_number;
+
+	/**
+	 * Match date.
+	 *
+	 * @var DateTime
+	 */
+	private $match_date;
+
+	/**
 	 * Constructs and initialize a Twinfield transaction line.
 	 *
 	 * @param Transaction $transaction Transaction.
@@ -336,6 +357,24 @@ class TransactionLine {
 	}
 
 	/**
+	 * Get the due date of this transaction line.
+	 *
+	 * @return string
+	 */
+	public function get_due_date() {
+		return $this->due_date;
+	}
+
+	/**
+	 * Set the due date of this transaction line.
+	 *
+	 * @param string $due_date The due date.
+	 */
+	public function set_due_date( $due_date ) {
+		$this->due_date = $due_date;
+	}
+
+	/**
 	 * Get free text 1.
 	 *
 	 * @return string
@@ -495,5 +534,59 @@ class TransactionLine {
 	 */
 	public function is_credit() {
 		return self::CREDIT === $this->get_debit_credit();
+	}
+
+	/**
+	 * Set match status.
+	 *
+	 * @param string $match_status Match status.
+	 */
+	public function set_match_status( $match_status ) {
+		$this->match_status = $match_status;
+	}
+
+	/**
+	 * Get match status.
+	 *
+	 * @return string
+	 */
+	public function get_match_status() {
+		return $this->match_status;
+	}
+
+	/**
+	 * Set match number.
+	 *
+	 * @param string $match_number Match number.
+	 */
+	public function set_match_status( $match_number ) {
+		$this->match_number = $match_number;
+	}
+
+	/**
+	 * Get match number.
+	 *
+	 * @return string
+	 */
+	public function get_match_number() {
+		return $this->match_number;
+	}
+
+	/**
+	 * Set match date.
+	 *
+	 * @param string $match_date Match date.
+	 */
+	public function set_match_date( $match_date ) {
+		$this->match_date = $match_date;
+	}
+
+	/**
+	 * Get match date.
+	 *
+	 * @return string
+	 */
+	public function get_match_date() {
+		return $this->match_date;
 	}
 }

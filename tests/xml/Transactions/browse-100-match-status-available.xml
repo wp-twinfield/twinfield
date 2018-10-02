@@ -1,0 +1,411 @@
+<?xml version="1.0"?>
+<browse result="1" first="1" last="17" total="17">
+	<th>
+		<td label="Periode" hideforuser="false" type="String">fin.trs.head.yearperiod</td>
+		<td label="Dagboek" hideforuser="false" type="String">fin.trs.head.code</td>
+		<td label="Naam" hideforuser="false" type="String">fin.trs.head.shortname</td>
+		<td label="Boekst.nr." hideforuser="false" type="Decimal">fin.trs.head.number</td>
+		<td label="Status" hideforuser="false" type="String">fin.trs.head.status</td>
+		<td label="Boekdatum" hideforuser="false" type="Date">fin.trs.head.date</td>
+		<td label="Debiteur" hideforuser="false" type="String">fin.trs.line.dim2</td>
+		<td label="Naam" hideforuser="false" type="String">fin.trs.line.dim2name</td>
+		<td label="Euro" hideforuser="false" type="Value">fin.trs.line.basevaluesigned</td>
+		<td label="Openstaand bedrag" hideforuser="false" type="Value">fin.trs.line.openbasevaluesigned</td>
+		<td label="Factuurnr." hideforuser="false" type="String">fin.trs.line.invnumber</td>
+		<td label="Vervaldatum" hideforuser="false" type="Date">fin.trs.line.datedue</td>
+		<td label="Betaalstatus" hideforuser="false" type="String">fin.trs.line.matchstatus</td>
+		<td label="Betaalnr." hideforuser="false" type="String">fin.trs.line.matchnumber</td>
+		<td label="Betaaldatum" hideforuser="false" type="Date">fin.trs.line.matchdate</td>
+	</th>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/08</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">ABN</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">ABN</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800063</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Definitief">final</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="06/08/2018">20180806</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10004</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">Familie Boerma</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">-27420.35</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">-27420.35</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="14/08/2018">20180814</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date"/>
+		<key>
+			<office>1192</office>
+			<code>ABN</code>
+			<number>201800063</number>
+			<line>3</line>
+		</key>
+	</tr>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/08</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">ABN</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">ABN</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800069</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Concept">temporary</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="15/08/2018">20180815</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10010</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">Gebr. de Heus Loodgietersbedrijf</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">304.50</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">304.50</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="23/08/2018">20180823</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date"/>
+		<key>
+			<office>1192</office>
+			<code>ABN</code>
+			<number>201800069</number>
+			<line>2</line>
+		</key>
+	</tr>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/08</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">ABN</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">ABN</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800069</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Concept">temporary</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="15/08/2018">20180815</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10010</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">Gebr. de Heus Loodgietersbedrijf</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">666.00</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">666.00</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="23/08/2018">20180823</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date"/>
+		<key>
+			<office>1192</office>
+			<code>ABN</code>
+			<number>201800069</number>
+			<line>3</line>
+		</key>
+	</tr>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/06</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">VRK</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">Verkoop</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800017</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Definitief">final</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="22/06/2018">20180622</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10008</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">Familie van den Broek</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">17729.00</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">6708.02</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String">F0017</td>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="30/06/2018">20180630</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String">1</td>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date" name="29/05/2018">20180529</td>
+		<key>
+			<office>1192</office>
+			<code>VRK</code>
+			<number>201800017</number>
+			<line>1</line>
+		</key>
+	</tr>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/06</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">VRK</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">Verkoop</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800021</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Definitief">final</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="22/06/2018">20180622</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10008</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">Familie van den Broek</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">7811.98</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">7811.98</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String">F0021</td>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="30/06/2018">20180630</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date"/>
+		<key>
+			<office>1192</office>
+			<code>VRK</code>
+			<number>201800021</number>
+			<line>1</line>
+		</key>
+	</tr>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/07</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">VRK</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">Verkoop</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800028</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Definitief">final</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="02/07/2018">20180702</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10004</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">Familie Boerma</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">98344.15</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">98344.15</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String">F0028</td>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="10/07/2018">20180710</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date"/>
+		<key>
+			<office>1192</office>
+			<code>VRK</code>
+			<number>201800028</number>
+			<line>1</line>
+		</key>
+	</tr>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/07</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">VRK</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">Verkoop</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800030</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Definitief">final</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="04/07/2018">20180704</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10004</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">Familie Boerma</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">9743.62</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">9743.62</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String">F0030</td>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="12/07/2018">20180712</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date"/>
+		<key>
+			<office>1192</office>
+			<code>VRK</code>
+			<number>201800030</number>
+			<line>1</line>
+		</key>
+	</tr>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/07</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">VRK</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">Verkoop</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800031</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Definitief">final</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="04/07/2018">20180704</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10004</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">Familie Boerma</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">19962.28</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">19962.28</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String">F0031</td>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="12/07/2018">20180712</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date"/>
+		<key>
+			<office>1192</office>
+			<code>VRK</code>
+			<number>201800031</number>
+			<line>1</line>
+		</key>
+	</tr>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/07</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">VRK</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">Verkoop</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800032</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Definitief">final</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="04/07/2018">20180704</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10004</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">Familie Boerma</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">2498.65</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">2498.65</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String">F0032</td>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="12/07/2018">20180712</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date"/>
+		<key>
+			<office>1192</office>
+			<code>VRK</code>
+			<number>201800032</number>
+			<line>1</line>
+		</key>
+	</tr>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/07</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">VRK</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">Verkoop</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800033</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Definitief">final</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="04/07/2018">20180704</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10004</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">Familie Boerma</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">1058.75</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">1058.75</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String">F0033</td>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="12/07/2018">20180712</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date"/>
+		<key>
+			<office>1192</office>
+			<code>VRK</code>
+			<number>201800033</number>
+			<line>1</line>
+		</key>
+	</tr>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/07</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">VRK</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">Verkoop</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800035</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Definitief">final</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="29/07/2018">20180729</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10016</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">B Verboom</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">21798.18</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">2797.72</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String">F0035</td>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="06/08/2018">20180806</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String">1, 2, 3</td>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date" name="14/09/2018">20180914</td>
+		<key>
+			<office>1192</office>
+			<code>VRK</code>
+			<number>201800035</number>
+			<line>1</line>
+		</key>
+	</tr>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/08</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">VRK</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">Verkoop</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800042</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Definitief">final</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="16/08/2018">20180816</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10016</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">B Verboom</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">2502.28</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">2502.28</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String">F0042</td>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="24/08/2018">20180824</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date"/>
+		<key>
+			<office>1192</office>
+			<code>VRK</code>
+			<number>201800042</number>
+			<line>1</line>
+		</key>
+	</tr>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/09</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">VRK</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">Verkoop</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800048</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Concept">temporary</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="11/09/2018">20180911</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10024</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">Ederveens Tegelzetbedrijf</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">387.20</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">387.20</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String">F0048</td>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="19/09/2018">20180919</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date"/>
+		<key>
+			<office>1192</office>
+			<code>VRK</code>
+			<number>201800048</number>
+			<line>1</line>
+		</key>
+	</tr>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/09</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">VRK</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">Verkoop</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800050</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Concept">temporary</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="17/09/2018">20180917</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10011</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">J Rodenburg</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">2654.36</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">2654.36</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String">F0050</td>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="01/10/2018">20181001</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date"/>
+		<key>
+			<office>1192</office>
+			<code>VRK</code>
+			<number>201800050</number>
+			<line>1</line>
+		</key>
+	</tr>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/09</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">VRK</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">Verkoop</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800054</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Concept">temporary</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="29/09/2018">20180929</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10023</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">Familie Rijnaard</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">1113.20</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">1113.20</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String">F0054</td>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="07/10/2018">20181007</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date"/>
+		<key>
+			<office>1192</office>
+			<code>VRK</code>
+			<number>201800054</number>
+			<line>1</line>
+		</key>
+	</tr>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/10</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">VRK</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">Verkoop</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800056</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Concept">temporary</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="01/10/2018">20181001</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10005</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">Bomvast</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">15791.92</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">15791.92</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String">F0056</td>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="09/10/2018">20181009</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date"/>
+		<key>
+			<office>1192</office>
+			<code>VRK</code>
+			<number>201800056</number>
+			<line>1</line>
+		</key>
+	</tr>
+	<tr>
+		<td field="fin.trs.head.yearperiod" hideforuser="false" type="String">2018/10</td>
+		<td field="fin.trs.head.code" hideforuser="false" type="String">VRK</td>
+		<td field="fin.trs.head.shortname" hideforuser="false" type="String">Verkoop</td>
+		<td field="fin.trs.head.number" hideforuser="false" type="Decimal">201800057</td>
+		<td field="fin.trs.head.status" hideforuser="false" type="String" name="Concept">temporary</td>
+		<td field="fin.trs.head.date" hideforuser="false" type="Date" name="01/10/2018">20181001</td>
+		<td field="fin.trs.line.dim2" hideforuser="false" type="String">DB10026</td>
+		<td field="fin.trs.line.dim2name" hideforuser="false" type="String">A Verboom</td>
+		<td field="fin.trs.line.basevaluesigned" hideforuser="false" type="Value">72.60</td>
+		<td field="fin.trs.line.openbasevaluesigned" hideforuser="false" type="Value">72.60</td>
+		<td field="fin.trs.line.invnumber" hideforuser="false" type="String">F0057</td>
+		<td field="fin.trs.line.datedue" hideforuser="false" type="Date" name="09/10/2018">20181009</td>
+		<td field="fin.trs.line.matchstatus" hideforuser="false" type="String" name="Beschikbaar">available</td>
+		<td field="fin.trs.line.matchnumber" hideforuser="false" type="String"/>
+		<td field="fin.trs.line.matchdate" hideforuser="false" type="Date"/>
+		<key>
+			<office>1192</office>
+			<code>VRK</code>
+			<number>201800057</number>
+			<line>1</line>
+		</key>
+	</tr>
+</browse>

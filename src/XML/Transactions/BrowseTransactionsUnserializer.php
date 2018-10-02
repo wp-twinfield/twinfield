@@ -172,6 +172,10 @@ class BrowseTransactionsUnserializer extends Unserializer {
 				$line->set_free_text_1( $row->get_field( 'fin.trs.line.freetext1' ) );
 				$line->set_free_text_2( $row->get_field( 'fin.trs.line.freetext2' ) );
 				$line->set_free_text_3( $row->get_field( 'fin.trs.line.freetext3' ) );
+				$line->set_due_date( $row->get_field( 'fin.trs.line.datedue' ) );
+				$line->set_match_status( $row->get_field( 'fin.trs.line.matchstatus' ) );
+				$line->set_match_number( $row->get_field( 'fin.trs.line.matchnumber' ) );
+				$line->set_match_date( $row->get_field( 'fin.trs.line.matchdate' ) );
 			}
 		}
 
