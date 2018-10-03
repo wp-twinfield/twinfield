@@ -105,6 +105,15 @@ class TransactionLine {
 	}
 
 	/**
+	 * Get the transaction this line is part of.
+	 *
+	 * @return Transaction
+	 */
+	public function get_transaction() {
+		return $this->transaction;
+	}
+
+	/**
 	 * Get the unique ID of this transaction line.
 	 *
 	 * @return string
@@ -559,7 +568,7 @@ class TransactionLine {
 	 *
 	 * @param string $match_number Match number.
 	 */
-	public function set_match_status( $match_number ) {
+	public function set_match_number( $match_number ) {
 		$this->match_number = $match_number;
 	}
 

@@ -158,10 +158,23 @@ class BrowseTransactionsUnserializer extends Unserializer {
 				$line->set_dimension_1( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim1' ), $row->get_field( 'fin.trs.line.dim1name' ), $row->get_field( 'fin.trs.line.dim1type' ) ) );
 				$line->set_dimension_2( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim2' ), $row->get_field( 'fin.trs.line.dim2name' ), $row->get_field( 'fin.trs.line.dim2type' ) ) );
 				$line->set_dimension_3( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim3' ), $row->get_field( 'fin.trs.line.dim3name' ), $row->get_field( 'fin.trs.line.dim3type' ) ) );
-				$line->set_value( filter_var( $row->get_field( 'fin.trs.line.valuesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
-				$line->set_base_value( filter_var( $row->get_field( 'fin.trs.line.basevaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
-				$line->set_open_base_value( filter_var( $row->get_field( 'fin.trs.line.openbasevaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
-				$line->set_report_value( filter_var( $row->get_field( 'fin.trs.line.repvaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
+				
+				if ( $row->has_field( 'fin.trs.line.valuesigned' ) ) {
+					$line->set_value( filter_var( $row->get_field( 'fin.trs.line.valuesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
+				}
+
+				if ( $row->has_field( 'fin.trs.line.basevaluesigned' ) ) {
+					$line->set_base_value( filter_var( $row->get_field( 'fin.trs.line.basevaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
+				}
+
+				if ( $row->has_field( 'fin.trs.line.openbasevaluesigned' ) ) {
+					$line->set_open_base_value( filter_var( $row->get_field( 'fin.trs.line.openbasevaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
+				}
+
+				if ( $row->has_field( 'fin.trs.line.repvaluesigned' ) ) {
+					$line->set_report_value( filter_var( $row->get_field( 'fin.trs.line.repvaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
+				}
+
 				$line->set_debit_credit( $row->get_field( 'fin.trs.line.debitcredit' ) );
 				$line->set_vat_code( $row->get_field( 'fin.trs.line.vatcode' ) );
 				$line->set_vat_base_value( $row->get_field( 'fin.trs.line.vatbasevaluesigned' ) );
