@@ -78,7 +78,10 @@ class WebServicesAuthenticationStrategy extends AuthenticationStrategy {
 				)
 			);
 
-			return new AuthenticationInfo( $cluster, $soap_header );
+			$info = new AuthenticationInfo( $cluster, $soap_header );
+			$info->session_id = $session_id;
+
+			return $info;
 		}
 
 		return false;

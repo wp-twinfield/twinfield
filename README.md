@@ -37,6 +37,23 @@ travis encrypt TWINFIELD_SALES_INVOICE_NUMBER=$TWINFIELD_SALES_INVOICE_NUMBER --
 ```
 
 
+## Debug PHP SOAP
+
+```php
+var_dump( $this->get_wsdl_url() );
+var_dump( $this->soap_client->__getFunctions() );
+var_dump( $this->soap_client->__getTypes() );
+
+try {
+	$test = $this->soap_client->Query( $test );
+} catch ( \Exception $e ) {
+	var_dump( $e );
+}
+
+echo "REQUEST:\n" . $this->soap_client->__getLastRequest() . "\n";
+```
+
+
 ## Inspiration
 
 *	https://github.com/KnpLabs/php-github-api

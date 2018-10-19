@@ -63,6 +63,14 @@ class Client {
 
 		$this->cluster = $this->authentication_info->get_cluster();
 
+		if ( isset( $this->authentication_info->session_id ) ) {
+			$this->session_id = $this->authentication_info->session_id;
+		}
+
+		if ( isset( $this->authentication_info->access_token ) ) {
+			$this->access_token = $this->authentication_info->access_token;
+		}
+
 		$this->authenticate_services();
 	}
 
@@ -112,6 +120,8 @@ class Client {
 		switch ( $name ) {
 			case 'declarations':
 				return new Declarations\DeclarationsService( $this );
+			case 'deleted-transactions':
+				return new Transactions\DeletedTransactionsService( $this );
 			case 'document':
 				return new Documents\DocumentService( $this );
 			case 'finder':
@@ -191,6 +201,8 @@ class Client {
 			'ProcessXmlStringResponse'   => __NAMESPACE__ . '\ProcessXmlStringResponse',
 			'SearchResponse'             => __NAMESPACE__ . '\SearchResponse',
 			'SelectCompanyResponse'      => __NAMESPACE__ . '\SelectCompanyResponse',
+			'Query'                      => __NAMESPACE__ . '\Transactions\Query',
+			'GetDeletedTransactions'     => __NAMESPACE__ . '\Transactions\GetDeletedTransactions',
 		);
 	}
 }

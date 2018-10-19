@@ -70,7 +70,7 @@ abstract class AbstractService {
 	 *
 	 * @return string
 	 */
-	private function get_wsdl_url() {
+	protected function get_wsdl_url() {
 		return $this->client->get_cluster() . $this->wsdl_file;
 	}
 }

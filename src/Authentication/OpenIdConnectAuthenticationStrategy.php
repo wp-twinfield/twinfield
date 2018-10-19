@@ -23,14 +23,14 @@ class OpenIdConnectAuthenticationStrategy extends AuthenticationStrategy {
 	/**
 	 * Construct.
 	 *
-	 * @param string $acces_token Acces token.
-	 * @param string $office      Office.
-	 * @param string $cluster     Cluster.
+	 * @param string $access_token Access token.
+	 * @param string $office       Office.
+	 * @param string $cluster      Cluster.
 	 */
-	public function __construct( $acces_token, $office, $cluster ) {
-		$this->acces_token = $acces_token;
-		$this->office      = $office;
-		$this->cluster     = $cluster;
+	public function __construct( $access_token, $office, $cluster ) {
+		$this->access_token = $access_token;
+		$this->office       = $office;
+		$this->cluster      = $cluster;
 	}
 
 	/**
@@ -43,11 +43,15 @@ class OpenIdConnectAuthenticationStrategy extends AuthenticationStrategy {
 			'http://www.twinfield.com/',
 			'Header',
 			array(
-				'AccessToken' => $this->acces_token,
+				'AccessToken' => $this->access_token,
 				'CompanyCode' => $this->office,
 			)
 		);
 
-		return new AuthenticationInfo( $this->cluster, $soap_header );
+		$info = new AuthenticationInfo( $this->cluster, $soap_header );
+
+		$info->access_token = $this->access_token;
+
+		return $info;
 	}
 }
