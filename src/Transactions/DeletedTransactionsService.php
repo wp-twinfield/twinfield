@@ -45,7 +45,7 @@ class DeletedTransactionsService extends AbstractService {
 	 *
 	 * @see https://c3.twinfield.com/webservices/documentation/#/ApiReference/Transactions/DeletedTransactions
 	 */
-	public function get_deleted_transactions( $office_code ) {
+	public function get_deleted_transactions( $office_code, \DateTime $date_from = null, \DateTime $date_to = null ) {
 		$authentication = array(
 			'AccessToken' => $this->client->access_token,
 			'CompanyCode' => $office_code,
@@ -61,6 +61,14 @@ class DeletedTransactionsService extends AbstractService {
 
 		$query = new GetDeletedTransactions();
 		$query->CompanyCode = $office_code;
+
+		if ( null !== $date_from ) {
+			$query->DateFrom = $date_from->format( 'Y-m-d' );
+		}
+
+		if ( null !== $date_to ) {
+			$query->DateTo = $date_to->format( 'Y-m-d' );
+		}
 
 		$result = $this->soap_client->Query( $query );
 
