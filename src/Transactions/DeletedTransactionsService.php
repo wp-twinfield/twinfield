@@ -72,7 +72,25 @@ class DeletedTransactionsService extends AbstractService {
 
 		$result = $this->soap_client->Query( $query );
 
-		$transactions = $result->DeletedTransactions->DeletedTransaction;
+		if ( ! isset( $result->DeletedTransactions ) ) {
+			return false;
+		}
+
+		if ( ! isset( $result->DeletedTransactions->DeletedTransaction ) ) {
+			return false;
+		}
+
+		$transactions = false;
+
+		$data = $result->DeletedTransactions->DeletedTransaction;
+
+		if ( is_object( $data ) ) {
+			$transactions = array( $data );
+		}
+
+		if ( is_array( $data ) ) {
+			$transactions = $data;
+		}
 
 		return $transactions;
 	}
