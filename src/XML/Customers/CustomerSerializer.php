@@ -59,8 +59,13 @@ class CustomerSerializer extends Serializer {
 
 			$root->appendChild( $financials_element );
 
+			$ebilling  = $financials->get_ebilling();
+			$ebillmail = $financials->get_ebillmail();
+
 			$elements = array(
-				'duedays' => $financials->get_due_days(),
+				'duedays'   => $financials->get_due_days(),
+				'ebilling'  => is_bool( $ebilling ) ? ( $ebilling ? 'true' : 'false' ) : $ebilling,
+				'ebillmail' => is_null( $ebillmail ) ? $ebillmail : (string) $ebillmail,
 			);
 
 			foreach ( $elements as $name => $value ) {
