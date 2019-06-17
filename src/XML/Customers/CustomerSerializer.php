@@ -59,8 +59,13 @@ class CustomerSerializer extends Serializer {
 
 			$root->appendChild( $financials_element );
 
+			$ebilling  = $financials->get_ebilling();
+			$ebillmail = $financials->get_ebillmail();
+
 			$elements = array(
-				'duedays' => $financials->get_due_days(),
+				'duedays'   => $financials->get_due_days(),
+				'ebilling'  => is_bool( $ebilling ) ? ( $ebilling ? 'true' : 'false' ) : $ebilling,
+				'ebillmail' => is_null( $ebillmail ) ? $ebillmail : (string) $ebillmail,
 			);
 
 			foreach ( $elements as $name => $value ) {
@@ -94,6 +99,63 @@ class CustomerSerializer extends Serializer {
 					$element->appendChild( new \DOMText( $value ) );
 
 					$credit_management_element->appendChild( $element );
+				}
+			}
+		}
+
+		// Addresses.
+		$addresses = $customer->get_addresses();
+
+		if ( $addresses ) {
+			$addresses_element = $this->document->createElement( 'addresses' );
+
+			$root->appendChild( $addresses_element );
+
+			foreach ( $addresses as $address ) {
+				$address_element = $this->document->createElement( 'address' );
+
+				$addresses_element->appendChild( $address_element );
+
+				// Attributes.
+				$is_default = $address->is_default();
+
+				$attributes = array(
+					'id'      => $address->get_id(),
+					'type'    => $address->get_type(),
+					'default' => is_bool( $is_default ) ? ( $is_default ? 'true' : 'false' ) : $is_default,
+				);
+
+				foreach ( $attributes as $name => $value ) {
+					if ( null !== $value ) {
+						$address_element->setAttribute( $name, $value );
+					}
+				}
+
+				// Elements.
+				$elements = array(
+					'name'      => $address->get_name(),
+					'country'   => $address->get_country(),
+					'city'      => $address->get_city(),
+					'postcode'  => $address->get_postcode(),
+					'telephone' => $address->get_telephone(),
+					'telefax'   => $address->get_telefax(),
+					'email'     => $address->get_email(),
+					'contact'   => $address->get_contact(),
+					'field1'    => $address->get_field_1(),
+					'field2'    => $address->get_field_2(),
+					'field3'    => $address->get_field_3(),
+					'field4'    => $address->get_field_4(),
+					'field5'    => $address->get_field_5(),
+					'field6'    => $address->get_field_6(),
+				);
+
+				foreach ( $elements as $name => $value ) {
+					if ( null !== $value ) {
+						$element = $this->document->createElement( $name );
+						$element->appendChild( new \DOMText( $value ) );
+
+						$address_element->appendChild( $element );
+					}
 				}
 			}
 		}

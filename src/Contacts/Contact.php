@@ -105,6 +105,14 @@ class Contact {
 	public function new_address() {
 		$address = new Address();
 
+		/*
+		 * Twinfield requires one default address:
+		 * "There has to be one default address."
+		 */
+		if ( empty( $this->addresses ) ) {
+			$address->set_default( true );
+		}
+
 		$this->addresses[] = $address;
 
 		return $address;
