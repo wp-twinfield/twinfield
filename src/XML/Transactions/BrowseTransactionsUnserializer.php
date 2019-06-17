@@ -78,8 +78,14 @@ class BrowseTransactionsUnserializer extends Unserializer {
 					$header = $transaction->get_header();
 
 					// Office.
+					$office_code = (string) $xml_key->office;
+
+					if ( $row->has_field( 'fin.trs.head.office' ) ) {
+						$office_code = $row->get_field( 'fin.trs.head.office' );
+					}
+
 					$office = new Office();
-					$office->set_code( $row->get_field( 'fin.trs.head.office' ) );
+					$office->set_code( $office_code );
 					$office->set_name( $row->get_field( 'fin.trs.head.officename' ) );
 
 					$header->set_office( $office );
