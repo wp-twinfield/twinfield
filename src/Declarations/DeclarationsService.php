@@ -159,6 +159,35 @@ class DeclarationsService extends AbstractService {
 		// phpcs:enable
 	}
 
+	public function get_xml( $document_id, $document_code = null ) {
+		$function = 'GetVatReturnAsXml';
+
+		switch ( $document_code ) {
+			case DocumentCodes::VATTURNOVER:
+				$function = 'GetVatReturnAsXml';
+
+				break;
+			case DocumentCodes::VATICT:
+				$function = 'GetIctReturnAsXml';
+
+				break;
+			case DocumentCodes::TAXGROUP:
+				$function = 'GetTaxGroupVatReturnAsXml';
+
+				break;
+		}
+
+		$parameters = new \stdClass();
+
+		$parameters->documentId = $document_id;
+
+		$response = $this->soap_client->__soapCall( $function, array( $parameters ) );
+
+		if ( isset( $response->vatReturn, $response->vatReturn->any ) ) {
+			return $response->vatReturn->any;			
+		}
+	}
+
 	/**
 	 * Get VAT return XBRL for the specified document ID.
 	 *
