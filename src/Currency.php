@@ -34,6 +34,13 @@ class Currency {
 	private $name;
 
 	/**
+	 * Shortname.
+	 *
+	 * @var string
+	 */
+	private $shortname;
+
+	/**
 	 * Get code.
 	 *
 	 * @return string
@@ -67,5 +74,23 @@ class Currency {
 	 */
 	public function set_name( $name ) {
 		$this->name = $name;
+	}
+
+	/**
+	 * Get shortname.
+	 *
+	 * @return string
+	 */
+	public function get_shortname() {
+		return $this->shortname;
+	}
+
+	/**
+	 * Set shortname.
+	 *
+	 * @param string $shortname The shortname.
+	 */
+	public function set_shortname( $shortname ) {
+		$this->shortname = $shortname;
 	}
 }
