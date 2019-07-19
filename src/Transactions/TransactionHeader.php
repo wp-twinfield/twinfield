@@ -153,6 +153,42 @@ class TransactionHeader {
 	}
 
 	/**
+	 * Get the due date of this transaction header.
+	 *
+	 * @return \DateTime
+	 */
+	public function get_due_date() {
+		return $this->due_date;
+	}
+
+	/**
+	 * Set the due date of this transaction header.
+	 *
+	 * @param \DateTime $date The input date.
+	 */
+	public function set_due_date( \DateTime $date ) {
+		$this->due_date = $date;
+	}
+
+	/**
+	 * Get the modification date of this transaction header.
+	 *
+	 * @return \DateTime
+	 */
+	public function get_modification_date() {
+		return $this->modification_date;
+	}
+
+	/**
+	 * Set the modification date of this transaction header.
+	 *
+	 * @param \DateTime $date The modification date.
+	 */
+	public function set_modification_date( \DateTime $date ) {
+		$this->modification_date = $date;
+	}
+
+	/**
 	 * Get relation.
 	 *
 	 * @return Relation
@@ -258,5 +294,77 @@ class TransactionHeader {
 	 */
 	public function set_origin( $origin ) {
 		$this->origin = $origin;
+	}
+
+	/**
+	 * Get the invoice number of this transaction header.
+	 *
+	 * @return string
+	 */
+	public function get_invoice_number() {
+		return $this->invoice_number;
+	}
+
+	/**
+	 * Set the invoice number of this transaction header.
+	 *
+	 * @param string $invoice_number The invoice number.
+	 */
+	public function set_invoice_number( $invoice_number ) {
+		$this->invoice_number = $invoice_number;
+	}
+
+	/**
+	 * Get free text 1.
+	 *
+	 * @return string
+	 */
+	public function get_free_text_1() {
+		return $this->free_text_1;
+	}
+
+	/**
+	 * Set free text 1.
+	 *
+	 * @param string $text Text.
+	 */
+	public function set_free_text_1( $text ) {
+		$this->free_text_1 = $text;
+	}
+
+	/**
+	 * Get free text 2.
+	 *
+	 * @return string
+	 */
+	public function get_free_text_2() {
+		return $this->free_text_2;
+	}
+
+	/**
+	 * Set free text 2.
+	 *
+	 * @param string $text Text.
+	 */
+	public function set_free_text_2( $text ) {
+		$this->free_text_2 = $text;
+	}
+
+	/**
+	 * Get free text 3.
+	 *
+	 * @return string
+	 */
+	public function get_free_text_3() {
+		return $this->free_text_3;
+	}
+
+	/**
+	 * Set free text 2.
+	 *
+	 * @param string $text Text.
+	 */
+	public function set_free_text_3( $text ) {
+		$this->free_text_3 = $text;
 	}
 }

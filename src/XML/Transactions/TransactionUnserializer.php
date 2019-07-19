@@ -20,6 +20,7 @@ use Pronamic\WP\Twinfield\Transactions\TransactionResponse;
 use Pronamic\WP\Twinfield\XML\Security;
 use Pronamic\WP\Twinfield\XML\Unserializer;
 use Pronamic\WP\Twinfield\XML\DateUnserializer;
+use Pronamic\WP\Twinfield\XML\DateTimeUnserializer;
 
 /**
  * Transaction unserializer
@@ -33,7 +34,8 @@ class TransactionUnserializer extends Unserializer {
 	 * Constructs and initializes an sales invoice unserializer.
 	 */
 	public function __construct() {
-		$this->date_unserializer = new DateUnserializer();
+		$this->date_unserializer     = new DateUnserializer();
+		$this->datetime_unserializer = new DateTimeUnserializer();
 	}
 
 	/**
@@ -67,6 +69,21 @@ class TransactionUnserializer extends Unserializer {
 				$header->set_number( Security::filter( $element->header->number ) );
 				$header->set_date( $this->date_unserializer->unserialize( $element->header->date ) );
 
+				// Input date.
+				if ( $element->header->inputdate ) {
+					$header->set_input_date( $this->datetime_unserializer->unserialize( $element->header->inputdate ) );
+				}
+
+				// Due date.
+				if ( $element->header->duedate ) {
+					$header->set_due_date( $this->date_unserializer->unserialize( $element->header->duedate ) );
+				}
+
+				// Modification date.
+				if ( $element->header->modificationdate ) {
+					$header->set_modification_date( $this->datetime_unserializer->unserialize( $element->header->modificationdate ) );
+				}
+
 				// Year/period.
 				$year   = null;
 				$period = null;
@@ -82,6 +99,14 @@ class TransactionUnserializer extends Unserializer {
 
 				$header->set_year( $year );
 				$header->set_period( $period );
+
+				// Invoice number.
+				$header->set_invoice_number( Security::filter( $element->header->invoicenumber ) );				
+
+				// Free texts.
+				$header->set_free_text_1( Security::filter( $element->header->freetext1 ) );
+				$header->set_free_text_2( Security::filter( $element->header->freetext2 ) );
+				$header->set_free_text_3( Security::filter( $element->header->freetext3 ) );
 			}
 
 			if ( $element->lines ) {
