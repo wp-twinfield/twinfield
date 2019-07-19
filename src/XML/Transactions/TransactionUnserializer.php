@@ -56,15 +56,32 @@ class TransactionUnserializer extends Unserializer {
 
 				// Currency.
 				$currency = new Currency();
-				$currency->set_code( $element->header->currency );
+				$currency->set_code( Security::filter( $element->header->currency ) );
+				$currency->set_name( Security::filter( $element->header->currency['name'] ) );
+				$currency->set_shortname( Security::filter( $element->header->currency['shortname'] ) );
 
 				$header->set_currency( $currency );
 
 				// Other.
 				$header->set_code( Security::filter( $element->header->code ) );
 				$header->set_number( Security::filter( $element->header->number ) );
-				$header->set_period( $element->header->period );
 				$header->set_date( $this->date_unserializer->unserialize( $element->header->date ) );
+
+				// Year/period.
+				$year   = null;
+				$period = null;
+
+				$year_period = Security::filter( $element->header->period );
+
+				$seperator_position = strpos( $year_period, '/' );
+
+				if ( false !== $seperator_position ) {
+					$year   = substr( $year_period, 0, $seperator_position );
+					$period = substr( $year_period, $seperator_position + 1 );
+				}
+
+				$header->set_year( $year );
+				$header->set_period( $period );
 			}
 
 			if ( $element->lines ) {
