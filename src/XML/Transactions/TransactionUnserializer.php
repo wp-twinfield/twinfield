@@ -115,11 +115,42 @@ class TransactionUnserializer extends Unserializer {
 
 					$line->set_id( Security::filter( $element_line['id'] ) );
 					$line->set_type( Security::filter( $element_line['type'] ) );
-					$line->set_dimension_1( new TransactionLineDimension( Security::filter( $element_line->dim1 ), Security::filter( $element_line->dim1['name'] ), Security::filter( $element_line->dim1['type'] ) ) );
-					$line->set_dimension_2( new TransactionLineDimension( Security::filter( $element_line->dim2 ), Security::filter( $element_line->dim2['name'] ), Security::filter( $element_line->dim2['type'] ) ) );
+
+					if ( $element_line->dim1 ) {
+						$line->set_dimension_1( new TransactionLineDimension(
+							Security::filter( $element_line->dim1 ),
+							Security::filter( $element_line->dim1['name'] ),
+							Security::filter( $element_line->dim1['dimensiontype'] )
+						) );
+					}
+
+					if ( $element_line->dim2 ) {
+						$line->set_dimension_2( new TransactionLineDimension(
+							Security::filter( $element_line->dim2 ),
+							Security::filter( $element_line->dim2['name'] ),
+							Security::filter( $element_line->dim2['dimensiontype'] )
+						) );
+					}
+
+					if ( $element_line->dim3 ) {
+						$line->set_dimension_3( new TransactionLineDimension(
+							Security::filter( $element_line->dim3 ),
+							Security::filter( $element_line->dim3['name'] ),
+							Security::filter( $element_line->dim3['dimensiontype'] )
+						) );
+					}
+
 					$line->set_debit_credit( Security::filter( $element_line->debitcredit ) );
 					$line->set_value( Security::filter( $element_line->value, FILTER_VALIDATE_FLOAT ) );
 					$line->set_description( Security::filter( $element_line->description ) );
+
+					if ( $element_line->invoicenumber ) {
+						$line->set_invoice_number( $element_line->invoicenumber );
+					}
+
+					if ( $element_line->matchstatus ) {
+						$line->set_match_status( $element_line->matchstatus );
+					}
 				}
 			}
 
