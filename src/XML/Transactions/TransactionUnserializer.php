@@ -145,11 +145,11 @@ class TransactionUnserializer extends Unserializer {
 					$line->set_description( Security::filter( $element_line->description ) );
 
 					if ( $element_line->invoicenumber ) {
-						$line->set_invoice_number( $element_line->invoicenumber );
+						$line->set_invoice_number( Security::filter( $element_line->invoicenumber ) );
 					}
 
 					if ( $element_line->matchstatus ) {
-						$line->set_match_status( $element_line->matchstatus );
+						$line->set_match_status( Security::filter( $element_line->matchstatus ) );
 					}
 				}
 			}
