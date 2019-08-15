@@ -16,6 +16,7 @@ use Pronamic\WP\Twinfield\Offices\Office;
 use Pronamic\WP\Twinfield\Relations\Relation;
 use Pronamic\WP\Twinfield\Transactions\Transaction;
 use Pronamic\WP\Twinfield\Transactions\TransactionHeader;
+use Pronamic\WP\Twinfield\Transactions\TransactionTypeCode;
 use Pronamic\WP\Twinfield\Transactions\TransactionLine;
 use Pronamic\WP\Twinfield\Transactions\TransactionLineDimension;
 use Pronamic\WP\Twinfield\Transactions\TransactionLineKey;
@@ -84,29 +85,35 @@ class BrowseTransactionsUnserializer extends Unserializer {
 						$office_code = $row->get_field( 'fin.trs.head.office' );
 					}
 
-					$office = new Office();
-					$office->set_code( $office_code );
-					$office->set_name( $row->get_field( 'fin.trs.head.officename' ) );
+					$office = new Office(
+						$office_code,
+						$row->get_field( 'fin.trs.head.officename' )
+					);
 
 					$header->set_office( $office );
 
 					// Relation.
-					$relation = new Relation();
-					$relation->set_code( $row->get_field( 'fin.trs.head.relation' ) );
-					$relation->set_name( $row->get_field( 'fin.trs.head.relationname' ) );
+					$relation = new Relation(
+						$row->get_field( 'fin.trs.head.relation' ),
+						$row->get_field( 'fin.trs.head.relationname' )
+					);
 
 					$header->set_relation( $relation );
 
 					// Currency.
-					$currency = new Currency();
-					$currency->set_code( $row->get_field( 'fin.trs.head.curcode' ) );
+					$currency = new Currency( $row->get_field( 'fin.trs.head.curcode' ) );
+
+					$header->set_currency( $currency );
+
+					// Code.
+					$code = new TransactionTypeCode( $row->get_field( 'fin.trs.head.code' ) );
+
+					$header->set_code( $code );
 
 					// Other.
-					$header->set_code( $row->get_field( 'fin.trs.head.code' ) );
 					$header->set_number( $row->get_field( 'fin.trs.head.number' ) );
 					$header->set_status( $row->get_field( 'fin.trs.head.status' ) );
 					$header->set_date( \DateTime::createFromFormat( 'Ymd', $row->get_field( 'fin.trs.head.date' ) ) );
-					$header->set_currency( $currency );
 
 					$input_date = \DateTime::createFromFormat( 'YmdHis', $row->get_field( 'fin.trs.head.inpdate' ) );
 
@@ -161,9 +168,35 @@ class BrowseTransactionsUnserializer extends Unserializer {
 				$line->set_key( $key );
 				$line->set_id( $key->get_line() );
 
-				$line->set_dimension_1( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim1' ), $row->get_field( 'fin.trs.line.dim1name' ), $row->get_field( 'fin.trs.line.dim1type' ) ) );
-				$line->set_dimension_2( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim2' ), $row->get_field( 'fin.trs.line.dim2name' ), $row->get_field( 'fin.trs.line.dim2type' ) ) );
-				$line->set_dimension_3( new TransactionLineDimension( $row->get_field( 'fin.trs.line.dim3' ), $row->get_field( 'fin.trs.line.dim3name' ), $row->get_field( 'fin.trs.line.dim3type' ) ) );
+				if ( $row->has_field( 'fin.trs.line.dim1' ) ) {
+					$dimension_1 = new TransactionLineDimension(
+						$row->get_field( 'fin.trs.line.dim1type' ),
+						$row->get_field( 'fin.trs.line.dim1' ),
+						$row->get_field( 'fin.trs.line.dim1name' )
+					);
+				
+					$line->set_dimension_1( $dimension_1 );
+				}
+
+				if ( $row->has_field( 'fin.trs.line.dim2' ) ) {
+					$dimension_2 = new TransactionLineDimension(
+						$row->get_field( 'fin.trs.line.dim2type' ),
+						$row->get_field( 'fin.trs.line.dim2' ),
+						$row->get_field( 'fin.trs.line.dim2name' )
+					);
+				
+					$line->set_dimension_2( $dimension_2 );
+				}
+
+				if ( $row->has_field( 'fin.trs.line.dim3' ) ) {
+					$dimension_3 = new TransactionLineDimension(
+						$row->get_field( 'fin.trs.line.dim3type' ),
+						$row->get_field( 'fin.trs.line.dim3' ),
+						$row->get_field( 'fin.trs.line.dim3name' )
+					);
+				
+					$line->set_dimension_3( $dimension_3 );
+				}
 				
 				if ( $row->has_field( 'fin.trs.line.valuesigned' ) ) {
 					$line->set_value( filter_var( $row->get_field( 'fin.trs.line.valuesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );

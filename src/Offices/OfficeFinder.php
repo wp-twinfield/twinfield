@@ -69,10 +69,7 @@ class OfficeFinder {
 
 				if ( ! is_null( $items ) ) {
 					foreach ( $items as $item ) {
-						$office = new OfficeFinderResult();
-
-						$office->set_code( $item[0] );
-						$office->set_name( $item[1] );
+						$office = new Office( $item[0], $item[1] );
 
 						$offices[] = $office;
 					}

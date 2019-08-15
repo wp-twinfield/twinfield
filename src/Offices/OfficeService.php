@@ -55,10 +55,11 @@ class OfficeService {
 			$result = array();
 
 			foreach ( $xml->office as $element ) {
-				$office = new Office();
-				$office->set_code( Security::filter( $element ) );
-				$office->set_name( Security::filter( $element['name'] ) );
-				$office->set_shortname( Security::filter( $element['shortname'] ) );
+				$office = new Office(
+					Security::filter( $element ),
+					Security::filter( $element['name'] ),
+					Security::filter( $element['shortname'] )
+				);
 
 				$result[] = $office;
 			}

@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\Transactions;
 
+use Pronamic\WP\Twinfield\CodeName;
+
 /**
  * Transaction Line
  *
@@ -18,21 +20,7 @@ namespace Pronamic\WP\Twinfield\Transactions;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class TransactionLineDimension {
-	/**
-	 * The code of this dimension.
-	 *
-	 * @var string
-	 */
-	private $code;
-
-	/**
-	 * The name of this dimension.
-	 *
-	 * @var string
-	 */
-	private $name;
-
+class TransactionLineDimension extends CodeName {
 	/**
 	 * The type of this dimension.
 	 *
@@ -43,32 +31,15 @@ class TransactionLineDimension {
 	/**
 	 * Constructs and initialize a Twinfield transaction line.
 	 *
-	 * @param string $code The code.
-	 * @param string $name The name.
-	 * @param string $type The type.
+	 * @param string      $type      Type.
+	 * @param string      $code      Code.
+	 * @param string|null $name      Name.
+	 * @param string|null $shortname Shortname.
 	 */
-	public function __construct( $code, $name = null, $type = null ) {
-		$this->code = $code;
-		$this->name = $name;
+	public function __construct( $type, $code, $name = null, $shortname = null ) {
+		parent::__construct( $code, $name, $shortname );
+
 		$this->type = $type;
-	}
-
-	/**
-	 * Get the code of this dimension.
-	 *
-	 * @return string
-	 */
-	public function get_code() {
-		return $this->code;
-	}
-
-	/**
-	 * Get the name of this dimension.
-	 *
-	 * @return string
-	 */
-	public function get_name() {
-		return $this->name;
 	}
 
 	/**

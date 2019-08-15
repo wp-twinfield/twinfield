@@ -33,7 +33,7 @@ class TransactionHeader {
 	/**
 	 * Code.
 	 *
-	 * @var string
+	 * @var TransactionTypeCode
 	 */
 	private $code;
 
@@ -65,7 +65,7 @@ class TransactionHeader {
 	/**
 	 * Get code.
 	 *
-	 * @return string
+	 * @return TransactionTypeCode
 	 */
 	public function get_code() {
 		return $this->code;
@@ -74,7 +74,7 @@ class TransactionHeader {
 	/**
 	 * Set code.
 	 *
-	 * @param string $code The code.
+	 * @param TransactionTypeCode $code The code.
 	 */
 	public function set_code( $code ) {
 		$this->code = $code;

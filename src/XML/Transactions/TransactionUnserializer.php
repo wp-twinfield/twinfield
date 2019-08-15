@@ -14,6 +14,7 @@ use Pronamic\WP\Twinfield\Currency;
 use Pronamic\WP\Twinfield\Offices\Office;
 use Pronamic\WP\Twinfield\Transactions\Transaction;
 use Pronamic\WP\Twinfield\Transactions\TransactionHeader;
+use Pronamic\WP\Twinfield\Transactions\TransactionTypeCode;
 use Pronamic\WP\Twinfield\Transactions\TransactionLine;
 use Pronamic\WP\Twinfield\Transactions\TransactionLineDimension;
 use Pronamic\WP\Twinfield\Transactions\TransactionResponse;
@@ -51,22 +52,35 @@ class TransactionUnserializer extends Unserializer {
 
 			if ( $element->header ) {
 				// Office.
-				$office = new Office();
-				$office->set_code( Security::filter( $element->header->office ) );
+				$office = new Office(
+					Security::filter( $element->header->office ),
+					Security::filter( $element->header->office['name'] ),
+					Security::filter( $element->header->office['shortname'] )
+				);
 
 				$header->set_office( $office );
 
 				// Currency.
-				$currency = new Currency();
-				$currency->set_code( Security::filter( $element->header->currency ) );
-				$currency->set_name( Security::filter( $element->header->currency['name'] ) );
-				$currency->set_shortname( Security::filter( $element->header->currency['shortname'] ) );
+				$currency = new Currency(
+					Security::filter( $element->header->currency ),
+					Security::filter( $element->header->currency['name'] ),
+					Security::filter( $element->header->currency['shortname'] )
+				);
 
 				$header->set_currency( $currency );
 
+				// Transaction type code.
+				$code = new TransactionTypeCode(
+					Security::filter( $element->header->code ),
+					Security::filter( $element->header->code['name'] ),
+					Security::filter( $element->header->code['shortname'] )
+				);
+
+				$header->set_code( $code );
+
 				// Other.
-				$header->set_code( Security::filter( $element->header->code ) );
 				$header->set_number( Security::filter( $element->header->number ) );
+
 				$header->set_date( $this->date_unserializer->unserialize( $element->header->date ) );
 
 				// Input date.
@@ -118,25 +132,28 @@ class TransactionUnserializer extends Unserializer {
 
 					if ( $element_line->dim1 ) {
 						$line->set_dimension_1( new TransactionLineDimension(
+							Security::filter( $element_line->dim1['dimensiontype'] ),
 							Security::filter( $element_line->dim1 ),
 							Security::filter( $element_line->dim1['name'] ),
-							Security::filter( $element_line->dim1['dimensiontype'] )
+							Security::filter( $element_line->dim1['shortname'] )
 						) );
 					}
 
 					if ( $element_line->dim2 ) {
 						$line->set_dimension_2( new TransactionLineDimension(
+							Security::filter( $element_line->dim2['dimensiontype'] ),
 							Security::filter( $element_line->dim2 ),
 							Security::filter( $element_line->dim2['name'] ),
-							Security::filter( $element_line->dim2['dimensiontype'] )
+							Security::filter( $element_line->dim2['shortname'] )
 						) );
 					}
 
 					if ( $element_line->dim3 ) {
 						$line->set_dimension_3( new TransactionLineDimension(
+							Security::filter( $element_line->dim3['dimensiontype'] ),
 							Security::filter( $element_line->dim3 ),
 							Security::filter( $element_line->dim3['name'] ),
-							Security::filter( $element_line->dim3['dimensiontype'] )
+							Security::filter( $element_line->dim3['shortname'] )
 						) );
 					}
 

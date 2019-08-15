@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\Relations;
 
+use Pronamic\WP\Twinfield\CodeName;
+
 /**
  * Relation
  *
@@ -18,54 +20,6 @@ namespace Pronamic\WP\Twinfield\Relations;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class Relation {
-	/**
-	 * Code.
-	 *
-	 * @var string
-	 */
-	private $code;
+class Relation extends CodeName {
 
-	/**
-	 * Name.
-	 *
-	 * @var string
-	 */
-	private $name;
-
-	/**
-	 * Get code.
-	 *
-	 * @return string
-	 */
-	public function get_code() {
-		return $this->code;
-	}
-
-	/**
-	 * Set code.
-	 *
-	 * @param string $code The code.
-	 */
-	public function set_code( $code ) {
-		$this->code = $code;
-	}
-
-	/**
-	 * Get name.
-	 *
-	 * @return string
-	 */
-	public function get_name() {
-		return $this->name;
-	}
-
-	/**
-	 * Set name.
-	 *
-	 * @param string $name The name.
-	 */
-	public function set_name( $name ) {
-		$this->name = $name;
-	}
 }
