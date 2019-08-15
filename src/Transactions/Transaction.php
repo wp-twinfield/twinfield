@@ -14,11 +14,27 @@ namespace Pronamic\WP\Twinfield\Transactions;
  *
  * This class represents a Twinfield transaction.
  *
+ * @link https://accounting.twinfield.com/webservices/documentation/#/ApiReference/Transactions/BankTransactions
+ * @link https://accounting.twinfield.com/webservices/documentation/#/ApiReference/Transactions/CashTransactions
+ * @link https://accounting.twinfield.com/webservices/documentation/#/ApiReference/Transactions/JournalTransactions
+ * @link https://accounting.twinfield.com/webservices/documentation/#/ApiReference/PurchaseTransactions
+ *
  * @since      1.0.0
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
 class Transaction {
+	/**
+	 * Location.
+	 *
+	 * Indicate the destiny of the purchase transaction:
+	 * `temporary` = purchase transaction is saved as `provisional`
+	 * `final` = purchase transaction is saved as `final`
+	 *
+	 * @var string|null
+	 */
+	private $location;
+
 	/**
 	 * Header.
 	 *
@@ -39,6 +55,24 @@ class Transaction {
 	public function __construct() {
 		$this->header = new TransactionHeader();
 		$this->lines  = array();
+	}
+
+	/**
+	 * Get location.
+	 *
+	 * @return string|null
+	 */
+	public function get_location() {
+		return $this->location;
+	}
+
+	/**
+	 * Set location.
+	 *
+	 * @param string|null $location Location.
+	 */
+	public function set_location( $location ) {
+		$this->location = $location;
 	}
 
 	/**

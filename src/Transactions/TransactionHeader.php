@@ -18,6 +18,11 @@ use Pronamic\WP\Twinfield\Relations\Relation;
  *
  * This class represents a Twinfield transaction header.
  *
+ * @link https://accounting.twinfield.com/webservices/documentation/#/ApiReference/Transactions/BankTransactions
+ * @link https://accounting.twinfield.com/webservices/documentation/#/ApiReference/Transactions/CashTransactions
+ * @link https://accounting.twinfield.com/webservices/documentation/#/ApiReference/Transactions/JournalTransactions
+ * @link https://accounting.twinfield.com/webservices/documentation/#/ApiReference/PurchaseTransactions
+ *
  * @since      1.0.0
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
@@ -36,6 +41,34 @@ class TransactionHeader {
 	 * @var TransactionTypeCode
 	 */
 	private $code;
+
+	/**
+	 * Statement number.
+	 *
+	 * Bank transactions - Number of the bank statement. Don't confuse this number with the `transaction number`.
+	 * Cash transactions - Cash transactions number. Don't confuse this number with the `transaction number`.
+	 *
+	 * @var int|null
+	 */
+	private $statement_number;
+
+	/**
+	 * Start value.
+	 *
+	 * Opening balance. If not provided, the opening balance is set to zero.
+	 *
+	 * @var string|null
+	 */
+	private $start_value;
+
+	/**
+	 * Close value.
+	 *
+	 * Closing balance. If not provided, the closing balance is set to zero.
+	 *
+	 * @var string|null
+	 */
+	private $close_value;
 
 	/**
 	 * Constructs and initializes a transaction header.
@@ -132,6 +165,60 @@ class TransactionHeader {
 	 */
 	public function set_date( \DateTime $date = null ) {
 		$this->date = $date;
+	}
+
+	/**
+	 * Get statement number.
+	 *
+	 * @return int|null
+	 */
+	public function get_statement_number() {
+		return $this->statement_number;
+	}
+
+	/**
+	 * Set statement number.
+	 *
+	 * @param int|null $statement_number Statement number.
+	 */
+	public function set_statement_number( $statement_number ) {
+		$this->statement_number = $statement_number;
+	}
+
+	/**
+	 * Get start value.
+	 *
+	 * @return string|null
+	 */
+	public function get_start_value() {
+		return $this->start_value;
+	}
+
+	/**
+	 * Set start value.
+	 *
+	 * @param string|null Value.
+	 */
+	public function set_start_value( $value ) {
+		$this->start_value = $value;
+	}
+
+	/**
+	 * Get close value.
+	 *
+	 * @return string|null
+	 */
+	public function get_close_value() {
+		return $this->close_value;
+	}
+
+	/**
+	 * Set close value.
+	 *
+	 * @param string|null $value Value.
+	 */
+	public function set_close_value( $value ) {
+		$this->close_value = $value;
 	}
 
 	/**

@@ -78,10 +78,26 @@ class TransactionUnserializer extends Unserializer {
 
 				$header->set_code( $code );
 
-				// Other.
+				// Number.
 				$header->set_number( Security::filter( $element->header->number ) );
 
+				// Date.
 				$header->set_date( $this->date_unserializer->unserialize( $element->header->date ) );
+
+				// Statement number.
+				if ( $element->header->statementnumber ) {
+					$header->set_statement_number( Security::filter( $element->header->statementnumber, FILTER_VALIDATE_INT ) );
+				}
+
+				// Start value.
+				if ( $element->header->startvalue ) {
+					$header->set_start_value( Security::filter( $element->header->startvalue, FILTER_VALIDATE_FLOAT ) );
+				}
+
+				// Close value.
+				if ( $element->header->closevalue ) {
+					$header->set_close_value( Security::filter( $element->header->closevalue, FILTER_VALIDATE_FLOAT ) );
+				}
 
 				// Input date.
 				if ( $element->header->inputdate ) {
@@ -179,6 +195,10 @@ class TransactionUnserializer extends Unserializer {
 
 					if ( $element_line->matchstatus ) {
 						$line->set_match_status( Security::filter( $element_line->matchstatus ) );
+					}
+
+					if ( $element_line->comment ) {
+						$line->set_comment( Security::filter( $element_line->comment ) );
 					}
 				}
 			}

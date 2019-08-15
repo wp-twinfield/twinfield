@@ -96,6 +96,15 @@ class TransactionLine {
 	private $match_date;
 
 	/**
+	 * Comment.
+	 *
+	 * Comment set on the transaction line.
+	 *
+	 * @var string|null
+	 */
+	private $comment;
+
+	/**
 	 * Constructs and initialize a Twinfield transaction line.
 	 *
 	 * @param Transaction $transaction Transaction.
@@ -597,5 +606,23 @@ class TransactionLine {
 	 */
 	public function get_match_date() {
 		return $this->match_date;
+	}
+
+	/**
+	 * Get comment.
+	 *
+	 * @return string|null
+	 */
+	public function get_comment() {
+		return $this->comment;
+	}
+
+	/**
+	 * Set comment.
+	 *
+	 * @param string|null $comment Comment.
+	 */
+	public function set_comment( $comment ) {
+		$this->comment = $comment;
 	}
 }
