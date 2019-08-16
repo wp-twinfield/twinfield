@@ -40,6 +40,13 @@ class TransactionLine {
 	private $transaction;
 
 	/**
+	 * Type.
+	 *
+	 * @var string|null
+	 */
+	private $type;
+
+	/**
 	 * The unique key of this transaction line.
 	 *
 	 * @var TransactionLineKey
@@ -94,6 +101,20 @@ class TransactionLine {
 	 * @var DateTime
 	 */
 	private $match_date;
+
+	/**
+	 * VAT total.
+	 *
+	 * @var string|null
+	 */
+	private $vat_total;
+
+	/**
+	 * VAT base total.
+	 *
+	 * @var string|null
+	 */
+	private $vat_base_total;
 
 	/**
 	 * Comment.
@@ -197,7 +218,7 @@ class TransactionLine {
 	/**
 	 * Get the type of this transaction line.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function get_type() {
 		return $this->type;
@@ -206,7 +227,7 @@ class TransactionLine {
 	/**
 	 * Set the type of this transaction line.
 	 *
-	 * @param string $type The type.
+	 * @param string|null $type The type.
 	 */
 	public function set_type( $type ) {
 		$this->type = $type;
@@ -606,6 +627,46 @@ class TransactionLine {
 	 */
 	public function get_match_date() {
 		return $this->match_date;
+	}
+
+	/**
+	 * Get VAT total.
+	 *
+	 * Only if line type is `total`. The total VAT amount in the currency of the purchase transaction.
+	 *
+	 * @return string|null
+	 */
+	public function get_vat_total() {
+		return $this->vat_total;
+	}
+
+	/**
+	 * Set VAT total.
+	 *
+	 * @param string|null $vat_total VAT total.
+	 */
+	public function set_vat_total( $vat_total ) {
+		$this->vat_total = $vat_total;
+	}
+
+	/**
+	 * Get VAT base total.
+	 *
+	 * Only if line type is `total`. The total VAT amount in base currency.
+	 *
+	 * @return string|null
+	 */
+	public function get_vat_base_total() {
+		return $this->vat_base_total;
+	}
+
+	/**
+	 * Set VAT base total.
+	 *
+	 * @param string|null $vat_base_total VAT base total.
+	 */
+	public function set_vat_base_total( $vat_base_total ) {
+		$this->vat_base_total = $vat_base_total;
 	}
 
 	/**

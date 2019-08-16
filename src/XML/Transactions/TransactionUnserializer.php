@@ -50,6 +50,10 @@ class TransactionUnserializer extends Unserializer {
 
 			$header = $transaction->get_header();
 
+			// Location.
+			$transaction->set_location( Security::filter( $element['location'] ) );
+
+			// Header.
 			if ( $element->header ) {
 				// Office.
 				$office = new Office(
@@ -195,6 +199,14 @@ class TransactionUnserializer extends Unserializer {
 
 					if ( $element_line->matchstatus ) {
 						$line->set_match_status( Security::filter( $element_line->matchstatus ) );
+					}
+
+					if ( $element_line->vattotal ) {
+						$line->set_vat_total( Security::filter( $element_line->vattotal, FILTER_VALIDATE_FLOAT ) );
+					}
+
+					if ( $element_line->vatbasetotal ) {
+						$line->set_vat_base_total( Security::filter( $element_line->vatbasetotal, FILTER_VALIDATE_FLOAT ) );
 					}
 
 					if ( $element_line->comment ) {
