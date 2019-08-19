@@ -61,6 +61,78 @@ class TransactionLine {
 	private $debit_credit;
 
 	/**
+	 * Value
+	 *
+	 * If line type = total amount including VAT.
+	 * If line type = detail amount without VAT.
+	 * If line type = vat VAT amount.
+	 *
+	 * @twinfield-xml <value>
+	 * @var float (unsigned)
+	 */
+	private $value;
+
+	/**
+	 * Value signed.
+	 *
+	 * @twinfield-xml <td field="fin.trs.line.valuesigned">
+	 * @var float (signed)
+	 */
+	private $value_signed;
+
+	/**
+	 * Base value.
+	 *
+	 * Amount in the base currency.
+	 *
+	 * @twinfield-xml <basevalue>
+	 * @var float (unsigned)
+	 */
+	private $base_value;
+
+	/**
+	 * Base value signed.
+	 *
+	 * @twinfield-xml <td field="fin.trs.line.valuesigned">
+	 * @var flaot (signed)
+	 */
+	private $base_value_signed;
+
+	/**
+	 * Reporting value.
+	 *
+	 * Amount in the reporting currency.
+	 *
+	 * @twinfield-xml <repvalue>
+	 * @var float (unsigned)
+	 */
+	private $reporting_value;
+
+	/**
+	 * Reporting value signed.
+	 *
+	 * @twinfield-xml <td field="fin.trs.line.repvaluesigned">
+	 * @var float (unsigned)
+	 */
+	private $reporting_value_signed;
+
+	/**
+	 * Open base value.
+	 *
+	 * @twinfield-xml <openbasevalue>
+	 * @var float (unsigned)
+	 */
+	private $open_base_value;
+
+	/**
+	 * Open base value signed.
+	 *
+	 * @twinfield-xml <td field="fin.trs.line.openbasevaluesigned">
+	 * @var float (unsigned)
+	 */
+	private $open_base_value_signed;
+
+	/**
 	 * Input date.
 	 *
 	 * @var DateTime
@@ -115,6 +187,14 @@ class TransactionLine {
 	 * @var string|null
 	 */
 	private $vat_base_total;
+
+	/**
+	 * VAT base value signed.
+	 *
+	 * @twinfield-xml <td field="fin.trs.line.vatbasevaluesigned">
+	 * @var string|null
+	 */
+	private $vat_base_value_signed;
 
 	/**
 	 * Comment.
@@ -306,6 +386,24 @@ class TransactionLine {
 	}
 
 	/**
+	 * Get the signed value of this transaction line.
+	 *
+	 * @return string
+	 */
+	public function get_value_signed() {
+		return $this->value_signed;
+	}
+
+	/**
+	 * Set the signed value of this transaction line.
+	 *
+	 * @param string $value The value.
+	 */
+	public function set_value_signed( $value ) {
+		$this->value_signed = $value;
+	}
+
+	/**
 	 * Get the base value of this transaction line.
 	 *
 	 * @return string
@@ -321,6 +419,24 @@ class TransactionLine {
 	 */
 	public function set_base_value( $value ) {
 		$this->base_value = $value;
+	}
+
+	/**
+	 * Get the signed base value of this transaction line.
+	 *
+	 * @return string
+	 */
+	public function get_base_value_signed() {
+		return $this->base_value_signed;
+	}
+
+	/**
+	 * Set the signed base value of this transaction line.
+	 *
+	 * @param string $value The base value.
+	 */
+	public function set_base_value_signed( $value ) {
+		$this->base_value_signed = $value;
 	}
 
 	/**
@@ -342,6 +458,24 @@ class TransactionLine {
 	}
 
 	/**
+	 * Get the signed open base value of this transaction line.
+	 *
+	 * @return string
+	 */
+	public function get_open_base_value_signed() {
+		return $this->open_base_value_signed;
+	}
+
+	/**
+	 * Set the signed  open base value of this transaction line.
+	 *
+	 * @param string $value The value.
+	 */
+	public function set_open_base_value_signed( $value ) {
+		$this->open_base_value_signed = $value;
+	}
+
+	/**
 	 * Get report value.
 	 *
 	 * @return string
@@ -357,6 +491,24 @@ class TransactionLine {
 	 */
 	public function set_report_value( $value ) {
 		$this->report_value = $value;
+	}
+
+	/**
+	 * Get signed reporting value.
+	 *
+	 * @return string
+	 */
+	public function get_reporting_value_signed() {
+		return $this->reporting_value_signed;
+	}
+
+	/**
+	 * Set signed reporting value.
+	 *
+	 * @param string $value The value.
+	 */
+	public function set_reporting_value_signed( $value ) {
+		$this->reporting_value_signed = $value;
 	}
 
 	/**
@@ -510,6 +662,24 @@ class TransactionLine {
 	 */
 	public function get_vat_base_value() {
 		return $this->vat_base_value;
+	}
+
+	/**
+	 * Set signed VAT base value.
+	 *
+	 * @param string $value VAT base value.
+	 */
+	public function set_vat_base_value_signed( $value ) {
+		$this->vat_base_value_signed = $value;
+	}
+
+	/**
+	 * Get signed VAT base value.
+	 *
+	 * @return string
+	 */
+	public function get_vat_base_value_signed() {
+		return $this->vat_base_value_signed;
 	}
 
 	/**

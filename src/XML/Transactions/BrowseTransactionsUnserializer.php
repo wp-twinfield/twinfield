@@ -199,24 +199,24 @@ class BrowseTransactionsUnserializer extends Unserializer {
 				}
 				
 				if ( $row->has_field( 'fin.trs.line.valuesigned' ) ) {
-					$line->set_value( filter_var( $row->get_field( 'fin.trs.line.valuesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
+					$line->set_value_signed( filter_var( $row->get_field( 'fin.trs.line.valuesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
 				}
 
 				if ( $row->has_field( 'fin.trs.line.basevaluesigned' ) ) {
-					$line->set_base_value( filter_var( $row->get_field( 'fin.trs.line.basevaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
+					$line->set_base_value_signed( filter_var( $row->get_field( 'fin.trs.line.basevaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
 				}
 
 				if ( $row->has_field( 'fin.trs.line.openbasevaluesigned' ) ) {
-					$line->set_open_base_value( filter_var( $row->get_field( 'fin.trs.line.openbasevaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
+					$line->set_open_base_value_signed( filter_var( $row->get_field( 'fin.trs.line.openbasevaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
 				}
 
 				if ( $row->has_field( 'fin.trs.line.repvaluesigned' ) ) {
-					$line->set_report_value( filter_var( $row->get_field( 'fin.trs.line.repvaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
+					$line->set_reporting_value_signed( filter_var( $row->get_field( 'fin.trs.line.repvaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
 				}
 
 				$line->set_debit_credit( $row->get_field( 'fin.trs.line.debitcredit' ) );
 				$line->set_vat_code( $row->get_field( 'fin.trs.line.vatcode' ) );
-				$line->set_vat_base_value( $row->get_field( 'fin.trs.line.vatbasevaluesigned' ) );
+				$line->set_vat_base_value_signed( $row->get_field( 'fin.trs.line.vatbasevaluesigned' ) );
 				$line->set_quantity( $row->get_field( 'fin.trs.line.quantity' ) );
 				$line->set_cheque_number( $row->get_field( 'fin.trs.line.chequenumber' ) );
 				$line->set_description( $row->get_field( 'fin.trs.line.description' ) );
