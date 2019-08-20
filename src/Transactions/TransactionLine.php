@@ -215,6 +215,24 @@ class TransactionLine {
 	}
 
 	/**
+	 * Invert credit sign.
+	 *
+	 * @param string $value
+	 * @return string|null
+	 */
+	private function invert_credit_sign( $value ) {
+		if ( null === $this->debit_credit ) {
+			return null;
+		}
+
+		if ( 'credit' === $this->debit_credit ) {
+			return -$value;
+		}
+
+		return $value;
+	}
+
+	/**
 	 * Get the transaction this line is part of.
 	 *
 	 * @return Transaction
@@ -382,7 +400,8 @@ class TransactionLine {
 	 * @param string $value The value.
 	 */
 	public function set_value( $value ) {
-		$this->value = $value;
+		$this->value        = $value;
+		$this->value_signed = $this->invert_credit_sign( $value );
 	}
 
 	/**
@@ -401,6 +420,7 @@ class TransactionLine {
 	 */
 	public function set_value_signed( $value ) {
 		$this->value_signed = $value;
+		$this->value        = $this->invert_credit_sign( $value );
 	}
 
 	/**
@@ -418,7 +438,8 @@ class TransactionLine {
 	 * @param string $value The base value.
 	 */
 	public function set_base_value( $value ) {
-		$this->base_value = $value;
+		$this->base_value        = $value;
+		$this->base_value_signed = $this->invert_credit_sign( $value );
 	}
 
 	/**
@@ -437,6 +458,7 @@ class TransactionLine {
 	 */
 	public function set_base_value_signed( $value ) {
 		$this->base_value_signed = $value;
+		$this->base_value        = $this->invert_credit_sign( $value );
 	}
 
 	/**
@@ -631,7 +653,7 @@ class TransactionLine {
 	/**
 	 * Set vat code.
 	 *
-	 * @param string $vat_code Vat code.
+	 * @param VatCode|null $vat_code Vat code.
 	 */
 	public function set_vat_code( $vat_code ) {
 		$this->vat_code = $vat_code;
@@ -640,7 +662,7 @@ class TransactionLine {
 	/**
 	 * Get vat code.
 	 *
-	 * @return string
+	 * @return VatCode|null
 	 */
 	public function get_vat_code() {
 		return $this->vat_code;
@@ -652,7 +674,8 @@ class TransactionLine {
 	 * @param string $value Vat base value.
 	 */
 	public function set_vat_base_value( $value ) {
-		$this->vat_base_value = $value;
+		$this->vat_base_value        = $value;
+		$this->vat_base_value_signed = $this->invert_credit_sign( $value );
 	}
 
 	/**
@@ -671,6 +694,7 @@ class TransactionLine {
 	 */
 	public function set_vat_base_value_signed( $value ) {
 		$this->vat_base_value_signed = $value;
+		$this->vat_base_value        = $this->invert_credit_sign( $value );
 	}
 
 	/**

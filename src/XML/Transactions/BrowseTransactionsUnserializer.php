@@ -11,6 +11,7 @@
 namespace Pronamic\WP\Twinfield\XML\Transactions;
 
 use Pronamic\WP\Twinfield\Currency;
+use Pronamic\WP\Twinfield\VatCode;
 use Pronamic\WP\Twinfield\Browse\Row;
 use Pronamic\WP\Twinfield\Offices\Office;
 use Pronamic\WP\Twinfield\Relations\Relation;
@@ -197,6 +198,8 @@ class BrowseTransactionsUnserializer extends Unserializer {
 				
 					$line->set_dimension_3( $dimension_3 );
 				}
+
+				$line->set_debit_credit( $row->get_field( 'fin.trs.line.debitcredit' ) );
 				
 				if ( $row->has_field( 'fin.trs.line.valuesigned' ) ) {
 					$line->set_value_signed( filter_var( $row->get_field( 'fin.trs.line.valuesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
@@ -214,8 +217,13 @@ class BrowseTransactionsUnserializer extends Unserializer {
 					$line->set_reporting_value_signed( filter_var( $row->get_field( 'fin.trs.line.repvaluesigned' ), FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE ) );
 				}
 
-				$line->set_debit_credit( $row->get_field( 'fin.trs.line.debitcredit' ) );
-				$line->set_vat_code( $row->get_field( 'fin.trs.line.vatcode' ) );
+				// VAT Code.
+				$vat_code = $row->get_field( 'fin.trs.line.vatcode' );
+
+				if ( ! empty( $vat_code ) ) {
+					$line->set_vat_code( new VatCode( $vat_code ) );
+				}
+
 				$line->set_vat_base_value_signed( $row->get_field( 'fin.trs.line.vatbasevaluesigned' ) );
 				$line->set_quantity( $row->get_field( 'fin.trs.line.quantity' ) );
 				$line->set_cheque_number( $row->get_field( 'fin.trs.line.chequenumber' ) );

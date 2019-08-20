@@ -11,6 +11,7 @@
 namespace Pronamic\WP\Twinfield\XML\Transactions;
 
 use Pronamic\WP\Twinfield\Currency;
+use Pronamic\WP\Twinfield\VatCode;
 use Pronamic\WP\Twinfield\Offices\Office;
 use Pronamic\WP\Twinfield\Transactions\Transaction;
 use Pronamic\WP\Twinfield\Transactions\TransactionHeader;
@@ -211,6 +212,15 @@ class TransactionUnserializer extends Unserializer {
 
 					if ( $element_line->comment ) {
 						$line->set_comment( Security::filter( $element_line->comment ) );
+					}
+
+					if ( $element_line->vatcode ) {
+						$line->set_vat_code( new VatCode(
+							Security::filter( $element_line->vatcode ),
+							Security::filter( $element_line->vatcode['name'] ),
+							Security::filter( $element_line->vatcode['shortname'] ),
+							Security::filter( $element_line->vatcode['type'] )
+						) );
 					}
 				}
 			}
