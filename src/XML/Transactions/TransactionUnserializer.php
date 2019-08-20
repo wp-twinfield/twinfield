@@ -19,6 +19,7 @@ use Pronamic\WP\Twinfield\Transactions\TransactionTypeCode;
 use Pronamic\WP\Twinfield\Transactions\TransactionLine;
 use Pronamic\WP\Twinfield\Transactions\TransactionLineDimension;
 use Pronamic\WP\Twinfield\Transactions\TransactionResponse;
+use Pronamic\WP\Twinfield\Users\User;
 use Pronamic\WP\Twinfield\XML\Security;
 use Pronamic\WP\Twinfield\XML\Unserializer;
 use Pronamic\WP\Twinfield\XML\DateUnserializer;
@@ -86,8 +87,22 @@ class TransactionUnserializer extends Unserializer {
 				// Number.
 				$header->set_number( Security::filter( $element->header->number ) );
 
+				// Regime.
+				if ( $element->header->regime ) {				
+					$header->set_regime( Security::filter( $element->header->regime ) );
+				}
+
 				// Date.
 				$header->set_date( $this->date_unserializer->unserialize( $element->header->date ) );
+
+				// Origin.
+				if ( $element->header->origin ) {				
+					$header->set_origin( Security::filter( $element->header->origin ) );
+				}
+
+				if ( $element->header->originreference ) {				
+					$header->set_origin_reference( Security::filter( $element->header->originreference ) );
+				}
 
 				// Statement number.
 				if ( $element->header->statementnumber ) {
@@ -112,6 +127,15 @@ class TransactionUnserializer extends Unserializer {
 				// Due date.
 				if ( $element->header->duedate ) {
 					$header->set_due_date( $this->date_unserializer->unserialize( $element->header->duedate ) );
+				}
+
+				// User.
+				if ( $element->header->user ) {
+					$header->set_user( new User(
+						Security::filter( $element->header->user ),
+						Security::filter( $element->header->user['name'] ),
+						Security::filter( $element->header->user['shortname'] )
+					) );
 				}
 
 				// Modification date.

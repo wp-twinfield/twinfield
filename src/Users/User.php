@@ -1,27 +1,27 @@
 <?php
 /**
- * Office
+ * User
  *
  * @since      1.0.0
  *
  * @package    Pronamic/WP/Twinfield
  */
 
-namespace Pronamic\WP\Twinfield\Offices;
+namespace Pronamic\WP\Twinfield\Users;
 
 use Pronamic\WP\Twinfield\CodeName;
 use Pronamic\WP\Twinfield\Organisation\Organisation;
 
 /**
- * Office
+ * User
  *
- * This class represents an Twinfield office
+ * This class represents a Twinfield user
  *
  * @since      1.0.0
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class Office extends CodeName {
+class User extends CodeName {
 	/**
 	 * Organisation.
 	 *

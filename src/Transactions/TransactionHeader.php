@@ -12,6 +12,7 @@ namespace Pronamic\WP\Twinfield\Transactions;
 use Pronamic\WP\Twinfield\Currency;
 use Pronamic\WP\Twinfield\Offices\Office;
 use Pronamic\WP\Twinfield\Relations\Relation;
+use Pronamic\WP\Twinfield\Users\User;
 
 /**
  * Transaction Header
@@ -69,6 +70,13 @@ class TransactionHeader {
 	 * @var string|null
 	 */
 	private $close_value;
+
+	/**
+	 * User.
+	 *
+	 * @var User|null
+	 */
+	private $user;
 
 	/**
 	 * Constructs and initializes a transaction header.
@@ -150,6 +158,24 @@ class TransactionHeader {
 	}
 
 	/**
+	 * Get regime.
+	 *
+	 * @return string|null
+	 */
+	public function get_regime() {
+		return $this->regime;
+	}
+
+	/**
+	 * Set regime.
+	 *
+	 * @param string $regime The regime.
+	 */
+	public function set_regime( $regime ) {
+		$this->regime = $regime;
+	}
+
+	/**
 	 * Get date.
 	 *
 	 * @return \DateTime
@@ -219,6 +245,24 @@ class TransactionHeader {
 	 */
 	public function set_close_value( $value ) {
 		$this->close_value = $value;
+	}
+
+	/**
+	 * Get the user.
+	 *
+	 * @return User|null
+	 */
+	public function get_user() {
+		return $this->user;
+	}
+
+	/**
+	 * Set the user.
+	 *
+	 * @param User|null $suer User.
+	 */
+	public function set_user( $user ) {
+		$this->user = $user;
 	}
 
 	/**
@@ -368,7 +412,7 @@ class TransactionHeader {
 	/**
 	 * Get origin.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function get_origin() {
 		return $this->origin;
@@ -377,10 +421,28 @@ class TransactionHeader {
 	/**
 	 * Set origin.
 	 *
-	 * @param string $origin Origin.
+	 * @param string|null $origin Origin.
 	 */
 	public function set_origin( $origin ) {
 		$this->origin = $origin;
+	}
+
+	/**
+	 * Get origin reference.
+	 *
+	 * @return string|null
+	 */
+	public function get_origin_reference() {
+		return $this->origin_reference;
+	}
+
+	/**
+	 * Set origin reference.
+	 *
+	 * @param string|null $origin_reference Origin reference.
+	 */
+	public function set_origin_reference( $origin_reference ) {
+		$this->origin_reference = $origin_reference;
 	}
 
 	/**
