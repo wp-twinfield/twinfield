@@ -23,7 +23,7 @@ class Security {
 	 * @param mixed $variable The variable to filter.
 	 * @param int   $filter One the PHP filter constants.
 	 */
-	public static function filter( $variable, $filter = FILTER_SANITIZE_STRING ) {
+	public static function filter( $variable, $filter = FILTER_UNSAFE_RAW ) {
 		$result = null;
 
 		if ( $variable ) {
