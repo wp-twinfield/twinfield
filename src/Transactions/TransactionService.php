@@ -62,6 +62,24 @@ class TransactionService {
 	}
 
 	/**
+	 * Get transactions.
+	 *
+	 * @param BrowseDefinition $browse_definition The browse definition.
+	 * @return array
+	 */
+	public function get_transactions( $browse_definition ) {
+		$string = $this->browser->get_xml_string( $browse_definition );
+
+		$xml = simplexml_load_string( $string );
+
+		$unserializer = new BrowseTransactionsUnserializer();
+
+		$lines = $unserializer->unserialize( $xml );
+
+		return $unserializer->get_transactions();
+	}
+
+	/**
 	 * Get lines.
 	 *
 	 * @param BrowseDefinition $browse_definition The browse definition.

@@ -35,10 +35,28 @@ use Pronamic\WP\Twinfield\XML\DateUnserializer;
  */
 class BrowseTransactionsUnserializer extends Unserializer {
 	/**
+	 * Transactions.
+	 *
+	 * @var array
+	 */
+	private $transactions;
+
+	/**
 	 * Constructs and initializes a browse transaction unserializer.
 	 */
 	public function __construct() {
 		$this->date_unserializer = new DateUnserializer();
+
+		$this->transactions = array();
+	}
+
+	/**
+	 * Get transactions.
+	 *
+	 * @return array
+	 */
+	public function get_transactions() {
+		return $this->transactions;
 	}
 
 	/**
@@ -51,7 +69,7 @@ class BrowseTransactionsUnserializer extends Unserializer {
 			return;
 		}
 
-		$transactions = array();
+		$this->transactions = array();
 
 		$lines = array();
 
@@ -70,11 +88,11 @@ class BrowseTransactionsUnserializer extends Unserializer {
 					)
 				);
 
-				if ( ! isset( $transactions[ $transaction_key ] ) ) {
+				if ( ! isset( $this->transactions[ $transaction_key ] ) ) {
 					// Transaction.
 					$transaction = new Transaction();
 
-					$transactions[ $transaction_key ] = $transaction;
+					$this->transactions[ $transaction_key ] = $transaction;
 
 					// Header.
 					$header = $transaction->get_header();
@@ -153,7 +171,7 @@ class BrowseTransactionsUnserializer extends Unserializer {
 					$header->set_origin( $row->get_field( 'fin.trs.head.origin' ) );
 				}
 
-				$transaction = $transactions[ $transaction_key ];
+				$transaction = $this->transactions[ $transaction_key ];
 
 				$line = $transaction->new_line();
 
