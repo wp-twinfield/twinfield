@@ -130,6 +130,8 @@ class Client {
 				return new SessionClient( $this );
 			case 'processxml':
 				return new XMLProcessor( $this );
+			case 'periods':
+				return new Periods\PeriodsService( $this );
 			default:
 				return false;
 		}
@@ -201,8 +203,10 @@ class Client {
 			'ProcessXmlStringResponse'   => __NAMESPACE__ . '\ProcessXmlStringResponse',
 			'SearchResponse'             => __NAMESPACE__ . '\SearchResponse',
 			'SelectCompanyResponse'      => __NAMESPACE__ . '\SelectCompanyResponse',
-			'Query'                      => __NAMESPACE__ . '\Transactions\Query',
+			'Query'                      => __NAMESPACE__ . '\Query',
 			'GetDeletedTransactions'     => __NAMESPACE__ . '\Transactions\GetDeletedTransactions',
+			'GetYears'                   => __NAMESPACE__ . '\Periods\QueryGetYears',
+			'GetPeriods'                 => __NAMESPACE__ . '\Periods\QueryGetPeriods',
 		);
 	}
 }

@@ -1,18 +1,18 @@
 <?php
 /**
- * Deleted transactions service
+ * Query get years.
  *
  * @since      1.0.0
  *
  * @package    Pronamic/WP/Twinfield
  */
 
-namespace Pronamic\WP\Twinfield\Transactions;
+namespace Pronamic\WP\Twinfield\Periods;
 
 use Pronamic\WP\Twinfield\Query;
 
 /**
- * Deleted transactions service
+ * Query get years.
  *
  * This class connects to the Twinfield deleted transactions webservices.
  *
@@ -20,12 +20,6 @@ use Pronamic\WP\Twinfield\Query;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class GetDeletedTransactions extends Query {
-	public $CompanyCode;
-
-	public $DateFrom;
-
-	public $DateTo;
-
-	public $Daybook;
+class QueryGetYears extends Query {
+	
 }
