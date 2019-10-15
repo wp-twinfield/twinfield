@@ -135,7 +135,7 @@ class TransactionLine {
 	/**
 	 * Input date.
 	 *
-	 * @var DateTime
+	 * @var \DateTimeInterface
 	 */
 	private $input_date;
 
@@ -156,9 +156,25 @@ class TransactionLine {
 	/**
 	 * Match status.
 	 *
-	 * @var string
+	 * @var string|null
 	 */
 	private $match_status;
+
+	/**
+	 * Match level.
+	 *
+	 * Only if line type is `detail`. The level of the matchable dimension.
+	 *
+	 * @var int|null
+	 */
+	private $match_level;
+
+	/**
+	 * Match date.
+	 *
+	 * @var \DateTimeInterface|null
+	 */
+	private $match_date;
 
 	/**
 	 * Match number.
@@ -166,13 +182,6 @@ class TransactionLine {
 	 * @var string
 	 */
 	private $match_number;
-
-	/**
-	 * Match date.
-	 *
-	 * @var DateTime
-	 */
-	private $match_date;
 
 	/**
 	 * VAT total.
@@ -772,7 +781,7 @@ class TransactionLine {
 	/**
 	 * Set match status.
 	 *
-	 * @param string $match_status Match status.
+	 * @param string|null $match_status Match status.
 	 */
 	public function set_match_status( $match_status ) {
 		$this->match_status = $match_status;
@@ -781,10 +790,46 @@ class TransactionLine {
 	/**
 	 * Get match status.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function get_match_status() {
 		return $this->match_status;
+	}
+
+	/**
+	 * Set match level.
+	 *
+	 * @param int|null $match_level Match level.
+	 */
+	public function set_match_level( $match_level ) {
+		$this->match_level = $match_level;
+	}
+
+	/**
+	 * Get match level.
+	 *
+	 * @return int|null
+	 */
+	public function get_match_level() {
+		return $this->match_level;
+	}
+
+	/**
+	 * Set match date.
+	 *
+	 * @param \DateTimeInterface|null $match_date Match date.
+	 */
+	public function set_match_date( $match_date ) {
+		$this->match_date = $match_date;
+	}
+
+	/**
+	 * Get match date.
+	 *
+	 * @return \DateTimeInterface|null
+	 */
+	public function get_match_date() {
+		return $this->match_date;
 	}
 
 	/**
@@ -803,24 +848,6 @@ class TransactionLine {
 	 */
 	public function get_match_number() {
 		return $this->match_number;
-	}
-
-	/**
-	 * Set match date.
-	 *
-	 * @param string $match_date Match date.
-	 */
-	public function set_match_date( $match_date ) {
-		$this->match_date = $match_date;
-	}
-
-	/**
-	 * Get match date.
-	 *
-	 * @return string
-	 */
-	public function get_match_date() {
-		return $this->match_date;
 	}
 
 	/**

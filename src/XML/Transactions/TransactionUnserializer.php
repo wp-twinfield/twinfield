@@ -226,6 +226,40 @@ class TransactionUnserializer extends Unserializer {
 						$line->set_match_status( Security::filter( $element_line->matchstatus ) );
 					}
 
+					if ( $element_line->matchlevel ) {
+						$line->set_match_level( Security::filter( $element_line->matchlevel ) );
+					}
+
+					if ( $element_line->matchdate ) {
+						$line->set_match_date( \DateTime::createFromFormat( 'Ymd', Security::filter( $element_line->matchdate ) ) );
+					}
+
+					if ( $element_line->matches ) {
+						$line->matches = array();
+
+						foreach ( $element_line->matches->set as $element_set ) {
+							$match_set = new \Pronamic\WP\Twinfield\Transactions\MatchSet();
+
+							$match_set->status      = Security::filter( $element_set['status'] );
+							$match_set->match_date  = Security::filter( $element_set->matchdate );
+							$match_set->match_value = Security::filter( $element_set->matchvalue, FILTER_VALIDATE_FLOAT );
+
+							foreach ( $element_set->lines->line as $element_set_line ) {
+								$match_set_line = new \Pronamic\WP\Twinfield\Transactions\MatchSetLine();
+
+								$match_set_line->code        = Security::filter( $element_set_line->code );
+								$match_set_line->number      = Security::filter( $element_set_line->number );
+								$match_set_line->line        = Security::filter( $element_set_line->line );
+								$match_set_line->method      = Security::filter( $element_set_line->method );
+								$match_set_line->match_value = Security::filter( $element_set_line->matchvalue );
+
+								$match_set->lines[] = $match_set_line;
+							}
+
+							$line->matches[] = $match_set;
+						}
+					}
+
 					if ( $element_line->vattotal ) {
 						$line->set_vat_total( Security::filter( $element_line->vattotal, FILTER_VALIDATE_FLOAT ) );
 					}

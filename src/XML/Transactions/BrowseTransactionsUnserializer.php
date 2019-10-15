@@ -253,7 +253,10 @@ class BrowseTransactionsUnserializer extends Unserializer {
 				$line->set_due_date( $row->get_field( 'fin.trs.line.datedue' ) );
 				$line->set_match_status( $row->get_field( 'fin.trs.line.matchstatus' ) );
 				$line->set_match_number( $row->get_field( 'fin.trs.line.matchnumber' ) );
-				$line->set_match_date( $row->get_field( 'fin.trs.line.matchdate' ) );
+
+				if ( $row->has_field( 'fin.trs.line.matchdate' ) ) {
+					$line->set_match_date( \DateTime::createFromFormat( 'Ymd', $row->get_field( 'fin.trs.line.matchdate' ) ) );
+				}
 			}
 		}
 
