@@ -25,6 +25,13 @@ namespace Pronamic\WP\Twinfield\Transactions;
  */
 class Transaction {
 	/**
+	 * Websevice origin.
+	 *
+	 * @var string|null
+	 */
+	private $webservice_origin;
+
+	/**
 	 * Location.
 	 *
 	 * Indicate the destiny of the purchase transaction:
@@ -55,6 +62,24 @@ class Transaction {
 	public function __construct() {
 		$this->header = new TransactionHeader();
 		$this->lines  = array();
+	}
+
+	/**
+	 * Get webservice origin.
+	 *
+	 * @return string|null
+	 */
+	public function get_webservice_origin() {
+		return $this->webservice_origin;
+	}
+
+	/**
+	 * Set webservice origin.
+	 *
+	 * @param string|null $webservice_origin Webservice origin.
+	 */
+	public function set_webservice_origin( $webservice_origin ) {
+		$this->webservice_origin = $webservice_origin;
 	}
 
 	/**

@@ -43,14 +43,14 @@ class SalesInvoiceHeader {
 	/**
 	 * Date
 	 *
-	 * @var \DateTime
+	 * @var \DateTimeInterface
 	 */
 	private $date;
 
 	/**
 	 * Due date
 	 *
-	 * @var \DateTime
+	 * @var \DateTimeInterface
 	 */
 	private $due_date;
 
@@ -153,7 +153,7 @@ class SalesInvoiceHeader {
 	/**
 	 * Get date.
 	 *
-	 * @return \DateTime
+	 * @return \DateTimeInterface
 	 */
 	public function get_date() {
 		return $this->date;
@@ -162,16 +162,16 @@ class SalesInvoiceHeader {
 	/**
 	 * Set date.
 	 *
-	 * @param \DateTime $date The date.
+	 * @param \DateTimeInterface $date The date.
 	 */
-	public function set_date( \DateTime $date = null ) {
+	public function set_date( \DateTimeInterface $date = null ) {
 		$this->date = $date;
 	}
 
 	/**
 	 * Get due date.
 	 *
-	 * @return \DateTime
+	 * @return \DateTimeInterface
 	 */
 	public function get_due_date() {
 		return $this->due_date;
@@ -180,9 +180,9 @@ class SalesInvoiceHeader {
 	/**
 	 * Set due date.
 	 *
-	 * @param \DateTime $due_date The due date.
+	 * @param \DateTimeInterface $due_date The due date.
 	 */
-	public function set_due_date( \DateTime $due_date = null ) {
+	public function set_due_date( \DateTimeInterface $due_date = null ) {
 		$this->due_date = $due_date;
 	}
 

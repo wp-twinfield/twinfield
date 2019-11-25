@@ -178,7 +178,7 @@ class TransactionHeader {
 	/**
 	 * Get date.
 	 *
-	 * @return \DateTime
+	 * @return \DateTimeInterface
 	 */
 	public function get_date() {
 		return $this->date;
@@ -187,9 +187,9 @@ class TransactionHeader {
 	/**
 	 * Set date.
 	 *
-	 * @param \DateTime $date The date.
+	 * @param \DateTimeInterface $date The date.
 	 */
-	public function set_date( \DateTime $date = null ) {
+	public function set_date( \DateTimeInterface $date = null ) {
 		$this->date = $date;
 	}
 
@@ -268,7 +268,7 @@ class TransactionHeader {
 	/**
 	 * Get the input date of this transaction line.
 	 *
-	 * @return \DateTime
+	 * @return \DateTimeInterface
 	 */
 	public function get_input_date() {
 		return $this->input_date;
@@ -277,16 +277,16 @@ class TransactionHeader {
 	/**
 	 * Set the input date of this transaction line.
 	 *
-	 * @param \DateTime $date The input date.
+	 * @param \DateTimeInterface $date The input date.
 	 */
-	public function set_input_date( \DateTime $date ) {
+	public function set_input_date( \DateTimeInterface $date ) {
 		$this->input_date = $date;
 	}
 
 	/**
 	 * Get the due date of this transaction header.
 	 *
-	 * @return \DateTime
+	 * @return \DateTimeInterface
 	 */
 	public function get_due_date() {
 		return $this->due_date;
@@ -295,16 +295,16 @@ class TransactionHeader {
 	/**
 	 * Set the due date of this transaction header.
 	 *
-	 * @param \DateTime $date The input date.
+	 * @param \DateTimeInterface $date The input date.
 	 */
-	public function set_due_date( \DateTime $date ) {
+	public function set_due_date( \DateTimeInterface $date ) {
 		$this->due_date = $date;
 	}
 
 	/**
 	 * Get the modification date of this transaction header.
 	 *
-	 * @return \DateTime
+	 * @return \DateTimeInterface
 	 */
 	public function get_modification_date() {
 		return $this->modification_date;
@@ -313,9 +313,9 @@ class TransactionHeader {
 	/**
 	 * Set the modification date of this transaction header.
 	 *
-	 * @param \DateTime $date The modification date.
+	 * @param \DateTimeInterface $date The modification date.
 	 */
-	public function set_modification_date( \DateTime $date ) {
+	public function set_modification_date( \DateTimeInterface $date ) {
 		$this->modification_date = $date;
 	}
 

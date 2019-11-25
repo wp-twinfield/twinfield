@@ -23,6 +23,13 @@ use Pronamic\WP\Twinfield\Relations\Relation;
  */
 class TransactionLine {
 	/**
+	 * Websevice origin.
+	 *
+	 * @var string|null
+	 */
+	private $webservice_origin;
+
+	/**
 	 * Debit.
 	 */
 	const DEBIT = 'debit';
@@ -221,6 +228,24 @@ class TransactionLine {
 	 */
 	public function __construct( Transaction $transaction ) {
 		$this->transaction = $transaction;
+	}
+
+	/**
+	 * Get webservice origin.
+	 *
+	 * @return string|null
+	 */
+	public function get_webservice_origin() {
+		return $this->webservice_origin;
+	}
+
+	/**
+	 * Set webservice origin.
+	 *
+	 * @param string|null $webservice_origin Webservice origin.
+	 */
+	public function set_webservice_origin( $webservice_origin ) {
+		$this->webservice_origin = $webservice_origin;
 	}
 
 	/**

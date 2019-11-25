@@ -16,6 +16,9 @@ use Pronamic\WP\Twinfield\Browse\BrowseReadRequest;
 use Pronamic\WP\Twinfield\Transactions\TransactionLine;
 use Pronamic\WP\Twinfield\Transactions\TransactionLineKey;
 
+use Pronamic\WP\Twinfield\XML\DateUnserializer;
+use Pronamic\WP\Twinfield\XML\DateTimeUnserializer;
+
 /**
  * Office Service
  *
@@ -38,6 +41,9 @@ class GeneralLedgerService {
 	 */
 	public function __construct( Browser $browser ) {
 		$this->browser = $browser;
+
+		$this->date_unserializer     = new DateUnserializer();
+		$this->datetime_unserializer = new DateTimeUnserializer();
 	}
 
 	/**
@@ -75,8 +81,8 @@ class GeneralLedgerService {
 				(string) $xml_key->line
 			);
 
-			$line->set_date( \DateTime::createFromFormat( 'Ymd', $row->get_field( 'fin.trs.head.date' ) ) );
-			$line->set_input_date( \DateTime::createFromFormat( 'YmdHis', $row->get_field( 'fin.trs.head.inpdate' ) ) );
+			$line->set_date( $this->date_unserializer->unserialize( $row->get_field( 'fin.trs.head.date' ) ) );
+			$line->set_input_date( $this->datetime_unserializer->unserialize( $row->get_field( 'fin.trs.head.inpdate' ) ) );
 
 			$line->set_key( $key );
 			$line->set_id( $key->get_line() );

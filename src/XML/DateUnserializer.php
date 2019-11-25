@@ -21,12 +21,14 @@ class DateUnserializer extends Unserializer {
 	/**
 	 * Unserialize the specified XML to an article.
 	 *
-	 * @param \SimpleXMLElement $element The XML element to unserialize.
+	 * @param \SimpleXMLElement|string $element The XML element to unserialize.
 	 */
-	public function unserialize( \SimpleXMLElement $element ) {
-		$date = \DateTime::createFromFormat( 'Ymd', Security::filter( $element ) );
+	public function unserialize( $element ) {
+		$date = \DateTimeImmutable::createFromFormat( 'Ymd', Security::filter( $element ), new \DateTimeZone( 'UTC' ) );
 
 		if ( false !== $date ) {
+			$date->setTime( 0, 0 );
+
 			return $date;
 		}
 

@@ -25,6 +25,7 @@ use Pronamic\WP\Twinfield\Transactions\TransactionResponse;
 use Pronamic\WP\Twinfield\XML\Security;
 use Pronamic\WP\Twinfield\XML\Unserializer;
 use Pronamic\WP\Twinfield\XML\DateUnserializer;
+use Pronamic\WP\Twinfield\XML\DateTimeUnserializer;
 
 /**
  * Browse transactions unserializer
@@ -45,7 +46,8 @@ class BrowseTransactionsUnserializer extends Unserializer {
 	 * Constructs and initializes a browse transaction unserializer.
 	 */
 	public function __construct() {
-		$this->date_unserializer = new DateUnserializer();
+		$this->date_unserializer     = new DateUnserializer();
+		$this->datetime_unserializer = new DateTimeUnserializer();
 
 		$this->transactions = array();
 	}
@@ -91,6 +93,7 @@ class BrowseTransactionsUnserializer extends Unserializer {
 				if ( ! isset( $this->transactions[ $transaction_key ] ) ) {
 					// Transaction.
 					$transaction = new Transaction();
+					$transaction->set_webservice_origin( 'browse' );
 
 					$this->transactions[ $transaction_key ] = $transaction;
 
@@ -132,11 +135,11 @@ class BrowseTransactionsUnserializer extends Unserializer {
 					// Other.
 					$header->set_number( $row->get_field( 'fin.trs.head.number' ) );
 					$header->set_status( $row->get_field( 'fin.trs.head.status' ) );
-					$header->set_date( \DateTime::createFromFormat( 'Ymd', $row->get_field( 'fin.trs.head.date' ) ) );
+					$header->set_date( $this->date_unserializer->unserialize( $row->get_field( 'fin.trs.head.date' ) ) );
 
-					$input_date = \DateTime::createFromFormat( 'YmdHis', $row->get_field( 'fin.trs.head.inpdate' ) );
+					if ( $row->has_field( 'fin.trs.head.inpdate' ) ) {
+						$input_date = $this->datetime_unserializer->unserialize( $row->get_field( 'fin.trs.head.inpdate' ) );
 
-					if ( false !== $input_date ) {
 						$header->set_input_date( $input_date );
 					}
 
@@ -174,6 +177,7 @@ class BrowseTransactionsUnserializer extends Unserializer {
 				$transaction = $this->transactions[ $transaction_key ];
 
 				$line = $transaction->new_line();
+				$line->set_webservice_origin( 'browse' );
 
 				$lines[] = $line;
 
@@ -255,7 +259,7 @@ class BrowseTransactionsUnserializer extends Unserializer {
 				$line->set_match_number( $row->get_field( 'fin.trs.line.matchnumber' ) );
 
 				if ( $row->has_field( 'fin.trs.line.matchdate' ) ) {
-					$line->set_match_date( \DateTime::createFromFormat( 'Ymd', $row->get_field( 'fin.trs.line.matchdate' ) ) );
+					$line->set_match_date( $this->date_unserializer->unserialize( $row->get_field( 'fin.trs.line.matchdate' ) ) );
 				}
 			}
 		}

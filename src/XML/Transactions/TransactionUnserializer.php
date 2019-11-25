@@ -49,6 +49,7 @@ class TransactionUnserializer extends Unserializer {
 	public function unserialize( \SimpleXMLElement $element ) {
 		if ( 'transaction' === $element->getName() ) {
 			$transaction = new Transaction();
+			$transaction->set_webservice_origin( 'transactions' );
 
 			$header = $transaction->get_header();
 
@@ -171,6 +172,7 @@ class TransactionUnserializer extends Unserializer {
 			if ( $element->lines ) {
 				foreach ( $element->lines->line as $element_line ) {
 					$line = $transaction->new_line();
+					$line->set_webservice_origin( 'transactions' );
 
 					$line->set_id( Security::filter( $element_line['id'] ) );
 					$line->set_type( Security::filter( $element_line['type'] ) );
@@ -231,7 +233,7 @@ class TransactionUnserializer extends Unserializer {
 					}
 
 					if ( $element_line->matchdate ) {
-						$line->set_match_date( \DateTime::createFromFormat( 'Ymd', Security::filter( $element_line->matchdate ) ) );
+						$line->set_match_date( $this->date_unserializer->unserialize( $element_line->matchdate ) );
 					}
 
 					if ( $element_line->matches ) {
@@ -266,6 +268,10 @@ class TransactionUnserializer extends Unserializer {
 
 					if ( $element_line->vatbasetotal ) {
 						$line->set_vat_base_total( Security::filter( $element_line->vatbasetotal, FILTER_VALIDATE_FLOAT ) );
+					}
+
+					if ( $element_line->vatbasevalue ) {
+						$line->set_vat_base_value( Security::filter( $element_line->vatbasevalue, FILTER_VALIDATE_FLOAT ) );
 					}
 
 					if ( $element_line->comment ) {
