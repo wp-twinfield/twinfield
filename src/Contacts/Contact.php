@@ -126,4 +126,20 @@ class Contact {
 	public function get_addresses() {
 		return $this->addresses;
 	}
+
+	/**
+	 * Get address by number.
+	 *
+	 * @param int $number Adress number.
+	 * @return Address|null
+	 */
+	public function get_address_by_number( $number ) {
+		foreach ( $this->addresses as $address ) {
+			if ( $address->get_id() === $number ) {
+				return $address;
+			}
+		}
+
+		return null;
+	}
 }

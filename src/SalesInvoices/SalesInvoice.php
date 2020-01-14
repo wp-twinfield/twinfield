@@ -34,11 +34,27 @@ class SalesInvoice {
 	private $lines;
 
 	/**
+	 * VAT lines.
+	 *
+	 * @var array
+	 */
+	private $vat_lines;
+
+	/**
+	 * Totals.
+	 *
+	 * @var SalesInvoiceTotals
+	 */
+	private $totals;
+
+	/**
 	 * Constructs and initialize an Twinfield sales invoice.
 	 */
 	public function __construct() {
-		$this->header = new SalesInvoiceHeader();
-		$this->lines  = array();
+		$this->header    = new SalesInvoiceHeader();
+		$this->lines     = array();
+		$this->vat_lines = array();
+		$this->totals    = new SalesInvoiceTotals();
 	}
 
 	/**
@@ -79,6 +95,46 @@ class SalesInvoice {
 		$this->add_line( $line );
 
 		return $line;
+	}
+
+	/**
+	 * Get the sales invoice VAT lines.
+	 *
+	 * @return array
+	 */
+	public function get_vat_lines() {
+		return $this->vat_lines;
+	}
+
+	/**
+	 * Add the specified VAT line to this sales invoice.
+	 *
+	 * @param SalesInvoiceLine $line The sales invoice line to add.
+	 */
+	public function add_vat_line( SalesInvoiceVatLine $vat_line ) {
+		$this->vat_lines[] = $vat_line;
+	}
+
+	/**
+	 * Create a new sales invoice VAT line.
+	 *
+	 * @return SalesInvoiceLine
+	 */
+	public function new_vat_line() {
+		$vat_line = new SalesInvoiceVatLine();
+
+		$this->add_vat_line( $vat_line );
+
+		return $vat_line;
+	}
+
+	/**
+	 * Get sales invoice totals.
+	 *
+	 * @return SalesInvoiceTotals
+	 */
+	public function get_totals() {
+		return $this->totals;
 	}
 
 	/**

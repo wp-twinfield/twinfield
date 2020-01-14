@@ -72,7 +72,7 @@ class Address {
 	/**
 	 * Get ID.
 	 *
-	 * @return string
+	 * @return int|null
 	 */
 	public function get_id() {
 		return $this->get_property( 'id' );
@@ -81,7 +81,7 @@ class Address {
 	/**
 	 * Set id.
 	 *
-	 * @param string $id ID.
+	 * @param int|null $id ID.
 	 */
 	public function set_id( $id ) {
 		$this->set_property( 'id', $id );
@@ -144,7 +144,7 @@ class Address {
 	/**
 	 * Get country.
 	 *
-	 * @return string
+	 * @return Country|null
 	 */
 	public function get_country() {
 		return $this->get_property( 'country' );
@@ -153,7 +153,7 @@ class Address {
 	/**
 	 * Set country.
 	 *
-	 * @param string $country Country.
+	 * @param Country|null $country Country.
 	 */
 	public function set_country( $country ) {
 		$this->set_property( 'country', $country );

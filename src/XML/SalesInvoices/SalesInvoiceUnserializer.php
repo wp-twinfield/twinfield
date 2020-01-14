@@ -17,6 +17,7 @@ use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoice;
 use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoiceHeader;
 use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoiceLine;
 use Pronamic\WP\Twinfield\SalesInvoices\SalesInvoiceResponse;
+use Pronamic\WP\Twinfield\VatCode;
 
 /**
  * Sales invoices unserializer
@@ -55,6 +56,8 @@ class SalesInvoiceUnserializer extends Unserializer {
 				$header->set_status( Security::filter( $element->header->status ) );
 				$header->set_header_text( Security::filter( $element->header->headertext ) );
 				$header->set_footer_text( Security::filter( $element->header->footertext ) );
+				$header->set_invoice_address_number( Security::filter( $element->header->invoiceaddressnumber, FILTER_VALIDATE_INT ) );
+				$header->set_deliver_address_number( Security::filter( $element->header->deliveraddressnumber, FILTER_VALIDATE_INT ) );
 			}
 
 			if ( $element->lines ) {
@@ -77,6 +80,30 @@ class SalesInvoiceUnserializer extends Unserializer {
 					$line->set_performance_type( Security::filter( $element_line->performancetype ) );
 					$line->set_performance_date( $this->date_unserializer->unserialize( $element_line->performancedate ) );
 				}
+			}
+
+			if ( $element->vatlines ) {
+				foreach ( $element->vatlines->vatline as $element_line ) {
+					$vat_line = $sales_invoice->new_vat_line();
+
+					// VAT code.
+					$vat_code = new VatCode(
+						Security::filter( $element_line->vatcode ),
+						Security::filter( $element_line->vatcode['name'] ),
+						Security::filter( $element_line->vatcode['shortname'] )
+					);
+
+					$vat_line->set_vat_code( $vat_code );
+
+					$vat_line->set_vat_value( Security::filter( $element_line->vatvalue, FILTER_VALIDATE_FLOAT ) );
+				}
+			}
+
+			if ( $element->totals ) {
+				$totals = $sales_invoice->get_totals();
+
+				$totals->set_value_excl( Security::filter( $element->totals->valueexcl, FILTER_VALIDATE_FLOAT ) );
+				$totals->set_value_inc( Security::filter( $element->totals->valueinc, FILTER_VALIDATE_FLOAT ));
 			}
 
 			// Response.

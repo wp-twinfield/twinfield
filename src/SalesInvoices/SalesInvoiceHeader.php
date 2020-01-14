@@ -90,6 +90,20 @@ class SalesInvoiceHeader {
 	private $footer_text;
 
 	/**
+	 * Invoice address number.
+	 *
+	 * @var int|null
+	 */
+	private $invoice_address_number;
+
+	/**
+	 * Deliver address number.
+	 *
+	 * @var int|null
+	 */
+	private $deliver_address_number;
+
+	/**
 	 * Constructs and initializes an sales invoice header.
 	 */
 	public function __construct() {
@@ -292,5 +306,41 @@ class SalesInvoiceHeader {
 	 */
 	public function set_footer_text( $text ) {
 		$this->footer_text = $text;
+	}
+
+	/**
+	 * Get invoice address number.
+	 *
+	 * @return int|null
+	 */
+	public function get_invoice_address_number() {
+		return $this->invoice_address_number;
+	}
+
+	/**
+	 * Set invoice address number.
+	 *
+	 * @param int|null $number Invoice address number.
+	 */
+	public function set_invoice_address_number( $number ) {
+		$this->invoice_address_number = $number;
+	}
+
+	/**
+	 * Get deliver address number.
+	 *
+	 * @return int|null
+	 */
+	public function get_deliver_address_number() {
+		return $this->deliver_address_number;
+	}
+
+	/**
+	 * Set footer text.
+	 *
+	 * @param int|null $number Deliver address number.
+	 */
+	public function set_deliver_address_number( $number ) {
+		$this->deliver_address_number = $number;
 	}
 }

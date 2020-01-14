@@ -10,6 +10,7 @@
 
 namespace Pronamic\WP\Twinfield\XML\Customers;
 
+use Pronamic\WP\Twinfield\Country;
 use Pronamic\WP\Twinfield\DimensionTypes;
 use Pronamic\WP\Twinfield\EmailList;
 use Pronamic\WP\Twinfield\XML\Security;
@@ -58,12 +59,21 @@ class CustomerUnserializer extends Unserializer {
 				foreach ( $element->addresses->address as $element_address ) {
 					$address = $customer->new_address();
 
-					$address->set_id( Security::filter( $element_address['id'] ) );
+					$address->set_id( Security::filter( $element_address['id'], FILTER_VALIDATE_INT ) );
 					$address->set_type( Security::filter( $element_address['type'] ) );
 					$address->set_default( Security::filter( $element_address['default'], FILTER_VALIDATE_BOOLEAN ) );
 
 					$address->set_name( Security::filter( $element_address->name ) );
-					$address->set_country( Security::filter( $element_address->country ) );
+
+					// Country.
+					$country = new Country(
+						Security::filter( $element_address->country ),
+						Security::filter( $element_address->country['name'] ),
+						Security::filter( $element_address->country['shortname'] )
+					);
+
+					$address->set_country( $country );
+
 					$address->set_city( Security::filter( $element_address->city ) );
 					$address->set_postcode( Security::filter( $element_address->postcode ) );
 					$address->set_telephone( Security::filter( $element_address->telephone ) );
