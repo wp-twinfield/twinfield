@@ -35,6 +35,30 @@ class SalesInvoiceUnserializer extends Unserializer {
 	}
 
 	/**
+	 * Get inner XML of DOMNode.
+	 *
+	 * @link https://www.php.net/manual/en/domdocument.savexml.php
+	 * @link https://stackoverflow.com/questions/2087103/how-to-get-innerhtml-of-domnode
+	 * @param \DOMNode $node DOM node.
+	 * @return string
+	 */
+	private function get_inner_xml( \DOMNode $node = null ) {
+		if ( null === $node ) {
+			return null;
+		}
+
+		$child_nodes_array = \iterator_to_array( $node->childNodes );
+
+		$child_nodes_xml = array_map( function( $node ) {
+			return $node->ownerDocument->saveXML( $node );
+		}, $child_nodes_array );
+
+		$inner_xml = implode( $child_nodes_xml );
+
+		return $inner_xml;
+	}
+
+	/**
 	 * Unserialize the specified XML to an article.
 	 *
 	 * @param \SimpleXMLElement $element The XML element to unserialize.
@@ -45,6 +69,8 @@ class SalesInvoiceUnserializer extends Unserializer {
 
 			$header = $sales_invoice->get_header();
 
+			$dom_header = \dom_import_simplexml( $element->header );
+
 			if ( $element->header ) {
 				$header->set_office( Security::filter( $element->header->office ) );
 				$header->set_type( Security::filter( $element->header->invoicetype ) );
@@ -54,8 +80,15 @@ class SalesInvoiceUnserializer extends Unserializer {
 				$header->set_bank( Security::filter( $element->header->bank ) );
 				$header->set_customer( Security::filter( $element->header->customer ) );
 				$header->set_status( Security::filter( $element->header->status ) );
-				$header->set_header_text( Security::filter( $element->header->headertext ) );
-				$header->set_footer_text( Security::filter( $element->header->footertext ) );
+
+				/**
+				 * Header and footer text can container <br /> elements.
+				 *
+				 * @link https://stackoverflow.com/questions/4145424/getting-the-xml-content-of-a-simplexmlelement
+				 */
+				$header->set_header_text( Security::filter( $this->get_inner_xml( $dom_header->getElementsByTagName( 'headertext' )->item( 0 ) ) ) );
+				$header->set_footer_text( Security::filter( $this->get_inner_xml( $dom_header->getElementsByTagName( 'footertext' )->item( 0 ) ) ) );
+
 				$header->set_invoice_address_number( Security::filter( $element->header->invoiceaddressnumber, FILTER_VALIDATE_INT ) );
 				$header->set_deliver_address_number( Security::filter( $element->header->deliveraddressnumber, FILTER_VALIDATE_INT ) );
 			}
