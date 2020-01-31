@@ -10,7 +10,9 @@
 
 namespace Pronamic\WP\Twinfield\XML\Transactions;
 
+use Pronamic\WP\Twinfield\CodeName;
 use Pronamic\WP\Twinfield\Currency;
+use Pronamic\WP\Twinfield\DestinationOffice;
 use Pronamic\WP\Twinfield\VatCode;
 use Pronamic\WP\Twinfield\Offices\Office;
 use Pronamic\WP\Twinfield\Transactions\Transaction;
@@ -177,31 +179,57 @@ class TransactionUnserializer extends Unserializer {
 					$line->set_id( Security::filter( $element_line['id'] ) );
 					$line->set_type( Security::filter( $element_line['type'] ) );
 
-					if ( $element_line->dim1 ) {
+					$dimensions_element = $element_line;
+
+					/**
+					 * The `localdim` element is not documented but is used when a 
+					 * transaction line has another destination office. This can
+					 * be used in case of tax groups.
+					 */
+					if ( $element_line->localdim ) {
+						$dimensions_element = $element_line->localdim;
+					}
+
+					if ( $dimensions_element->dim1 ) {
 						$line->set_dimension_1( new TransactionLineDimension(
-							Security::filter( $element_line->dim1['dimensiontype'] ),
-							Security::filter( $element_line->dim1 ),
-							Security::filter( $element_line->dim1['name'] ),
-							Security::filter( $element_line->dim1['shortname'] )
+							Security::filter( $dimensions_element->dim1['dimensiontype'] ),
+							Security::filter( $dimensions_element->dim1 ),
+							Security::filter( $dimensions_element->dim1['name'] ),
+							Security::filter( $dimensions_element->dim1['shortname'] )
 						) );
 					}
 
-					if ( $element_line->dim2 ) {
+					if ( $dimensions_element->dim2 ) {
 						$line->set_dimension_2( new TransactionLineDimension(
-							Security::filter( $element_line->dim2['dimensiontype'] ),
-							Security::filter( $element_line->dim2 ),
-							Security::filter( $element_line->dim2['name'] ),
-							Security::filter( $element_line->dim2['shortname'] )
+							Security::filter( $dimensions_element->dim2['dimensiontype'] ),
+							Security::filter( $dimensions_element->dim2 ),
+							Security::filter( $dimensions_element->dim2['name'] ),
+							Security::filter( $dimensions_element->dim2['shortname'] )
 						) );
 					}
 
-					if ( $element_line->dim3 ) {
+					if ( $dimensions_element->dim3 ) {
 						$line->set_dimension_3( new TransactionLineDimension(
-							Security::filter( $element_line->dim3['dimensiontype'] ),
-							Security::filter( $element_line->dim3 ),
-							Security::filter( $element_line->dim3['name'] ),
-							Security::filter( $element_line->dim3['shortname'] )
+							Security::filter( $dimensions_element->dim3['dimensiontype'] ),
+							Security::filter( $dimensions_element->dim3 ),
+							Security::filter( $dimensions_element->dim3['name'] ),
+							Security::filter( $dimensions_element->dim3['shortname'] )
 						) );
+					}
+
+					/**
+					 * The `localdim` element is not documented but is used when a 
+					 * transaction line has another destination office. This can
+					 * be used in case of tax groups.
+					 */
+					if ( $element_line->destoffice ) {
+						$destination_office = new DestinationOffice( Security::filter( $element_line->destoffice ) );
+
+						if ( isset( $element_line->destoffice['dim1'] ) ) {
+							$dimension_1 = new CodeName( Security::filter( $element_line->destoffice['dim1'] ) );
+
+							$destination_office->set_dimension_1( $dimension_1 );
+						}
 					}
 
 					$line->set_debit_credit( Security::filter( $element_line->debitcredit ) );

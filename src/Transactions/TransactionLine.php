@@ -9,6 +9,7 @@
 
 namespace Pronamic\WP\Twinfield\Transactions;
 
+use Pronamic\WP\Twinfield\DestinationOffice;
 use Pronamic\WP\Twinfield\Offices\Office;
 use Pronamic\WP\Twinfield\Relations\Relation;
 
@@ -220,6 +221,15 @@ class TransactionLine {
 	 * @var string|null
 	 */
 	private $comment;
+
+	/**
+	 * Destination office.
+	 *
+	 * An destination office can be used in case of tax groups.
+	 *
+	 * @var DestinationOffice|null
+	 */
+	private $destination_office;
 
 	/**
 	 * Constructs and initialize a Twinfield transaction line.
@@ -931,5 +941,23 @@ class TransactionLine {
 	 */
 	public function set_comment( $comment ) {
 		$this->comment = $comment;
+	}
+
+	/**
+	 * Get destination office.
+	 *
+	 * @return DestinationOffice|null
+	 */
+	public function get_destination_office() {
+		return $this->destination_office;
+	}
+
+	/**
+	 * Set destination office.
+	 *
+	 * @param DestinationOffice|null $destination_office Destination office.
+	 */
+	public function set_destination_office( $destination_office ) {
+		$this->destination_office = $destination_office;
 	}
 }

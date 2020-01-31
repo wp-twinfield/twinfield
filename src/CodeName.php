@@ -18,7 +18,7 @@ namespace Pronamic\WP\Twinfield;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-abstract class CodeName {
+class CodeName {
 	/**
 	 * Code.
 	 *
