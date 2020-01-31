@@ -208,4 +208,37 @@ class OpenIdConnectProvider {
 
 		return $data;
 	}
+
+	/**
+	 * Get user info.
+	 *
+	 * curl --header "Authorization: Bearer ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●" https://login.twinfield.com/auth/authentication/connect/userinfo
+	 *
+	 * @link https://accounting.twinfield.com/webservices/documentation/#/ApiReference/Authentication/OpenIdConnect
+	 * @link https://connect2id.com/products/server/docs/api/userinfo
+	 * @param string $acces_token Access token.
+	 * @return object
+	 */
+	public function get_user_info( $access_token ) {
+		$url = self::URL_USER_INFO;
+
+		$result = wp_remote_get(
+			$url,
+			array(
+				'headers' => array(
+					'Authorization' => 'Bearer ' . $access_token,
+				),
+			)
+		);
+
+		if ( is_wp_error( $result ) ) {
+			return false;
+		}
+
+		$body = wp_remote_retrieve_body( $result );
+
+		$data = json_decode( $body );
+
+		return $data;
+	}
 }
