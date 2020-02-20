@@ -32,6 +32,13 @@ class Transaction {
 	private $webservice_origin;
 
 	/**
+	 * Browse definition.
+	 *
+	 * @var BrowseDefinition|null
+	 */
+	private $browse_definition;
+
+	/**
 	 * Location.
 	 *
 	 * Indicate the destiny of the purchase transaction:
@@ -80,6 +87,24 @@ class Transaction {
 	 */
 	public function set_webservice_origin( $webservice_origin ) {
 		$this->webservice_origin = $webservice_origin;
+	}
+
+	/**
+	 * Get browse definition.
+	 *
+	 * @return BrowseDefinition|null
+	 */
+	public function get_browse_definition() {
+		return $this->browse_definition;
+	}
+
+	/**
+	 * Set browse definition.
+	 *
+	 * @param BrowseDefinition|null $browse_definition Browse definition.
+	 */
+	public function set_browse_definition( $browse_definition ) {
+		$this->browse_definition = $browse_definition;
 	}
 
 	/**

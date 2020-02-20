@@ -45,9 +45,10 @@ class BrowseTransactionsUnserializer extends Unserializer {
 	/**
 	 * Constructs and initializes a browse transaction unserializer.
 	 */
-	public function __construct() {
+	public function __construct( $browse_definition = null ) {
 		$this->date_unserializer     = new DateUnserializer();
 		$this->datetime_unserializer = new DateTimeUnserializer();
+		$this->browse_definition     = $browse_definition;
 
 		$this->transactions = array();
 	}
@@ -94,6 +95,7 @@ class BrowseTransactionsUnserializer extends Unserializer {
 					// Transaction.
 					$transaction = new Transaction();
 					$transaction->set_webservice_origin( 'browse' );
+					$transaction->set_browse_definition( $this->browse_definition );
 
 					$this->transactions[ $transaction_key ] = $transaction;
 
@@ -178,6 +180,7 @@ class BrowseTransactionsUnserializer extends Unserializer {
 
 				$line = $transaction->new_line();
 				$line->set_webservice_origin( 'browse' );
+				$line->set_browse_definition( $this->browse_definition );
 
 				$lines[] = $line;
 

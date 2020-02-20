@@ -72,7 +72,7 @@ class TransactionService {
 
 		$xml = simplexml_load_string( $string );
 
-		$unserializer = new BrowseTransactionsUnserializer();
+		$unserializer = new BrowseTransactionsUnserializer( $browse_definition );
 
 		$lines = $unserializer->unserialize( $xml );
 

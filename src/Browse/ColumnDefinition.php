@@ -36,6 +36,19 @@ class ColumnDefinition {
 	}
 
 	/**
+	 * Get form.
+	 *
+	 * @return string|null
+	 */
+	public function get_from() {
+		if ( isset( $this->xml_definition->from ) ) {
+			return \strval( $this->xml_definition->from );
+		}
+
+		return null;
+	}
+
+	/**
 	 * Set from.
 	 *
 	 * @param string $from The from value.
