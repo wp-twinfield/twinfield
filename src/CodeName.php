@@ -41,6 +41,13 @@ class CodeName {
 	private $shortname;
 
 	/**
+	 * Universally unique identifier.
+	 *
+	 * @var string|null
+	 */
+	private $uuid;
+
+	/**
 	 * Construct a code/name object.
 	 *
 	 * @param string      $code      Code.
@@ -105,6 +112,24 @@ class CodeName {
 	 */
 	public function set_shortname( $shortname ) {
 		$this->shortname = $shortname;
+	}
+
+	/**
+	 * Get UUID.
+	 *
+	 * @return string|null
+	 */
+	public function get_uuid() {
+		return $this->uuid;
+	}
+
+	/**
+	 * Set UUID.
+	 *
+	 * @param string|null $uuid The UUID.
+	 */
+	public function set_uuid( $uuid ) {
+		$this->uuid = $uuid;
 	}
 
 	/**
