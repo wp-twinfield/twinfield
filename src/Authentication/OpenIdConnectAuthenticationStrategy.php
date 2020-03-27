@@ -39,13 +39,18 @@ class OpenIdConnectAuthenticationStrategy extends AuthenticationStrategy {
 	 * @return AuthenticationInfo
 	 */
 	public function login() {
+		$data = array(
+			'AccessToken' => $this->access_token,
+		);
+
+		if ( ! empty( $this->office ) ) {
+			$data['CompanyCode'] = $this->office;
+		}
+
 		$soap_header = new \SoapHeader(
 			'http://www.twinfield.com/',
 			'Header',
-			array(
-				'AccessToken' => $this->access_token,
-				'CompanyCode' => $this->office,
-			)
+			$data
 		);
 
 		$info = new AuthenticationInfo( $this->cluster, $soap_header );

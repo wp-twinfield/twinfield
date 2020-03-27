@@ -47,7 +47,20 @@ class OfficeService {
 
 		$request = '<list><type>offices</type></list>';
 
-		$response = $this->xml_processor->process_xml_string( new ProcessXmlString( $request ) );
+		$document = new \DOMDocument();
+
+		$list_element = $document->createElement( 'list' );
+
+		$document->appendChild( $list_element );
+
+		$type_element = $document->createElement( 'type' );
+		$type_element->appendChild( new \DOMText( 'offices' ) );
+
+		$list_element->appendChild( $type_element );
+
+		$xml_string = $document->saveXML();
+
+		$response = $this->xml_processor->process_xml_string( new ProcessXmlString( $xml_string ) );
 
 		$xml = simplexml_load_string( $response );
 
