@@ -57,6 +57,15 @@ abstract class AbstractService {
 	}
 
 	/**
+	 * Get SOAP client.
+	 *
+	 * @return \SoapClient
+	 */
+	public function get_soap_client() {
+		return $this->soap_client;
+	}
+
+	/**
 	 * Authenticate.
 	 *
 	 * @param AuthenticationInfo $authentication_info Authentication info.

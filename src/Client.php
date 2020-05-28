@@ -132,6 +132,8 @@ class Client {
 				return new XMLProcessor( $this );
 			case 'periods':
 				return new Periods\PeriodsService( $this );
+			case 'hierarchies':
+				return new Hierarchies\HierarchiesService( $this );
 			default:
 				return false;
 		}
