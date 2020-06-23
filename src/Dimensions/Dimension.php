@@ -42,6 +42,16 @@ class Dimension extends CodeName {
 	private $level;
 
 	/**
+	 * Modified at datetime object.
+	 *
+	 * The modified date is only returned when using the Twinfield finder
+	 * service with the 'modifiedsince' option.
+	 *
+	 * @var null|\DateTimeImmutable
+	 */
+	private $modified_at;
+
+	/**
 	 * Constructs and initializes a dimension.
 	 *
 	 * @param string      $type      Type.
@@ -91,5 +101,23 @@ class Dimension extends CodeName {
 	 */
 	public function set_level( $level ) {
 		$this->level = $level;
+	}
+
+	/**
+	 * Get modified at datetime object.
+	 *
+	 * @return null|\DateTimeImmutable
+	 */
+	public function get_modified_at() {
+		return $this->modified_at;
+	}
+
+	/**
+	 * Set modified at datetime object.
+	 *
+	 * @param null|\DateTimeImmutable 
+	 */
+	public function set_modified_at( \DateTimeImmutable $modified_at = null ) {
+		$this->modified_at = $modified_at;
 	}
 }
