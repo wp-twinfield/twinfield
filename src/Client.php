@@ -134,6 +134,8 @@ class Client {
 				return new Periods\PeriodsService( $this );
 			case 'hierarchies':
 				return new Hierarchies\HierarchiesService( $this );
+			case 'budget':
+				return new Budget\BudgetService( $this );
 			default:
 				return false;
 		}
@@ -209,6 +211,7 @@ class Client {
 			'GetDeletedTransactions'     => __NAMESPACE__ . '\Transactions\GetDeletedTransactions',
 			'GetYears'                   => __NAMESPACE__ . '\Periods\QueryGetYears',
 			'GetPeriods'                 => __NAMESPACE__ . '\Periods\QueryGetPeriods',
+			'GetBudgetByProfitAndLoss'   => __NAMESPACE__ . '\Budget\GetBudgetByProfitAndLossQuery',
 		);
 	}
 }
