@@ -314,6 +314,18 @@ class TransactionUnserializer extends Unserializer {
 							Security::filter( $element_line->vatcode['type'] )
 						) );
 					}
+
+					if ( $element_line->freetext1 ) {
+						$line->set_free_text_1( \strval( $element_line->freetext1 ) );
+					}
+
+					if ( $element_line->freetext2 ) {
+						$line->set_free_text_2( \strval( $element_line->freetext2 ) );
+					}
+
+					if ( $element_line->freetext3 ) {
+						$line->set_free_text_3( \strval( $element_line->freetext3 ) );
+					}
 				}
 			}
 
