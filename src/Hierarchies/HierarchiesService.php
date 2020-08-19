@@ -37,4 +37,17 @@ class HierarchiesService extends AbstractService {
 	public function __construct( Client $client ) {
 		parent::__construct( self::WSDL_FILE, $client );
 	}
+
+	/**
+	 * Get hierarchy by code.
+	 *
+	 * @return LoadResponse
+	 */
+	public function get_hierarchy( $hierarchy_code ) {
+		$result = $this->soap_client->Load( (object) array(
+			'hierarchyCode' => $hierarchy_code,
+		) );
+
+		return LoadResponse::from_object( $result );
+	}
 }
