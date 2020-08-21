@@ -145,6 +145,15 @@ class HierarchyNode implements \IteratorAggregate {
 	}
 
 	/**
+	 * Has accounts
+	 *
+	 * @return bool True if node has accounts, false otherwise.
+	 */
+	public function has_accounts() {
+		return \count( $this->accounts ) > 0;
+	}
+
+	/**
 	 * Add child node.
 	 *
 	 * @param HierarchyNode $child_node Child node.

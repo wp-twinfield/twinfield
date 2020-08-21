@@ -133,7 +133,7 @@ class Hierarchy implements \IteratorAggregate {
 	 * @return HierarchyNodeIterator
 	 */
 	public function getIterator() {
-		return new HierarchyNodeIterator( array( $this->root_node ) );
+		return new HierarchyNodeAccountIterator( array( $this->root_node ) );
 	}
 
 	/**
