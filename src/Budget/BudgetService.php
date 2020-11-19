@@ -2,9 +2,8 @@
 /**
  * Budget service
  *
- * @since      1.0.0
- *
- * @package    Pronamic/WP/Twinfield
+ * @since 1.0.0
+ * @package Pronamic/WP/Twinfield
  */
 
 namespace Pronamic\WP\Twinfield\Budget;
@@ -17,9 +16,9 @@ use Pronamic\WP\Twinfield\Client;
  *
  * This class connects to the Twinfield budget Webservices.
  *
- * @since      1.0.0
- * @package    Pronamic/WP/Twinfield
- * @author     Remco Tolsma <info@remcotolsma.nl>
+ * @since 1.0.0
+ * @package Pronamic/WP/Twinfield
+ * @author Remco Tolsma <info@remcotolsma.nl>
  */
 class BudgetService extends AbstractService {
 	/**

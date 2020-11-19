@@ -42,7 +42,13 @@ class HierarchyNodeAccountIterator extends \ArrayIterator implements \RecursiveI
 	 */
 	public function hasChildren() {
 		if ( $this->valid() ) {
-			return $this->current()->has_child_nodes() || $this->current()->has_accounts();
+			$current = $this->current();
+
+			if ( $current instanceof HierarchyAccount ) {
+				return false;
+			}
+
+			return $current->has_child_nodes() || $current->has_accounts();
 		}
 
 		return false;
