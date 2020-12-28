@@ -28,7 +28,17 @@ class GetBudgetTotalsResult implements \Countable, \IteratorAggregate {
 	 * @return GetBudgetTotalResult[]
 	 */
 	public function get_budget_totals() {
-		return $this->BudgetTotals->GetBudgetTotalResult;
+		if ( \property_exists( $this->BudgetTotals, 'GetBudgetTotalResult' ) ) {
+			$result = $this->BudgetTotals->GetBudgetTotalResult;
+
+			if ( \is_array( $result ) ) {
+				return $result;
+			}
+
+			return array( $result );
+		}
+
+		return array();
 	}
 
 	/**
