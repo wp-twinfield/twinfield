@@ -8,6 +8,18 @@
 *	[Twinfield API](https://www.twinfield.nl/api)
 
 
+## Examples
+
+See the [`examples/`](examples) directory for examples of the key client features. You can
+view them in your browser by running the php built-in web server.
+
+```
+$ php -S localhost:8000 -t examples/
+```
+
+And then browsing to the host and port you specified
+(in the above example, `http://localhost:8000`).
+
 ## Environment variables
 
 ```
@@ -63,6 +75,8 @@ echo "REQUEST:\n" . $this->soap_client->__getLastRequest() . "\n";
 *	https://github.com/Happyr/LinkedIn-API-client
 *	https://github.com/okwinza/cloudflare-api
 *	https://github.com/jcroll/foursquare-api-client
+*	https://github.com/googleapis/google-api-php-client
+*	https://developers.google.com/gmail/api/quickstart/php
 
 
 ## Design Patterns
