@@ -154,6 +154,22 @@ class HierarchyNode implements \IteratorAggregate {
 	}
 
 	/**
+	 * Filter accounts.
+	 *
+	 * @param callable $callback The callback function to use.
+	 * @return self
+	 */
+	public function filter_accounts( $callback = null ) {
+		foreach ( $this->child_nodes as $node ) {
+			$node->filter_accounts( $callback );
+		}
+
+		$this->accounts = \array_filter( $this->accounts, $callback );
+
+		return $this;
+	}
+
+	/**
 	 * Add child node.
 	 *
 	 * @param HierarchyNode $child_node Child node.
@@ -178,6 +194,22 @@ class HierarchyNode implements \IteratorAggregate {
 	 */
 	public function has_child_nodes() {
 		return \count( $this->child_nodes ) > 0;
+	}
+
+	/**
+	 * Filter nodes.
+	 *
+	 * @param callable $callback The callback function to use.
+	 * @return self
+	 */
+	public function filter_nodes( $callback = null ) {
+		foreach ( $this->child_nodes as $node ) {
+			$node->filter_nodes( $callback );
+		}
+
+		$this->child_nodes = \array_filter( $this->child_nodes, $callback );
+
+		return $this;
 	}
 
 	/**
