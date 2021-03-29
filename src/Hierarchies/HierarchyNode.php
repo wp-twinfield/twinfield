@@ -170,6 +170,22 @@ class HierarchyNode implements \IteratorAggregate {
 	}
 
 	/**
+	 * Sort accounts.
+	 *
+	 * @param callable $callback The callback function to use.
+	 * @return self
+	 */
+	public function sort_accounts( $callback ) {
+		foreach ( $this->child_nodes as $node ) {
+			$node->sort_accounts( $callback );
+		}
+
+		usort( $this->accounts, $callback );
+
+		return $this;
+	}
+
+	/**
 	 * Add child node.
 	 *
 	 * @param HierarchyNode $child_node Child node.
@@ -208,6 +224,22 @@ class HierarchyNode implements \IteratorAggregate {
 		}
 
 		$this->child_nodes = \array_filter( $this->child_nodes, $callback );
+
+		return $this;
+	}
+
+	/**
+	 * Sort nodes.
+	 *
+	 * @param callable $callback The callback function to use.
+	 * @return self
+	 */
+	public function sort_nodes( $callback ) {
+		foreach ( $this->child_nodes as $node ) {
+			$node->sort_nodes( $callback );
+		}
+
+		usort( $this->child_nodes, $callback );
 
 		return $this;
 	}
