@@ -295,27 +295,31 @@ class HierarchyNode implements \IteratorAggregate {
 		/**
 		 * Accounts.
 		 */
-		$accounts = $object->Accounts->HierarchyAccount;
+		if ( \property_exists( $object, 'Accounts' ) && \property_exists( $object->Accounts, 'HierarchyAccount' ) ) {
+			$hierarchy_accounts = $object->Accounts->HierarchyAccount;
 
-		if ( is_object( $accounts ) ) {
-			$accounts = array( $accounts );
-		}
+			if ( \is_object( $hierarchy_accounts ) ) {
+				$hierarchy_accounts = array( $hierarchy_accounts );
+			}
 
-		foreach ( $accounts as $o ) {
-			$hierarchy->add_account( HierarchyAccount::from_object( $o ) );
+			foreach ( $hierarchy_accounts as $o ) {
+				$hierarchy->add_account( HierarchyAccount::from_object( $o ) );
+			}
 		}
 
 		/**
 		 * Child nodes.
 		 */
-		$child_nodes = $object->ChildNodes->HierarchyNode;
+		if ( \property_exists( $object, 'ChildNodes' ) && \property_exists( $object->ChildNodes, 'HierarchyNode' ) ) {
+			$child_nodes = $object->ChildNodes->HierarchyNode;
 
-		if ( is_object( $child_nodes ) ) {
-			$child_nodes = array( $child_nodes );
-		}
+			if ( \is_object( $child_nodes ) ) {
+				$child_nodes = array( $child_nodes );
+			}
 
-		foreach ( $child_nodes as $o ) {
-			$hierarchy->add_child_node( HierarchyNode::from_object( $o ) );
+			foreach ( $child_nodes as $o ) {
+				$hierarchy->add_child_node( HierarchyNode::from_object( $o ) );
+			}
 		}
 
 		/**
