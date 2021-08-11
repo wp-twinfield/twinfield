@@ -9,6 +9,8 @@
 
 namespace Pronamic\WP\Twinfield\Authentication;
 
+use Pronamic\WordPress\Http\Facades\Http;
+
 /**
  * OpenID Connect Provider
  *
@@ -124,7 +126,7 @@ class OpenIdConnectProvider {
 	public function get_access_token( $code ) {
 		$url = self::URL_TOKEN;
 
-		$result = wp_remote_post(
+		$result = Http::post(
 			$url,
 			array(
 				'headers' => $this->get_headers(),
@@ -136,13 +138,27 @@ class OpenIdConnectProvider {
 			)
 		);
 
-		if ( is_wp_error( $result ) ) {
-			return false;
+		$data = $result->json();
+
+		if ( ! \is_object( $data ) ) {
+			throw new \Exception(
+				\sprintf(
+					'Unknow response from `%s` endpoint: %s.',
+					$url,
+					\print_r( $data, true )
+				)
+			);
 		}
 
-		$body = wp_remote_retrieve_body( $result );
-
-		$data = json_decode( $body );
+		if ( \property_exists( $data, 'error' ) ) {
+			throw new \Exception(
+				\sprintf(
+					'Received error from `%s` endpoint: %s.',
+					$url,
+					\print_r( $data->error, true )
+				)
+			);
+		}
 
 		return $data;
 	}
@@ -154,22 +170,22 @@ class OpenIdConnectProvider {
 	 * @return mixed
 	 */
 	public function get_access_token_validation( $access_token ) {
-		if ( empty( $access_token ) ) {
-			return false;
-		}
-
 		$url = self::URL_ACCESS_TOKEN_VALIDATION;
-		$url = add_query_arg( 'token', $access_token, $url );
+		$url = \add_query_arg( 'token', $access_token, $url );
 
-		$result = wp_remote_get( $url );
+		$result = Http::get( $url );
 
-		if ( is_wp_error( $result ) ) {
-			return false;
+		$data = $result->json();
+
+		if ( ! \is_object( $data ) ) {
+			throw new \Exception(
+				\sprintf(
+					'Unknow response from `%s` endpoint: %s.',
+					$url,
+					\print_r( $data, true )
+				)
+			);
 		}
-
-		$body = wp_remote_retrieve_body( $result );
-
-		$data = json_decode( $body );
 
 		return $data;
 	}
@@ -222,7 +238,7 @@ class OpenIdConnectProvider {
 	public function get_user_info( $access_token ) {
 		$url = self::URL_USER_INFO;
 
-		$result = wp_remote_get(
+		$result = Http::get(
 			$url,
 			array(
 				'headers' => array(
@@ -231,13 +247,34 @@ class OpenIdConnectProvider {
 			)
 		);
 
-		if ( is_wp_error( $result ) ) {
+		$data = $result->json();
+
+		return $data;
+	}
+
+	/**
+	 * Maybe handle Twinfield OpenID Authorization return.
+	 */
+	public function maybe_handle_twinfield_return( $data, $callback ) {
+		if ( ! \array_key_exists( 'code', $data ) ) {
 			return false;
 		}
 
-		$body = wp_remote_retrieve_body( $result );
+		if ( ! \array_key_exists( 'state', $data ) ) {
+			return false;
+		}
 
-		$data = json_decode( $body );
+		if ( ! \array_key_exists( 'session_state', $data ) ) {
+			return false;
+		}
+
+		$code = $data['code'];
+
+		$data = $this->get_access_token( $code );
+
+		if ( \is_callable( $callback ) ) {
+			\call_user_func( $callback, $data );
+		}
 
 		return $data;
 	}

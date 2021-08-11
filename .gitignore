@@ -4,6 +4,9 @@
 # Debug
 /debug/
 
+# Examples
+/examples/client-secret.json
+
 # Composer
 /vendor/
 

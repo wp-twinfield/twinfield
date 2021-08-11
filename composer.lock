@@ -4,8 +4,53 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7765b5acb04b7a4509d4724a5c076863",
-    "packages": [],
+    "content-hash": "ef5b594472fb696b9f35f9f9985e804c",
+    "packages": [
+        {
+            "name": "pronamic/wp-http",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pronamic/wp-http.git",
+                "reference": "0baa3cf7688e76355b84d817222fd946e59cc887"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pronamic/wp-http/zipball/0baa3cf7688e76355b84d817222fd946e59cc887",
+                "reference": "0baa3cf7688e76355b84d817222fd946e59cc887",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.20"
+            },
+            "require-dev": {
+                "bamarni/composer-bin-plugin": "^1.4",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpcompatibility/php-compatibility": "^9.3",
+                "phpcompatibility/phpcompatibility-wp": "^2.1",
+                "phpmd/phpmd": "^2.9",
+                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0",
+                "roots/wordpress": "^5.6",
+                "squizlabs/php_codesniffer": "^3.5",
+                "wp-coding-standards/wpcs": "^2.3",
+                "wp-phpunit/wp-phpunit": "^5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Pronamic\\WordPress\\Http\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "WordPress HTTP library.",
+            "support": {
+                "issues": "https://github.com/pronamic/wp-http/issues",
+                "source": "https://github.com/pronamic/wp-http/tree/1.1.1"
+            },
+            "time": "2021-06-18T14:31:41+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "automattic/wordbless",
