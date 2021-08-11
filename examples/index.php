@@ -25,18 +25,31 @@ $state = \bin2hex( \openssl_random_pseudo_bytes( 32 ) );
 
 $openid_connect_provider = new \Pronamic\WP\Twinfield\Authentication\OpenIdConnectProvider( $data->client_id, $data->client_secret, $data->redirect_uri );
 
-$openid_connect_provider->maybe_handle_twinfield_return( $_GET, function( $token_response ) use ( $file, $data ) {
-	$data->token = $token_response;
+/**
+ * @link https://github.com/googleapis/google-api-php-client/blob/master/docs/oauth-web.md#create-authorization-credentials
+ * @link https://developers.google.com/gmail/api/quickstart/php
+ */
+if ( \array_key_exists( 'code', $_GET ) ) {
+	$data->token = $openid_connect_provider->get_access_token( $_GET['code'] );
+}
 
-	$result = \file_put_contents( $file, \wp_json_encode( $data, \JSON_PRETTY_PRINT ) );
-
-	if ( false === $result ) {
-		die( 'Could not save token.' );
-	}
-} );
-
-if ( property_exists( $data, 'token' ) && ! \property_exists( $data, 'access_token_validation' ) ) {
+if ( \property_exists( $data, 'token' ) && ! \property_exists( $data, 'access_token_validation2' ) ) {
 	$data->access_token_validation = $openid_connect_provider->get_access_token_validation( $data->token->access_token );
+}
+
+if ( property_exists( $data, 'access_token_validation' ) ) {
+	$access_token_validation = Pronamic\WP\Twinfield\Authentication\AccessTokenValidation::from_object( $data->access_token_validation );
+
+	if ( $access_token_validation->is_expired() ) {
+		$refresh_token_response = $openid_connect_provider->refresh_token( $data->token->refresh_token );
+
+		$data->token->access_token  = $refresh_token_response->access_token;
+		$data->token->expires_in    = $refresh_token_response->expires_in;
+		$data->token->token_type    = $refresh_token_response->token_type;
+		$data->token->refresh_token = $refresh_token_response->refresh_token;
+
+		$data->access_token_validation = $openid_connect_provider->get_access_token_validation( $data->token->access_token );
+	}
 }
 
 if ( property_exists( $data, 'token' ) && ! \property_exists( $data, 'user_info' ) ) {
@@ -136,6 +149,8 @@ if ( $json !== $json_update ) {
 			$offices = $office_service->get_offices();
 
 			var_dump( $offices );
+
+
 
 			?>
 

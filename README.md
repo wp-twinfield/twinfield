@@ -66,6 +66,40 @@ echo "REQUEST:\n" . $this->soap_client->__getLastRequest() . "\n";
 ```
 
 
+## To-do
+
+```php
+$client = new Client(
+	$client_id,
+	$client_secret,
+	$redirect_uri
+);
+
+$client->set_access_token( ... );
+
+if ( $client->is_access_token_expired() ) {
+	
+}
+
+$authentication = {}
+
+$authentication->get_user();
+
+$authentication->get_user()->get_organisation();
+
+$authentication->get_organisation();
+
+$authentication->get_cluster_url();
+
+$authentication->get_organisation()->get_offices();
+
+$client = $authentication->get_client();
+
+$client->get_organisation_service();
+
+$offices = $organisation_service->get_offices();
+```
+
 ## Inspiration
 
 *	https://github.com/KnpLabs/php-github-api

@@ -187,6 +187,10 @@ class OpenIdConnectProvider {
 			);
 		}
 
+		if ( \property_exists( $data, 'Message' ) ) {
+			throw new \Exception( $data->Message );
+		}
+
 		return $data;
 	}
 
@@ -197,13 +201,9 @@ class OpenIdConnectProvider {
 	 * @return mixed
 	 */
 	public function refresh_token( $refresh_token ) {
-		if ( empty( $refresh_token ) ) {
-			return false;
-		}
-
 		$url = self::URL_TOKEN;
 
-		$result = wp_remote_post(
+		$result = Http::post(
 			$url,
 			array(
 				'headers' => $this->get_headers(),
@@ -214,13 +214,17 @@ class OpenIdConnectProvider {
 			)
 		);
 
-		if ( is_wp_error( $result ) ) {
-			return false;
+		$data = $result->json();
+
+		if ( ! \is_object( $data ) ) {
+			throw new \Exception(
+				\sprintf(
+					'Unknow response from `%s` endpoint: %s.',
+					$url,
+					\print_r( $data, true )
+				)
+			);
 		}
-
-		$body = wp_remote_retrieve_body( $result );
-
-		$data = json_decode( $body );
 
 		return $data;
 	}
