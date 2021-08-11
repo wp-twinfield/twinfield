@@ -17,3 +17,6 @@
 
 # Node.js
 /node_modules/
+
+# WordPress
+/wordpress/

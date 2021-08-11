@@ -2,6 +2,8 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+\WorDBless\Load::load();
+
 $client_id     = '';
 $client_secret = '';
 $redirect_uri  = '';
@@ -14,11 +16,11 @@ if ( 'POST' === $_SERVER['REQUEST_METHOD'] ) {
 }
 
 $openid_connect_provider = new \Pronamic\WP\Twinfield\Authentication\OpenIdConnectProvider( $client_id, $client_secret, $redirect_uri );
-
+/*
 $openid_connect_provider->maybe_handle_twinfield_return( function( $data ) {
 	var_dump( $data );
 } );
-
+*/
 ?>
 <!doctype html>
 <html lang="en">
