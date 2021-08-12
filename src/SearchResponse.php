@@ -22,14 +22,14 @@ class SearchResponse {
 	/**
 	 * The Twinfield search result code.
 	 *
-	 * @var string
+	 * @var ArrayOfMessageOfErrorCodes
 	 */
 	private $SearchResult; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase -- Twinfield vaiable name.
 
 	/**
 	 * The Twinfield search data.
 	 *
-	 * @var ArrayOfArrayOfString
+	 * @var FinderData
 	 */
 	private $data;
 
@@ -58,7 +58,7 @@ class SearchResponse {
 	/**
 	 * Get the search response data.
 	 *
-	 * @return ArrayOfArrayOfString
+	 * @return FinderData
 	 */
 	public function get_data() {
 		return $this->data;

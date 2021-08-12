@@ -1,6 +1,6 @@
 <?php
 /**
- * Authentication strategy.
+ * Invalid Token Exception.
  *
  * @since      1.0.0
  *
@@ -9,18 +9,15 @@
 
 namespace Pronamic\WP\Twinfield\Authentication;
 
+use Exception;
+
 /**
- * Authentication strategy.
- *
- * This class contains constants for different Twinfield browse codes.
+ * Invalid Token Exception.
  *
  * @since      1.0.0
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-abstract class AuthenticationStrategy {
-	/**
-	 * Login.
-	 */
-	abstract public function login();
+class InvalidTokenException extends Exception {
+	
 }

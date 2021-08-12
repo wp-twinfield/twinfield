@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenID Connect Provider
+ * OpenID Connect Client
  *
  * @since      1.0.0
  *
@@ -12,14 +12,14 @@ namespace Pronamic\WP\Twinfield\Authentication;
 use Pronamic\WordPress\Http\Facades\Http;
 
 /**
- * OpenID Connect Provider
+ * OpenID Connect Client
  *
  * @since      1.0.0
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  * @see        https://github.com/opauth/opauth
  */
-class OpenIdConnectProvider {
+class OpenIdConnectClient {
 	/**
 	 * Authorize URL.
 	 *
@@ -257,29 +257,16 @@ class OpenIdConnectProvider {
 	}
 
 	/**
-	 * Maybe handle Twinfield OpenID Authorization return.
+	 * From JSON file.
+	 * 
+	 * @param string $file File.
+	 * @return self
 	 */
-	public function maybe_handle_twinfield_return( $data, $callback ) {
-		if ( ! \array_key_exists( 'code', $data ) ) {
-			return false;
-		}
+	public static function from_json_file( $file ) {
+		$data = \json_decode( \file_get_contents( $file, true ) );
 
-		if ( ! \array_key_exists( 'state', $data ) ) {
-			return false;
-		}
+		$client = new self( $data->client_id, $data->client_secret, $data->redirect_uri );
 
-		if ( ! \array_key_exists( 'session_state', $data ) ) {
-			return false;
-		}
-
-		$code = $data['code'];
-
-		$data = $this->get_access_token( $code );
-
-		if ( \is_callable( $callback ) ) {
-			\call_user_func( $callback, $data );
-		}
-
-		return $data;
+		return $client;
 	}
 }

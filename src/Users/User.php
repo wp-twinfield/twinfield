@@ -27,5 +27,9 @@ class User extends CodeName {
 	 *
 	 * @var Organisation|null
 	 */
-	private $organisation;
+	public $organisation;
+
+    public function get_organisation() {
+        return $this->organisation;
+    }
 }

@@ -5,6 +5,7 @@
 /debug/
 
 # Examples
+/examples/authentication-secret.json
 /examples/client-secret.json
 
 # Composer

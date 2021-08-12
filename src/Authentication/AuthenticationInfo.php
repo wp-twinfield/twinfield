@@ -9,58 +9,81 @@
 
 namespace Pronamic\WP\Twinfield\Authentication;
 
-use \SoapHeader;
+use JsonSerializable;
 
 /**
  * Authentication info.
- *
- * This class contains constants for different Twinfield browse codes.
  *
  * @since      1.0.0
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class AuthenticationInfo {
+class AuthenticationInfo implements JsonSerializable {
 	/**
-	 * Cluster.
+	 * Tokens.
 	 *
-	 * @var string
+	 * @var AuthenticationTokens
 	 */
-	private $cluster;
+	private $tokens;
 
 	/**
-	 * SOAP header.
+	 * Validation response.
 	 *
-	 * @var SoapHeader
+	 * @var AccessTokenValidation
 	 */
-	private $soap_header;
+	private $validation;
 
 	/**
 	 * Construct an authentication info object.
 	 *
-	 * @param string     $cluster     Cluster.
-	 * @param SoapHeader $soap_header SOAP Header.
+	 * @param AuthenticationTokens  $tokens Tokens.
+	 * @param AccessTokenValidation $validation Validation.
 	 */
-	public function __construct( $cluster, SoapHeader $soap_header ) {
-		$this->cluster     = $cluster;
-		$this->soap_header = $soap_header;
+	public function __construct( AuthenticationTokens $tokens, AccessTokenValidation $validation ) {
+		$this->tokens     = $tokens;
+		$this->validation = $validation;
 	}
 
 	/**
-	 * Get cluster.
-	 *
-	 * @return string
+	 * Tokens.
+	 * 
+	 * @return AuthenticationTokens
 	 */
-	public function get_cluster() {
-		return $this->cluster;
+	public function get_tokens() {
+		return $this->tokens;
 	}
 
 	/**
-	 * Get SOAP hader.
-	 *
-	 * @return SoapHeader
+	 * Validation.
+	 * 
+	 * @return AccessTokenValidation
 	 */
-	public function get_soap_header() {
-		return $this->soap_header;
+	public function get_validation() {
+		return $this->validation;
+	}
+
+	/**
+	 * JSON serialize.
+	 * 
+	 * @return object
+	 */
+	public function jsonSerialize() {
+		return (object) array(
+			'tokens'     => $this->tokens->jsonSerialize(),
+			'validation' => $this->validation->jsonSerialize(),
+		);
+	}
+
+	/**
+	 * Create access token validation object from a plain object.
+	 * 
+	 * @param object $object Object.
+	 * @return self
+	 */
+	public function from_object( $object ) {
+		return new self(
+			AuthenticationTokens::from_object( $object->tokens ),
+			AccessTokenValidation::from_object( $object->validation )
+		);
 	}
 }

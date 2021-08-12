@@ -45,7 +45,9 @@ class XMLProcessor extends AbstractService {
 	 * @return string
 	 */
 	public function process_xml_string( ProcessXmlString $xml ) {
-		$response = $this->soap_client->ProcessXmlString( $xml );
+		$soap_client = $this->get_soap_client();
+
+		$response = $soap_client->ProcessXmlString( $xml );
 
 		return $response;
 	}

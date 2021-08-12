@@ -9,7 +9,13 @@
 
 namespace Pronamic\WP\Twinfield;
 
-use Pronamic\WP\Twinfield\Authentication\AuthenticationStrategy;
+use Pronamic\WP\Twinfield\Authentication\AccessTokenValidation;
+use Pronamic\WP\Twinfield\Authentication\AuthenticationInfo;
+use Pronamic\WP\Twinfield\Authentication\AuthenticationTokens;
+use Pronamic\WP\Twinfield\Authentication\OpenIdConnectClient;
+use Pronamic\WP\Twinfield\Authentication\InvalidTokenException;
+use Pronamic\WP\Twinfield\Offices\OfficeService;
+use Pronamic\WP\Twinfield\Offices\Office;
 
 /**
  * Client
@@ -29,65 +35,57 @@ class Client {
 	private $services;
 
 	/**
-	 * Number retires.
-	 *
-	 * @var int
-	 */
-	private $number_retires = 0;
-
-	/**
 	 * Constructs and initializes a Twinfield client object.
 	 *
-	 * @param AuthenticationStrategy $authentication_strategy Authentication strategy.
+	 * @param OpenIdConnectClient $openid_connect_client OpenID Connect Client.
+	 * @param AuthenticationInfo  $authentication        Authentication info.
 	 */
-	public function __construct( AuthenticationStrategy $authentication_strategy ) {
-		$this->authentication_strategy = $authentication_strategy;
+	public function __construct( OpenIdConnectClient $openid_connect_client, AuthenticationInfo $authentication ) {
+		$this->openid_connect_client = $openid_connect_client;
+
+		$this->set_authentication( $authentication );
 
 		$this->services = array();
 	}
 
-	/**
-	 * Get cluster.
-	 *
-	 * @return mixed
-	 */
-	public function get_cluster() {
-		return $this->cluster;
+	public function get_authentication() {
+		return $this->authentication;
 	}
 
-	/**
-	 * Login.
-	 */
-	public function login() {
-		$this->authentication_info = $this->authentication_strategy->login();
+	public function set_authentication( AuthenticationInfo $authentication ) {
+		$this->authentication = $authentication;
 
-		$this->cluster = $this->authentication_info->get_cluster();
+		$this->user = $this->authentication->get_validation()->get_user();
 
-		if ( isset( $this->authentication_info->session_id ) ) {
-			$this->session_id = $this->authentication_info->session_id;
-		}
+		$this->organisation = $this->user->get_organisation();
 
-		if ( isset( $this->authentication_info->access_token ) ) {
-			$this->access_token = $this->authentication_info->access_token;
-		}
-
-		$this->authenticate_services();
+		$this->cluster_url = $this->authentication->get_validation()->get_cluster_url();
 	}
 
-	/**
-	 * Authenticate services.
-	 */
-	private function authenticate_services() {
-		foreach ( $this->services as $service ) {
-			$service->authenticate( $this->authentication_info );
-		}
+	public function set_authentication_refresh_handler( $callback ) {
+		$this->authentication_refresh_handler = $callback;
 	}
 
-	/**
-	 * Handle exception.
-	 */
-	public function handle_exception() {
+	public function authenticate() {
+		if ( $this->authentication->get_validation()->is_expired() ) {
+			$response = $this->openid_connect_client->refresh_token( $this->authentication->get_tokens()->get_refresh_token() );
+			
+			$tokens = AuthenticationTokens::from_object( $response );
 
+			$response = $this->openid_connect_client->get_access_token_validation( $tokens->get_access_token() );
+
+			$validation = AccessTokenValidation::from_object( $response );
+
+			$authentication = new AuthenticationInfo( $tokens, $validation );
+
+			$this->set_authentication( $authentication );
+
+			if ( \is_callable( $this->authentication_refresh_handler ) ) {
+				\call_user_func( $this->authentication_refresh_handler, $this );
+			}
+		}
+
+		return $this->authentication;
 	}
 
 	/**
@@ -148,10 +146,6 @@ class Client {
 	 * @param mixed  $service Service.
 	 */
 	private function set_service( $name, $service ) {
-		if ( $this->authentication_info ) {
-			$service->authenticate( $this->authentication_info );
-		}
-
 		$this->services[ $name ] = $service;
 	}
 
@@ -173,19 +167,83 @@ class Client {
 		return $this->get_service( 'processxml' );
 	}
 
+	public function get_organisation() {
+		return $this->organisation;
+	}
+
+	public function get_user() {
+		return $this->user;
+	}
+
+	public function get_offices() {
+		$office_service = new OfficeService( $this );
+
+		return $office_service->get_offices();
+	}
+
+	public function get_office( Office $office ) {
+		$office_service = new OfficeService( $this );
+
+		return $office_service->get_office( $office );
+	}
+
+	public function get_journals( Office $office ) {
+		$finder = $this->get_finder();
+
+		// Request.
+		$search = new \Pronamic\WP\Twinfield\Search(
+			'TRS',
+			'*',
+			0,
+			1,
+			100,
+			array(
+				'hidden' => '1',
+			)
+		);
+
+		$finder->set_office( $office );
+
+		$response = $finder->search( $search );
+
+		$data = $response->get_data();
+
+		$items = $data->get_items();
+
+		$journals = array();
+
+		foreach ( $items as $item ) {
+			$journal = $office->new_journal( $item[0] );
+
+			$journal->set_name( $item[1] );
+
+			$journals[] = $journal;
+		}
+
+		return $journals;
+	}
+
+	private function get_wsdl_url( $wsdl_file ) {
+		return $this->cluster_url . $wsdl_file;
+	}
+
+	public function new_soap_client( $wsdl_file ) {
+		return new \SoapClient( $this->get_wsdl_url( $wsdl_file ), $this->get_soap_client_options() );
+	}
+
 	/**
 	 * Get SOAP Client options.
 	 *
 	 * @return array
 	 */
-	public static function get_soap_client_options() {
+	private function get_soap_client_options() {
 		return array(
-			'classmap'           => self::get_class_map(),
+			'classmap'           => $this->get_class_map(),
 			'connection_timeout' => 30,
 			'trace'              => true,
-			'compression'        => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP,
+			'compression'        => \SOAP_COMPRESSION_ACCEPT | \SOAP_COMPRESSION_GZIP,
 			// https://github.com/php-twinfield/twinfield/issues/50.
-			'cache_wsdl'         => WSDL_CACHE_MEMORY,
+			'cache_wsdl'         => \WSDL_CACHE_MEMORY,
 			// Disable HTTP Keep Alive to prevent 'error fetching HTTP headers'.
 			'keep_alive'         => false,
 		);
@@ -196,7 +254,7 @@ class Client {
 	 *
 	 * @return array
 	 */
-	public static function get_class_map() {
+	private function get_class_map() {
 		return array(
 			'ArrayOfArrayOfString'       => __NAMESPACE__ . '\ArrayOfArrayOfString',
 			'ArrayOfMessageOfErrorCodes' => __NAMESPACE__ . '\ArrayOfMessageOfErrorCodes',

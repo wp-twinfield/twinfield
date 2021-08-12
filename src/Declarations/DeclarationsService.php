@@ -47,13 +47,17 @@ class DeclarationsService extends AbstractService {
 	 * @param string $office_code The code of the office for which the returns should be retrieved. Mandatory.
 	 * @return array
 	 */
-	public function get_all_summaries( $office_code ) {
+	public function get_all_summaries( $office ) {
 		$parameters = new \stdClass();
 
 		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar -- Twinfield vaiable name.
-		$parameters->companyCode = $office_code;
+		$parameters->companyCode = $office->get_code();
 
-		return $this->soap_client->GetAllSummaries( $parameters );
+		$this->set_office( $office );
+
+		$soap_client = $this->get_soap_client();
+
+		return $soap_client->GetAllSummaries( $parameters );
 	}
 
 	/**
