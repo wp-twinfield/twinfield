@@ -63,7 +63,10 @@ if ( isset( $authentication ) ) {
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
+
 		<title>Twinfield Examples</title>
+
+		<link rel="stylesheet" type="text/css" href="https://unpkg.com/codemirror@5.62.2/lib/codemirror.css" />
 	</head>
 
 	<body>
@@ -135,11 +138,11 @@ if ( isset( $authentication ) ) {
 
 				<?php var_dump( $office ); ?>
 				
-				<h2>Journals</h2>
+				<h2>Transaction Types</h2>
 
 				<?php
 
-				$journals = $client->get_journals( $office );
+				$transaction_types = $client->get_transaction_types( $office );
 
 				?>
 				<table>
@@ -152,14 +155,14 @@ if ( isset( $authentication ) ) {
 
 					<tbody>
 						
-						<?php foreach ( $journals as $journal ) : ?>
+						<?php foreach ( $transaction_types as $transaction_type ) : ?>
 
 							<tr>
 								<td>
-									<code><?php echo \esc_html( $journal->get_code() ); ?></code>
+									<code><?php echo \esc_html( $transaction_type->get_code() ); ?></code>
 								</td>
 								<td>
-									<?php echo \esc_html( $journal->get_name() ); ?>
+									<?php echo \esc_html( $transaction_type->get_name() ); ?>
 								</td>
 							</tr>
 
@@ -168,15 +171,50 @@ if ( isset( $authentication ) ) {
 					</tbody>
 				</table>
 				
-				<h2>Journal</h2>
+				<h2>Transaction Type</h2>
 
 				<?php
 
-				$journal = $office->new_journal( 'MEMO' );
-
-				var_dump( $journal );
+				$transaction_type = $office->new_transaction_type( 'MEMO' );
 
 				?>
+
+				<dl>
+					<dt>Code</dt>
+					<dd><code><?php echo \esc_html( $transaction_type->get_code() ); ?></code></dd>
+				</dl>
+				
+				<h2>Transaction</h2>
+
+				<?php
+
+				$transaction = $transaction_type->new_transaction();
+
+				$dimension_type_pnl = $office->new_dimension_type( 'PNL' );
+				$dimension_type_crd = $office->new_dimension_type( 'CRD' );
+				$dimension_type_bas = $office->new_dimension_type( 'BAS' );
+
+				$line_1 = $transaction->new_line();
+
+				$line_1->set_type( 'detail' );
+				$line_1->set_id( '1' );
+				$line_1->set_dimension_1( $dimension_type_pnl->new_dimension( '4008' ) );
+				$line_1->set_debit_credit( 'debit' );
+				$line_1->set_value( '435.55' );
+
+				$line_2 = $transaction->new_line();
+
+				$line_2->set_type( 'detail' );
+				$line_2->set_id( '2' );
+				$line_2->set_dimension_1( $dimension_type_bas->new_dimension( '1300' ) );
+				$line_2->set_dimension_2( $dimension_type_crd->new_dimension( '1000' ) );
+				$line_2->set_debit_credit( 'credit' );
+				$line_2->set_value( '435.55' );
+				$line_2->set_invoice_number( '11001770' );
+				$line_2->set_description( 'Invoice paid' );
+
+				?>
+				<textarea id="test"><?php echo \esc_textarea( $transaction->to_xml() ); ?></textarea>
 
 				<h2>Declarations</h2>
 
@@ -209,5 +247,17 @@ if ( isset( $authentication ) ) {
 
 			?>
 		</p>
+
+		<script src="https://unpkg.com/codemirror@5.62.2/lib/codemirror.js"></script>
+		<script src="https://unpkg.com/codemirror@5.62.2/mode/xml/xml.js"></script>
+
+		<script type="text/javascript">
+			var textarea = document.getElementById( 'test' );
+
+			editor = CodeMirror.fromTextArea( textarea, {
+				lineNumbers: true,
+				mode: 'application/xml'
+			} );
+		</script>
 	</body>
 </html>

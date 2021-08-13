@@ -187,7 +187,7 @@ class Client {
 		return $office_service->get_office( $office );
 	}
 
-	public function get_journals( Office $office ) {
+	public function get_transaction_types( Office $office ) {
 		$finder = $this->get_finder();
 
 		// Request.
@@ -210,17 +210,17 @@ class Client {
 
 		$items = $data->get_items();
 
-		$journals = array();
+		$transaction_types = array();
 
 		foreach ( $items as $item ) {
-			$journal = $office->new_journal( $item[0] );
+			$transaction_type = $office->new_transaction_type( $item[0] );
 
-			$journal->set_name( $item[1] );
+			$transaction_type->set_name( $item[1] );
 
-			$journals[] = $journal;
+			$transaction_types[] = $transaction_type;
 		}
 
-		return $journals;
+		return $transaction_types;
 	}
 
 	private function get_wsdl_url( $wsdl_file ) {

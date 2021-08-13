@@ -8,6 +8,9 @@
 
 namespace Pronamic\WP\Twinfield;
 
+use Pronamic\WP\Twinfield\Accounting\Transaction;
+use Pronamic\WP\Twinfield\Accounting\TransactionType;
+
 /**
  * Journal
  *
@@ -17,23 +20,6 @@ namespace Pronamic\WP\Twinfield;
  * @package    Pronamic/WP/Twinfield
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
-class Journal extends CodeName {
-    private $office;
+class Journal extends TransactionType {
 
-    private $transactions;
-
-    public function __construct( $office, $code ) {
-        parent::__construct( $code );
-
-        $this->office       = $office;
-        $this->transactions = array();
-    }
-
-    public function new_transaction() {
-        $transaction = new Transaction( $this );
-
-        $this->transactions[] = $transaction;
-
-        return $code;
-    }
 }

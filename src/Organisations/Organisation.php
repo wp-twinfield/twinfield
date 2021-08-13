@@ -11,6 +11,7 @@ namespace Pronamic\WP\Twinfield\Organisations;
 
 use Pronamic\WP\Twinfield\CodeName;
 use Pronamic\WP\Twinfield\UuidTrait;
+use Pronamic\WP\Twinfield\Twinfield;
 use Pronamic\WP\Twinfield\Users\User;
 use Pronamic\WP\Twinfield\Offices\Office;
 
@@ -24,6 +25,13 @@ use Pronamic\WP\Twinfield\Offices\Office;
  * @author     Remco Tolsma <info@remcotolsma.nl>
  */
 class Organisation extends CodeName {
+    /**
+     * Twinfield.
+     * 
+     * @var Twinfield
+     */
+    private $twinfield;
+
     private $users;
 
     private $offices;
@@ -33,8 +41,8 @@ class Organisation extends CodeName {
     public function __construct( $code ) {
         parent::__construct( $code );
 
-        $this->users   = array();
-        $this->offices = array();
+        $this->users     = array();
+        $this->offices   = array();
     }
 
     public function get_offices() {

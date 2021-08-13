@@ -11,7 +11,8 @@ namespace Pronamic\WP\Twinfield\Offices;
 
 use Pronamic\WP\Twinfield\CodeName;
 use Pronamic\WP\Twinfield\Organisation\Organisation;
-use Pronamic\WP\Twinfield\Journal;
+use Pronamic\WP\Twinfield\Accounting\TransactionType;
+use Pronamic\WP\Twinfield\Accounting\DimensionType;
 
 /**
  * Office
@@ -30,14 +31,24 @@ class Office extends CodeName {
 	 */
 	public $organisation;
 
-    private $journals = array();
+    private $transaction_types = array();
 
-    public function new_journal( $code ) {
-        $journal = new Journal( $this, $code );
+    private $dimension_types = array();
 
-        $this->journals[ $code ] = $journal;
+    public function new_transaction_type( $code ) {
+        $transaction_type = new TransactionType( $this, $code );
 
-        return $journal;
+        $this->transaction_types[ $code ] = $transaction_type;
+
+        return $transaction_type;
+    }
+
+    public function new_dimension_type( $code ) {
+        $dimension_type = new DimensionType( $this, $code );
+
+        $this->dimension_types[] = $dimension_type;
+
+        return $dimension_type;
     }
 
     /**
