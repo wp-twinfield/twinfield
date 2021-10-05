@@ -52,6 +52,13 @@ class Dimension extends CodeName {
 	private $modified_at;
 
 	/**
+	 * Status.
+	 *
+	 * @var string|null
+	 */
+	private $status;
+
+	/**
 	 * Constructs and initializes a dimension.
 	 *
 	 * @param string      $type      Type.
@@ -119,5 +126,23 @@ class Dimension extends CodeName {
 	 */
 	public function set_modified_at( \DateTimeImmutable $modified_at = null ) {
 		$this->modified_at = $modified_at;
+	}
+
+	/**
+	 * Get status.
+	 *
+	 * @return string
+	 */
+	public function get_status() {
+		return $this->status;
+	}
+
+	/**
+	 * Set status.
+	 *
+	 * @param string $status The status.
+	 */
+	public function set_status( $status ) {
+		$this->status = $status;
 	}
 }
