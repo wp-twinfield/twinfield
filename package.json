@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/wp-twinfield/twinfield",
   "devDependencies": {
-    "grunt": "~1.0.1",
+    "grunt": "~1.5.2",
     "grunt-phpcs": "^0.4.0",
     "grunt-phplint": "0.1.0",
     "grunt-phpmd": "^0.1.1",
