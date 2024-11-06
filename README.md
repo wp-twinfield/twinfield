@@ -1,5 +1,8 @@
 # Twinfield library for WordPress
 
+> [!IMPORTANT]  
+> This library/repository is deprecated since November 6, 2024, for a more up-to-date library/repository please see https://github.com/pronamic/wp-twinfield.
+
 [![Build Status](https://travis-ci.org/wp-twinfield/twinfield.svg)](https://travis-ci.org/wp-twinfield/twinfield)
 [![Coverage Status](https://coveralls.io/repos/wp-twinfield/twinfield/badge.svg?branch=develop&service=github)](https://coveralls.io/github/wp-twinfield/twinfield?branch=develop)
 
